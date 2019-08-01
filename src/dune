@@ -1,0 +1,11 @@
+(executable
+  (public_name base-images)
+  (name base_images)
+  (libraries current
+             current_web
+             current_docker
+             current_git
+             dockerfile-opam
+             lwt.unix
+             logs.fmt
+             fmt.tty))
