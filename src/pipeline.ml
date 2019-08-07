@@ -32,11 +32,6 @@ let try_disable_bytes _switch =
   *)
   empty
 
-(* Generate a Dockerfile to install opam in [base] (a base image for [distro]). *)
-let install_opam_df ~base ~distro =
-  let _, dockerfile = Dockerfile_opam.gen_opam2_distro ~from:base distro in
-  dockerfile
-
 (* Generate a Dockerfile to install OCaml compiler [switch] in [opam_image]. *)
 let install_compiler_df ~switch opam_image =
   let switch_name = Ocaml_version.to_string (Ocaml_version.with_just_major_and_minor switch) in
@@ -56,18 +51,10 @@ let install_compiler_df ~switch opam_image =
 module Arch(Docker : Conf.DOCKER) = struct
   let arch_name = Ocaml_version.string_of_arch Docker.arch
 
-  let pull_base_image ~distro =
-    let distro_name, distro_tag = Dockerfile_distro.base_distro_tag distro in
-    let tag = Fmt.strf "%s:%s" distro_name distro_tag in
-    let label = Fmt.strf "%s@,%s" tag arch_name in
-    Docker.pull ~label ~schedule:weekly tag
-
-  let install_opam ~distro ~opam_repository base =
-    let dockerfile =
-      let+ base = base in
-      install_opam_df ~base:(Docker.Image.hash base) ~distro
-    in
-    Docker.build ~label:"opam" ~squash:true ~dockerfile ~pull:false (`Git opam_repository)
+  let install_opam ~distro ~opam_repository =
+    let dockerfile = Current.return @@ snd @@ Dockerfile_opam.gen_opam2_distro distro in
+    let label = Fmt.strf "opam/%s" arch_name in
+    Docker.build ~schedule:weekly ~label ~squash:true ~dockerfile ~pull:true (`Git opam_repository)
 
   let install_compiler ~switch base =
     let dockerfile =
@@ -85,8 +72,7 @@ module Arch(Docker : Conf.DOCKER) = struct
 
   (* Build the base image for [distro], plus an image for each compiler version. *)
   let pipeline ~opam_repository ~distro =
-    let base = pull_base_image ~distro in
-    let opam_image = install_opam base ~distro ~opam_repository in
+    let opam_image = install_opam ~distro ~opam_repository in
     let compiler_images =
       switches ~arch:Docker.arch ~distro |> List.map @@ fun switch ->
       let ocaml_image = install_compiler ~switch opam_image in
