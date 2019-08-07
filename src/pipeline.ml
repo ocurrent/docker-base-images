@@ -45,7 +45,8 @@ let install_compiler_df ~switch opam_image =
   run "opam install -y depext" @@
   env ["OPAMYES", "1"] @@
   entrypoint_exec ["opam"; "config"; "exec"; "--"] @@
-  cmd "bash"
+  cmd "bash" @@
+  copy ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ()
 
 (* Pipeline to build the opam base image and the compiler images for a particular architecture. *)
 module Arch(Docker : Conf.DOCKER) = struct
@@ -57,7 +58,8 @@ module Arch(Docker : Conf.DOCKER) = struct
         let opam = snd @@ Dockerfile_opam.gen_opam2_distro distro in
         let open Dockerfile in
         opam @@
-        copy ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" ()
+        copy ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
+        copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
       )
     in
     let label = Fmt.strf "opam/%s" arch_name in
