@@ -14,9 +14,12 @@ let switches ~arch ~distro =
 (* We can't get the active distros directly, but assume x86_64 is a superset of everything else. *)
 let distros = Dockerfile_distro.active_distros `X86_64
 
+let arches_for ~distro = Dockerfile_distro.distro_arches Ocaml_version.Releases.latest distro
+
 (*
 let distros = ignore distros; [`Debian `V10]
 let switches ~arch:_ ~distro:_ = ignore switches; Ocaml_version.Releases.[v4_08]
+let arches_for ~distro:_ = ignore arches_for; [`X86_64]
 *)
 
 (* Prevent `.byte` executables from being installed, if possible. *)
@@ -50,6 +53,8 @@ let install_compiler_df ~switch opam_image =
 
 (* Pipeline to build the opam base image and the compiler images for a particular architecture. *)
 module Arch(Docker : Conf.DOCKER) = struct
+  let build_pool = Lwt_pool.create 10 Lwt.return
+
   let arch_name = Ocaml_version.string_of_arch Docker.arch
 
   let install_opam ~distro ~opam_repository =
@@ -63,7 +68,7 @@ module Arch(Docker : Conf.DOCKER) = struct
       )
     in
     let label = Fmt.strf "%s/%s" (Dockerfile_distro.tag_of_distro distro) arch_name in
-    Docker.build ~schedule:weekly ~label ~squash:true ~dockerfile ~pull:true (`Git opam_repository)
+    Docker.build ~pool:build_pool ~label ~squash:true ~dockerfile ~pull:true (`Git opam_repository)
 
   let install_compiler ~switch base =
     let dockerfile =
@@ -71,7 +76,7 @@ module Arch(Docker : Conf.DOCKER) = struct
       install_compiler_df ~switch (Docker.Image.hash base)
     in
     let switch_name = Ocaml_version.to_string (Ocaml_version.with_just_major_and_minor switch) in
-    Docker.build ~label:switch_name ~squash:true ~dockerfile ~pull:false `No_context
+    Docker.build ~pool:build_pool ~label:switch_name ~squash:true ~dockerfile ~pull:false `No_context
 
   (* Tag [image] as [tag] and push to hub (if pushing is configured). *)
   let push image ~tag =
@@ -108,7 +113,7 @@ let v () =
   let repo = opam_repository () in
   Current.all (
     distros |> List.map @@ fun distro ->
-    let arches = Dockerfile_distro.distro_arches Ocaml_version.Releases.latest distro in
+    let arches = arches_for ~distro in
     let arch_results = List.filter_map (build_for_arch ~opam_repository:repo ~distro) arches in
     let opam_images, ocaml_images = List.split arch_results in
     let ocaml_images =
