@@ -15,8 +15,8 @@ let switches ~arch ~distro =
 let distros = Dockerfile_distro.active_distros `X86_64
 
 (*
-let distros = ignore distros; [`Debian `V10; `Debian `V9]
-let switches ~arch:_ ~distro:_ = ignore switches; Ocaml_version.Releases.[v4_08; v4_07]
+let distros = ignore distros; [`Debian `V10]
+let switches ~arch:_ ~distro:_ = ignore switches; Ocaml_version.Releases.[v4_08]
 *)
 
 (* Prevent `.byte` executables from being installed, if possible. *)
@@ -77,7 +77,7 @@ module Arch(Docker : Conf.DOCKER) = struct
   let push image ~tag =
     match Conf.auth with
     | None -> let+ () = Docker.tag image ~tag in tag
-    | Some auth -> let+ () = Docker.push ~auth image ~tag in tag  (* TODO: get repo ID *)
+    | Some auth -> Docker.push ~auth image ~tag
 
   (* Build the base image for [distro], plus an image for each compiler version. *)
   let pipeline ~opam_repository ~distro =
