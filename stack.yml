@@ -6,6 +6,8 @@ secrets:
     external: true
   ocurrent-ssh-key:
     external: true
+  ocurrent-tls-key:
+    external: true
 services:
   builder:
     image: base-images
@@ -19,5 +21,7 @@ services:
       - '/var/run/docker.sock:/var/run/docker.sock'
     secrets:
       - 'ocurrent-hub'
+      - source: 'ocurrent-tls-key'
+        mode: 0400
       - source: 'ocurrent-ssh-key'
         mode: 0400

@@ -17,7 +17,7 @@ RUN echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stabl
 RUN apt-get update && apt-get install docker-ce -y --no-install-recommends
 RUN mkdir /root/.ssh && chmod 0700 /root/.ssh && ln -s /run/secrets/ocurrent-ssh-key /root/.ssh/id_rsa
 COPY known_hosts /root/.ssh/known_hosts
-COPY config.json /root/.docker/config.json
+COPY dot_docker /root/.docker
 COPY --from=build /src/_build/default/src/base_images.exe /usr/local/bin/base-images
 WORKDIR /var/lib/ocurrent
 ENTRYPOINT ["dumb-init", "/usr/local/bin/base-images"]

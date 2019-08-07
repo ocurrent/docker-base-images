@@ -95,11 +95,13 @@ end
 
 module Amd64 = Arch(Conf.Docker_amd64)
 module Arm64 = Arch(Conf.Docker_arm64)
+module Ppc64 = Arch(Conf.Docker_ppc64)
 
 let build_for_arch ~opam_repository ~distro = function
   | `Aarch64 -> Some (Arm64.pipeline ~opam_repository ~distro)
   | `X86_64 -> Some (Amd64.pipeline ~opam_repository ~distro)
-  | `Aarch32 | `Ppc64le -> None
+  | `Ppc64le -> Some (Ppc64.pipeline ~opam_repository ~distro)
+  | `Aarch32 -> None
 
 (* The main pipeline. Builds images for all supported distribution, compiler version and architecture combinations. *)
 let v () =

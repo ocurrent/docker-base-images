@@ -3,8 +3,6 @@ let staging_repo = "ocurrent/opam-staging"
 
 let public_repo = "ocurrent/opam"
 
-let arm64_builder = "ssh://root@147.75.205.46"
-
 let password_path = "/run/secrets/ocurrent-hub"
 
 let auth =
@@ -30,6 +28,11 @@ module Docker_amd64 = struct
 end
 
 module Docker_arm64 = struct
-  include Current_docker.Make(struct let docker_host = Some arm64_builder end)
+  include Current_docker.Make(struct let docker_context = Some "arm64" end)
   let arch = `Aarch64
+end
+
+module Docker_ppc64 = struct
+  include Current_docker.Make(struct let docker_context = Some "ppc64" end)
+  let arch = `Ppc64le
 end
