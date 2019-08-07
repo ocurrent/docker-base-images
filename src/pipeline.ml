@@ -52,7 +52,14 @@ module Arch(Docker : Conf.DOCKER) = struct
   let arch_name = Ocaml_version.string_of_arch Docker.arch
 
   let install_opam ~distro ~opam_repository =
-    let dockerfile = Current.return @@ snd @@ Dockerfile_opam.gen_opam2_distro distro in
+    let dockerfile =
+      Current.return (
+        let opam = snd @@ Dockerfile_opam.gen_opam2_distro distro in
+        let open Dockerfile in
+        opam @@
+        copy ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" ()
+      )
+    in
     let label = Fmt.strf "opam/%s" arch_name in
     Docker.build ~schedule:weekly ~label ~squash:true ~dockerfile ~pull:true (`Git opam_repository)
 
