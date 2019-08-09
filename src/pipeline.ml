@@ -7,21 +7,6 @@ let weekly = Current_cache.Schedule.v ~valid_for:(Duration.of_day 7) ()
 let opam_repository () =
   Current_git.clone ~schedule:weekly "git://github.com/ocaml/opam-repository"
 
-let switches ~arch ~distro =
-  Ocaml_version.Releases.recent
-  |> List.filter (fun ov -> Dockerfile_distro.distro_supported_on arch ov distro)
-
-(* We can't get the active distros directly, but assume x86_64 is a superset of everything else. *)
-let distros = Dockerfile_distro.active_distros `X86_64
-
-let arches_for ~distro = Dockerfile_distro.distro_arches Ocaml_version.Releases.latest distro
-
-(*
-let distros = ignore distros; [`Debian `V10]
-let switches ~arch:_ ~distro:_ = ignore switches; Ocaml_version.Releases.[v4_08]
-let arches_for ~distro:_ = ignore arches_for; [`X86_64]
-*)
-
 (* Prevent `.byte` executables from being installed, if possible. *)
 let try_disable_bytes _switch =
   let open Dockerfile in
@@ -88,7 +73,7 @@ module Arch(Docker : Conf.DOCKER) = struct
   let pipeline ~opam_repository ~distro =
     let opam_image = install_opam ~distro ~opam_repository in
     let compiler_images =
-      switches ~arch:Docker.arch ~distro |> List.map @@ fun switch ->
+      Conf.switches ~arch:Docker.arch ~distro |> List.map @@ fun switch ->
       let ocaml_image = install_compiler ~switch opam_image in
       let repo_id = push ocaml_image ~tag:(Tag.v distro ~switch ~arch:Docker.arch) in
       (switch, repo_id)
@@ -112,8 +97,8 @@ let build_for_arch ~opam_repository ~distro = function
 let v () =
   let repo = opam_repository () in
   Current.all (
-    distros |> List.map @@ fun distro ->
-    let arches = arches_for ~distro in
+    Conf.distros |> List.map @@ fun distro ->
+    let arches = Conf.arches_for ~distro in
     let arch_results = List.filter_map (build_for_arch ~opam_repository:repo ~distro) arches in
     let opam_images, ocaml_images = List.split arch_results in
     let ocaml_images =

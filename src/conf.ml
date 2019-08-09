@@ -36,3 +36,20 @@ module Docker_ppc64 = struct
   include Current_docker.Make(struct let docker_context = Some "ppc64" end)
   let arch = `Ppc64le
 end
+
+let switches ~arch ~distro =
+  Ocaml_version.Releases.recent
+  |> List.filter (fun ov -> Dockerfile_distro.distro_supported_on arch ov distro)
+
+(* We can't get the active distros directly, but assume x86_64 is a superset of everything else. *)
+let distros = Dockerfile_distro.active_distros `X86_64
+
+let arches_for ~distro = Dockerfile_distro.distro_arches Ocaml_version.Releases.latest distro
+
+(* For testing, you can uncomment these lines to limit the number of combinations: *)
+
+(*
+let distros = ignore distros; [`Debian `V10]
+let switches ~arch:_ ~distro:_ = ignore switches; Ocaml_version.Releases.[v4_08]
+let arches_for ~distro:_ = ignore arches_for; [`X86_64]
+*)
