@@ -36,10 +36,12 @@ let install_compiler_df ~switch opam_image =
   try_disable_bytes switch @@
   run "opam init -k local -a /home/opam/opam-repository --bare" @@
   maybe_add_beta switch @@
+  env ["OPAMYES", "1";
+       "OPAMERRLOGLEN", "0";
+      ] @@
   run "opam switch create %s %s" switch_name (Ocaml_version.Opam.V2.name switch) @@
   run "rm -rf .opam/repo/default/.git" @@
   run "opam install -y depext" @@
-  env ["OPAMYES", "1"] @@
   entrypoint_exec ["opam"; "config"; "exec"; "--"] @@
   cmd "bash" @@
   copy ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ()
