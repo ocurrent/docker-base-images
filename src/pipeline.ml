@@ -20,6 +20,13 @@ let try_disable_bytes _switch =
   *)
   empty
 
+let maybe_add_beta switch =
+  let open Dockerfile in
+  if Ocaml_version.Releases.is_dev switch then
+    run "opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default"
+  else
+    empty
+
 (* Generate a Dockerfile to install OCaml compiler [switch] in [opam_image]. *)
 let install_compiler_df ~switch opam_image =
   let switch_name = Ocaml_version.to_string (Ocaml_version.with_just_major_and_minor switch) in
@@ -28,6 +35,7 @@ let install_compiler_df ~switch opam_image =
   run "opam-sandbox-disable" @@
   try_disable_bytes switch @@
   run "opam init -k local -a /home/opam/opam-repository --bare" @@
+  maybe_add_beta switch @@
   run "opam switch create %s %s" switch_name (Ocaml_version.Opam.V2.name switch) @@
   run "rm -rf .opam/repo/default/.git" @@
   run "opam install -y depext" @@
@@ -60,7 +68,7 @@ module Arch(Docker : Conf.DOCKER) = struct
       let+ base = base in
       install_compiler_df ~switch (Docker.Image.hash base)
     in
-    let switch_name = Ocaml_version.to_string (Ocaml_version.with_just_major_and_minor switch) in
+    let switch_name = Ocaml_version.to_string switch in
     Docker.build ~pool:build_pool ~label:switch_name ~squash:true ~dockerfile ~pull:false `No_context
 
   (* Tag [image] as [tag] and push to hub (if pushing is configured). *)
@@ -93,6 +101,14 @@ let build_for_arch ~opam_repository ~distro = function
   | `Ppc64le -> Some (Ppc64.pipeline ~opam_repository ~distro)
   | `Aarch32 -> None
 
+module Switch_set = Set.Make(Ocaml_version)
+
+let all_switches arches =
+  arches |> ListLabels.fold_left ~init:Switch_set.empty ~f:(fun acc map ->
+      Switch_map.fold (fun k _v acc -> Switch_set.add k acc) map acc
+    )
+  |> Switch_set.elements
+
 (* The main pipeline. Builds images for all supported distribution, compiler version and architecture combinations. *)
 let v () =
   let repo = opam_repository () in
@@ -102,7 +118,7 @@ let v () =
     let arch_results = List.filter_map (build_for_arch ~opam_repository:repo ~distro) arches in
     let opam_images, ocaml_images = List.split arch_results in
     let ocaml_images =
-      Ocaml_version.Releases.all |> List.filter_map @@ fun switch ->
+      all_switches ocaml_images |> List.filter_map @@ fun switch ->
       let images = List.filter_map (Switch_map.find_opt switch) ocaml_images in
       if images = [] then None
       else (

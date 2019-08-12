@@ -1,5 +1,5 @@
 (* For staging arch-specific builds before creating the manifest. *)
-let staging_repo = "ocurrent/opam-staging"      
+let staging_repo = "ocurrent/opam-staging"
 
 let public_repo = "ocurrent/opam"
 
@@ -38,8 +38,16 @@ module Docker_ppc64 = struct
 end
 
 let switches ~arch ~distro =
-  Ocaml_version.Releases.recent
-  |> List.filter (fun ov -> Dockerfile_distro.distro_supported_on arch ov distro)
+  let is_tier1 = List.mem distro (Dockerfile_distro.active_tier1_distros arch) in
+  let main_switches =
+    Ocaml_version.Releases.recent_with_dev
+    |> List.filter (fun ov -> Dockerfile_distro.distro_supported_on arch ov distro)
+  in
+  if is_tier1 then (
+    List.map (Ocaml_version.Opam.V2.switches arch) main_switches |> List.concat
+  ) else (
+    main_switches
+  )
 
 (* We can't get the active distros directly, but assume x86_64 is a superset of everything else. *)
 let distros = Dockerfile_distro.active_distros `X86_64
