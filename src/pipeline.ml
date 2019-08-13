@@ -68,10 +68,10 @@ module Arch(Docker : Conf.DOCKER) = struct
   let install_compiler ~switch base =
     let dockerfile =
       let+ base = base in
-      install_compiler_df ~switch (Docker.Image.hash base)
+      install_compiler_df ~switch base
     in
-    let switch_name = Ocaml_version.to_string switch in
-    Docker.build ~pool:build_pool ~label:switch_name ~squash:true ~dockerfile ~pull:false `No_context
+    let label = Fmt.strf "%s/%s" (Ocaml_version.to_string switch) arch_name in
+    Docker.build ~pool:build_pool ~label ~squash:true ~dockerfile ~pull:false `No_context
 
   (* Tag [image] as [tag] and push to hub (if pushing is configured). *)
   let push image ~tag =
@@ -81,7 +81,10 @@ module Arch(Docker : Conf.DOCKER) = struct
 
   (* Build the base image for [distro], plus an image for each compiler version. *)
   let pipeline ~opam_repository ~distro =
-    let opam_image = install_opam ~distro ~opam_repository in
+    let opam_image =
+      install_opam ~distro ~opam_repository
+      |> push ~tag:(Tag.v distro ~arch:Docker.arch)
+    in
     let compiler_images =
       Conf.switches ~arch:Docker.arch ~distro |> List.map @@ fun switch ->
       let ocaml_image = install_compiler ~switch opam_image in
@@ -89,8 +92,7 @@ module Arch(Docker : Conf.DOCKER) = struct
       (switch, repo_id)
     in
     let compiler_images = Switch_map.of_seq (List.to_seq compiler_images) in
-    let base_image = push opam_image ~tag:(Tag.v distro ~arch:Docker.arch) in
-    (base_image, compiler_images)
+    (opam_image, compiler_images)
 end
 
 module Amd64 = Arch(Conf.Docker_amd64)
