@@ -70,8 +70,8 @@ module Arch(Docker : Conf.DOCKER) = struct
       let+ base = base in
       install_compiler_df ~switch base
     in
-    let switch_name = Ocaml_version.to_string switch in
-    Docker.build ~pool:build_pool ~label:switch_name ~squash:true ~dockerfile ~pull:false `No_context
+    let label = Fmt.strf "%s/%s" (Ocaml_version.to_string switch) arch_name in
+    Docker.build ~pool:build_pool ~label ~squash:true ~dockerfile ~pull:false `No_context
 
   (* Tag [image] as [tag] and push to hub (if pushing is configured). *)
   let push image ~tag =
