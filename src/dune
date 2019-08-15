@@ -4,6 +4,7 @@
   (libraries current
              current_web
              current_docker
+             current_slack
              current_git
              dockerfile-opam
              lwt.unix

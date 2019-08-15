@@ -8,10 +8,12 @@ secrets:
     external: true
   ocurrent-tls-key:
     external: true
+  ocurrent-slack-endpoint:
+    external: true
 services:
   builder:
     image: base-images
-    command: --confirm dangerous
+    command: --confirm dangerous --slack /run/secrets/ocurrent-slack-endpoint
     environment:
       DOCKER_BUILDKIT: 0        # See https://github.com/moby/buildkit/issues/1105
     ports:
@@ -21,6 +23,7 @@ services:
       - '/var/run/docker.sock:/var/run/docker.sock'
     secrets:
       - 'ocurrent-hub'
+      - 'ocurrent-slack-endpoint'
       - source: 'ocurrent-tls-key'
         mode: 0400
       - source: 'ocurrent-ssh-key'
