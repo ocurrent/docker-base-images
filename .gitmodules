@@ -1,6 +1,6 @@
 [submodule "ocurrent"]
 	path = ocurrent
-	url = https://github.com/talex5/ocurrent.git
+	url = https://github.com/ocaml-ci/current.git
 [submodule "ocaml-dockerfile"]
 	path = ocaml-dockerfile
 	url = https://github.com/talex5/ocaml-dockerfile.git

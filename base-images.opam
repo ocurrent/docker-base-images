@@ -16,6 +16,7 @@ depends: [
   "dune" {>= "1.10"}
   "current_git"
   "current_docker"
+  "current_slack"
   "current_web"
   "dockerfile-opam" {>= "6.2.0"}
 ]

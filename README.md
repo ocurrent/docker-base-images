@@ -94,6 +94,7 @@ If you are doing your own deployment, you will need to provide some secrets (usi
 - `ocurrent-hub` is the Docker Hub password, which is used to push the images.
 - `ocurrent-ssh-key` is needed for any builders that are accessed over SSH.
 - `ocurrent-tls-key` is needed for any builders that are accessed over TLS.
+- `ocurrent-slack-endpoint` allows pushing status messages to a Slack channel.
 
 [OCurrent]: https://github.com/talex5/ocurrent
 [pipeline.ml]: https://github.com/talex5/ocaml-base-images/blob/master/src/pipeline.ml

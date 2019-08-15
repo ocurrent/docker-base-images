@@ -113,8 +113,18 @@ let all_switches arches =
     )
   |> Switch_set.elements
 
+let notify_status ?channel x =
+  match channel with
+  | None -> x
+  | Some channel ->
+    let s =
+      let+ state = Current.catch x in
+      Fmt.strf "docker-base-images status: %a" (Current_term.Output.pp Current.Unit.pp) state
+    in
+    Current_slack.post channel ~key:"base-images-status" s
+
 (* The main pipeline. Builds images for all supported distribution, compiler version and architecture combinations. *)
-let v () =
+let v ?channel () =
   let repo = opam_repository () in
   Current.all (
     Conf.distros |> List.map @@ fun distro ->
@@ -132,3 +142,4 @@ let v () =
     in
     Current.all (Current_docker.push_manifest ?auth:Conf.auth ~tag:(Tag.v distro) opam_images :: ocaml_images)
   )
+  |> notify_status ?channel
