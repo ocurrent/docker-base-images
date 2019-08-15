@@ -62,7 +62,7 @@ module Arch(Docker : Conf.DOCKER) = struct
         copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
       )
     in
-    let label = Fmt.strf "%s/%s" (Dockerfile_distro.tag_of_distro distro) arch_name in
+    let label = Fmt.strf "%s@,%s" (Dockerfile_distro.tag_of_distro distro) arch_name in
     Docker.build ~pool:build_pool ~label ~squash:true ~dockerfile ~pull:true (`Git opam_repository)
 
   let install_compiler ~switch base =
