@@ -81,12 +81,12 @@ Once running with your chosen configuration, you can use the web UI to raise (or
 
 ## The real deployment
 
-The builder currently runs on `ci.ocaml.org`.
+The builder currently runs on `ci.ocamllabs.io`.
 The configuration is in `stack.yml`.
 To update it:
 
 ```
-docker --context ci stack deploy -c stack.yml base-images
+docker --context ci.ocamllabs.io stack deploy -c stack.yml base-images
 ```
 
 If you are doing your own deployment, you will need to provide some secrets (using `docker secret create`):
