@@ -20,21 +20,31 @@ let auth =
 module type DOCKER = sig
   include Current_docker.S.DOCKER
   val arch : Ocaml_version.arch
+  val pool_size : int
 end
 
 module Docker_amd64 = struct
   include Current_docker.Default
   let arch = `X86_64
+  let pool_size = 10
+end
+
+module Docker_arm32 = struct
+  include Current_docker.Make(struct let docker_context = Some "arm32" end)
+  let arch = `Aarch32
+  let pool_size = 1
 end
 
 module Docker_arm64 = struct
   include Current_docker.Make(struct let docker_context = Some "arm64" end)
   let arch = `Aarch64
+  let pool_size = 10
 end
 
 module Docker_ppc64 = struct
   include Current_docker.Make(struct let docker_context = Some "ppc64" end)
   let arch = `Ppc64le
+  let pool_size = 10
 end
 
 let switches ~arch ~distro =

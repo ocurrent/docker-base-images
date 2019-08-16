@@ -48,7 +48,7 @@ let install_compiler_df ~switch opam_image =
 
 (* Pipeline to build the opam base image and the compiler images for a particular architecture. *)
 module Arch(Docker : Conf.DOCKER) = struct
-  let build_pool = Lwt_pool.create 10 Lwt.return
+  let build_pool = Lwt_pool.create Docker.pool_size Lwt.return
 
   let arch_name = Ocaml_version.string_of_arch Docker.arch
 
@@ -62,7 +62,7 @@ module Arch(Docker : Conf.DOCKER) = struct
         copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
       )
     in
-    let label = Fmt.strf "%s/%s" (Dockerfile_distro.tag_of_distro distro) arch_name in
+    let label = Fmt.strf "%s@,%s" (Dockerfile_distro.tag_of_distro distro) arch_name in
     Docker.build ~pool:build_pool ~label ~squash:true ~dockerfile ~pull:true (`Git opam_repository)
 
   let install_compiler ~switch base =
@@ -96,6 +96,7 @@ module Arch(Docker : Conf.DOCKER) = struct
 end
 
 module Amd64 = Arch(Conf.Docker_amd64)
+module Arm32 = Arch(Conf.Docker_arm32)
 module Arm64 = Arch(Conf.Docker_arm64)
 module Ppc64 = Arch(Conf.Docker_ppc64)
 
@@ -103,7 +104,7 @@ let build_for_arch ~opam_repository ~distro = function
   | `Aarch64 -> Some (Arm64.pipeline ~opam_repository ~distro)
   | `X86_64 -> Some (Amd64.pipeline ~opam_repository ~distro)
   | `Ppc64le -> Some (Ppc64.pipeline ~opam_repository ~distro)
-  | `Aarch32 -> None
+  | `Aarch32 -> Some (Arm32.pipeline ~opam_repository ~distro)
 
 module Switch_set = Set.Make(Ocaml_version)
 
