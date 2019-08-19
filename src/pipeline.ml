@@ -122,7 +122,10 @@ let notify_status ?channel x =
       let+ state = Current.catch x in
       Fmt.strf "docker-base-images status: %a" (Current_term.Output.pp Current.Unit.pp) state
     in
-    Current_slack.post channel ~key:"base-images-status" s
+    Current.all [
+      Current_slack.post channel ~key:"base-images-status" s;
+      x   (* If [x] fails, the whole pipeline should fail too. *)
+    ]
 
 (* The main pipeline. Builds images for all supported distribution, compiler version and architecture combinations. *)
 let v ?channel () =
