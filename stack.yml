@@ -13,11 +13,9 @@ secrets:
 services:
   builder:
     image: base-images
-    command: --confirm dangerous --slack /run/secrets/ocurrent-slack-endpoint
+    command: --confirm dangerous --confirm-auto-release 120 --slack /run/secrets/ocurrent-slack-endpoint
     environment:
       DOCKER_BUILDKIT: 0        # See https://github.com/moby/buildkit/issues/1105
-    ports:
-     - "8080:8080"
     volumes:
       - 'data:/var/lib/ocurrent'
       - '/var/run/docker.sock:/var/run/docker.sock'
