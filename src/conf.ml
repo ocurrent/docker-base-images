@@ -5,6 +5,14 @@ let public_repo = "ocurrent/opam"
 
 let password_path = "/run/secrets/ocurrent-hub"
 
+module Capnp = struct
+  (* Cap'n Proto RPC is enabled by passing --capnp-public-address. These values are hard-coded
+     (because they're just internal to the Docker container). *)
+  let secret_key = "/capnp-secrets/secret-key.pem"
+  let cap_file = "/capnp-secrets/base-images.cap"
+  let internal_port = 9000
+end
+
 let auth =
   if Sys.file_exists password_path then (
     let ch = open_in_bin "/run/secrets/ocurrent-hub" in

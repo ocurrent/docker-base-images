@@ -1,6 +1,7 @@
 version: '3.1'
 volumes:
   data:
+  capnp-secrets:
 secrets:
   ocurrent-hub:
     external: true
@@ -13,12 +14,15 @@ secrets:
 services:
   builder:
     image: base-images
-    command: --confirm dangerous --confirm-auto-release 120 --slack /run/secrets/ocurrent-slack-endpoint
+    command: --confirm dangerous --confirm-auto-release 120 --slack /run/secrets/ocurrent-slack-endpoint --capnp-address=base-images.ocamllabs.io:8101
+    ports:
+      - '8101:9000'
     environment:
       DOCKER_BUILDKIT: 0        # See https://github.com/moby/buildkit/issues/1105
     volumes:
       - 'data:/var/lib/ocurrent'
       - '/var/run/docker.sock:/var/run/docker.sock'
+      - 'capnp-secrets:/capnp-secrets'
     secrets:
       - 'ocurrent-hub'
       - 'ocurrent-slack-endpoint'
