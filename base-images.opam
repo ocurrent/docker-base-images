@@ -18,5 +18,7 @@ depends: [
   "current_docker"
   "current_slack"
   "current_web"
+  "current_rpc"
+  "capnp-rpc-unix"
   "dockerfile-opam" {>= "6.2.0"}
 ]
