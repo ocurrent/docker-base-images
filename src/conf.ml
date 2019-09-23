@@ -37,8 +37,14 @@ module Docker_amd64 = struct
   let pool_size = 10
 end
 
-module Docker_arm32 = struct
+module Docker_arm32_1 = struct
   include Current_docker.Make(struct let docker_context = Some "arm32" end)
+  let arch = `Aarch32
+  let pool_size = 1
+end
+
+module Docker_arm32_2 = struct
+  include Current_docker.Make(struct let docker_context = Some "arm32-2" end)
   let arch = `Aarch32
   let pool_size = 1
 end
