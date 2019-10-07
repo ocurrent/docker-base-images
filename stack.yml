@@ -19,6 +19,7 @@ services:
       - '8101:9000'
     environment:
       DOCKER_BUILDKIT: 0        # See https://github.com/moby/buildkit/issues/1105
+      DEPLOYMENT: 1
     volumes:
       - 'data:/var/lib/ocurrent'
       - '/var/run/docker.sock:/var/run/docker.sock'

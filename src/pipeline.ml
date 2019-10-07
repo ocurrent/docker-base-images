@@ -48,9 +48,11 @@ let install_compiler_df ~switch opam_image =
 
 (* Pipeline to build the opam base image and the compiler images for a particular architecture. *)
 module Arch(Docker : Conf.DOCKER) = struct
-  let build_pool = Lwt_pool.create Docker.pool_size Lwt.return
-
   let arch_name = Ocaml_version.string_of_arch Docker.arch
+
+  let build_pool =
+    let label = Fmt.strf "docker-%s" Docker.label in
+    Current.Pool.create ~label Docker.pool_size
 
   let install_opam ~distro ~opam_repository =
     let dockerfile =
