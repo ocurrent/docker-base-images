@@ -8,16 +8,13 @@ let opam_repository () =
   Current_git.clone ~schedule:weekly "git://github.com/ocaml/opam-repository"
 
 (* Prevent `.byte` executables from being installed, if possible. *)
-let try_disable_bytes _switch =
+let try_disable_bytes switch =
   let open Dockerfile in
-  (* Doesn't work, due to https://github.com/ocaml/ocaml/issues/8855 *)
-  (*
-  if Ocaml_version.compare switch Ocaml_version.Releases.v4_08_0 >= 0 then (
+  if Ocaml_version.compare switch Ocaml_version.Releases.v4_10_0 >= 0 then (
     run "sed -i 's!\"./configure\"!\"./configure\" \"--disable-installing-bytecode-programs\"!' \
-         /home/opam/opam-repository/packages/ocaml-base-compiler/%s/opam" (Ocaml_version.Opam.V2.name switch) @@
+         /home/opam/opam-repository/packages/ocaml-variants/%s/opam" (Ocaml_version.Opam.V2.name switch) @@
     run "cd opam-repository && git commit -a -m 'Disable bytecode binaries to save space'"
   ) else
-  *)
   empty
 
 let maybe_add_beta switch =
