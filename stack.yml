@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.5'
 volumes:
   data:
   capnp-secrets:
@@ -10,11 +10,12 @@ secrets:
   ocurrent-tls-key:
     external: true
   ocurrent-slack-endpoint:
+    name: "base-builder-oclc-ci-slack-endpoint"
     external: true
 services:
   builder:
     image: base-images
-    command: --confirm dangerous --confirm-auto-release 120 --slack /run/secrets/ocurrent-slack-endpoint --capnp-address=base-images.ocamllabs.io:8101
+    command: --confirm above-average --confirm-auto-release 120 --slack /run/secrets/ocurrent-slack-endpoint --capnp-address=base-images.ocamllabs.io:8101
     ports:
       - '8101:9000'
     environment:
