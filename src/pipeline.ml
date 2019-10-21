@@ -145,9 +145,11 @@ let v ?channel () =
       if images = [] then None
       else (
         let tag = Tag.v distro ~switch in
-        Some (Current_docker.push_manifest ?auth:Conf.auth ~tag images)
+        Some (tag, Current_docker.push_manifest ?auth:Conf.auth ~tag images)
       )
     in
-    Current.all (Current_docker.push_manifest ?auth:Conf.auth ~tag:(Tag.v distro) opam_images :: ocaml_images)
+    Current.all_labelled (
+      ("base", Current_docker.push_manifest ?auth:Conf.auth ~tag:(Tag.v distro) opam_images)
+      :: ocaml_images)
   )
   |> notify_status ?channel
