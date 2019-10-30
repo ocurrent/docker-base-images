@@ -23,7 +23,7 @@ let run_capnp ~engine = function
         (Capnp_rpc_unix.Network.Location.tcp ~host:"0.0.0.0" ~port:Conf.Capnp.internal_port)
     in
     let service_id = Capnp_rpc_unix.Vat_config.derived_id config "engine" in
-    let restore = Capnp_rpc_lwt.Restorer.single service_id (Rpc.engine engine) in
+    let restore = Capnp_rpc_net.Restorer.single service_id (Rpc.engine engine) in
     Capnp_rpc_unix.serve config ~restore >>= fun vat ->
     let uri = Capnp_rpc_unix.Vat.sturdy_uri vat service_id in
     let ch = open_out Conf.Capnp.cap_file in
