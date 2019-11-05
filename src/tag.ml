@@ -18,3 +18,13 @@ let v ?arch ?switch distro =
     | None -> "opam"
   in
   Fmt.strf "%s:%s-%s%a" repo distro switch pp_arch arch
+
+let v_alias alias =
+  let alias =
+    if alias = `Debian `Stable then "debian"
+    else Dockerfile_distro.tag_of_distro alias
+  in
+  Fmt.strf "%s:%s" Conf.public_repo alias
+
+let latest =
+  Fmt.strf "%s:latest" Conf.public_repo
