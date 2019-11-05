@@ -158,7 +158,7 @@ let v ?channel () =
             (* For every distro, also create a link to the latest OCaml compiler.
                e.g. debian-9 -> debian-9-ocaml-4.09 *)
             let tags = Tag.v_alias distro :: tags in
-            (* If [distro] is the latest version of that distribuion, make an alias like
+            (* If [distro] is the latest version of that distribution, make an alias like
                debian -> debian-10-ocaml-4.09 *)
             match distro_latest_alias with
             | None -> tags
