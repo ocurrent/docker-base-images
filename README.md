@@ -27,8 +27,8 @@ The rest of this README is about working on the build pipeline.
 To see the pipeline, clone the repository and run it:
 
 ```bash
-git clone --recursive https://github.com/talex5/ocaml-base-images.git
-cd ocaml-base-images
+git clone --recursive https://github.com/ocurrent/docker-base-images.git
+cd docker-base-images
 opam pin -yn ./ocurrent
 opam pin -yn ./ocaml-dockerfile
 opam pin -yn .
@@ -96,7 +96,7 @@ If you are doing your own deployment, you will need to provide some secrets (usi
 - `ocurrent-tls-key` is needed for any builders that are accessed over TLS.
 - `ocurrent-slack-endpoint` allows pushing status messages to a Slack channel.
 
-[OCurrent]: https://github.com/talex5/ocurrent
-[pipeline.ml]: https://github.com/talex5/ocaml-base-images/blob/master/src/pipeline.ml
-[conf.ml]: https://github.com/talex5/ocaml-base-images/blob/master/src/conf.ml
+[OCurrent]: https://github.com/ocurrent/ocurrent
+[pipeline.ml]: https://github.com/ocurrent/docker-base-images/blob/master/src/pipeline.ml
+[conf.ml]: https://github.com/ocurrent/docker-base-images/blob/master/src/conf.ml
 [avsm/ocaml-dockerfile]: https://github.com/avsm/ocaml-dockerfile
