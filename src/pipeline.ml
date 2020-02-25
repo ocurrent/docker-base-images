@@ -14,16 +14,6 @@ let latest_alias_of =
 
 let master_distro = Dockerfile_distro.(resolve_alias master_distro)
 
-(* Prevent `.byte` executables from being installed, if possible. *)
-let try_disable_bytes switch =
-  let open Dockerfile in
-  if Ocaml_version.compare switch Ocaml_version.Releases.v4_10_0 >= 0 then (
-    run "sed -i 's!\"./configure\"!\"./configure\" \"--disable-installing-bytecode-programs\"!' \
-         /home/opam/opam-repository/packages/ocaml-variants/%s/opam" (Ocaml_version.Opam.V2.name switch) @@
-    run "cd opam-repository && git commit -a -m 'Disable bytecode binaries to save space'"
-  ) else
-  empty
-
 let maybe_add_beta switch =
   let open Dockerfile in
   if Ocaml_version.Releases.is_dev switch then
@@ -37,7 +27,6 @@ let install_compiler_df ~switch opam_image =
   let open Dockerfile in
   from opam_image @@
   run "opam-sandbox-disable" @@
-  try_disable_bytes switch @@
   run "opam init -k local -a /home/opam/opam-repository --bare" @@
   maybe_add_beta switch @@
   env ["OPAMYES", "1";
