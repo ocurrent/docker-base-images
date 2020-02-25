@@ -60,13 +60,13 @@ module Arch(Docker : Conf.DOCKER) = struct
 
   let install_opam ~distro ~opam_repository =
     let dockerfile =
-      Current.return (
+      Current.return (`Contents (
         let opam = snd @@ Dockerfile_opam.gen_opam2_distro distro in
         let open Dockerfile in
         opam @@
         copy ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
         copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
-      )
+      ))
     in
     let label = Fmt.strf "%s@,%s" (Dockerfile_distro.tag_of_distro distro) arch_name in
     Docker.build ~pool:build_pool ~label ~squash:true ~dockerfile ~pull:true (`Git opam_repository)
@@ -74,7 +74,7 @@ module Arch(Docker : Conf.DOCKER) = struct
   let install_compiler ~switch base =
     let dockerfile =
       let+ base = base in
-      install_compiler_df ~switch base
+      `Contents (install_compiler_df ~switch base)
     in
     let label = Fmt.strf "%s/%s" (Ocaml_version.to_string switch) arch_name in
     Docker.build ~pool:build_pool ~label ~squash:true ~dockerfile ~pull:false `No_context
