@@ -13,7 +13,7 @@ homepage: "https://github.com/talex5/ocaml-base-images"
 dev-repo: "git+https://github.com/talex5/ocaml-base-images.git"
 synopsis: "Build OCaml Docker images"
 depends: [
-  "dune" {>= "1.10"}
+  "dune" {>= "1.11"}
   "current_git"
   "current_docker"
   "current_slack"
