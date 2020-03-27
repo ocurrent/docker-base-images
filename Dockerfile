@@ -7,12 +7,20 @@ COPY --chown=opam \
 	ocurrent/current_ansi.opam \
 	ocurrent/current_docker.opam \
 	ocurrent/current_git.opam \
+	ocurrent/current_incr.opam \
 	ocurrent/current_slack.opam \
 	ocurrent/current_rpc.opam \
 	/src/ocurrent/
-RUN opam pin -yn add /src/ocurrent
-COPY --chown=opam base-images.opam /src/
 WORKDIR /src
+RUN opam pin add -yn current_ansi.dev "./ocurrent" && \
+    opam pin add -yn current_docker.dev "./ocurrent" && \
+    opam pin add -yn current_git.dev "./ocurrent" && \
+    opam pin add -yn current_incr.dev "./ocurrent" && \
+    opam pin add -yn current.dev "./ocurrent" && \
+    opam pin add -yn current_rpc.dev "./ocurrent" && \
+    opam pin add -yn current_slack.dev "./ocurrent" && \
+    opam pin add -yn current_web.dev "./ocurrent"
+COPY --chown=opam base-images.opam /src/
 RUN opam install -y --deps-only .
 ADD --chown=opam . .
 RUN opam config exec -- dune build ./src/base_images.exe
