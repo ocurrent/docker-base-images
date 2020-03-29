@@ -124,11 +124,19 @@ let notify_status ?channel x =
       x   (* If [x] fails, the whole pipeline should fail too. *)
     ]
 
+let label l t =
+  Current.component "%s" l |>
+  let> v = t in
+  Current.Input.const v
+
 (* The main pipeline. Builds images for all supported distribution, compiler version and architecture combinations. *)
 let v ?channel () =
   let repo = opam_repository () in
   Current.all (
     Conf.distros |> List.map @@ fun distro ->
+    let distro_label = Dockerfile_distro.tag_of_distro distro in
+    let repo = label distro_label repo in
+    Current.collapse ~key:"distro" ~value:distro_label ~input:repo @@
     let distro_latest_alias = latest_alias_of distro in
     let arches = Conf.arches_for ~distro in
     let arch_results = List.filter_map (build_for_arch ~opam_repository:repo ~distro) arches in
