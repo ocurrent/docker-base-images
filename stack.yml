@@ -10,7 +10,7 @@ secrets:
   ocurrent-tls-key:
     external: true
   ocurrent-slack-endpoint:
-    name: "base-builder-oclc-ci-slack-endpoint"
+    name: "base-builder-slack-endpoint-ci-firehose"
     external: true
 services:
   builder:
