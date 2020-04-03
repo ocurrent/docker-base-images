@@ -127,7 +127,7 @@ let notify_status ?channel x =
 let label l t =
   Current.component "%s" l |>
   let> v = t in
-  Current.Input.const v
+  Current.Primitive.const v
 
 (* The main pipeline. Builds images for all supported distribution, compiler version and architecture combinations. *)
 let v ?channel () =
