@@ -6,6 +6,7 @@
              current_docker
              current_slack
              current_git
+             current_github
              current_rpc
              capnp-rpc-unix
              dockerfile-opam

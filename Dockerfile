@@ -7,6 +7,7 @@ COPY --chown=opam \
 	ocurrent/current_ansi.opam \
 	ocurrent/current_docker.opam \
 	ocurrent/current_git.opam \
+	ocurrent/current_github.opam \
 	ocurrent/current_incr.opam \
 	ocurrent/current_slack.opam \
 	ocurrent/current_rpc.opam \
@@ -15,6 +16,7 @@ WORKDIR /src
 RUN opam pin add -yn current_ansi.dev "./ocurrent" && \
     opam pin add -yn current_docker.dev "./ocurrent" && \
     opam pin add -yn current_git.dev "./ocurrent" && \
+    opam pin add -yn current_github.dev "./ocurrent" && \
     opam pin add -yn current_incr.dev "./ocurrent" && \
     opam pin add -yn current.dev "./ocurrent" && \
     opam pin add -yn current_rpc.dev "./ocurrent" && \
