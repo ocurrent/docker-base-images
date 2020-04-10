@@ -12,10 +12,12 @@ secrets:
   ocurrent-slack-endpoint:
     name: "base-builder-slack-endpoint-ci-firehose"
     external: true
+  base-builder-oauth:
+    external: true
 services:
   builder:
     image: base-images
-    command: --confirm above-average --confirm-auto-release 120 --slack /run/secrets/ocurrent-slack-endpoint --capnp-address=base-images.ocamllabs.io:8101
+    command: --confirm above-average --confirm-auto-release 120 --slack /run/secrets/ocurrent-slack-endpoint --capnp-address=base-images.ocamllabs.io:8101 --github-oauth /run/secrets/base-builder-oauth
     ports:
       - '8101:9000'
     environment:
@@ -26,6 +28,7 @@ services:
       - '/var/run/docker.sock:/var/run/docker.sock'
       - 'capnp-secrets:/capnp-secrets'
     secrets:
+      - 'base-builder-oauth'
       - 'ocurrent-hub'
       - 'ocurrent-slack-endpoint'
       - source: 'ocurrent-tls-key'

@@ -1,5 +1,7 @@
 open Lwt.Infix
 
+let program_name = "base_images"
+
 module Rpc = Current_rpc.Impl(Current)
 
 let () = Logging.init ()
@@ -32,14 +34,36 @@ let run_capnp ~engine = function
     Logs.app (fun f -> f "Wrote capability reference to %S" Conf.Capnp.cap_file);
     Lwt.return_unit
 
-let main config mode channel capnp_address =
+(* Access control policy. *)
+let has_role user = function
+  | `Viewer | `Monitor -> true
+  | _ ->
+    match Option.map Current_web.User.id user with
+    | Some ( "github:talex5"
+           | "github:avsm"
+           | "github:kit-ty-kate"
+           | "github:samoht"
+           ) -> true
+    | _ -> false
+
+let main config mode channel capnp_address github_auth =
   let channel = Option.map read_channel_uri channel in
   let engine = Current.Engine.create ~config (Pipeline.v ?channel) in
+  let authn = Option.map Current_github.Auth.make_login_uri github_auth in
+  let has_role =
+    if github_auth = None then Current_web.Site.allow_all
+    else has_role
+  in
+  let secure_cookies = channel <> None in        (* TODO: find a better way to detect production use *)
+  let site = Current_web.Site.v ?authn ~secure_cookies ~has_role ~name:program_name () in
+  let routes =
+    Routes.(s "login" /? nil @--> Current_github.Auth.login github_auth) ::
+    Current_web.routes engine in
   Logging.run begin
     run_capnp ~engine capnp_address >>= fun () ->
     Lwt.choose [
       Current.Engine.thread engine;
-      Current_web.run ~mode engine;
+      Current_web.run ~mode ~site routes;
     ]
   end
 
@@ -76,7 +100,7 @@ let capnp_address =
 
 let cmd =
   let doc = "Build the ocaml/opam images for Docker Hub" in
-  Term.(const main $ Current.Config.cmdliner $ Current_web.cmdliner $ slack $ capnp_address),
-  Term.info "docker_build_local" ~doc
+  Term.(const main $ Current.Config.cmdliner $ Current_web.cmdliner $ slack $ capnp_address $ Current_github.Auth.cmdliner),
+  Term.info program_name ~doc
 
 let () = Term.(exit @@ eval cmd)
