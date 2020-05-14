@@ -55,15 +55,15 @@ let main config mode channel capnp_address github_auth =
     else has_role
   in
   let secure_cookies = channel <> None in        (* TODO: find a better way to detect production use *)
-  let site = Current_web.Site.v ?authn ~secure_cookies ~has_role ~name:program_name () in
   let routes =
     Routes.(s "login" /? nil @--> Current_github.Auth.login github_auth) ::
     Current_web.routes engine in
+  let site = Current_web.Site.v ?authn ~secure_cookies ~has_role ~name:program_name routes in
   Logging.run begin
     run_capnp ~engine capnp_address >>= fun () ->
     Lwt.choose [
       Current.Engine.thread engine;
-      Current_web.run ~mode ~site routes;
+      Current_web.run ~mode site;
     ]
   end
 
