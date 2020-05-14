@@ -1,6 +1,6 @@
 FROM ocurrent/opam:debian-10-ocaml-4.10@sha256:b8683f4ddd6ec3fc979637e9e8140b0f6fc67e48f6913e73bbc4311dfb8dd130 AS build
 RUN sudo apt-get update && sudo apt-get install capnproto graphviz m4 pkg-config libsqlite3-dev libgmp-dev libssl-dev -y --no-install-recommends
-RUN cd ~/opam-repository && git pull origin master && git reset --hard b05d48934714c55dcc3c11ea41dc9f53ca80bb76 && opam update
+RUN cd ~/opam-repository && git pull origin master && git reset --hard 9298ed54c3da7ca9352164eefe6e2c6616731313 && opam update
 COPY --chown=opam \
 	ocurrent/current.opam \
 	ocurrent/current_web.opam \
