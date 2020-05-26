@@ -67,6 +67,13 @@ module Docker_ppc64 = struct
   let pool_size = 10
 end
 
+module Docker_i386 = struct
+  include Current_docker.Make(struct let docker_context = Some "i386" end)
+  let label = "i386"
+  let arch = `I386
+  let pool_size = 1
+end
+
 let switches ~arch ~distro =
   let is_tier1 = List.mem distro (Dockerfile_distro.active_tier1_distros arch) in
   let main_switches =

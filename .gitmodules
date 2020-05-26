@@ -6,4 +6,5 @@
 	url = https://github.com/talex5/ocaml-dockerfile.git
 [submodule "ocaml-version"]
 	path = ocaml-version
-	url = https://github.com/ocurrent/ocaml-version.git
+	branch = i386
+	url = https://github.com/dinosaure/ocaml-version.git
