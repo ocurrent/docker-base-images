@@ -15,7 +15,7 @@ end
 
 let auth =
   if Sys.file_exists password_path then (
-    let ch = open_in_bin "/run/secrets/ocurrent-hub" in
+    let ch = open_in_bin password_path in
     let len = in_channel_length ch in
     let password = really_input_string ch len |> String.trim in
     close_in ch;
