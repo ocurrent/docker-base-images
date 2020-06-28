@@ -39,6 +39,13 @@ module Docker_amd64 = struct
   let pool_size = 10
 end
 
+module Docker_i386 = struct
+  include Current_docker.Default
+  let label = "386"
+  let arch = `I386
+  let pool_size = 10
+end
+
 module Docker_arm32_1 = struct
   include Current_docker.Make(struct let docker_context = Some "arm32" end)
   let label = "arm32-1"

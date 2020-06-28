@@ -91,6 +91,7 @@ module Arch(Docker : Conf.DOCKER) = struct
 end
 
 module Amd64 = Arch(Conf.Docker_amd64)
+module I386 = Arch(Conf.Docker_i386)
 module Arm32_1 = Arch(Conf.Docker_arm32_1)
 module Arm32_2 = Arch(Conf.Docker_arm32_2)
 module Arm64 = Arch(Conf.Docker_arm64)
@@ -99,6 +100,7 @@ module Ppc64 = Arch(Conf.Docker_ppc64)
 let build_for_arch ~opam_repository ~distro = function
   | `Aarch64 -> Some (Arm64.pipeline ~opam_repository ~distro)
   | `X86_64 -> Some (Amd64.pipeline ~opam_repository ~distro)
+  | `I386 -> Some (I386.pipeline ~opam_repository ~distro)
   | `Ppc64le -> Some (Ppc64.pipeline ~opam_repository ~distro)
   | `Aarch32 when distro = `Debian `V10 -> Some (Arm32_1.pipeline ~opam_repository ~distro)
   | `Aarch32 -> Some (Arm32_2.pipeline ~opam_repository ~distro)
