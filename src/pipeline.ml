@@ -22,10 +22,12 @@ let maybe_add_beta switch =
     empty
 
 (* Generate a Dockerfile to install OCaml compiler [switch] in [opam_image]. *)
-let install_compiler_df ~switch opam_image =
+let install_compiler_df ~arch ~switch opam_image =
   let switch_name = Ocaml_version.to_string (Ocaml_version.with_just_major_and_minor switch) in
   let open Dockerfile in
+  let personality = if arch = `I386 then shell ["/usr/bin/linux32"; "/bin/sh"; "-c"] else empty in
   from opam_image @@
+  personality @@
   run "opam-sandbox-disable" @@
   run "opam init -k local -a /home/opam/opam-repository --bare" @@
   maybe_add_beta switch @@
@@ -35,7 +37,7 @@ let install_compiler_df ~switch opam_image =
   run "opam switch create %s %s" switch_name (Ocaml_version.Opam.V2.name switch) @@
   run "rm -rf .opam/repo/default/.git" @@
   run "opam install -y depext" @@
-  entrypoint_exec ["opam"; "config"; "exec"; "--"] @@
+  entrypoint_exec ((if arch = `I386 then ["/usr/bin/linux32"] else []) @ ["opam"; "exec"; "--"]) @@
   cmd "bash" @@
   copy ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ()
 
@@ -63,7 +65,7 @@ module Arch(Docker : Conf.DOCKER) = struct
   let install_compiler ~switch base =
     let dockerfile =
       let+ base = base in
-      `Contents (install_compiler_df ~switch base)
+      `Contents (install_compiler_df ~arch:Docker.arch ~switch base)
     in
     let label = Fmt.strf "%s/%s" (Ocaml_version.to_string switch) arch_name in
     Docker.build ~pool:build_pool ~label ~squash:true ~dockerfile ~pull:false `No_context
