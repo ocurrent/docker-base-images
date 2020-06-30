@@ -50,7 +50,7 @@ module Arch(Docker : Conf.DOCKER) = struct
   let install_opam ~distro ~opam_repository =
     let dockerfile =
       Current.return (`Contents (
-        let opam = snd @@ Dockerfile_opam.gen_opam2_distro ~clone_opam_repo:false distro in
+        let opam = snd @@ Dockerfile_opam.gen_opam2_distro ~arch:Docker.arch ~clone_opam_repo:false distro in
         let open Dockerfile in
         opam @@
         copy ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
