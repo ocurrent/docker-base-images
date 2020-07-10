@@ -6,6 +6,7 @@ let weekly = Current_cache.Schedule.v ~valid_for:(Duration.of_day 7) ()
 
 let opam_repository () =
   Current_git.clone ~schedule:weekly "git://github.com/ocaml/opam-repository"
+  |> Current.map Current_git.Commit.id
 
 (* [latest_alias_of d] is [Some alias] if [d] is the latest version of its distribution family, or [None] otherwise. *)
 let latest_alias_of =
@@ -25,7 +26,7 @@ let maybe_add_beta switch =
 let install_compiler_df ~arch ~switch opam_image =
   let switch_name = Ocaml_version.to_string (Ocaml_version.with_just_major_and_minor switch) in
   let open Dockerfile in
-  let personality = if arch = `I386 then shell ["/usr/bin/linux32"; "/bin/sh"; "-c"] else empty in
+  let personality = if Ocaml_version.arch_is_32bit arch then shell ["/usr/bin/linux32"; "/bin/sh"; "-c"] else empty in
   from opam_image @@
   personality @@
   run "opam-sandbox-disable" @@
@@ -41,71 +42,72 @@ let install_compiler_df ~arch ~switch opam_image =
   cmd "bash" @@
   copy ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ()
 
+let or_die = function
+  | Ok x -> x
+  | Error (`Msg m) -> failwith m
+
 (* Pipeline to build the opam base image and the compiler images for a particular architecture. *)
-module Arch(Docker : Conf.DOCKER) = struct
-  let arch_name = Ocaml_version.string_of_arch Docker.arch
-
-  let build_pool =
-    let label = Fmt.strf "docker-%s" Docker.label in
-    Current.Pool.create ~label Docker.pool_size
-
-  let install_opam ~distro ~opam_repository =
+module Arch = struct
+  let install_opam ~arch ~ocluster ~distro ~opam_repository ~push_target =
+    let arch_name = Ocaml_version.string_of_arch arch in
     let dockerfile =
-      Current.return (`Contents (
-        let opam = snd @@ Dockerfile_opam.gen_opam2_distro ~arch:Docker.arch ~clone_opam_repo:false distro in
+      `Contents (
+        let opam = snd @@ Dockerfile_opam.gen_opam2_distro ~arch ~clone_opam_repo:false distro in
         let open Dockerfile in
-        opam @@
-        copy ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
-        copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
-      ))
+        string_of_t (
+          opam @@
+          copy ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
+          copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
+        )
+      )
     in
-    let label = Fmt.strf "%s@,%s" (Dockerfile_distro.tag_of_distro distro) arch_name in
-    Docker.build ~pool:build_pool ~label ~squash:true ~dockerfile ~pull:true (`Git opam_repository)
+    let distro_tag = Dockerfile_distro.tag_of_distro distro in
+    Current.component "%s@,%s" distro_tag arch_name |>
+    let> opam_repository = opam_repository in
+    let options = { Cluster_api.Docker.Spec.defaults with squash = true } in
+    let cache_hint = Printf.sprintf "opam-%s" distro_tag in
+    Current_ocluster.Raw.build_and_push ocluster ~src:[opam_repository] dockerfile
+      ~cache_hint
+      ~options
+      ~push_target
+      ~pool:(Conf.pool_for_arch arch)
 
-  let install_compiler ~switch base =
-    let dockerfile =
-      let+ base = base in
-      `Contents (install_compiler_df ~arch:Docker.arch ~switch base)
-    in
-    let label = Fmt.strf "%s/%s" (Ocaml_version.to_string switch) arch_name in
-    Docker.build ~pool:build_pool ~label ~squash:true ~dockerfile ~pull:false `No_context
-
-  (* Tag [image] as [tag] and push to hub (if pushing is configured). *)
-  let push image ~tag =
-    match Conf.auth with
-    | None -> let+ () = Docker.tag image ~tag in tag
-    | Some auth -> Docker.push ~auth image ~tag
+  let install_compiler ~arch ~ocluster ~switch ~push_target base =
+    let arch_name = Ocaml_version.string_of_arch arch in
+    Current.component "%s/%s" (Ocaml_version.to_string switch) arch_name |>
+    let> base = base in
+    let dockerfile = `Contents (install_compiler_df ~arch ~switch base |> Dockerfile.string_of_t) in
+    let options = { Cluster_api.Docker.Spec.defaults with squash = true } in
+    let cache_hint = Printf.sprintf "%s-%s-%s" (Ocaml_version.to_string switch) arch_name base in
+    Current_ocluster.Raw.build_and_push ocluster ~src:[] dockerfile
+      ~cache_hint
+      ~options
+      ~push_target
+      ~pool:(Conf.pool_for_arch arch)
 
   (* Build the base image for [distro], plus an image for each compiler version. *)
-  let pipeline ~opam_repository ~distro =
+  let pipeline ~ocluster ~opam_repository ~distro arch =
     let opam_image =
-      install_opam ~distro ~opam_repository
-      |> push ~tag:(Tag.v distro ~arch:Docker.arch)
+      let push_target =
+        Tag.v distro ~arch
+        |> Cluster_api.Docker.Image_id.of_string
+        |> or_die
+      in
+      install_opam ~arch ~ocluster ~distro ~opam_repository ~push_target
     in
     let compiler_images =
-      Conf.switches ~arch:Docker.arch ~distro |> List.map @@ fun switch ->
-      let ocaml_image = install_compiler ~switch opam_image in
-      let repo_id = push ocaml_image ~tag:(Tag.v distro ~switch ~arch:Docker.arch) in
+      Conf.switches ~arch ~distro |> List.map @@ fun switch ->
+      let push_target =
+        Tag.v distro ~switch ~arch
+        |> Cluster_api.Docker.Image_id.of_string
+        |> or_die
+      in
+      let repo_id = install_compiler ~arch ~ocluster ~switch ~push_target opam_image in
       (switch, repo_id)
     in
     let compiler_images = Switch_map.of_seq (List.to_seq compiler_images) in
     (opam_image, compiler_images)
 end
-
-module Amd64 = Arch(Conf.Docker_amd64)
-module I386 = Arch(Conf.Docker_i386)
-module Arm32_1 = Arch(Conf.Docker_arm32_1)
-module Arm32_2 = Arch(Conf.Docker_arm32_2)
-module Arm64 = Arch(Conf.Docker_arm64)
-module Ppc64 = Arch(Conf.Docker_ppc64)
-
-let build_for_arch ~opam_repository ~distro = function
-  | `Aarch64 -> Some (Arm64.pipeline ~opam_repository ~distro)
-  | `X86_64 -> Some (Amd64.pipeline ~opam_repository ~distro)
-  | `I386 -> Some (I386.pipeline ~opam_repository ~distro)
-  | `Ppc64le -> Some (Ppc64.pipeline ~opam_repository ~distro)
-  | `Aarch32 when distro = `Debian `V10 -> Some (Arm32_1.pipeline ~opam_repository ~distro)
-  | `Aarch32 -> Some (Arm32_2.pipeline ~opam_repository ~distro)
 
 module Switch_set = Set.Make(Ocaml_version)
 
@@ -134,7 +136,7 @@ let label l t =
   Current.Primitive.const v
 
 (* The main pipeline. Builds images for all supported distribution, compiler version and architecture combinations. *)
-let v ?channel () =
+let v ?channel ~ocluster () =
   let repo = opam_repository () in
   Current.all (
     Conf.distros |> List.map @@ fun distro ->
@@ -143,7 +145,7 @@ let v ?channel () =
     Current.collapse ~key:"distro" ~value:distro_label ~input:repo @@
     let distro_latest_alias = latest_alias_of distro in
     let arches = Conf.arches_for ~distro in
-    let arch_results = List.filter_map (build_for_arch ~opam_repository:repo ~distro) arches in
+    let arch_results = List.map (Arch.pipeline ~ocluster ~opam_repository:repo ~distro) arches in
     let opam_images, ocaml_images = List.split arch_results in
     let ocaml_images =
       all_switches ocaml_images |> List.filter_map @@ fun switch ->
@@ -171,12 +173,12 @@ let v ?channel () =
           )
         in
         (* Fmt.pr "Aliases: %s -> %a@." full_tag Fmt.(Dump.list string) tags; *)
-        let pushes = List.map (fun tag -> Current_docker.push_manifest ?auth:Conf.auth ~tag images) tags in
+        let pushes = List.map (fun tag -> Current_docker.push_manifest ?auth:Conf.auth ~tag images |> Current.ignore_value) tags in
         Some (full_tag, Current.all pushes)
       )
     in
     Current.all_labelled (
-      ("base", Current_docker.push_manifest ?auth:Conf.auth ~tag:(Tag.v distro) opam_images)
+      ("base", Current_docker.push_manifest ?auth:Conf.auth ~tag:(Tag.v distro) opam_images |> Current.ignore_value)
       :: ocaml_images)
   )
   |> notify_status ?channel

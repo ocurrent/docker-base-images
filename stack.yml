@@ -1,23 +1,24 @@
-version: '3.5'
+version: '3.7'
 volumes:
   data:
   capnp-secrets:
 secrets:
   ocurrent-hub:
     external: true
-  ocurrent-ssh-key:
-    external: true
-  ocurrent-tls-key:
-    external: true
   ocurrent-slack-endpoint:
     name: "base-builder-slack-endpoint-ci-firehose"
     external: true
   base-builder-oauth:
     external: true
+  ocurrentbuilder-password:
+    external: true
+  ocluster-submission.cap:
+    external: true
 services:
   builder:
     image: ocurrent/base-images:live
-    command: --confirm above-average --confirm-auto-release 120 --slack /run/secrets/ocurrent-slack-endpoint --capnp-address=base-images.ocamllabs.io:8101 --github-oauth /run/secrets/base-builder-oauth
+    command: --confirm above-average --confirm-auto-release 120 --slack /run/secrets/ocurrent-slack-endpoint --capnp-address=base-images.ocamllabs.io:8101 --github-oauth /run/secrets/base-builder-oauth --submission-service /run/secrets/ocluster-submission.cap --staging-password-file /run/secrets/ocurrentbuilder-password
+    init: true
     ports:
       - '8101:9000'
     environment:
@@ -28,10 +29,10 @@ services:
       - '/var/run/docker.sock:/var/run/docker.sock'
       - 'capnp-secrets:/capnp-secrets'
     secrets:
+      - 'ocurrentbuilder-password'
+      - 'ocluster-submission.cap'
       - 'base-builder-oauth'
       - 'ocurrent-hub'
       - 'ocurrent-slack-endpoint'
-      - source: 'ocurrent-tls-key'
-        mode: 0400
-      - source: 'ocurrent-ssh-key'
-        mode: 0400
+    sysctls:
+      - 'net.ipv4.tcp_keepalive_time=60'
