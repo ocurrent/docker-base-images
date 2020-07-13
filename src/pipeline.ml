@@ -38,7 +38,7 @@ let install_compiler_df ~arch ~switch opam_image =
   run "opam switch create %s %s" switch_name (Ocaml_version.Opam.V2.name switch) @@
   run "rm -rf .opam/repo/default/.git" @@
   run "opam install -y depext" @@
-  entrypoint_exec ((if arch = `I386 then ["/usr/bin/linux32"] else []) @ ["opam"; "exec"; "--"]) @@
+  entrypoint_exec ((if Ocaml_version.arch_is_32bit arch then ["/usr/bin/linux32"] else []) @ ["opam"; "exec"; "--"]) @@
   cmd "bash" @@
   copy ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ()
 
