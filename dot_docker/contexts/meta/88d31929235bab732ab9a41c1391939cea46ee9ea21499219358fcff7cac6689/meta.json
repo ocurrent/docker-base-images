@@ -1,1 +1,0 @@
-{"Name":"arm32-2","Metadata":{"StackOrchestrator":"swarm"},"Endpoints":{"docker":{"Host":"ssh://root@51.158.119.29:2200","SkipTLSVerify":false}}}

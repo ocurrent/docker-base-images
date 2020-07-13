@@ -1,2 +1,2 @@
 (dirs :standard \ var)
-(vendored_dirs ocaml-version ocaml-dockerfile ocurrent)
+(vendored_dirs ocaml-version ocaml-dockerfile ocurrent ocluster)

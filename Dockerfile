@@ -12,6 +12,9 @@ COPY --chown=opam \
 	ocurrent/current_slack.opam \
 	ocurrent/current_rpc.opam \
 	/src/ocurrent/
+COPY --chown=opam \
+        ocluster/*.opam \
+        /src/ocluster/
 WORKDIR /src
 RUN opam pin add -yn current_ansi.dev "./ocurrent" && \
     opam pin add -yn current_docker.dev "./ocurrent" && \
@@ -21,21 +24,19 @@ RUN opam pin add -yn current_ansi.dev "./ocurrent" && \
     opam pin add -yn current.dev "./ocurrent" && \
     opam pin add -yn current_rpc.dev "./ocurrent" && \
     opam pin add -yn current_slack.dev "./ocurrent" && \
-    opam pin add -yn current_web.dev "./ocurrent"
+    opam pin add -yn current_web.dev "./ocurrent" && \
+    opam pin add -yn current_ocluster.dev "./ocluster" && \
+    opam pin add -yn ocluster-api.dev "./ocluster"
 COPY --chown=opam base-images.opam /src/
 RUN opam install -y --deps-only .
 ADD --chown=opam . .
 RUN opam config exec -- dune build ./src/base_images.exe
 
 FROM debian:10
-RUN apt-get update && apt-get install openssh-client curl dumb-init git graphviz libsqlite3-dev ca-certificates netbase -y --no-install-recommends
-RUN apt-get install gnupg2 -y --no-install-recommends
+RUN apt-get update && apt-get install curl git graphviz libsqlite3-dev ca-certificates netbase gnupg2 -y --no-install-recommends
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 RUN echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' >> /etc/apt/sources.list
 RUN apt-get update && apt-get install docker-ce -y --no-install-recommends
-RUN mkdir /root/.ssh && chmod 0700 /root/.ssh && ln -s /run/secrets/ocurrent-ssh-key /root/.ssh/id_rsa
-COPY known_hosts /root/.ssh/known_hosts
-COPY dot_docker /root/.docker
 COPY --from=build /src/_build/default/src/base_images.exe /usr/local/bin/base-images
 WORKDIR /var/lib/ocurrent
-ENTRYPOINT ["dumb-init", "/usr/local/bin/base-images"]
+ENTRYPOINT ["/usr/local/bin/base-images"]

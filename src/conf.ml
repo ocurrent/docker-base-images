@@ -25,54 +25,10 @@ let auth =
     None
   )
 
-module type DOCKER = sig
-  include Current_docker.S.DOCKER
-  val label : string
-  val arch : Ocaml_version.arch
-  val pool_size : int
-end
-
-module Docker_amd64 = struct
-  include Current_docker.Default
-  let label = "amd64"
-  let arch = `X86_64
-  let pool_size = 10
-end
-
-module Docker_i386 = struct
-  include Current_docker.Default
-  let label = "386"
-  let arch = `I386
-  let pool_size = 10
-end
-
-module Docker_arm32_1 = struct
-  include Current_docker.Make(struct let docker_context = Some "arm32" end)
-  let label = "arm32-1"
-  let arch = `Aarch32
-  let pool_size = 1
-end
-
-module Docker_arm32_2 = struct
-  include Current_docker.Make(struct let docker_context = Some "arm32-2" end)
-  let label = "arm32-2"
-  let arch = `Aarch32
-  let pool_size = 1
-end
-
-module Docker_arm64 = struct
-  include Current_docker.Make(struct let docker_context = Some "arm64" end)
-  let label = "arm64"
-  let arch = `Aarch64
-  let pool_size = 10
-end
-
-module Docker_ppc64 = struct
-  include Current_docker.Make(struct let docker_context = Some "ppc64" end)
-  let label = "ppc64"
-  let arch = `Ppc64le
-  let pool_size = 10
-end
+let pool_for_arch = function
+  | `X86_64 | `I386     -> "linux-x86_64"
+  | `Aarch64 | `Aarch32 -> "linux-arm64"
+  | `Ppc64le            -> "linux-ppc64"
 
 let switches ~arch ~distro =
   let is_tier1 = List.mem distro (Dockerfile_distro.active_tier1_distros arch) in

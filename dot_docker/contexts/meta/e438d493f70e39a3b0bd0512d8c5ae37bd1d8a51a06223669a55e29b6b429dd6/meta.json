@@ -1,1 +1,0 @@
-{"Name":"ppc64","Metadata":{"StackOrchestrator":"swarm"},"Endpoints":{"docker":{"Host":"tcp://128.232.124.215:2376","SkipTLSVerify":false}}}

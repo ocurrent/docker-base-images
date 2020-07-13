@@ -1,1 +1,17 @@
-(lang dune 1.11)
+(lang dune 2.5)
+(generate_opam_files true)
+(formatting disabled)
+
+(package
+  (name base-images)
+  (depends
+    current_git
+    current_github
+    current_docker
+    current_ocluster
+    current_slack
+    current_web
+    current_rpc
+    (capnp-rpc-unix (>= "0.7.0"))
+    (dockerfile-opam (>= "6.2.0"))
+  ))
