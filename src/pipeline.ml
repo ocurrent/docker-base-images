@@ -64,7 +64,7 @@ module Arch = struct
     let distro_tag = Dockerfile_distro.tag_of_distro distro in
     Current.component "%s@,%s" distro_tag arch_name |>
     let> opam_repository = opam_repository in
-    let options = { Cluster_api.Docker.Spec.defaults with squash = true } in
+    let options = { Cluster_api.Docker.Spec.defaults with squash = true; include_git = true } in
     let cache_hint = Printf.sprintf "opam-%s" distro_tag in
     Current_ocluster.Raw.build_and_push ocluster ~src:[opam_repository] dockerfile
       ~cache_hint
@@ -77,7 +77,8 @@ module Arch = struct
     Current.component "%s/%s" (Ocaml_version.to_string switch) arch_name |>
     let> base = base in
     let dockerfile = `Contents (install_compiler_df ~arch ~switch base |> Dockerfile.string_of_t) in
-    let options = { Cluster_api.Docker.Spec.defaults with squash = true } in
+    (* ([include_git] doesn't do anything here, but it saves rebuilding during the upgrade) *)
+    let options = { Cluster_api.Docker.Spec.defaults with squash = true; include_git = true } in
     let cache_hint = Printf.sprintf "%s-%s-%s" (Ocaml_version.to_string switch) arch_name base in
     Current_ocluster.Raw.build_and_push ocluster ~src:[] dockerfile
       ~cache_hint
