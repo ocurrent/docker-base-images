@@ -4,9 +4,6 @@
 [submodule "ocaml-dockerfile"]
 	path = ocaml-dockerfile
 	url = https://github.com/avsm/ocaml-dockerfile.git
-[submodule "ocaml-version"]
-	path = ocaml-version
-	url = https://github.com/ocurrent/ocaml-version.git
 [submodule "ocluster"]
 	path = ocluster
 	url = https://github.com/ocurrent/ocluster.git
