@@ -2,8 +2,13 @@
 (generate_opam_files true)
 (formatting disabled)
 
+(source (github ocurrent/docker-base-images))
+(authors "talex5@gmail.com" "anil@recoil.org")
+(maintainers "talex5@gmail.com")
+
 (package
   (name base-images)
+  (synopsis "generate Docker base images for OCaml and opam using ocurrent")
   (depends
     current_git
     current_github
