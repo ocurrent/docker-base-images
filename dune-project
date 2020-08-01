@@ -8,7 +8,7 @@
 
 (package
   (name base-images)
-  (synopsis "generate Docker base images for OCaml and opam using ocurrent")
+  (synopsis "Generate Docker base images for OCaml and opam using ocurrent")
   (depends
     current_git
     current_github
