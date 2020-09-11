@@ -25,6 +25,7 @@ let maybe_add_beta switch =
 (* Generate a Dockerfile to install OCaml compiler [switch] in [opam_image]. *)
 let install_compiler_df ~arch ~switch opam_image =
   let switch_name = Ocaml_version.to_string (Ocaml_version.with_just_major_and_minor switch) in
+  let (package_name, package_version) = Ocaml_version.Opam.V2.package switch in
   let open Dockerfile in
   let personality = if Ocaml_version.arch_is_32bit arch then shell ["/usr/bin/linux32"; "/bin/sh"; "-c"] else empty in
   from opam_image @@
@@ -35,8 +36,9 @@ let install_compiler_df ~arch ~switch opam_image =
   env ["OPAMYES", "1";
        "OPAMERRLOGLEN", "0";
       ] @@
-  run "opam switch create %s %s" switch_name (Ocaml_version.Opam.V2.name switch) @@
+  run "opam switch create %s %s.%s" switch_name package_name package_version @@
   run "rm -rf .opam/repo/default/.git" @@
+  run "opam pin add -k version %s %s" package_name package_version @@
   run "opam install -y depext" @@
   entrypoint_exec ((if Ocaml_version.arch_is_32bit arch then ["/usr/bin/linux32"] else []) @ ["opam"; "exec"; "--"]) @@
   cmd "bash" @@
