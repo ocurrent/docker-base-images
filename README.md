@@ -30,6 +30,7 @@ To see the pipeline, clone the repository and run it:
 git clone --recursive https://github.com/ocurrent/docker-base-images.git
 cd docker-base-images
 opam pin -yn ./ocurrent
+opam pin -yn ./ocluster
 opam pin -yn ./ocaml-dockerfile
 opam pin -yn .
 opam -y depext -y base-images
