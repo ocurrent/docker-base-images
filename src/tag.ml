@@ -1,3 +1,8 @@
+let public_repo, staging_repo =
+  match Conf.registry with
+  | None -> Conf.public_repo, Conf.staging_repo
+  | Some registry -> registry ^ "/" ^ Conf.public_repo, registry ^ "/" ^ Conf.staging_repo
+
 let pp_arch f = function
   | None -> ()
   | Some arch -> Fmt.pf f "-%s" (Ocaml_version.string_of_arch arch)
@@ -10,7 +15,7 @@ let tag_of_compiler switch =
     )
 
 let v ?arch ?switch distro =
-  let repo = if arch = None then Conf.public_repo else Conf.staging_repo in
+  let repo = if arch = None then public_repo else staging_repo in
   let distro = Dockerfile_distro.tag_of_distro distro in
   let switch =
     match switch with
@@ -24,7 +29,7 @@ let v_alias alias =
     if alias = `Debian `Stable then "debian"
     else Dockerfile_distro.tag_of_distro alias
   in
-  Fmt.strf "%s:%s" Conf.public_repo alias
+  Fmt.strf "%s:%s" public_repo alias
 
 let latest =
-  Fmt.strf "%s:latest" Conf.public_repo
+  Fmt.strf "%s:latest" public_repo
