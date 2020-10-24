@@ -1,12 +1,12 @@
 [submodule "ocurrent"]
 	path = ocurrent
-	url = https://github.com/ocurrent/ocurrent.git
+	url = https://github.com/dra27/ocurrent.git
 [submodule "ocaml-dockerfile"]
 	path = ocaml-dockerfile
 	url = https://github.com/avsm/ocaml-dockerfile.git
 [submodule "ocluster"]
 	path = ocluster
-	url = https://github.com/ocurrent/ocluster.git
+	url = https://github.com/dra27/ocluster.git
 [submodule "ocaml-version"]
 	path = ocaml-version
 	url = https://github.com/ocurrent/ocaml-version.git

@@ -60,7 +60,14 @@ let main config mode channel capnp_address github_auth submission_uri staging_pa
     let channel = Option.map read_channel_uri channel in
     let staging_auth = staging_password_file |> Option.map (fun path -> staging_user, read_first_line path) in
     run_capnp capnp_address >>= fun (vat, rpc_engine_resolver) ->
-    let submission_cap = Capnp_rpc_unix.Vat.import_exn vat submission_uri in
+    let submission_cap =
+      match Option.map (Capnp_rpc_unix.Vat.import_exn vat) submission_uri with
+      | Some cap -> cap
+      | None ->
+        Capnp_rpc_lwt.Cast.sturdy_of_raw @@ object
+          method connect = fst (Lwt.wait ())
+          method to_uri_with_secrets = Uri.of_string "mock sturdy-ref"
+        end in
     let connection = Current_ocluster.Connection.create submission_cap in
     let ocluster = Current_ocluster.v ?push_auth:staging_auth ~urgent:`Never connection in
     let engine = Current.Engine.create ~config (Pipeline.v ?channel ~ocluster) in
@@ -113,7 +120,7 @@ let capnp_address =
     ["capnp-address"]
 
 let submission_service =
-  Arg.required @@
+  Arg.value @@
   Arg.opt Arg.(some Capnp_rpc_unix.sturdy_uri) None @@
   Arg.info
     ~doc:"The submission.cap file for the build scheduler service"
