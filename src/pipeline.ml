@@ -30,14 +30,11 @@ let install_compiler_df ~arch ~switch opam_image =
   let personality = if Ocaml_version.arch_is_32bit arch then shell ["/usr/bin/linux32"; "/bin/sh"; "-c"] else empty in
   from opam_image @@
   personality @@
-  run "opam-sandbox-disable" @@
-  run "opam init -k local -a /home/opam/opam-repository --bare" @@
   maybe_add_beta switch @@
   env ["OPAMYES", "1";
        "OPAMERRLOGLEN", "0";
       ] @@
   run "opam switch create %s %s.%s" switch_name package_name package_version @@
-  run "rm -rf .opam/repo/default/.git" @@
   run "opam pin add -k version %s %s" package_name package_version @@
   run "opam install -y depext" @@
   entrypoint_exec ((if Ocaml_version.arch_is_32bit arch then ["/usr/bin/linux32"] else []) @ ["opam"; "exec"; "--"]) @@
@@ -59,6 +56,9 @@ module Arch = struct
         string_of_t (
           opam @@
           copy ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
+          run "opam-sandbox-disable" @@
+          run "opam init -k local -a /home/opam/opam-repository --bare" @@
+          run "rm -rf .opam/repo/default/.git" @@
           copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
         )
       )
