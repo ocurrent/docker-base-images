@@ -1,3 +1,7 @@
+(* Use None for the main Docker Registry.
+   Do NOT set this to Some "docker.io" *)
+let registry = Some "localhost:5000"
+
 (* For staging arch-specific builds before creating the manifest. *)
 let staging_repo = "ocurrent/opam-staging"
 
@@ -21,7 +25,8 @@ let auth =
     close_in ch;
     Some ("ocurrent", password)
   ) else (
-    Fmt.pr "Password file %S not found; images will not be pushed to hub@." password_path;
+    if registry = None then
+      Fmt.pr "Password file %S not found; images will not be pushed to hub@." password_path;
     None
   )
 
