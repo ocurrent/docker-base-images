@@ -22,6 +22,14 @@ let maybe_add_beta switch =
   else
     empty
 
+let maybe_install_secondary_compiler ~switch =
+  let dune_min_native_support = Ocaml_version.Releases.v4_08 in
+  let open Dockerfile in
+  if Ocaml_version.compare switch dune_min_native_support < 0 then
+    run "opam install -y ocaml-secondary-compiler"
+  else
+    empty
+
 (* Generate a Dockerfile to install OCaml compiler [switch] in [opam_image]. *)
 let install_compiler_df ~arch ~switch opam_image =
   let switch_name = Ocaml_version.to_string (Ocaml_version.with_just_major_and_minor switch) in
@@ -36,7 +44,8 @@ let install_compiler_df ~arch ~switch opam_image =
       ] @@
   run "opam switch create %s %s.%s" switch_name package_name package_version @@
   run "opam pin add -k version %s %s" package_name package_version @@
-  run "opam install -y depext" @@
+  run "opam install -y opam-depext" @@
+  maybe_install_secondary_compiler ~switch @@
   entrypoint_exec ((if Ocaml_version.arch_is_32bit arch then ["/usr/bin/linux32"] else []) @ ["opam"; "exec"; "--"]) @@
   cmd "bash" @@
   copy ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ()
