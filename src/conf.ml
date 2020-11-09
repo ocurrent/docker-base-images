@@ -1,7 +1,7 @@
 (* For staging arch-specific builds before creating the manifest. *)
 let staging_repo = "ocurrent/opam-staging"
 
-let public_repo = "ocurrent/opam"
+let public_repo = "ocaml/opam"
 
 let password_path = "/run/secrets/ocurrent-hub"
 
