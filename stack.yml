@@ -12,12 +12,12 @@ secrets:
     external: true
   ocurrentbuilder-password:
     external: true
-  ocluster-submission.cap:
+  base-image-builder-submission.cap:
     external: true
 services:
   builder:
     image: ocurrent/base-images:live
-    command: --confirm above-average --confirm-auto-release 120 --slack /run/secrets/ocurrent-slack-endpoint --capnp-address=base-images.ocamllabs.io:8101 --github-oauth /run/secrets/base-builder-oauth --submission-service /run/secrets/ocluster-submission.cap --staging-password-file /run/secrets/ocurrentbuilder-password
+    command: --confirm above-average --confirm-auto-release 120 --slack /run/secrets/ocurrent-slack-endpoint --capnp-address=base-images.ocamllabs.io:8101 --github-oauth /run/secrets/base-builder-oauth --submission-service /run/secrets/base-image-builder-submission.cap --staging-password-file /run/secrets/ocurrentbuilder-password
     init: true
     ports:
       - '8101:9000'
@@ -30,7 +30,7 @@ services:
       - 'capnp-secrets:/capnp-secrets'
     secrets:
       - 'ocurrentbuilder-password'
-      - 'ocluster-submission.cap'
+      - 'base-image-builder-submission.cap'
       - 'base-builder-oauth'
       - 'ocurrent-hub'
       - 'ocurrent-slack-endpoint'
