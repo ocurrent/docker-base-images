@@ -9,9 +9,11 @@ let tag_of_compiler switch =
       | x -> x
     )
 
-let v ?arch ?switch distro =
+let v ?(latest_distro=false) ?arch ?switch distro =
   let repo = if arch = None then Conf.public_repo else Conf.staging_repo in
-  let distro = Dockerfile_distro.tag_of_distro distro in
+  let distro =
+    if latest_distro then Dockerfile_distro.latest_tag_of_distro distro
+    else Dockerfile_distro.tag_of_distro distro in
   let switch =
     match switch with
     | Some switch -> "ocaml-" ^ tag_of_compiler switch

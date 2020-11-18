@@ -169,8 +169,13 @@ let v ?channel ~ocluster () =
         let tags =
           (* Push the image as e.g. debian-10-ocaml-4.09: *)
           let tags = [full_tag] in
-          if switch <> Ocaml_version.Releases.latest then tags
-          else (
+          if switch <> Ocaml_version.Releases.latest then (
+            (* For every OCaml version, for every latest distro create an alias
+               (e.g. alpine-ocaml-4.10) *)
+            match distro_latest_alias with
+            | None -> tags
+            | Some latest -> Tag.v ~latest_distro:true ~switch latest :: tags
+          ) else (
             (* For every distro, also create a link to the latest OCaml compiler.
                e.g. debian-9 -> debian-9-ocaml-4.09 *)
             let tags = Tag.v_alias distro :: tags in
@@ -179,7 +184,7 @@ let v ?channel ~ocluster () =
             match distro_latest_alias with
             | None -> tags
             | Some latest ->
-              let tags = Tag.v_alias latest :: tags in
+              let tags = Tag.v_alias latest :: Tag.v ~latest_distro:true ~switch latest :: tags in
               (* The top-level alias: latest -> debian-10-ocaml-4.09 *)
               if distro <> master_distro then tags
               else Tag.latest :: tags
