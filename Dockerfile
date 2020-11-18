@@ -1,4 +1,4 @@
-FROM ocurrent/opam:debian-10-ocaml-4.10@sha256:b8683f4ddd6ec3fc979637e9e8140b0f6fc67e48f6913e73bbc4311dfb8dd130 AS build
+FROM ocaml/opam:debian-10-ocaml-4.10@sha256:15bc5676151b4ae0e40dbe5d7233a734c54788e222dd6ab470c23a433deaaa1a AS build
 RUN sudo apt-get update && sudo apt-get install capnproto graphviz m4 pkg-config libsqlite3-dev libgmp-dev libssl-dev -y --no-install-recommends
 RUN cd ~/opam-repository && git pull origin -q master && git reset --hard c574ab6909d6027c5338b7de2e0754035444019e && opam update
 COPY --chown=opam \

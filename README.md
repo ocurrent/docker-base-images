@@ -1,17 +1,13 @@
-Status: **experimental**
-
 This is an [OCurrent][] pipeline that builds Docker images for OCaml, for
 various combinations of Linux distribution, OCaml version and architecture.
 
 The resulting images can be run as e.g.
 
 ```
-docker run --rm -it ocurrent/opam:debian-10-ocaml-4.08
+docker run --rm -it ocaml/opam:debian-10-ocaml-4.11
 ```
 
-(this is a temporary location and will likely change in future)
-
-These images are very similar to the ones currently available as `ocaml/opam2`,
+These images are very similar to the ones previously available as `ocaml/opam2`,
 and use the same scripts from [avsm/ocaml-dockerfile][].
 However, they are much smaller because each image only includes one OCaml compiler.
 
