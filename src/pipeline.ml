@@ -8,10 +8,11 @@ let opam_repository () =
   Current_git.clone ~schedule:weekly "git://github.com/ocaml/opam-repository"
   |> Current.map Current_git.Commit.id
 
-(* [latest_alias_of d] is [Some alias] if [d] is the latest version of its distribution family, or [None] otherwise. *)
-let latest_alias_of =
+(* [aliases_of d] gives other tags which should point to [d].
+   e.g. just after the Ubuntu 20.04 release, [aliases_of ubuntu-20.04 = [ ubuntu; ubuntu-lts ]] *)
+let aliases_of =
   let latest = Dockerfile_distro.latest_distros |> List.map (fun d -> Dockerfile_distro.resolve_alias d, d) in
-  fun d -> List.assoc_opt d latest
+  fun d -> List.filter_map (fun (d2, alias) -> if d = d2 then Some alias else None) latest
 
 let master_distro = Dockerfile_distro.(resolve_alias master_distro)
 
@@ -156,7 +157,7 @@ let v ?channel ~ocluster () =
     let distro_label = Dockerfile_distro.tag_of_distro distro in
     let repo = label distro_label repo in
     Current.collapse ~key:"distro" ~value:distro_label ~input:repo @@
-    let distro_latest_alias = latest_alias_of distro in
+    let distro_aliases = aliases_of distro in
     let arches = Conf.arches_for ~distro in
     let arch_results = List.map (Arch.pipeline ~ocluster ~opam_repository:repo ~distro) arches in
     let opam_images, ocaml_images = List.split arch_results in
@@ -167,8 +168,8 @@ let v ?channel ~ocluster () =
       else (
         let full_tag = Tag.v distro ~switch in
         let tags =
-          (* Push the image as e.g. debian-10-ocaml-4.09: *)
-          let tags = [full_tag] in
+          (* Push the image as e.g. debian-10-ocaml-4.09 and debian-ocaml-4.09 *)
+          let tags = full_tag :: List.map (Tag.v ~switch) distro_aliases in
           if switch <> Ocaml_version.Releases.latest then tags
           else (
             (* For every distro, also create a link to the latest OCaml compiler.
@@ -176,16 +177,13 @@ let v ?channel ~ocluster () =
             let tags = Tag.v_alias distro :: tags in
             (* If [distro] is the latest version of that distribution, make an alias like
                debian -> debian-10-ocaml-4.09 *)
-            match distro_latest_alias with
-            | None -> tags
-            | Some latest ->
-              let tags = Tag.v_alias latest :: tags in
-              (* The top-level alias: latest -> debian-10-ocaml-4.09 *)
-              if distro <> master_distro then tags
-              else Tag.latest :: tags
+            let tags = List.map Tag.v_alias distro_aliases @ tags in
+            (* The top-level alias: latest -> debian-10-ocaml-4.09 *)
+            if distro <> master_distro then tags
+            else Tag.latest :: tags
           )
         in
-        (* Fmt.pr "Aliases: %s -> %a@." full_tag Fmt.(Dump.list string) tags; *)
+        (* Fmt.pr "Aliases: %s -> %a@." full_tag Fmt.(Dump.list string) (List.sort String.compare tags); *)
         let pushes = List.map (fun tag -> Current_docker.push_manifest ?auth:Conf.auth ~tag images |> Current.ignore_value) tags in
         Some (full_tag, Current.all pushes)
       )
