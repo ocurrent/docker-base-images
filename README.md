@@ -20,30 +20,23 @@ The rest of this README is about working on the build pipeline.
 
 ## Testing locally
 
-To see the pipeline, clone the repository and run it:
+To see the pipeline, clone the repository and run `docker-compose up`:
 
 ```bash
 git clone --recursive https://github.com/ocurrent/docker-base-images.git
-cd docker-base-images
-opam pin -yn ./ocurrent
-opam pin -yn ./ocluster
-opam pin -yn ./ocaml-dockerfile
-opam pin -yn .
-opam -y depext -y base-images
-opam install -y --deps-only base-images
-dune exec -- ./src/base_images.exe --confirm harmless
+docker-compose up
 ```
 
-Running with `--confirm harmless` means that it will just show what it plans to do without trying to run any jobs yet.
+This runs with `--confirm harmless`, so that it will just show what it plans to do without trying to run any jobs yet.
 You should see:
 
 ```
-Password file "/run/secrets/ocurrent-hub" not found; images will not be pushed to hub
    current_web [INFO] Starting web server: (TCP (Port 8080))
 ```
 
-If you now browse to <http://127.0.0.1:8080> you can see the (rather large!) build pipeline.
-It should look something like this (but less green initially):
+If you now browse to <http://127.0.0.1:8080> you can see the build pipeline.
+Note: It might complain about `--submission-service` being missing at first, but should fix itself once the scheduler service has started.
+It should look something like this:
 
 <p align='center' style='max-width: 50%'>
   <img src="./doc/pipeline.svg"/>
@@ -60,16 +53,11 @@ Separately, the architecture-specific base images are also used to create more i
 one for each supported OCaml compiler version.
 These images are also pushed to a staging repository and then combined into multi-arch images.
 
-If you use the web user interface to set the confirmation threshold to `>= Average`, it will clone opam-repository.
-However, before going further you will need to configure the builders.
-
-The configuration is in [conf.ml][].
-You can change the repositories to which the images will be pushed here, and provide a way to get your Hub password.
-For testing, you'll probably want to uncomment the lines near the bottom to restrict the build to just a few combinations.
-
-The default configuration assumes that your local Docker engine builds `X86_64` images and that you have set up Docker
-contexts `arm64` and `ppc64` for those architectures.
-To set up a Docker context, use e.g. `docker -H ssh://example.com context create arm64`.
+You can click on a box (e.g. the opam-repository clone step) and then on `Start now` to run that step manually, or
+you can set the confirmation threshold to `>= Average` on the main page.
+The docker-compose file includes a single builder running locally, using the `linux-x86_64` pool and limited to one build at a time.
+You might want to update this, or add more builders.
+See the [OCluster][] documentation for more information about that.
 
 The pipeline is defined in [pipeline.ml][].
 This includes the Dockerfile definitions used to build the images.
@@ -97,3 +85,4 @@ If you are doing your own deployment, you will need to provide some secrets (usi
 [pipeline.ml]: https://github.com/ocurrent/docker-base-images/blob/master/src/pipeline.ml
 [conf.ml]: https://github.com/ocurrent/docker-base-images/blob/master/src/conf.ml
 [avsm/ocaml-dockerfile]: https://github.com/avsm/ocaml-dockerfile
+[OCluster]: https://github.com/ocurrent/ocluster
