@@ -1,0 +1,49 @@
+version: "3.8"
+services:
+  scheduler:
+    image: ocurrent/ocluster-scheduler:live
+    command:
+      - --secrets-dir=/capnp-secrets
+      - --capnp-secret-key-file=/capnp-secrets/key.pem
+      - --capnp-listen-address=tcp:0.0.0.0:9000
+      - --capnp-public-address=tcp:scheduler:9000
+      - --pools=linux-x86_64,linux-arm64,linux-ppc64
+      - --state-dir=/var/lib/ocluster-scheduler
+      - --default-clients=base-builder
+    init: true
+    ports:
+      - "9000:9000"
+    volumes:
+      - 'scheduler-data:/var/lib/ocluster-scheduler'
+      - 'capnp-secrets:/capnp-secrets'
+  base-builder:
+    build: .
+    command:
+      - --confirm=harmless
+      - --submission-service=/capnp-secrets/submit-base-builder.cap
+    init: true
+    restart: on-failure         # (wait for the scheduler to write the submission cap)
+    ports:
+      - "8080:8080"
+    volumes:
+      - 'base-builder-data:/var/lib/ocurrent'
+      - "capnp-secrets:/capnp-secrets"
+  worker:
+    image: ocurrent/ocluster-worker:live
+    command:
+      - /capnp-secrets/pool-linux-x86_64.cap
+      - --name=local
+      - --allow-push=ocurrentbuilder/staging,ocurrent/opam-staging
+      - --capacity=1
+      - --state-dir=/var/lib/ocluster
+    init: true
+    restart: on-failure         # (wait for the scheduler to write the pool cap)
+    volumes:
+      - 'worker-data:/var/lib/ocluster'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - 'capnp-secrets:/capnp-secrets:ro'
+volumes:
+  base-builder-data:
+  worker-data:
+  scheduler-data:
+  capnp-secrets:
