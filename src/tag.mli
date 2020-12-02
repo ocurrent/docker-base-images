@@ -9,3 +9,6 @@ val v_alias : Dockerfile_distro.t -> string
 
 val latest : string
 (** [latest] is the single ":latest" tag. *)
+
+val archive : string
+(** [latest] is the single ":archive" tag of the opam package archives. *)

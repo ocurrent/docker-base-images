@@ -31,3 +31,6 @@ let v_alias alias =
 
 let latest =
   Fmt.strf "%s:latest" Conf.public_repo
+
+let archive =
+  Fmt.strf "%s:archive" Conf.public_repo
