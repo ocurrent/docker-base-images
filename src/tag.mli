@@ -10,5 +10,7 @@ val v_alias : Dockerfile_distro.t -> string
 val latest : string
 (** [latest] is the single ":latest" tag. *)
 
-val archive : string
-(** [latest] is the single ":archive" tag of the opam package archives. *)
+val archive : ?staging:bool -> unit -> string
+(** [latest] is the single ":archive" tag of the opam package archives. 
+    If [staging] is true (default: false) the tag points to the image in
+    the staging repository. *)

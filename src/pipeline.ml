@@ -143,7 +143,7 @@ module Arch = struct
     let archive_image =
       if distro = Dockerfile_distro.(master_distro |> resolve_alias) && arch = `X86_64 then
         let push_target =
-          Tag.archive
+          Tag.archive ~staging:true ()
           |> Cluster_api.Docker.Image_id.of_string
           |> or_die
         in
@@ -225,7 +225,7 @@ let v ?channel ~ocluster () =
     let archive_images =
       match archive_image with
       | None -> []
-      | Some image -> [ "archive", image |> Current.ignore_value ]
+      | Some image -> [ "archive", Current_docker.push_manifest ?auth:Conf.auth ~tag:(Tag.archive ()) [image] |> Current.ignore_value ]
     in
     Current.all_labelled (
      ("base", Current_docker.push_manifest ?auth:Conf.auth ~tag:(Tag.v distro) opam_images |> Current.ignore_value)
