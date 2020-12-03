@@ -31,6 +31,14 @@ let maybe_install_secondary_compiler ~switch =
   else
     empty
 
+let install_package_archive opam_image =
+  let open Dockerfile in
+  from ~alias:"archive" opam_image @@
+  workdir "/home/opam/opam-repository" @@
+  run "opam admin cache --link=/home/opam/opam-repository/cache" @@
+  from "alpine:latest" @@
+  copy ~chown:"0:0" ~from:"archive" ~src:["/home/opam/opam-repository/cache"] ~dst:"/cache" ()
+
 (* Generate a Dockerfile to install OCaml compiler [switch] in [opam_image]. *)
 let install_compiler_df ~arch ~switch opam_image =
   let switch_name = Ocaml_version.to_string (Ocaml_version.with_just_major_and_minor switch) in
@@ -99,6 +107,18 @@ module Arch = struct
       ~push_target
       ~pool:(Conf.pool_for_arch arch)
 
+  let collect_archive ~ocluster ~push_target base =
+    Current.component "archive" |>
+    let> base = base in
+    let dockerfile = `Contents (install_package_archive base |> Dockerfile.string_of_t) in
+    let options = { Cluster_api.Docker.Spec.defaults with squash = true; include_git = true } in
+    let cache_hint = Printf.sprintf "archive-%s" base in
+    Current_ocluster.Raw.build_and_push ocluster ~src:[] dockerfile
+      ~cache_hint
+      ~options
+      ~push_target
+      ~pool:(Conf.pool_for_arch `X86_64)
+
   (* Build the base image for [distro], plus an image for each compiler version. *)
   let pipeline ~ocluster ~opam_repository ~distro arch =
     let opam_image =
@@ -119,8 +139,19 @@ module Arch = struct
       let repo_id = install_compiler ~arch ~ocluster ~switch ~push_target opam_image in
       (switch, repo_id)
     in
+    (* Build the archive image for the debian 10 / x86_64 image only *)
+    let archive_image =
+      if distro = Dockerfile_distro.(master_distro |> resolve_alias) && arch = `X86_64 then
+        let push_target =
+          Tag.archive ~staging:true ()
+          |> Cluster_api.Docker.Image_id.of_string
+          |> or_die
+        in
+        Some (collect_archive ~ocluster ~push_target opam_image)
+      else None
+    in
     let compiler_images = Switch_map.of_seq (List.to_seq compiler_images) in
-    (opam_image, compiler_images)
+    (opam_image, compiler_images, archive_image)
 end
 
 module Switch_set = Set.Make(Ocaml_version)
@@ -160,7 +191,10 @@ let v ?channel ~ocluster () =
     let distro_aliases = aliases_of distro in
     let arches = Conf.arches_for ~distro in
     let arch_results = List.map (Arch.pipeline ~ocluster ~opam_repository:repo ~distro) arches in
-    let opam_images, ocaml_images = List.split arch_results in
+    let opam_images, ocaml_images, archive_image =
+      List.fold_left (fun (aa,ba,ca) (a,b,c) ->
+        let ca = match ca,c with Some v, _ -> Some v | None, v -> v in
+        a::aa, b::ba, ca) ([], [], None) arch_results in
     let ocaml_images =
       all_switches ocaml_images |> List.filter_map @@ fun switch ->
       let images = List.filter_map (Switch_map.find_opt switch) ocaml_images in
@@ -188,8 +222,14 @@ let v ?channel ~ocluster () =
         Some (full_tag, Current.all pushes)
       )
     in
+    let archive_images =
+      match archive_image with
+      | None -> []
+      | Some image -> [ "archive", Current_docker.push_manifest ?auth:Conf.auth ~tag:(Tag.archive ()) [image] |> Current.ignore_value ]
+    in
     Current.all_labelled (
-      ("base", Current_docker.push_manifest ?auth:Conf.auth ~tag:(Tag.v distro) opam_images |> Current.ignore_value)
-      :: ocaml_images)
+     ("base", Current_docker.push_manifest ?auth:Conf.auth ~tag:(Tag.v distro) opam_images |> Current.ignore_value)
+      :: ocaml_images
+      @ archive_images)
   )
   |> notify_status ?channel

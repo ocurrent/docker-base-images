@@ -31,3 +31,6 @@ let v_alias alias =
 
 let latest =
   Fmt.strf "%s:latest" Conf.public_repo
+
+let archive ?(staging=false) () =
+  Fmt.strf "%s:archive" (if staging then Conf.staging_repo else Conf.public_repo)
