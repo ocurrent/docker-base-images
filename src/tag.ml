@@ -9,24 +9,25 @@ let tag_of_compiler switch =
       | x -> x
     )
 
-let v ?arch ?switch distro =
+let make_tag ?arch ?switch distro_tag =
   let repo = if arch = None then Conf.public_repo else Conf.staging_repo in
-  let distro =
-    if distro = `Debian `Stable then "debian"
-    else Dockerfile_distro.tag_of_distro distro
-  in
   let switch =
     match switch with
     | Some switch -> "ocaml-" ^ tag_of_compiler switch
     | None -> "opam"
   in
-  Fmt.strf "%s:%s-%s%a" repo distro switch pp_arch arch
+  Fmt.strf "%s:%s-%s%a" repo distro_tag switch pp_arch arch
+
+let v ?arch ?switch distro =
+  make_tag ?arch ?switch (Dockerfile_distro.tag_of_distro distro)
+
+let v_alt ?arch ?switch distro =
+  match distro with
+  | `Debian `Stable -> [ make_tag ?arch ?switch "debian" ]
+  | _ -> []
 
 let v_alias alias =
-  let alias =
-    if alias = `Debian `Stable then "debian"
-    else Dockerfile_distro.tag_of_distro alias
-  in
+  let alias = Dockerfile_distro.tag_of_distro alias in
   Fmt.strf "%s:%s" Conf.public_repo alias
 
 let latest =
