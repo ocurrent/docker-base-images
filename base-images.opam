@@ -7,6 +7,7 @@ homepage: "https://github.com/ocurrent/docker-base-images"
 bug-reports: "https://github.com/ocurrent/docker-base-images/issues"
 depends: [
   "dune" {>= "2.5"}
+  "prometheus-app" {>= "1.0"}
   "ppx_sexp_conv"
   "ppx_deriving_yojson"
   "ppx_deriving"

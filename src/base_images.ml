@@ -5,7 +5,7 @@ let program_name = "base_images"
 
 module Rpc = Current_rpc.Impl(Current)
 
-let () = Logging.init ()
+let () = Prometheus_unix.Logging.init ()
 
 (* A low-security Docker Hub user used to push images to the staging area.
    Low-security because we never rely on the tags in this repository, just the hashes. *)
@@ -56,7 +56,7 @@ let has_role user = function
     | _ -> false
 
 let main config mode channel capnp_address github_auth submission_uri staging_password_file =
-  Logging.run begin
+  Lwt_main.run begin
     let channel = Option.map read_channel_uri channel in
     let staging_auth = staging_password_file |> Option.map (fun path -> staging_user, read_first_line path) in
     run_capnp capnp_address >>= fun (vat, rpc_engine_resolver) ->
@@ -130,8 +130,8 @@ let staging_password =
 
 let cmd =
   let doc = "Build the ocaml/opam images for Docker Hub" in
-  Term.(const main $ Current.Config.cmdliner $ Current_web.cmdliner $ slack $ capnp_address $ Current_github.Auth.cmdliner $
-        submission_service $ staging_password),
+  Term.(term_result (const main $ Current.Config.cmdliner $ Current_web.cmdliner $ slack $ capnp_address $ Current_github.Auth.cmdliner $
+                     submission_service $ staging_password)),
   Term.info program_name ~doc
 
 let () = Term.(exit @@ eval cmd)
