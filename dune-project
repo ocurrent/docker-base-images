@@ -8,6 +8,7 @@
  (name base-images)
  (synopsis "Generate Docker base images for OCaml and opam using ocurrent")
  (depends
+  (prometheus-app (>= 1.0))
   ppx_sexp_conv
   ppx_deriving_yojson
   ppx_deriving

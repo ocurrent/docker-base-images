@@ -1,6 +1,6 @@
 FROM ocaml/opam:debian-10-ocaml-4.10@sha256:15bc5676151b4ae0e40dbe5d7233a734c54788e222dd6ab470c23a433deaaa1a AS build
 RUN sudo apt-get update && sudo apt-get install capnproto graphviz m4 pkg-config libsqlite3-dev libgmp-dev libssl-dev -y --no-install-recommends
-RUN cd ~/opam-repository && git pull origin -q master && git reset --hard c574ab6909d6027c5338b7de2e0754035444019e && opam update
+RUN cd ~/opam-repository && git pull origin -q master && git reset --hard 9bbd0b24881972dc797346d711598d22e54edf0b && opam update
 COPY --chown=opam \
 	ocurrent/current.opam \
 	ocurrent/current_web.opam \
