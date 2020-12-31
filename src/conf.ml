@@ -24,10 +24,15 @@ let auth =
     None
   )
 
-let pool_for_arch = function
-  | `X86_64 | `I386     -> "linux-x86_64"
-  | `Aarch64 | `Aarch32 -> "linux-arm64"
-  | `Ppc64le            -> "linux-ppc64"
+let pool_name os_family arch =
+  let os_str = match os_family with
+  | `Windows | `Cygwin -> "windows"
+  | `Linux -> "linux" in
+  let arch_str = match arch with
+  | `X86_64 | `I386     -> "x86_64"
+  | `Aarch64 | `Aarch32 -> "arm64"
+  | `Ppc64le            -> "ppc64" in
+  os_str ^ "-" ^ arch_str
 
 let switches ~arch ~distro =
   let is_tier1 = List.mem distro (Dockerfile_distro.active_tier1_distros arch) in

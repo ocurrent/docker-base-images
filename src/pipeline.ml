@@ -104,9 +104,9 @@ module Make (OCurrent : S.OCURRENT) = struct
         ~cache_hint
         ~options
         ~push_target
-        ~pool:(Conf.pool_for_arch arch)
+        ~pool:(Conf.pool_name (Dockerfile_distro.os_family_of_distro distro) arch)
 
-    let install_compiler ~arch ~ocluster ~switch ~push_target base =
+    let install_compiler ~os_family ~arch ~ocluster ~switch ~push_target base =
       let arch_name = Ocaml_version.string_of_arch arch in
       Current.component "%s/%s" (Ocaml_version.to_string switch) arch_name |>
       let> base = base in
@@ -118,9 +118,9 @@ module Make (OCurrent : S.OCURRENT) = struct
         ~cache_hint
         ~options
         ~push_target
-        ~pool:(Conf.pool_for_arch arch)
+        ~pool:(Conf.pool_name os_family arch)
 
-    let collect_archive ~ocluster ~push_target base =
+    let collect_archive ~os_family ~ocluster ~push_target base =
       Current.component "archive" |>
       let> base = base in
       let dockerfile = `Contents (install_package_archive base |> Dockerfile.string_of_t) in
@@ -130,10 +130,11 @@ module Make (OCurrent : S.OCURRENT) = struct
         ~cache_hint
         ~options
         ~push_target
-        ~pool:(Conf.pool_for_arch `X86_64)
+        ~pool:(Conf.pool_name os_family `X86_64)
 
     (* Build the base image for [distro], plus an image for each compiler version. *)
     let pipeline ~ocluster ~repos ~distro arch =
+      let os_family = Dockerfile_distro.os_family_of_distro distro in
       let opam_image =
         let push_target =
           Tag.v distro ~arch
@@ -149,7 +150,7 @@ module Make (OCurrent : S.OCURRENT) = struct
           |> Cluster_api.Docker.Image_id.of_string
           |> or_die
         in
-        let repo_id = install_compiler ~arch ~ocluster ~switch ~push_target opam_image in
+        let repo_id = install_compiler ~os_family ~arch ~ocluster ~switch ~push_target opam_image in
         (switch, repo_id)
       in
       (* Build the archive image for the debian 10 / x86_64 image only *)
@@ -160,7 +161,7 @@ module Make (OCurrent : S.OCURRENT) = struct
             |> Cluster_api.Docker.Image_id.of_string
             |> or_die
           in
-          Some (collect_archive ~ocluster ~push_target opam_image)
+          Some (collect_archive ~os_family ~ocluster ~push_target opam_image)
         else None
       in
       let compiler_images = Switch_map.of_seq (List.to_seq compiler_images) in
