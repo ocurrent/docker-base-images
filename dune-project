@@ -15,7 +15,7 @@
   ppx_deriving
   (lwt (>= 5.4.1))
   logs
-  fmt
+  (fmt (>= 0.8.7))
   current_git
   current_github
   current_docker

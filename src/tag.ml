@@ -20,17 +20,17 @@ let v ?arch ?switch distro =
     | Some switch -> "ocaml-" ^ tag_of_compiler switch
     | None -> "opam"
   in
-  Fmt.strf "%s:%s-%s%a" repo distro switch pp_arch arch
+  Fmt.str "%s:%s-%s%a" repo distro switch pp_arch arch
 
 let v_alias alias =
   let alias =
     if alias = `Debian `Stable then "debian"
     else Dockerfile_distro.tag_of_distro alias
   in
-  Fmt.strf "%s:%s" Conf.public_repo alias
+  Fmt.str "%s:%s" Conf.public_repo alias
 
 let latest =
-  Fmt.strf "%s:latest" Conf.public_repo
+  Fmt.str "%s:latest" Conf.public_repo
 
 let archive ?(staging=false) () =
-  Fmt.strf "%s:archive" (if staging then Conf.staging_repo else Conf.public_repo)
+  Fmt.str "%s:archive" (if staging then Conf.staging_repo else Conf.public_repo)

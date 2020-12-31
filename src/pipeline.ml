@@ -179,7 +179,7 @@ let notify_status ?channel x =
   | Some channel ->
     let s =
       let+ state = Current.catch x in
-      Fmt.strf "docker-base-images status: %a" (Current_term.Output.pp Current.Unit.pp) state
+      Fmt.str "docker-base-images status: %a" (Current_term.Output.pp Current.Unit.pp) state
     in
     Current.all [
       Current_slack.post channel ~key:"base-images-status" s;
