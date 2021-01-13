@@ -44,14 +44,15 @@ let install_package_archive opam_image =
   copy ~chown:"0:0" ~from:"archive" ~src:["/home/opam/opam-repository/cache"] ~dst:"/cache" ()
 
 (* Generate a Dockerfile to install OCaml compiler [switch] in [opam_image]. *)
-let install_compiler_df ~arch ~switch opam_image =
+let install_compiler_df ~os_family ~arch ~switch opam_image =
   let switch_name = Ocaml_version.to_string (Ocaml_version.with_just_major_and_minor switch) in
   let (package_name, package_version) = Ocaml_version.Opam.V2.package switch in
   let additional_packages = Ocaml_version.Opam.V2.additional_packages switch in
+  let personality = Dockerfile_distro.personality os_family arch in
   let open Dockerfile in
-  let personality = if Ocaml_version.arch_is_32bit arch then shell ["/usr/bin/linux32"; "/bin/sh"; "-c"] else empty in
+  let shell = Option.fold ~none:empty ~some:(fun pers -> shell [pers; "/bin/sh"; "-c"]) personality in
   from opam_image @@
-  personality @@
+  shell @@
   maybe_add_beta switch @@
   maybe_add_multicore switch @@
   env ["OPAMYES", "1";
@@ -63,7 +64,7 @@ let install_compiler_df ~arch ~switch opam_image =
   run "opam pin add -k version %s %s" package_name package_version @@
   run "opam install -y opam-depext" @@
   maybe_install_secondary_compiler ~switch @@
-  entrypoint_exec ((if Ocaml_version.arch_is_32bit arch then ["/usr/bin/linux32"] else []) @ ["opam"; "exec"; "--"]) @@
+  entrypoint_exec (Option.to_list personality @ ["opam"; "exec"; "--"]) @@
   cmd "bash" @@
   copy ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ()
 
@@ -110,7 +111,7 @@ module Make (OCurrent : S.OCURRENT) = struct
       let arch_name = Ocaml_version.string_of_arch arch in
       Current.component "%s/%s" (Ocaml_version.to_string switch) arch_name |>
       let> base = base in
-      let dockerfile = `Contents (install_compiler_df ~arch ~switch base |> Dockerfile.string_of_t) in
+      let dockerfile = `Contents (install_compiler_df ~os_family ~arch ~switch base |> Dockerfile.string_of_t) in
       (* ([include_git] doesn't do anything here, but it saves rebuilding during the upgrade) *)
       let options = { Cluster_api.Docker.Spec.defaults with squash = true; include_git = true } in
       let cache_hint = Printf.sprintf "%s-%s-%s" (Ocaml_version.to_string switch) arch_name base in
