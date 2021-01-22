@@ -50,7 +50,9 @@ let install_compiler_df ~arch ~switch opam_image =
   personality @@
   maybe_add_beta switch @@
   env ["OPAMYES", "1";
-       "OPAMERRLOGLEN", "0";
+       "OPAMDEPEXTYES", "1";
+       "OPAMERRLOGLEN", "0"; (* Show the whole log if it fails *)
+       "OPAMPRECISETRACKING", "1"; (* Mitigate https://github.com/ocaml/opam/issues/3997 *)
       ] @@
   run "opam switch create %s --packages=%s" switch_name (String.concat "," (Printf.sprintf "%s.%s" package_name package_version :: additional_packages)) @@
   run "opam pin add -k version %s %s" package_name package_version @@
