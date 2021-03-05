@@ -23,6 +23,14 @@ let maybe_add_beta switch =
   else
     empty
 
+let maybe_add_multicore switch =
+  let open Dockerfile in
+  let c = Ocaml_version.Configure_options.of_t switch |> Result.get_ok in
+  if List.mem `Multicore c then
+    run "opam repo add multicore git://github.com/ocaml-multicore/multicore-opam --set-default"
+  else
+    empty
+
 let maybe_install_secondary_compiler ~switch =
   let dune_min_native_support = Ocaml_version.Releases.v4_08 in
   let open Dockerfile in
@@ -49,6 +57,7 @@ let install_compiler_df ~arch ~switch opam_image =
   from opam_image @@
   personality @@
   maybe_add_beta switch @@
+  maybe_add_multicore switch @@
   env ["OPAMYES", "1";
        "OPAMDEPEXTYES", "1"; (* Remove this when https://github.com/ocaml/opam/pull/4563 is merged *)
        "OPAMUNSAFEDEPEXTYES", "1";

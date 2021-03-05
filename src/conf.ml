@@ -43,7 +43,7 @@ let switches ~arch ~distro =
   )
 
 (* We can't get the active distros directly, but assume x86_64 is a superset of everything else. *)
-let distros = Dockerfile_distro.active_distros `X86_64
+let distros = Dockerfile_distro.(active_distros `X86_64 |> List.filter (fun d -> os_family_of_distro d = `Linux))
 
 let arches_for ~distro = Dockerfile_distro.distro_arches Ocaml_version.Releases.latest distro
 
