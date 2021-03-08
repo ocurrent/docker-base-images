@@ -3,7 +3,10 @@ let staging_repo = "ocurrent/opam-staging"
 
 let public_repo = "ocaml/opam"
 
-let password_path = "/run/secrets/ocurrent-hub"
+let password_path =
+  let open Fpath in
+  let root = v (if Sys.win32 then "C:\\ProgramData\\Docker" else "/run") in
+  root / "secrets" / "ocurrent-hub" |> to_string
 
 module Capnp = struct
   (* Cap'n Proto RPC is enabled by passing --capnp-public-address. These values are hard-coded
