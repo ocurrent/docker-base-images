@@ -1,4 +1,5 @@
 (lang dune 2.5)
+(name base-images)
 (generate_opam_files true)
 (formatting disabled)
 (source (github ocurrent/docker-base-images))
