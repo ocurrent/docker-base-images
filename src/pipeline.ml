@@ -25,8 +25,7 @@ let maybe_add_beta switch =
 
 let maybe_add_multicore switch =
   let open Dockerfile in
-  let c = Ocaml_version.Configure_options.of_t switch |> Result.get_ok in
-  if List.mem `Multicore c then
+  if Ocaml_version.Configure_options.is_multicore switch then
     run "opam repo add multicore git://github.com/ocaml-multicore/multicore-opam --set-default"
   else
     empty
