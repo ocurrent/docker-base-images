@@ -27,9 +27,10 @@ let maybe_add_multicore (run : 'a run) switch =
   else
     Dockerfile.empty
 
-let maybe_install_secondary_compiler (run : 'a run) switch =
+let maybe_install_secondary_compiler (run : 'a run) os_family switch =
   let dune_min_native_support = Ocaml_version.Releases.v4_08 in
-  if Ocaml_version.compare switch dune_min_native_support < 0 then
+  (* opam-repository-mingw doesn't package ocaml-secondary-compiler. *)
+  if Ocaml_version.compare switch dune_min_native_support < 0 && os_family <> `Windows then
     run "opam install -y ocaml-secondary-compiler"
   else
     Dockerfile.empty
@@ -84,7 +85,7 @@ let install_compiler_df ~os_family ~arch ~switch ?windows_port opam_image =
   run_no_opam "opam switch create %s --packages=%s" switch_name packages @@
   run "opam pin add -k version %s %s" package_name package_version @@
   run "opam install -y %s" depext @@
-  maybe_install_secondary_compiler run switch @@
+  maybe_install_secondary_compiler run os_family switch @@
   entrypoint_exec (Option.to_list personality @ opam_exec) @@
   (match os_family with `Linux | `Cygwin -> cmd "bash" | `Windows -> cmd_exec ["cmd.exe"]) @@
   copy ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ()
