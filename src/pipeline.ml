@@ -8,6 +8,14 @@ let opam_repository () =
   Current_git.clone ~schedule:weekly "git://github.com/ocaml/opam-repository"
   |> Current.map Current_git.Commit.id
 
+let get_opam_2_0 () =
+  Current_git.clone ~schedule:weekly ~gref:"2.0" "git://github.com/ocaml/opam"
+  |> Current.map Current_git.Commit.id
+
+let get_opam_master () =
+  Current_git.clone ~schedule:weekly ~gref:"master" "git://github.com/ocaml/opam"
+  |> Current.map Current_git.Commit.id
+
 (* [aliases_of d] gives other tags which should point to [d].
    e.g. just after the Ubuntu 20.04 release, [aliases_of ubuntu-20.04 = [ ubuntu; ubuntu-lts ]] *)
 let aliases_of =
@@ -77,11 +85,19 @@ let or_die = function
 
 (* Pipeline to build the opam base image and the compiler images for a particular architecture. *)
 module Arch = struct
-  let install_opam ~arch ~ocluster ~distro ~opam_repository ~push_target =
+  let install_opam ~arch ~ocluster ~distro ~opam_repository ~push_target ~opam_2_0 ~opam_master =
     let arch_name = Ocaml_version.string_of_arch arch in
+    let distro_tag = Dockerfile_distro.tag_of_distro distro in
+    Current.component "%s@,%s" distro_tag arch_name |>
+    let> opam_repository = opam_repository
+    and> opam_2_0 = opam_2_0
+    and> opam_master = opam_master
+    in
     let dockerfile =
+      let hash_opam_2_0 = Current_git.Commit_id.hash opam_2_0 in
+      let hash_opam_master = Current_git.Commit_id.hash opam_master in
       `Contents (
-        let opam = snd @@ Dockerfile_opam.gen_opam2_distro ~arch ~clone_opam_repo:false distro in
+        let opam = snd @@ Dockerfile_opam.gen_opam2_distro ~arch ~clone_opam_repo:false ~hash_opam_2_0 ~hash_opam_master distro in
         let open Dockerfile in
         string_of_t (
           opam @@
@@ -93,9 +109,6 @@ module Arch = struct
         )
       )
     in
-    let distro_tag = Dockerfile_distro.tag_of_distro distro in
-    Current.component "%s@,%s" distro_tag arch_name |>
-    let> opam_repository = opam_repository in
     let options = { Cluster_api.Docker.Spec.defaults with squash = true; include_git = true } in
     let cache_hint = Printf.sprintf "opam-%s" distro_tag in
     Current_ocluster.Raw.build_and_push ocluster ~src:[opam_repository] dockerfile
@@ -131,14 +144,14 @@ module Arch = struct
       ~pool:(Conf.pool_for_arch `X86_64)
 
   (* Build the base image for [distro], plus an image for each compiler version. *)
-  let pipeline ~ocluster ~opam_repository ~distro arch =
+  let pipeline ~ocluster ~opam_repository ~opam_2_0 ~opam_master ~distro arch =
     let opam_image =
       let push_target =
         Tag.v distro ~arch
         |> Cluster_api.Docker.Image_id.of_string
         |> or_die
       in
-      install_opam ~arch ~ocluster ~distro ~opam_repository ~push_target
+      install_opam ~arch ~ocluster ~distro ~opam_repository ~push_target ~opam_2_0 ~opam_master
     in
     let compiler_images =
       Conf.switches ~arch ~distro |> List.map @@ fun switch ->
@@ -194,6 +207,8 @@ let label l t =
 (* The main pipeline. Builds images for all supported distribution, compiler version and architecture combinations. *)
 let v ?channel ~ocluster () =
   let repo = opam_repository () in
+  let opam_2_0 = get_opam_2_0 () in
+  let opam_master = get_opam_master () in
   Current.all (
     Conf.distros |> List.map @@ fun distro ->
     let distro_label = Dockerfile_distro.tag_of_distro distro in
@@ -201,7 +216,7 @@ let v ?channel ~ocluster () =
     Current.collapse ~key:"distro" ~value:distro_label ~input:repo @@
     let distro_aliases = aliases_of distro in
     let arches = Conf.arches_for ~distro in
-    let arch_results = List.map (Arch.pipeline ~ocluster ~opam_repository:repo ~distro) arches in
+    let arch_results = List.map (Arch.pipeline ~ocluster ~opam_repository:repo ~opam_2_0 ~opam_master ~distro) arches in
     let opam_images, ocaml_images, archive_image =
       List.fold_left (fun (aa,ba,ca) (a,b,c) ->
         let ca = match ca,c with Some v, _ -> Some v | None, v -> v in
