@@ -48,8 +48,8 @@ module Repositories = struct
 
   let get_commit_hash ~job ~repo ~branch =
     Current.Process.with_tmpdir ~prefix:"git-checkout" @@ fun cwd ->
-    Current.Process.exec ~cwd ~cancellable:true ~job ("", [|"git"; "clone"; repo; "."|]) >>!= fun () ->
-    Current.Process.check_output ~cwd ~cancellable:true ~job ("", [|"git"; "rev-parse"; branch|]) >>!= fun hash ->
+    Current.Process.exec ~cwd ~cancellable:true ~job ("", [|"git"; "clone"; "-b"; branch; repo; "."|]) >>!= fun () ->
+    Current.Process.check_output ~cwd ~cancellable:true ~job ("", [|"git"; "rev-parse"; "HEAD"|]) >>!= fun hash ->
     Lwt.return (Ok (String.trim hash))
 
   let build No_context job {Key.opam_repository_master; opam_2_0; opam_master} =
