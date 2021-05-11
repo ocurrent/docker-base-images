@@ -12,4 +12,5 @@
              capnp-rpc-unix
              dockerfile-opam
              lwt.unix
-             prometheus-app.unix))
+             prometheus-app.unix)
+  (preprocess (pps ppx_deriving_yojson)))
