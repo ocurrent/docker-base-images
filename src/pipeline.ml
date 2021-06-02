@@ -57,7 +57,8 @@ let install_compiler_df ~arch ~switch opam_image =
   maybe_add_beta switch @@
   maybe_add_multicore switch @@
   env ["OPAMYES", "1";
-       "OPAMCONFIRMLEVEL", "unsafe-yes";
+       "OPAMDEPEXTYES", "1"; (* Remove this when https://github.com/ocaml/opam/pull/4563 is merged *)
+       "OPAMUNSAFEDEPEXTYES", "1";
        "OPAMERRLOGLEN", "0"; (* Show the whole log if it fails *)
        "OPAMPRECISETRACKING", "1"; (* Mitigate https://github.com/ocaml/opam/issues/3997 *)
       ] @@

@@ -52,9 +52,10 @@ module Repositories = struct
     Current.Process.check_output ~cwd ~cancellable:true ~job ("", [|"git"; "rev-parse"; "HEAD"|]) >>!= fun hash ->
     Lwt.return (Ok (String.trim hash))
 
-  let build No_context job {Key.opam_repository_master; opam_2_0; opam_master} =
+  let build No_context job {Key.opam_repository_master = _; opam_2_0; opam_master} =
     Current.Job.start job ~level:Current.Level.Mostly_harmless >>= fun () ->
-    get_commit_hash ~job ~repo:opam_repository_master ~branch:"master" >>!= fun opam_repository_master ->
+    (* get_commit_hash ~job ~repo:opam_repository_master ~branch:"master" >>!= fun opam_repository_master -> *)
+    let opam_repository_master = "5db90e1b3395" in (* NOTE: Temporary fix!! *)
     get_commit_hash ~job ~repo:opam_2_0 ~branch:"2.0" >>!= fun opam_2_0 ->
     get_commit_hash ~job ~repo:opam_master ~branch:"master" >>!= fun opam_master ->
     Lwt.return (Ok {Value.opam_repository_master; opam_2_0; opam_master})
