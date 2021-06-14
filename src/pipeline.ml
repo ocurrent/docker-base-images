@@ -79,12 +79,12 @@ module Arch = struct
     let arch_name = Ocaml_version.string_of_arch arch in
     let distro_tag = Dockerfile_distro.tag_of_distro distro in
     Current.component "%s@,%s" distro_tag arch_name |>
-    let> {Git_repositories.opam_repository_master; opam_2_0; opam_master} = repos in
+    let> {Git_repositories.opam_repository_master; opam_2_0; opam_2_1} = repos in
     let dockerfile =
       let hash_opam_2_0 = Current_git.Commit_id.hash opam_2_0 in
-      let hash_opam_master = Current_git.Commit_id.hash opam_master in
+      let hash_opam_2_1 = Current_git.Commit_id.hash opam_2_1 in
       `Contents (
-        let opam = snd @@ Dockerfile_opam.gen_opam2_distro ~arch ~clone_opam_repo:false ~hash_opam_2_0 ~hash_opam_master distro in
+        let opam = snd @@ Dockerfile_opam.gen_opam2_distro ~arch ~clone_opam_repo:false ~hash_opam_2_0 ~hash_opam_2_1 distro in
         let open Dockerfile in
         string_of_t (
           opam @@
