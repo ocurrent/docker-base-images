@@ -17,7 +17,7 @@ secrets:
 services:
   builder:
     image: ocurrent/base-images:live
-    command: --confirm above-average --confirm-auto-release 120 --slack /run/secrets/ocurrent-slack-endpoint --capnp-address=base-images.ocamllabs.io:8101 --github-oauth /run/secrets/base-builder-oauth --submission-service /run/secrets/base-image-builder-submission.cap --staging-password-file /run/secrets/ocurrentbuilder-password
+    command: --confirm above-average --confirm-auto-release 120 --verbose --slack /run/secrets/ocurrent-slack-endpoint --capnp-address=base-images.ocamllabs.io:8101 --github-oauth /run/secrets/base-builder-oauth --submission-service /run/secrets/base-image-builder-submission.cap --staging-password-file /run/secrets/ocurrentbuilder-password
     init: true
     ports:
       - '8101:9000'

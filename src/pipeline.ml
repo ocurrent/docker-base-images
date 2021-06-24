@@ -165,9 +165,8 @@ module Arch = struct
     (opam_image, compiler_images, archive_image)
 end
 
-module Switch_set = Set.Make(Ocaml_version)
-
 let all_switches arches =
+  let module Switch_set = Set.Make(Ocaml_version) in
   arches |> ListLabels.fold_left ~init:Switch_set.empty ~f:(fun acc map ->
       Switch_map.fold (fun k _v acc -> Switch_set.add k acc) map acc
     )
@@ -179,7 +178,7 @@ let notify_status ?channel x =
   | Some channel ->
     let s =
       let+ state = Current.catch x in
-      Fmt.strf "docker-base-images status: %a" (Current_term.Output.pp Current.Unit.pp) state
+      Fmt.str "docker-base-images status: %a" (Current_term.Output.pp Current.Unit.pp) state
     in
     Current.all [
       Current_slack.post channel ~key:"base-images-status" s;
@@ -199,10 +198,10 @@ let v ?channel ~ocluster () =
     let distro_label = Dockerfile_distro.tag_of_distro distro in
     let repos = label distro_label repos in
     Current.collapse ~key:"distro" ~value:distro_label ~input:repos @@
-    let distro_aliases = aliases_of distro in
-    let arches = Conf.arches_for ~distro in
-    let arch_results = List.map (Arch.pipeline ~ocluster ~repos ~distro) arches in
     let opam_images, ocaml_images, archive_image =
+      let arch_results =
+        let arches = Conf.arches_for ~distro in
+        List.map (Arch.pipeline ~ocluster ~repos ~distro) arches in
       List.fold_left (fun (aa,ba,ca) (a,b,c) ->
         let ca = match ca,c with Some v, _ -> Some v | None, v -> v in
         a::aa, b::ba, ca) ([], [], None) arch_results in
@@ -213,6 +212,7 @@ let v ?channel ~ocluster () =
       else (
         let full_tag = Tag.v distro ~switch in
         let tags =
+          let distro_aliases = aliases_of distro in
           (* Push the image as e.g. debian-10-ocaml-4.09 and debian-ocaml-4.09 *)
           let tags = full_tag :: List.map (Tag.v ~switch) distro_aliases in
           if switch <> Ocaml_version.Releases.latest then tags

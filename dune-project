@@ -1,4 +1,5 @@
 (lang dune 2.5)
+(name base-images)
 (generate_opam_files true)
 (formatting disabled)
 (source (github ocurrent/docker-base-images))
@@ -8,13 +9,14 @@
  (name base-images)
  (synopsis "Generate Docker base images for OCaml and opam using ocurrent")
  (depends
+  (ocaml (>= 4.12))
   (prometheus-app (>= 1.0))
   ppx_sexp_conv
   ppx_deriving_yojson
   ppx_deriving
-  lwt
+  (lwt (>= 5.4.1))
   logs
-  fmt
+  (fmt (>= 0.8.7))
   current_git
   current_github
   current_docker
