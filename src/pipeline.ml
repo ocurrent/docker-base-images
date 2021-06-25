@@ -10,8 +10,8 @@ let git_repositories () =
 (* [aliases_of d] gives other tags which should point to [d].
    e.g. just after the Ubuntu 20.04 release, [aliases_of ubuntu-20.04 = [ ubuntu; ubuntu-lts ]] *)
 let aliases_of =
-  let latest = Dockerfile_distro.latest_distros |> List.map (fun d -> Dockerfile_distro.resolve_alias d, d) in
-  fun d -> List.filter_map (fun (d2, alias) -> if d = d2 then Some alias else None) latest
+  let latest = Dockerfile_distro.distros |> List.map (fun d -> Dockerfile_distro.resolve_alias d, d) in
+  fun d -> List.filter_map (fun (d2, alias) -> if d = d2 && d <> alias then Some alias else None) latest
 
 let master_distro = Dockerfile_distro.(resolve_alias master_distro)
 
