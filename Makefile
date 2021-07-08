@@ -2,7 +2,7 @@ CONTEXT := ci.ocamllabs.io
 .PHONY: build clean
 
 build:
-	dune build ./src/base_images.exe @install
+	dune build ./src/base_images.exe @install @runtest
 
 deploy:
 	docker --context $(CONTEXT) build -t base-images .

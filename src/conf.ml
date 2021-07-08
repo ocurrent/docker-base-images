@@ -21,7 +21,6 @@ let auth =
     close_in ch;
     Some ("ocurrent", password)
   ) else (
-    Fmt.pr "Password file %S not found; images will not be pushed to hub@." password_path;
     None
   )
 
