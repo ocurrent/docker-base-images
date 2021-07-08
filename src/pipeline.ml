@@ -220,98 +220,83 @@ module Make (OCurrent : S.OCURRENT) = struct
     let> v = t in
     Current.Primitive.const v
 
+  let pipeline ~ocluster repos distro gen_tags =
+    let opam_images, ocaml_images, archive_image =
+      let arch_results =
+        let arches = Conf.arches_for ~distro in
+        List.map (Arch.pipeline ~ocluster ~repos ~distro) arches in
+      List.fold_left (fun (aa,ba,ca) (a,b,c) ->
+          let ca = match ca,c with Some v, _ -> Some v | None, v -> v in
+          a::aa, b::ba, ca) ([], [], None) arch_results
+    in
+    let (multiarch_images, ocaml_images) =
+      all_switches ocaml_images |> List.filter_map @@ begin fun switch ->
+        match List.filter_map (Switch_map.find_opt switch) ocaml_images with
+        | [] -> None
+        | images ->
+           let full_tag = Tag.v distro ~switch in
+           let (multiarch_images, tags) = gen_tags images full_tag switch (aliases_of distro) in
+           let pushes = List.map (fun tag -> Docker.push_manifest ?auth:Conf.auth ~tag images |> Current.ignore_value) tags in
+           Some (multiarch_images, (full_tag, Current.all pushes))
+        end |> List.split
+    in
+    let archive_images =
+      match archive_image with
+      | None -> []
+      | Some image -> [ "archive", Docker.push_manifest ?auth:Conf.auth ~tag:(Tag.archive ()) [image] |> Current.ignore_value ]
+    in
+    let pipeline =
+      Current.all_labelled (
+          ("base", Docker.push_manifest ?auth:Conf.auth ~tag:(Tag.v distro) opam_images |> Current.ignore_value)
+          :: ocaml_images
+          @ archive_images)
+    in
+    multiarch_images, pipeline
+
   let linux_pipeline ~ocluster repos distro =
     let distro_label = Dockerfile_distro.tag_of_distro distro in
     let repos = label distro_label repos in
     Current.collapse ~key:"distro" ~value:distro_label ~input:repos @@
-      let opam_images, ocaml_images, archive_image =
-        let arch_results =
-          let arches = Conf.arches_for ~distro in
-          List.map (Arch.pipeline ~ocluster ~repos ~distro) arches in
-        List.fold_left (fun (aa,ba,ca) (a,b,c) ->
-          let ca = match ca,c with Some v, _ -> Some v | None, v -> v in
-          a::aa, b::ba, ca) ([], [], None) arch_results in
-      let ocaml_images =
-        all_switches ocaml_images |> List.filter_map @@ fun switch ->
-        let images = List.filter_map (Switch_map.find_opt switch) ocaml_images in
-        if images = [] then None
-        else (
-          let full_tag = Tag.v distro ~switch in
-          let tags =
-            let distro_aliases = aliases_of distro in
-            (* Push the image as e.g. debian-10-ocaml-4.09 and debian-ocaml-4.09 *)
-            let tags = full_tag :: List.map (Tag.v ~switch) distro_aliases in
-            if switch <> Ocaml_version.Releases.latest then tags
-            else (
-              (* For every distro, also create a link to the latest OCaml compiler.
-                 e.g. debian-9 -> debian-9-ocaml-4.09 *)
-              let tags = Tag.v_alias distro :: tags in
-              (* If [distro] is the latest version of that distribution, make an alias like
-                 debian -> debian-10-ocaml-4.09 *)
-              let tags = List.map Tag.v_alias distro_aliases @ tags in
-              (* The top-level alias: latest -> debian-10-ocaml-4.09 *)
-              if distro <> master_distro then tags
-              else Tag.latest :: tags
-            )
-          in
-          (* Fmt.pr "Aliases: %s -> %a@." full_tag Fmt.(Dump.list string) (List.sort String.compare tags); *)
-          let pushes = List.map (fun tag -> Docker.push_manifest ?auth:Conf.auth ~tag images |> Current.ignore_value) tags in
-          Some (full_tag, Current.all pushes)
-        )
+      let gen_tags _images full_tag switch distro_aliases =
+        let tags =
+          (* Push the image as e.g. debian-10-ocaml-4.09 and debian-ocaml-4.09 *)
+          let tags = full_tag :: List.map (Tag.v ~switch) distro_aliases in
+          if switch <> Ocaml_version.Releases.latest then tags
+          else (
+            (* For every distro, also create a link to the latest OCaml compiler.
+               e.g. debian-9 -> debian-9-ocaml-4.09 *)
+            let tags = Tag.v_alias distro :: tags in
+            (* If [distro] is the latest version of that distribution, make an alias like
+               debian -> debian-10-ocaml-4.09 *)
+            let tags = List.map Tag.v_alias distro_aliases @ tags in
+            (* The top-level alias: latest -> debian-10-ocaml-4.09 *)
+            if distro <> master_distro then tags
+            else Tag.latest :: tags
+          )
+        in
+        (* Fmt.pr "Aliases: %s -> %a@." full_tag Fmt.(Dump.list string) (List.sort String.compare tags); *)
+        Switch_map.empty, tags
       in
-      let archive_images =
-        match archive_image with
-        | None -> []
-        | Some image -> [ "archive", Docker.push_manifest ?auth:Conf.auth ~tag:(Tag.archive ()) [image] |> Current.ignore_value ]
-      in
-      Current.all_labelled (
-       ("base", Docker.push_manifest ?auth:Conf.auth ~tag:(Tag.v distro) opam_images |> Current.ignore_value)
-        :: ocaml_images
-        @ archive_images)
+      let (_multiarch_images, pipeline) = pipeline ~ocluster repos distro gen_tags in
+      pipeline
 
   let windows_distro_pipeline ~ocluster repos distro_label distro_versions =
     let distro_pipeline multiarches distro =
-      let opam_images, ocaml_images, archive_image =
-        let arch_results =
-          let arches = Conf.arches_for ~distro in
-          List.map (Arch.pipeline ~ocluster ~repos ~distro) arches in
-        List.fold_left (fun (aa,ba,ca) (a,b,c) ->
-          let ca = match ca,c with Some v, _ -> Some v | None, v -> v in
-          a::aa, b::ba, ca) ([], [], None) arch_results in
-      let (multiarch_images, ocaml_images) =
-        all_switches ocaml_images |> List.filter_map @@ begin fun switch ->
-          let images = List.filter_map (Switch_map.find_opt switch) ocaml_images in
-          if images = [] then None
+      let gen_tags images full_tag switch distro_aliases =
+        let tags =
+          (* Push the image as e.g. windows-mingw-1809-ocaml-4.09 and windows-mingw-ltsc2019-ocaml-4.09  *)
+          let tags = full_tag :: List.map (Tag.v ~switch) distro_aliases in
+          if switch <> Ocaml_version.Releases.latest then tags
           else (
-            let full_tag = Tag.v distro ~switch in
-            let distro_aliases = aliases_of distro in
-            let tags =
-              (* Push the image as e.g. windows-mingw-1809-ocaml-4.09 and windows-mingw-ltsc2019-ocaml-4.09  *)
-              let tags = full_tag :: List.map (Tag.v ~switch) distro_aliases in
-              if switch <> Ocaml_version.Releases.latest then tags
-              else (
-                (* For every distro, also create a link to the latest OCaml compiler.
-                   e.g. windows-mingw-1809 -> windows-mingw-1809-ocaml-4.09 *)
-                Tag.v_alias distro :: tags
-              )
-            in
-            (* Fmt.pr "Aliases: %s -> %a@." full_tag Fmt.(Dump.list string) (List.sort String.compare tags); *)
-            let pushes = List.map (fun tag -> Docker.push_manifest ?auth:Conf.auth ~tag images |> Current.ignore_value) tags in
-            Some (Switch_map.add switch images Switch_map.empty, (full_tag, Current.all pushes))
+            (* For every distro, also create a link to the latest OCaml compiler.
+               e.g. windows-mingw-1809 -> windows-mingw-1809-ocaml-4.09 *)
+            Tag.v_alias distro :: tags
           )
-        end |> List.split
+        in
+        (* Fmt.pr "Aliases: %s -> %a@." full_tag Fmt.(Dump.list string) (List.sort String.compare tags); *)
+        Switch_map.add switch images Switch_map.empty, tags
       in
-      let archive_images =
-        match archive_image with
-        | None -> []
-        | Some image -> [ "archive", Docker.push_manifest ?auth:Conf.auth ~tag:(Tag.archive ()) [image] |> Current.ignore_value ]
-      in
-      let pipeline =
-        Current.all_labelled (
-          ("base", Docker.push_manifest ?auth:Conf.auth ~tag:(Tag.v distro) opam_images |> Current.ignore_value)
-          :: ocaml_images
-          @ archive_images)
-      in
+      let (multiarch_images, pipeline) = pipeline ~ocluster repos distro gen_tags in
       let multiarch_images =
         let update images = function None -> Some images | Some images' -> Some (images @ images') in
         let fold switch images acc = Switch_map.update switch (update images) acc in
