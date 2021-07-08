@@ -141,4 +141,7 @@ let cmd =
                      $ staging_password)),
   Term.info program_name ~doc
 
-let () = Term.(exit @@ eval cmd)
+let () =
+  match Sys.argv with
+  | [| _; "--dump" |] -> Dump.run ()
+  | _ -> Term.(exit @@ eval cmd)
