@@ -1139,7 +1139,6 @@ ocurrent/opam-staging:archlinux-opam-amd64 -> ocaml/opam:archlinux-opam
 	CMD bash
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:archlinux-ocaml-4.02-amd64 -> ocaml/opam:archlinux-ocaml-4.02
-ocurrent/opam-staging:archlinux-ocaml-4.02-amd64 -> ocaml/opam:archlinux-ocaml-4.02
 4.03.0/amd64
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
@@ -1150,7 +1149,6 @@ ocurrent/opam-staging:archlinux-ocaml-4.02-amd64 -> ocaml/opam:archlinux-ocaml-4
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:archlinux-ocaml-4.03-amd64 -> ocaml/opam:archlinux-ocaml-4.03
 ocurrent/opam-staging:archlinux-ocaml-4.03-amd64 -> ocaml/opam:archlinux-ocaml-4.03
 4.04.2/amd64
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
@@ -1163,7 +1161,6 @@ ocurrent/opam-staging:archlinux-ocaml-4.03-amd64 -> ocaml/opam:archlinux-ocaml-4
 	CMD bash
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:archlinux-ocaml-4.04-amd64 -> ocaml/opam:archlinux-ocaml-4.04
-ocurrent/opam-staging:archlinux-ocaml-4.04-amd64 -> ocaml/opam:archlinux-ocaml-4.04
 4.05.0/amd64
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
@@ -1174,7 +1171,6 @@ ocurrent/opam-staging:archlinux-ocaml-4.04-amd64 -> ocaml/opam:archlinux-ocaml-4
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:archlinux-ocaml-4.05-amd64 -> ocaml/opam:archlinux-ocaml-4.05
 ocurrent/opam-staging:archlinux-ocaml-4.05-amd64 -> ocaml/opam:archlinux-ocaml-4.05
 4.06.1/amd64
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
@@ -1187,7 +1183,6 @@ ocurrent/opam-staging:archlinux-ocaml-4.05-amd64 -> ocaml/opam:archlinux-ocaml-4
 	CMD bash
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:archlinux-ocaml-4.06-amd64 -> ocaml/opam:archlinux-ocaml-4.06
-ocurrent/opam-staging:archlinux-ocaml-4.06-amd64 -> ocaml/opam:archlinux-ocaml-4.06
 4.07.1/amd64
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
@@ -1199,7 +1194,6 @@ ocurrent/opam-staging:archlinux-ocaml-4.06-amd64 -> ocaml/opam:archlinux-ocaml-4
 	CMD bash
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:archlinux-ocaml-4.07-amd64 -> ocaml/opam:archlinux-ocaml-4.07
-ocurrent/opam-staging:archlinux-ocaml-4.07-amd64 -> ocaml/opam:archlinux-ocaml-4.07
 4.08.1/amd64
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
@@ -1209,7 +1203,6 @@ ocurrent/opam-staging:archlinux-ocaml-4.07-amd64 -> ocaml/opam:archlinux-ocaml-4
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:archlinux-ocaml-4.08-amd64 -> ocaml/opam:archlinux-ocaml-4.08
 ocurrent/opam-staging:archlinux-ocaml-4.08-amd64 -> ocaml/opam:archlinux-ocaml-4.08
 4.09.1/amd64
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
@@ -1221,7 +1214,6 @@ ocurrent/opam-staging:archlinux-ocaml-4.08-amd64 -> ocaml/opam:archlinux-ocaml-4
 	CMD bash
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:archlinux-ocaml-4.09-amd64 -> ocaml/opam:archlinux-ocaml-4.09
-ocurrent/opam-staging:archlinux-ocaml-4.09-amd64 -> ocaml/opam:archlinux-ocaml-4.09
 4.10.2/amd64
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
@@ -1231,7 +1223,6 @@ ocurrent/opam-staging:archlinux-ocaml-4.09-amd64 -> ocaml/opam:archlinux-ocaml-4
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:archlinux-ocaml-4.10-amd64 -> ocaml/opam:archlinux-ocaml-4.10
 ocurrent/opam-staging:archlinux-ocaml-4.10-amd64 -> ocaml/opam:archlinux-ocaml-4.10
 4.11.2/amd64
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
@@ -1243,7 +1234,6 @@ ocurrent/opam-staging:archlinux-ocaml-4.10-amd64 -> ocaml/opam:archlinux-ocaml-4
 	CMD bash
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:archlinux-ocaml-4.11-amd64 -> ocaml/opam:archlinux-ocaml-4.11
-ocurrent/opam-staging:archlinux-ocaml-4.11-amd64 -> ocaml/opam:archlinux-ocaml-4.11
 4.12.0/amd64
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
@@ -1254,8 +1244,6 @@ ocurrent/opam-staging:archlinux-ocaml-4.11-amd64 -> ocaml/opam:archlinux-ocaml-4
 	CMD bash
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:archlinux-ocaml-4.12-amd64 -> ocaml/opam:archlinux
-ocurrent/opam-staging:archlinux-ocaml-4.12-amd64 -> ocaml/opam:archlinux
-ocurrent/opam-staging:archlinux-ocaml-4.12-amd64 -> ocaml/opam:archlinux-ocaml-4.12
 ocurrent/opam-staging:archlinux-ocaml-4.12-amd64 -> ocaml/opam:archlinux-ocaml-4.12
 4.13.0/amd64
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
@@ -1268,7 +1256,6 @@ ocurrent/opam-staging:archlinux-ocaml-4.12-amd64 -> ocaml/opam:archlinux-ocaml-4
 	CMD bash
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:archlinux-ocaml-4.13-amd64 -> ocaml/opam:archlinux-ocaml-4.13
-ocurrent/opam-staging:archlinux-ocaml-4.13-amd64 -> ocaml/opam:archlinux-ocaml-4.13
 4.14.0/amd64
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
 	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
@@ -1279,7 +1266,6 @@ ocurrent/opam-staging:archlinux-ocaml-4.13-amd64 -> ocaml/opam:archlinux-ocaml-4
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:archlinux-ocaml-4.14-amd64 -> ocaml/opam:archlinux-ocaml-4.14
 ocurrent/opam-staging:archlinux-ocaml-4.14-amd64 -> ocaml/opam:archlinux-ocaml-4.14
 centos-7
 centos-7/amd64
