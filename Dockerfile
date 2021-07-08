@@ -1,5 +1,5 @@
 FROM ocaml/opam:debian-10-ocaml-4.12@sha256:80e2b0337fe1c44d2f95ac35589b0a2eed4c65d8f12c3e33c12262065106c0c1 AS build
-RUN sudo apt-get update && sudo apt-get install capnproto graphviz m4 pkg-config libsqlite3-dev libgmp-dev libssl-dev libffi-dev -y --no-install-recommends
+RUN sudo apt-get update && sudo apt-get install libev-dev capnproto graphviz m4 pkg-config libsqlite3-dev libgmp-dev libssl-dev libffi-dev -y --no-install-recommends
 RUN cd ~/opam-repository && git pull origin -q master && git reset --hard 1a8b75438a8a47be909af0e6c0768c25384697c6 && opam update
 COPY --chown=opam \
 	ocurrent/current.opam \
@@ -31,7 +31,7 @@ ADD --chown=opam . .
 RUN opam config exec -- dune build ./src/base_images.exe
 
 FROM debian:10
-RUN apt-get update && apt-get install curl git graphviz libsqlite3-dev ca-certificates netbase gnupg2 -y --no-install-recommends
+RUN apt-get update && apt-get install libev4 curl git graphviz libsqlite3-dev ca-certificates netbase gnupg2 -y --no-install-recommends
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 RUN echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' >> /etc/apt/sources.list
 RUN apt-get update && apt-get install docker-ce -y --no-install-recommends

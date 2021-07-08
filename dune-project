@@ -10,6 +10,7 @@
  (synopsis "Generate Docker base images for OCaml and opam using ocurrent")
  (depends
   (ocaml (>= 4.12))
+  (conf-libev (<> :os "win32"))
   (prometheus-app (>= 1.0))
   ppx_sexp_conv
   ppx_deriving_yojson
