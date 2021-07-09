@@ -3,7 +3,10 @@ let staging_repo = "ocurrent/opam-staging"
 
 let public_repo = "ocaml/opam"
 
-let password_path = "/run/secrets/ocurrent-hub"
+let password_path =
+  let open Fpath in
+  let root = v (if Sys.win32 then "C:\\ProgramData\\Docker" else "/run") in
+  root / "secrets" / "ocurrent-hub" |> to_string
 
 module Capnp = struct
   (* Cap'n Proto RPC is enabled by passing --capnp-public-address. These values are hard-coded
@@ -36,8 +39,11 @@ let pool_name os_family arch =
 
 let switches ~arch ~distro =
   let is_tier1 = List.mem distro (Dockerfile_distro.active_tier1_distros arch) in
+  (* opam-repository-mingw doesn't package the development version of
+     the compiler. *)
+  let with_dev = match distro with `Windows _ -> false | _ -> true in
   let main_switches =
-    Ocaml_version.Releases.recent_with_dev
+    Ocaml_version.Releases.(if with_dev then recent_with_dev else recent)
     |> List.filter (fun ov -> Dockerfile_distro.distro_supported_on arch ov distro)
   in
   if is_tier1 then (
@@ -47,7 +53,10 @@ let switches ~arch ~distro =
   )
 
 (* We can't get the active distros directly, but assume x86_64 is a superset of everything else. *)
-let distros = Dockerfile_distro.(active_distros `X86_64 |> List.filter (fun d -> os_family_of_distro d = `Linux))
+let distros = Dockerfile_distro.(active_distros `X86_64 |> List.filter (fun d ->
+  match os_family_of_distro d with
+  | `Linux | `Windows -> true
+  | _ -> false))
 
 let arches_for ~distro = Dockerfile_distro.distro_arches Ocaml_version.Releases.latest distro
 

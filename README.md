@@ -1,5 +1,6 @@
 This is an [OCurrent][] pipeline that builds Docker images for OCaml, for
-various combinations of Linux distribution, OCaml version and architecture.
+various combinations of Linux distribution, Windows version, OCaml version
+and architecture.
 
 The resulting images can be run as e.g.
 
