@@ -112,7 +112,7 @@ module Make (OCurrent : S.OCURRENT) = struct
         let hash_opam_2_0 = Current_git.Commit_id.hash opam_2_0 in
         let hash_opam_2_1 = Current_git.Commit_id.hash opam_2_1 in
         `Contents (
-          let opam = snd @@ Dockerfile_opam.gen_opam2_distro ~arch ~clone_opam_repo:false ~hash_opam_2_0 ~hash_opam_2_1 distro in
+          let opam = snd @@ Dockerfile_opam.gen_opam2_distro ~win10_revision:Conf.win10_revision ~arch ~clone_opam_repo:false ~hash_opam_2_0 ~hash_opam_2_1 distro in
           let open Dockerfile in
           string_of_t (
             opam @@
