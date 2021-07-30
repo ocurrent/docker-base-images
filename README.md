@@ -17,6 +17,8 @@ Each image includes two Dockerfiles showing how it was made:
 - `/Dockerfile.opam` is the first stage, which just installs the `opam` binary.
 - `/Dockerfile.ocaml` builds on the first stage by installing a particular opam switch.
 
+The service is running at <https://images.ci.ocaml.org/>.
+
 The rest of this README is about working on the build pipeline.
 
 ## Testing locally
@@ -65,22 +67,6 @@ This includes the Dockerfile definitions used to build the images.
 
 Once running with your chosen configuration, you can use the web UI to raise (or remove) the confirmation threshold.
 
-## The real deployment
-
-The builder currently runs on `ci.ocamllabs.io`.
-The configuration is in `stack.yml`.
-To update it:
-
-```
-docker --context ci.ocamllabs.io stack deploy -c stack.yml base-images
-```
-
-If you are doing your own deployment, you will need to provide some secrets (using `docker secret create`):
-
-- `ocurrent-hub` is the Docker Hub password, which is used to push the images.
-- `ocurrent-ssh-key` is needed for any builders that are accessed over SSH.
-- `ocurrent-tls-key` is needed for any builders that are accessed over TLS.
-- `ocurrent-slack-endpoint` allows pushing status messages to a Slack channel.
 
 [OCurrent]: https://github.com/ocurrent/ocurrent
 [pipeline.ml]: https://github.com/ocurrent/docker-base-images/blob/master/src/pipeline.ml
