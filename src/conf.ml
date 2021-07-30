@@ -34,7 +34,8 @@ let pool_name os_family arch =
   let arch_str = match arch with
   | `X86_64 | `I386     -> "x86_64"
   | `Aarch64 | `Aarch32 -> "arm64"
-  | `Ppc64le            -> "ppc64" in
+  | `Ppc64le            -> "ppc64"
+  | `S390x              -> "s390x" in
   os_str ^ "-" ^ arch_str
 
 let switches ~arch ~distro =
