@@ -66,7 +66,7 @@ let win10_revision : Dockerfile_distro.win10_lcu = `LCU20210810
 (* For testing, you can uncomment these lines to limit the number of combinations: *)
 
 (*
-let distros = ignore distros; [`Debian `V10]
+let distros = ignore distros; [`Debian `V11]
 let switches ~arch:_ ~distro:_ = ignore switches; Ocaml_version.Releases.[v4_08]
 let arches_for ~distro:_ = ignore arches_for; [`X86_64]
 *)
