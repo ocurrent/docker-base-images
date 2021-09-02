@@ -7879,13 +7879,16 @@ windows-mingw-1809/amd64
 	USER ContainerAdministrator
 	ADD [ "https://aka.ms/vs/16/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
 	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
+	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
+	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
 	ENV CYGWIN="winsymlinks:native"
 	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin-setup-x86_64.exe" ]
 	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site http://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-binutils=2.35.2-1,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
+	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site http://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
 	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
@@ -7938,13 +7941,16 @@ windows-mingw-2004/amd64
 	USER ContainerAdministrator
 	ADD [ "https://aka.ms/vs/16/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
 	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
+	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
+	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
 	ENV CYGWIN="winsymlinks:native"
 	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin-setup-x86_64.exe" ]
 	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site http://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-binutils=2.35.2-1,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
+	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site http://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
 	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
@@ -7998,13 +8004,16 @@ windows-mingw-20H2/amd64
 	USER ContainerAdministrator
 	ADD [ "https://aka.ms/vs/16/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
 	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
+	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
+	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
 	ENV CYGWIN="winsymlinks:native"
 	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin-setup-x86_64.exe" ]
 	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site http://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-binutils=2.35.2-1,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
+	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site http://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
 	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
@@ -8400,13 +8409,16 @@ windows-msvc-1809/amd64
 	        --installChannelUri C:\TEMP\VisualStudio.chman `
 	        --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
 	        --add Microsoft.VisualStudio.Component.Windows10SDK.18362
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
+	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
+	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
 	ENV CYGWIN="winsymlinks:native"
 	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin-setup-x86_64.exe" ]
 	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site http://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-binutils=2.35.2-1,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
+	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site http://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
 	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
@@ -8468,13 +8480,16 @@ windows-msvc-2004/amd64
 	        --installChannelUri C:\TEMP\VisualStudio.chman `
 	        --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
 	        --add Microsoft.VisualStudio.Component.Windows10SDK.18362
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
+	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
+	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
 	ENV CYGWIN="winsymlinks:native"
 	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin-setup-x86_64.exe" ]
 	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site http://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-binutils=2.35.2-1,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
+	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site http://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
 	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
@@ -8537,13 +8552,16 @@ windows-msvc-20H2/amd64
 	        --installChannelUri C:\TEMP\VisualStudio.chman `
 	        --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
 	        --add Microsoft.VisualStudio.Component.Windows10SDK.18362
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
+	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
+	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
 	ENV CYGWIN="winsymlinks:native"
 	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin-setup-x86_64.exe" ]
 	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site http://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-binutils=2.35.2-1,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
+	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site http://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
 	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
