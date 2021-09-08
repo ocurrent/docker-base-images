@@ -44,7 +44,7 @@ let install_package_archive opam_image =
   copy ~chown:"0:0" ~from:"archive" ~src:["/home/opam/opam-repository/cache"] ~dst:"/cache" ()
 
 (* Generate a Dockerfile to install OCaml compiler [switch] in [opam_image]. *)
-let install_compiler_df ~os_family ~arch ~switch ?windows_port opam_image =
+let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
   let switch_name = Ocaml_version.(with_just_major_and_minor switch |> to_string) in
   let (package_name, package_version) =
     match windows_port with
@@ -52,6 +52,7 @@ let install_compiler_df ~os_family ~arch ~switch ?windows_port opam_image =
     | Some port -> Dockerfile_windows.ocaml_for_windows_package_exn ~switch ~arch ~port
   in
   let open Dockerfile in
+  let os_family = Dockerfile_distro.os_family_of_distro distro in
   let personality = Dockerfile_distro.personality os_family arch in
   let run, run_no_opam, depext, opam_exec =
     let open Dockerfile_windows in
@@ -101,7 +102,8 @@ module Make (OCurrent : S.OCURRENT) = struct
   (* Pipeline to build the opam base image and the compiler images for a particular architecture. *)
   module Arch = struct
     (* 2020-04-29: On Windows, squashing images is still experimental (broken). *)
-    let squash os_family = os_family <> `Windows
+    let squash distro =
+      Dockerfile_distro.os_family_of_distro distro <> `Windows
 
     let install_opam ~arch ~ocluster ~distro ~repos ~push_target =
       let arch_name = Ocaml_version.string_of_arch arch in
@@ -135,7 +137,7 @@ module Make (OCurrent : S.OCURRENT) = struct
         )
       in
       let options = { Cluster_api.Docker.Spec.defaults with
-                      squash = squash (Dockerfile_distro.os_family_of_distro distro);
+                      squash = squash distro;
                       include_git = true } in
       let cache_hint = Printf.sprintf "opam-%s" distro_tag in
       let opam_repository = match os_family with `Windows -> opam_repository_mingw_opam2 | _ -> opam_repository_master in
@@ -143,37 +145,36 @@ module Make (OCurrent : S.OCURRENT) = struct
         ~cache_hint
         ~options
         ~push_target
-        ~pool:(Conf.pool_name os_family arch)
+        ~pool:(Conf.pool_name distro arch)
 
-    let install_compiler ~os_family ~arch ~ocluster ~switch ~push_target ?windows_port base =
+    let install_compiler ~distro ~arch ~ocluster ~switch ~push_target ?windows_port base =
       let arch_name = Ocaml_version.string_of_arch arch in
       Current.component "%s/%s" (Ocaml_version.to_string switch) arch_name |>
       let> base = base in
-      let dockerfile = `Contents (install_compiler_df ~os_family ~arch ~switch ?windows_port base |> Dockerfile.string_of_t) in
+      let dockerfile = `Contents (install_compiler_df ~distro ~arch ~switch ?windows_port base |> Dockerfile.string_of_t) in
       (* ([include_git] doesn't do anything here, but it saves rebuilding during the upgrade) *)
-      let options = { Cluster_api.Docker.Spec.defaults with squash = squash os_family; include_git = true } in
+      let options = { Cluster_api.Docker.Spec.defaults with squash = squash distro; include_git = true } in
       let cache_hint = Printf.sprintf "%s-%s-%s" (Ocaml_version.to_string switch) arch_name base in
       OCluster.Raw.build_and_push ocluster ~src:[] dockerfile
         ~cache_hint
         ~options
         ~push_target
-        ~pool:(Conf.pool_name os_family arch)
+        ~pool:(Conf.pool_name distro arch)
 
-    let collect_archive ~os_family ~ocluster ~push_target base =
+    let collect_archive ~distro ~ocluster ~push_target base =
       Current.component "archive" |>
       let> base = base in
       let dockerfile = `Contents (install_package_archive base |> Dockerfile.string_of_t) in
-      let options = { Cluster_api.Docker.Spec.defaults with squash = squash os_family; include_git = true } in
+      let options = { Cluster_api.Docker.Spec.defaults with squash = squash distro; include_git = true } in
       let cache_hint = Printf.sprintf "archive-%s" base in
       OCluster.Raw.build_and_push ocluster ~src:[] dockerfile
         ~cache_hint
         ~options
         ~push_target
-        ~pool:(Conf.pool_name os_family `X86_64)
+        ~pool:(Conf.pool_name distro `X86_64)
 
     (* Build the base image for [distro], plus an image for each compiler version. *)
     let pipeline ~ocluster ~repos ~distro arch =
-      let os_family = Dockerfile_distro.os_family_of_distro distro in
       let opam_image =
         let push_target =
           Tag.v distro ~arch
@@ -190,7 +191,7 @@ module Make (OCurrent : S.OCURRENT) = struct
           |> or_die
         in
         let windows_port = match distro with  `Windows (port, _) -> Some port | _ -> None in
-        let repo_id = install_compiler ~os_family ~arch ~ocluster ~switch ~push_target ?windows_port opam_image in
+        let repo_id = install_compiler ~distro ~arch ~ocluster ~switch ~push_target ?windows_port opam_image in
         (switch, repo_id)
       in
       (* Build the archive image for the debian 10 / x86_64 image only *)
@@ -201,7 +202,7 @@ module Make (OCurrent : S.OCURRENT) = struct
             |> Cluster_api.Docker.Image_id.of_string
             |> or_die
           in
-          Some (collect_archive ~os_family ~ocluster ~push_target opam_image)
+          Some (collect_archive ~distro ~ocluster ~push_target opam_image)
         else None
       in
       let compiler_images = Switch_map.of_seq (List.to_seq compiler_images) in
