@@ -47,6 +47,16 @@ let switches ~arch ~distro =
     Ocaml_version.Releases.(if with_dev then recent_with_dev else recent)
     |> List.filter (fun ov -> Dockerfile_distro.distro_supported_on arch ov distro)
   in
+  let main_switches =
+    match distro with
+    | `Windows _ ->
+        List.map (fun ov ->
+          if Ocaml_version.(major ov = 4 && minor ov = 12) then
+            Ocaml_version.Releases.v4_12_0
+          else
+            ov) main_switches
+    | _ -> main_switches
+  in
   if is_tier1 then (
     List.map (Ocaml_version.Opam.V2.switches arch) main_switches |> List.concat
   ) else (
@@ -59,7 +69,10 @@ let distros = Dockerfile_distro.(active_distros `X86_64 |> List.filter (fun d ->
   | `Linux | `Windows -> true
   | _ -> false))
 
-let arches_for ~distro = Dockerfile_distro.distro_arches Ocaml_version.Releases.latest distro
+let arches_for ~distro =
+  match distro with
+  | `Windows _ -> [ `X86_64 ]
+  | _ -> Dockerfile_distro.distro_arches Ocaml_version.Releases.latest distro
 
 let win10_revision : Dockerfile_distro.win10_lcu = `LCU20210810
 
