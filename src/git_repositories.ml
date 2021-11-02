@@ -80,10 +80,10 @@ type t = {
 let get ~schedule =
   let key = {
     Repositories.Key.
-    opam_repository_master = "git://github.com/ocaml/opam-repository";
-    opam_repository_mingw_opam2 = "git://github.com/fdopen/opam-repository-mingw";
-    opam_2_0 = "git://github.com/ocaml/opam";
-    opam_2_1 = "git://github.com/ocaml/opam";
+    opam_repository_master = "https://github.com/ocaml/opam-repository";
+    opam_repository_mingw_opam2 = "https://github.com/fdopen/opam-repository-mingw";
+    opam_2_0 = "https://github.com/ocaml/opam";
+    opam_2_1 = "https://github.com/ocaml/opam";
   } in
   let+ {Repositories.Value.opam_repository_master; opam_repository_mingw_opam2; opam_2_0; opam_2_1} =
     Current.component "Git-repositories" |>
