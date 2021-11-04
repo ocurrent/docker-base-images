@@ -17,13 +17,13 @@ type 'a run = ('a, unit, string, Dockerfile.t) format4 -> 'a
 
 let maybe_add_beta (run : 'a run) switch =
   if Ocaml_version.Releases.is_dev switch then
-    run "opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default"
+    run "opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default"
   else
     Dockerfile.empty
 
 let maybe_add_multicore (run : 'a run) switch =
   if Ocaml_version.Configure_options.is_multicore switch then
-    run "opam repo add multicore git://github.com/ocaml-multicore/multicore-opam --set-default"
+    run "opam repo add multicore git+https://github.com/ocaml-multicore/multicore-opam --set-default"
   else
     Dockerfile.empty
 

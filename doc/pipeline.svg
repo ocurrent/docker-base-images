@@ -10,10 +10,10 @@
 <!-- n33 -->
 <g id="node1" class="node">
 <title>n33</title>
-<g id="a_node1"><a xlink:href="/job/2020-12-01/115949-git-clone-df2fc4" xlink:title="clone\ngit://github.com/ocaml/opam-repository\nmaster" target="_top">
+<g id="a_node1"><a xlink:href="/job/2020-12-01/115949-git-clone-df2fc4" xlink:title="clone\nhttps://github.com/ocaml/opam-repository\nmaster" target="_top">
 <polygon fill="#ffff00" stroke="#000000" points="299,-449.5 0,-449.5 0,-396.5 299,-396.5 299,-449.5"/>
 <text text-anchor="middle" x="149.5" y="-434.3" font-family="Times,serif" font-size="14.00" fill="#000000">clone</text>
-<text text-anchor="middle" x="149.5" y="-419.3" font-family="Times,serif" font-size="14.00" fill="#000000">git://github.com/ocaml/opam-repository</text>
+<text text-anchor="middle" x="149.5" y="-419.3" font-family="Times,serif" font-size="14.00" fill="#000000">https://github.com/ocaml/opam-repository</text>
 <text text-anchor="middle" x="149.5" y="-404.3" font-family="Times,serif" font-size="14.00" fill="#000000">master</text>
 </a>
 </g>

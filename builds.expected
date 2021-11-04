@@ -7,9 +7,9 @@ alpine-3.13/arm64
 	RUN apk add build-base bzip2 git tar curl ca-certificates openssl
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	RUN strip /usr/local/bin/opam*
 	FROM alpine:3.13
@@ -63,9 +63,9 @@ alpine-3.13/amd64
 	RUN apk add build-base bzip2 git tar curl ca-certificates openssl
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	RUN strip /usr/local/bin/opam*
 	FROM alpine:3.13
@@ -315,7 +315,7 @@ ocurrent/opam-staging:alpine-3.13-ocaml-4.13-arm64, ocurrent/opam-staging:alpine
 ocurrent/opam-staging:alpine-3.13-ocaml-4.13-arm64, ocurrent/opam-staging:alpine-3.13-ocaml-4.13-amd64 -> ocaml/opam:alpine-3.13-ocaml-4.13
 4.14.0/arm64
 	FROM ocurrent/opam-staging:alpine-3.13-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -325,7 +325,7 @@ ocurrent/opam-staging:alpine-3.13-ocaml-4.13-arm64, ocurrent/opam-staging:alpine
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0/amd64
 	FROM ocurrent/opam-staging:alpine-3.13-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -343,9 +343,9 @@ alpine-3.14/arm64
 	RUN apk add build-base bzip2 git tar curl ca-certificates openssl
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	RUN strip /usr/local/bin/opam*
 	FROM alpine:3.14
@@ -399,9 +399,9 @@ alpine-3.14/amd64
 	RUN apk add build-base bzip2 git tar curl ca-certificates openssl
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	RUN strip /usr/local/bin/opam*
 	FROM alpine:3.14
@@ -1002,7 +1002,7 @@ ocurrent/opam-staging:alpine-3.14-ocaml-4.12-afl-arm64, ocurrent/opam-staging:al
 ocurrent/opam-staging:alpine-3.14-ocaml-4.12-afl-arm64, ocurrent/opam-staging:alpine-3.14-ocaml-4.12-afl-amd64 -> ocaml/opam:alpine-ocaml-4.12-afl
 4.12.1+domains/amd64
 	FROM ocurrent/opam-staging:alpine-3.14-opam-amd64
-	RUN opam repo add multicore git://github.com/ocaml-multicore/multicore-opam --set-default
+	RUN opam repo add multicore git+https://github.com/ocaml-multicore/multicore-opam --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-variants.4.12.0+domains
 	RUN opam pin add -k version ocaml-variants 4.12.0+domains
@@ -1014,7 +1014,7 @@ ocurrent/opam-staging:alpine-3.14-ocaml-4.12-domains-amd64 -> ocaml/opam:alpine-
 ocurrent/opam-staging:alpine-3.14-ocaml-4.12-domains-amd64 -> ocaml/opam:alpine-ocaml-4.12-domains
 4.12.1+domains+effects/amd64
 	FROM ocurrent/opam-staging:alpine-3.14-opam-amd64
-	RUN opam repo add multicore git://github.com/ocaml-multicore/multicore-opam --set-default
+	RUN opam repo add multicore git+https://github.com/ocaml-multicore/multicore-opam --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-variants.4.12.0+domains+effects
 	RUN opam pin add -k version ocaml-variants 4.12.0+domains+effects
@@ -1254,7 +1254,7 @@ ocurrent/opam-staging:alpine-3.14-ocaml-4.13-no-flat-float-array-arm64, ocurrent
 ocurrent/opam-staging:alpine-3.14-ocaml-4.13-no-flat-float-array-arm64, ocurrent/opam-staging:alpine-3.14-ocaml-4.13-no-flat-float-array-amd64 -> ocaml/opam:alpine-ocaml-4.13-no-flat-float-array
 4.14.0/arm64
 	FROM ocurrent/opam-staging:alpine-3.14-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -1264,7 +1264,7 @@ ocurrent/opam-staging:alpine-3.14-ocaml-4.13-no-flat-float-array-arm64, ocurrent
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0/amd64
 	FROM ocurrent/opam-staging:alpine-3.14-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -1276,7 +1276,7 @@ ocurrent/opam-staging:alpine-3.14-ocaml-4.14-arm64, ocurrent/opam-staging:alpine
 ocurrent/opam-staging:alpine-3.14-ocaml-4.14-arm64, ocurrent/opam-staging:alpine-3.14-ocaml-4.14-amd64 -> ocaml/opam:alpine-ocaml-4.14
 4.14.0+afl/arm64
 	FROM ocurrent/opam-staging:alpine-3.14-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -1286,7 +1286,7 @@ ocurrent/opam-staging:alpine-3.14-ocaml-4.14-arm64, ocurrent/opam-staging:alpine
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+afl/amd64
 	FROM ocurrent/opam-staging:alpine-3.14-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -1298,7 +1298,7 @@ ocurrent/opam-staging:alpine-3.14-ocaml-4.14-afl-arm64, ocurrent/opam-staging:al
 ocurrent/opam-staging:alpine-3.14-ocaml-4.14-afl-arm64, ocurrent/opam-staging:alpine-3.14-ocaml-4.14-afl-amd64 -> ocaml/opam:alpine-ocaml-4.14-afl
 4.14.0+flambda/arm64
 	FROM ocurrent/opam-staging:alpine-3.14-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -1308,7 +1308,7 @@ ocurrent/opam-staging:alpine-3.14-ocaml-4.14-afl-arm64, ocurrent/opam-staging:al
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+flambda/amd64
 	FROM ocurrent/opam-staging:alpine-3.14-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -1320,7 +1320,7 @@ ocurrent/opam-staging:alpine-3.14-ocaml-4.14-flambda-arm64, ocurrent/opam-stagin
 ocurrent/opam-staging:alpine-3.14-ocaml-4.14-flambda-arm64, ocurrent/opam-staging:alpine-3.14-ocaml-4.14-flambda-amd64 -> ocaml/opam:alpine-ocaml-4.14-flambda
 4.14.0+flambda+fp/amd64
 	FROM ocurrent/opam-staging:alpine-3.14-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-flambda-fp
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -1332,7 +1332,7 @@ ocurrent/opam-staging:alpine-3.14-ocaml-4.14-flambda-fp-amd64 -> ocaml/opam:alpi
 ocurrent/opam-staging:alpine-3.14-ocaml-4.14-flambda-fp-amd64 -> ocaml/opam:alpine-ocaml-4.14-flambda-fp
 4.14.0+fp/amd64
 	FROM ocurrent/opam-staging:alpine-3.14-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-fp
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -1344,7 +1344,7 @@ ocurrent/opam-staging:alpine-3.14-ocaml-4.14-fp-amd64 -> ocaml/opam:alpine-3.14-
 ocurrent/opam-staging:alpine-3.14-ocaml-4.14-fp-amd64 -> ocaml/opam:alpine-ocaml-4.14-fp
 4.14.0+nnp/arm64
 	FROM ocurrent/opam-staging:alpine-3.14-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-nnp
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -1354,7 +1354,7 @@ ocurrent/opam-staging:alpine-3.14-ocaml-4.14-fp-amd64 -> ocaml/opam:alpine-ocaml
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+nnp/amd64
 	FROM ocurrent/opam-staging:alpine-3.14-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-nnp
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -1366,7 +1366,7 @@ ocurrent/opam-staging:alpine-3.14-ocaml-4.14-nnp-arm64, ocurrent/opam-staging:al
 ocurrent/opam-staging:alpine-3.14-ocaml-4.14-nnp-arm64, ocurrent/opam-staging:alpine-3.14-ocaml-4.14-nnp-amd64 -> ocaml/opam:alpine-ocaml-4.14-nnp
 4.14.0+nnpchecker/amd64
 	FROM ocurrent/opam-staging:alpine-3.14-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-nnpchecker
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -1378,7 +1378,7 @@ ocurrent/opam-staging:alpine-3.14-ocaml-4.14-nnpchecker-amd64 -> ocaml/opam:alpi
 ocurrent/opam-staging:alpine-3.14-ocaml-4.14-nnpchecker-amd64 -> ocaml/opam:alpine-ocaml-4.14-nnpchecker
 4.14.0+no-flat-float-array/arm64
 	FROM ocurrent/opam-staging:alpine-3.14-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -1388,7 +1388,7 @@ ocurrent/opam-staging:alpine-3.14-ocaml-4.14-nnpchecker-amd64 -> ocaml/opam:alpi
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+no-flat-float-array/amd64
 	FROM ocurrent/opam-staging:alpine-3.14-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -1407,9 +1407,9 @@ archlinux/amd64
 	RUN pacman -Syu --noconfirm make gcc patch tar ca-certificates git rsync curl sudo bash libx11 nano bubblewrap coreutils xz ncurses diffutils unzip
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	RUN strip /usr/local/bin/opam*
 	FROM archlinux:latest
@@ -1580,7 +1580,7 @@ ocurrent/opam-staging:archlinux-ocaml-4.13-amd64 -> ocaml/opam:archlinux
 ocurrent/opam-staging:archlinux-ocaml-4.13-amd64 -> ocaml/opam:archlinux-ocaml-4.13
 4.14.0/amd64
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -1606,9 +1606,9 @@ centos-7/amd64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM centos:7
 	RUN yum --version || dnf install -y yum
@@ -1788,7 +1788,7 @@ ocurrent/opam-staging:centos-7-ocaml-4.13-amd64 -> ocaml/opam:centos-7
 ocurrent/opam-staging:centos-7-ocaml-4.13-amd64 -> ocaml/opam:centos-7-ocaml-4.13
 4.14.0/amd64
 	FROM ocurrent/opam-staging:centos-7-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -1812,9 +1812,9 @@ centos-8/amd64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM centos:8
 	RUN yum --version || dnf install -y yum
@@ -2007,7 +2007,7 @@ ocurrent/opam-staging:centos-8-ocaml-4.13-amd64 -> ocaml/opam:centos-8-ocaml-4.1
 ocurrent/opam-staging:centos-8-ocaml-4.13-amd64 -> ocaml/opam:centos-ocaml-4.13
 4.14.0/amd64
 	FROM ocurrent/opam-staging:centos-8-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -2031,9 +2031,9 @@ debian-11/s390x
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM debian:11
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -2097,9 +2097,9 @@ debian-11/arm32v7
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM arm32v7/debian:11
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -2163,9 +2163,9 @@ debian-11/ppc64le
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM debian:11
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -2228,9 +2228,9 @@ debian-11/arm64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM debian:11
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -2293,9 +2293,9 @@ debian-11/amd64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM debian:11
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -2359,9 +2359,9 @@ debian-11/i386
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM i386/debian:11
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -3751,7 +3751,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.12-afl-s390x, ocurrent/opam-staging:debi
 ocurrent/opam-staging:debian-11-ocaml-4.12-afl-s390x, ocurrent/opam-staging:debian-11-ocaml-4.12-afl-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.12-afl-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.12-afl-arm64, ocurrent/opam-staging:debian-11-ocaml-4.12-afl-amd64, ocurrent/opam-staging:debian-11-ocaml-4.12-afl-i386 -> ocaml/opam:debian-ocaml-4.12-afl
 4.12.1+domains/amd64
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add multicore git://github.com/ocaml-multicore/multicore-opam --set-default
+	RUN opam repo add multicore git+https://github.com/ocaml-multicore/multicore-opam --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-variants.4.12.0+domains
 	RUN opam pin add -k version ocaml-variants 4.12.0+domains
@@ -3763,7 +3763,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.12-domains-amd64 -> ocaml/opam:debian-11
 ocurrent/opam-staging:debian-11-ocaml-4.12-domains-amd64 -> ocaml/opam:debian-ocaml-4.12-domains
 4.12.1+domains+effects/amd64
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add multicore git://github.com/ocaml-multicore/multicore-opam --set-default
+	RUN opam repo add multicore git+https://github.com/ocaml-multicore/multicore-opam --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-variants.4.12.0+domains+effects
 	RUN opam pin add -k version ocaml-variants 4.12.0+domains+effects
@@ -4308,7 +4308,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-s390x, ocurrent/o
 ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-s390x, ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-arm64, ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-amd64, ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-i386 -> ocaml/opam:debian-ocaml-4.13-no-flat-float-array
 4.14.0/s390x
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4319,7 +4319,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-s390x, ocurrent/o
 4.14.0/arm32v7
 	FROM ocurrent/opam-staging:debian-11-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4329,7 +4329,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-s390x, ocurrent/o
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0/ppc64le
 	FROM ocurrent/opam-staging:debian-11-opam-ppc64le
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4339,7 +4339,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-s390x, ocurrent/o
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0/arm64
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4349,7 +4349,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-s390x, ocurrent/o
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0/amd64
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4360,7 +4360,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-s390x, ocurrent/o
 4.14.0/i386
 	FROM ocurrent/opam-staging:debian-11-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4372,7 +4372,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-s390x, ocurrent/opam-staging:debian-1
 ocurrent/opam-staging:debian-11-ocaml-4.14-s390x, ocurrent/opam-staging:debian-11-ocaml-4.14-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.14-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.14-arm64, ocurrent/opam-staging:debian-11-ocaml-4.14-amd64, ocurrent/opam-staging:debian-11-ocaml-4.14-i386 -> ocaml/opam:debian-ocaml-4.14
 4.14.0+afl/s390x
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4383,7 +4383,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-s390x, ocurrent/opam-staging:debian-1
 4.14.0+afl/arm32v7
 	FROM ocurrent/opam-staging:debian-11-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4393,7 +4393,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-s390x, ocurrent/opam-staging:debian-1
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+afl/ppc64le
 	FROM ocurrent/opam-staging:debian-11-opam-ppc64le
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4403,7 +4403,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-s390x, ocurrent/opam-staging:debian-1
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+afl/arm64
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4413,7 +4413,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-s390x, ocurrent/opam-staging:debian-1
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+afl/amd64
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4424,7 +4424,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-s390x, ocurrent/opam-staging:debian-1
 4.14.0+afl/i386
 	FROM ocurrent/opam-staging:debian-11-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4436,7 +4436,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-afl-s390x, ocurrent/opam-staging:debi
 ocurrent/opam-staging:debian-11-ocaml-4.14-afl-s390x, ocurrent/opam-staging:debian-11-ocaml-4.14-afl-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.14-afl-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.14-afl-arm64, ocurrent/opam-staging:debian-11-ocaml-4.14-afl-amd64, ocurrent/opam-staging:debian-11-ocaml-4.14-afl-i386 -> ocaml/opam:debian-ocaml-4.14-afl
 4.14.0+flambda/s390x
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4447,7 +4447,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-afl-s390x, ocurrent/opam-staging:debi
 4.14.0+flambda/arm32v7
 	FROM ocurrent/opam-staging:debian-11-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4457,7 +4457,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-afl-s390x, ocurrent/opam-staging:debi
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+flambda/ppc64le
 	FROM ocurrent/opam-staging:debian-11-opam-ppc64le
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4467,7 +4467,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-afl-s390x, ocurrent/opam-staging:debi
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+flambda/arm64
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4477,7 +4477,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-afl-s390x, ocurrent/opam-staging:debi
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+flambda/amd64
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4488,7 +4488,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-afl-s390x, ocurrent/opam-staging:debi
 4.14.0+flambda/i386
 	FROM ocurrent/opam-staging:debian-11-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4500,7 +4500,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-s390x, ocurrent/opam-staging:
 ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-s390x, ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-arm64, ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-amd64, ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-i386 -> ocaml/opam:debian-ocaml-4.14-flambda
 4.14.0+flambda+fp/amd64
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-flambda-fp
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4512,7 +4512,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-fp-amd64 -> ocaml/opam:debian
 ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-fp-amd64 -> ocaml/opam:debian-ocaml-4.14-flambda-fp
 4.14.0+fp/amd64
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-fp
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4524,7 +4524,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-fp-amd64 -> ocaml/opam:debian-11-ocam
 ocurrent/opam-staging:debian-11-ocaml-4.14-fp-amd64 -> ocaml/opam:debian-ocaml-4.14-fp
 4.14.0+nnp/s390x
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-nnp
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4535,7 +4535,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-fp-amd64 -> ocaml/opam:debian-ocaml-4
 4.14.0+nnp/arm32v7
 	FROM ocurrent/opam-staging:debian-11-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-nnp
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4545,7 +4545,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-fp-amd64 -> ocaml/opam:debian-ocaml-4
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+nnp/ppc64le
 	FROM ocurrent/opam-staging:debian-11-opam-ppc64le
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-nnp
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4555,7 +4555,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-fp-amd64 -> ocaml/opam:debian-ocaml-4
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+nnp/arm64
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-nnp
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4565,7 +4565,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-fp-amd64 -> ocaml/opam:debian-ocaml-4
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+nnp/amd64
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-nnp
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4576,7 +4576,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-fp-amd64 -> ocaml/opam:debian-ocaml-4
 4.14.0+nnp/i386
 	FROM ocurrent/opam-staging:debian-11-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-nnp
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4588,7 +4588,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-s390x, ocurrent/opam-staging:debi
 ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-s390x, ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-arm64, ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-amd64, ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-i386 -> ocaml/opam:debian-ocaml-4.14-nnp
 4.14.0+nnpchecker/amd64
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-nnpchecker
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4600,7 +4600,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-nnpchecker-amd64 -> ocaml/opam:debian
 ocurrent/opam-staging:debian-11-ocaml-4.14-nnpchecker-amd64 -> ocaml/opam:debian-ocaml-4.14-nnpchecker
 4.14.0+no-flat-float-array/s390x
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4611,7 +4611,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-nnpchecker-amd64 -> ocaml/opam:debian
 4.14.0+no-flat-float-array/arm32v7
 	FROM ocurrent/opam-staging:debian-11-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4621,7 +4621,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-nnpchecker-amd64 -> ocaml/opam:debian
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+no-flat-float-array/ppc64le
 	FROM ocurrent/opam-staging:debian-11-opam-ppc64le
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4631,7 +4631,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-nnpchecker-amd64 -> ocaml/opam:debian
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+no-flat-float-array/arm64
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4641,7 +4641,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-nnpchecker-amd64 -> ocaml/opam:debian
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0+no-flat-float-array/amd64
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4652,7 +4652,7 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-nnpchecker-amd64 -> ocaml/opam:debian
 4.14.0+no-flat-float-array/i386
 	FROM ocurrent/opam-staging:debian-11-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -4683,9 +4683,9 @@ debian-10/s390x
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM debian:10
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -4749,9 +4749,9 @@ debian-10/arm32v7
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM arm32v7/debian:10
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -4815,9 +4815,9 @@ debian-10/ppc64le
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM debian:10
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -4880,9 +4880,9 @@ debian-10/arm64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM debian:10
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -4945,9 +4945,9 @@ debian-10/amd64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM debian:10
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -5011,9 +5011,9 @@ debian-10/i386
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM i386/debian:10
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -5580,7 +5580,7 @@ ocurrent/opam-staging:debian-10-ocaml-4.13-s390x, ocurrent/opam-staging:debian-1
 ocurrent/opam-staging:debian-10-ocaml-4.13-s390x, ocurrent/opam-staging:debian-10-ocaml-4.13-arm32v7, ocurrent/opam-staging:debian-10-ocaml-4.13-ppc64le, ocurrent/opam-staging:debian-10-ocaml-4.13-arm64, ocurrent/opam-staging:debian-10-ocaml-4.13-amd64, ocurrent/opam-staging:debian-10-ocaml-4.13-i386 -> ocaml/opam:debian-10-ocaml-4.13
 4.14.0/s390x
 	FROM ocurrent/opam-staging:debian-10-opam-s390x
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -5591,7 +5591,7 @@ ocurrent/opam-staging:debian-10-ocaml-4.13-s390x, ocurrent/opam-staging:debian-1
 4.14.0/arm32v7
 	FROM ocurrent/opam-staging:debian-10-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -5601,7 +5601,7 @@ ocurrent/opam-staging:debian-10-ocaml-4.13-s390x, ocurrent/opam-staging:debian-1
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0/ppc64le
 	FROM ocurrent/opam-staging:debian-10-opam-ppc64le
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -5611,7 +5611,7 @@ ocurrent/opam-staging:debian-10-ocaml-4.13-s390x, ocurrent/opam-staging:debian-1
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0/arm64
 	FROM ocurrent/opam-staging:debian-10-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -5621,7 +5621,7 @@ ocurrent/opam-staging:debian-10-ocaml-4.13-s390x, ocurrent/opam-staging:debian-1
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0/amd64
 	FROM ocurrent/opam-staging:debian-10-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -5632,7 +5632,7 @@ ocurrent/opam-staging:debian-10-ocaml-4.13-s390x, ocurrent/opam-staging:debian-1
 4.14.0/i386
 	FROM ocurrent/opam-staging:debian-10-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -5655,9 +5655,9 @@ debian-testing/amd64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM debian:testing
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -5837,7 +5837,7 @@ ocurrent/opam-staging:debian-testing-ocaml-4.13-amd64 -> ocaml/opam:debian-testi
 ocurrent/opam-staging:debian-testing-ocaml-4.13-amd64 -> ocaml/opam:debian-testing-ocaml-4.13
 4.14.0/amd64
 	FROM ocurrent/opam-staging:debian-testing-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -5860,9 +5860,9 @@ debian-unstable/amd64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM debian:unstable
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -6042,7 +6042,7 @@ ocurrent/opam-staging:debian-unstable-ocaml-4.13-amd64 -> ocaml/opam:debian-unst
 ocurrent/opam-staging:debian-unstable-ocaml-4.13-amd64 -> ocaml/opam:debian-unstable-ocaml-4.13
 4.14.0/amd64
 	FROM ocurrent/opam-staging:debian-unstable-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -6066,9 +6066,9 @@ fedora-34/arm64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM fedora:34
 	RUN yum --version || dnf install -y yum
@@ -6130,9 +6130,9 @@ fedora-34/amd64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM fedora:34
 	RUN yum --version || dnf install -y yum
@@ -6377,7 +6377,7 @@ ocurrent/opam-staging:fedora-34-ocaml-4.13-arm64, ocurrent/opam-staging:fedora-3
 ocurrent/opam-staging:fedora-34-ocaml-4.13-arm64, ocurrent/opam-staging:fedora-34-ocaml-4.13-amd64 -> ocaml/opam:fedora-ocaml-4.13
 4.14.0/arm64
 	FROM ocurrent/opam-staging:fedora-34-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -6387,7 +6387,7 @@ ocurrent/opam-staging:fedora-34-ocaml-4.13-arm64, ocurrent/opam-staging:fedora-3
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0/amd64
 	FROM ocurrent/opam-staging:fedora-34-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -6412,9 +6412,9 @@ oraclelinux-7/amd64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM oraclelinux:7
 	RUN yum --version || dnf install -y yum
@@ -6592,7 +6592,7 @@ ocurrent/opam-staging:oraclelinux-7-ocaml-4.13-amd64 -> ocaml/opam:oraclelinux-7
 ocurrent/opam-staging:oraclelinux-7-ocaml-4.13-amd64 -> ocaml/opam:oraclelinux-7-ocaml-4.13
 4.14.0/amd64
 	FROM ocurrent/opam-staging:oraclelinux-7-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -6616,9 +6616,9 @@ oraclelinux-8/amd64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM oraclelinux:8
 	RUN yum --version || dnf install -y yum
@@ -6809,7 +6809,7 @@ ocurrent/opam-staging:oraclelinux-8-ocaml-4.13-amd64 -> ocaml/opam:oraclelinux-8
 ocurrent/opam-staging:oraclelinux-8-ocaml-4.13-amd64 -> ocaml/opam:oraclelinux-ocaml-4.13
 4.14.0/amd64
 	FROM ocurrent/opam-staging:oraclelinux-8-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -6834,9 +6834,9 @@ opensuse-15.3/amd64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM opensuse/leap:15.3
 	RUN zypper update -y
@@ -7022,7 +7022,7 @@ ocurrent/opam-staging:opensuse-15.3-ocaml-4.13-amd64 -> ocaml/opam:opensuse-15.3
 ocurrent/opam-staging:opensuse-15.3-ocaml-4.13-amd64 -> ocaml/opam:opensuse-ocaml-4.13
 4.14.0/amd64
 	FROM ocurrent/opam-staging:opensuse-15.3-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -7046,9 +7046,9 @@ ubuntu-18.04/ppc64le
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM ubuntu:bionic
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -7111,9 +7111,9 @@ ubuntu-18.04/arm64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM ubuntu:bionic
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -7176,9 +7176,9 @@ ubuntu-18.04/amd64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM ubuntu:bionic
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -7506,7 +7506,7 @@ ocurrent/opam-staging:ubuntu-18.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubu
 ocurrent/opam-staging:ubuntu-18.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubuntu-18.04-ocaml-4.13-arm64, ocurrent/opam-staging:ubuntu-18.04-ocaml-4.13-amd64 -> ocaml/opam:ubuntu-18.04-ocaml-4.13
 4.14.0/ppc64le
 	FROM ocurrent/opam-staging:ubuntu-18.04-opam-ppc64le
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -7516,7 +7516,7 @@ ocurrent/opam-staging:ubuntu-18.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubu
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0/arm64
 	FROM ocurrent/opam-staging:ubuntu-18.04-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -7526,7 +7526,7 @@ ocurrent/opam-staging:ubuntu-18.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubu
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0/amd64
 	FROM ocurrent/opam-staging:ubuntu-18.04-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -7549,9 +7549,9 @@ ubuntu-20.04/ppc64le
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM ubuntu:focal
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -7614,9 +7614,9 @@ ubuntu-20.04/arm64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM ubuntu:focal
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -7679,9 +7679,9 @@ ubuntu-20.04/amd64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM ubuntu:focal
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -8022,7 +8022,7 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubu
 ocurrent/opam-staging:ubuntu-20.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubuntu-20.04-ocaml-4.13-arm64, ocurrent/opam-staging:ubuntu-20.04-ocaml-4.13-amd64 -> ocaml/opam:ubuntu-lts-ocaml-4.13
 4.14.0/ppc64le
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-ppc64le
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -8032,7 +8032,7 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubu
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0/arm64
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -8042,7 +8042,7 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubu
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0/amd64
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -8066,9 +8066,9 @@ ubuntu-21.04/ppc64le
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM ubuntu:hirsute
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -8131,9 +8131,9 @@ ubuntu-21.04/arm64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM ubuntu:hirsute
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -8196,9 +8196,9 @@ ubuntu-21.04/amd64
 	RUN tar xf bubblewrap-0.4.1.tar.xz
 	RUN cd bubblewrap-0.4.1 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.4.1.tar.xz bubblewrap-0.4.1
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.0
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
-	RUN git clone git://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
 	FROM ubuntu:hirsute
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
@@ -8539,7 +8539,7 @@ ocurrent/opam-staging:ubuntu-21.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubu
 ocurrent/opam-staging:ubuntu-21.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubuntu-21.04-ocaml-4.13-arm64, ocurrent/opam-staging:ubuntu-21.04-ocaml-4.13-amd64 -> ocaml/opam:ubuntu-ocaml-4.13
 4.14.0/ppc64le
 	FROM ocurrent/opam-staging:ubuntu-21.04-opam-ppc64le
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -8549,7 +8549,7 @@ ocurrent/opam-staging:ubuntu-21.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubu
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0/arm64
 	FROM ocurrent/opam-staging:ubuntu-21.04-opam-arm64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
@@ -8559,7 +8559,7 @@ ocurrent/opam-staging:ubuntu-21.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubu
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.14.0/amd64
 	FROM ocurrent/opam-staging:ubuntu-21.04-opam-amd64
-	RUN opam repo add beta git://github.com/ocaml/ocaml-beta-repository --set-default
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+trunk
 	RUN opam pin add -k version ocaml-variants 4.14.0+trunk
