@@ -55,6 +55,7 @@ let has_role user = function
            | "github:kit-ty-kate"
            | "github:samoht"
            | "github:dra27"
+           | "github:mtelvers"
            ) -> true
     | _ -> false
 
