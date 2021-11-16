@@ -98,6 +98,7 @@ let run () =
       opam_repository_mingw_opam2 = Current_git.Commit_id.v ~repo:"opam_repository_mingw_opam2" ~gref:"master" ~hash:"master";
       opam_2_0 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.0" ~hash:"2.0";
       opam_2_1 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.1" ~hash:"2.1";
+      opam_master = Current_git.Commit_id.v ~repo:"opam" ~gref:"master" ~hash:"master";
     } in
   let log = Log.run @@ Fake.Current.force (Dump.v ~ocluster:() repos) in
   List.iter print_endline log

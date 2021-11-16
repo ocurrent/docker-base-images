@@ -11,14 +11,18 @@ alpine-3.14/arm64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	RUN strip /usr/local/bin/opam*
 	FROM alpine:3.14
 	RUN echo '@edge https://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories
 	RUN echo '@edgecommunity https://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
 	RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN apk update && apk upgrade
 	RUN apk add build-base patch tar ca-certificates git rsync curl sudo bash libx11-dev nano bubblewrap coreutils xz libexecinfo-dev ncurses-dev
 	RUN addgroup -S -g 1000 opam
@@ -67,14 +71,18 @@ alpine-3.14/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	RUN strip /usr/local/bin/opam*
 	FROM alpine:3.14
 	RUN echo '@edge https://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories
 	RUN echo '@edgecommunity https://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
 	RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN apk update && apk upgrade
 	RUN apk add build-base patch tar ca-certificates git rsync curl sudo bash libx11-dev nano bubblewrap coreutils xz libexecinfo-dev ncurses-dev
 	RUN addgroup -S -g 1000 opam
@@ -347,14 +355,18 @@ alpine-3.15/arm64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	RUN strip /usr/local/bin/opam*
 	FROM alpine:3.15
 	RUN echo '@edge https://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories
 	RUN echo '@edgecommunity https://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
 	RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN apk update && apk upgrade
 	RUN apk add build-base patch tar ca-certificates git rsync curl sudo bash libx11-dev nano bubblewrap coreutils xz libexecinfo-dev ncurses-dev
 	RUN addgroup -S -g 1000 opam
@@ -403,14 +415,18 @@ alpine-3.15/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	RUN strip /usr/local/bin/opam*
 	FROM alpine:3.15
 	RUN echo '@edge https://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories
 	RUN echo '@edgecommunity https://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories
 	RUN echo '@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN apk update && apk upgrade
 	RUN apk add build-base patch tar ca-certificates git rsync curl sudo bash libx11-dev nano bubblewrap coreutils xz libexecinfo-dev ncurses-dev
 	RUN addgroup -S -g 1000 opam
@@ -1411,11 +1427,15 @@ archlinux/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	RUN strip /usr/local/bin/opam*
 	FROM archlinux:latest
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN patched_glibc=glibc-linux4-2.33-4-x86_64.pkg.tar.zst && curl -LO "https://repo.archlinuxcn.org/x86_64/$patched_glibc" && bsdtar -C / -xvf "$patched_glibc" && echo 'IgnorePkg = glibc' >> /etc/pacman.conf
 	RUN pacman -Syu --noconfirm make gcc patch tar ca-certificates git rsync curl sudo bash libx11 nano bubblewrap coreutils xz ncurses diffutils unzip
 	RUN useradd -u 1000  -d /home/opam -m --user-group opam
@@ -1610,6 +1630,8 @@ centos-7/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam"
 	FROM centos:7
 	RUN yum --version || dnf install -y yum
 	RUN touch /var/lib/rpm/*
@@ -1619,8 +1641,10 @@ centos-7/amd64
 	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel bubblewrap which m4 diffutils findutils && yum clean all
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN sed -i.bak '/LC_TIME LC_ALL LANGUAGE/aDefaults    env_keep += "OPAMYES OPAMJOBS OPAMVERBOSE"' /etc/sudoers
 	RUN echo 'opam ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/opam
 	RUN chmod 440 /etc/sudoers.d/opam
@@ -1816,6 +1840,8 @@ centos-8/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam"
 	FROM centos:8
 	RUN yum --version || dnf install -y yum
 	RUN yum update -y
@@ -1825,8 +1851,10 @@ centos-8/amd64
 	RUN yum update -y
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN sed -i.bak '/LC_TIME LC_ALL LANGUAGE/aDefaults    env_keep += "OPAMYES OPAMJOBS OPAMVERBOSE"' /etc/sudoers
 	RUN echo 'opam ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/opam
 	RUN chmod 440 /etc/sudoers.d/opam
@@ -2035,11 +2063,15 @@ debian-11/s390x
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM debian:11
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -2101,11 +2133,15 @@ debian-11/arm32v7
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM arm32v7/debian:11
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -2167,11 +2203,15 @@ debian-11/ppc64le
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM debian:11
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -2232,11 +2272,15 @@ debian-11/arm64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM debian:11
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -2297,11 +2341,15 @@ debian-11/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM debian:11
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -2363,11 +2411,15 @@ debian-11/i386
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM i386/debian:11
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -4687,11 +4739,15 @@ debian-10/s390x
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM debian:10
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -4753,11 +4809,15 @@ debian-10/arm32v7
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM arm32v7/debian:10
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -4819,11 +4879,15 @@ debian-10/ppc64le
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM debian:10
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -4884,11 +4948,15 @@ debian-10/arm64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM debian:10
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -4949,11 +5017,15 @@ debian-10/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM debian:10
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -5015,11 +5087,15 @@ debian-10/i386
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM i386/debian:10
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -5659,11 +5735,15 @@ debian-testing/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM debian:testing
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -5864,11 +5944,15 @@ debian-unstable/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM debian:unstable
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -6070,6 +6154,8 @@ fedora-34/arm64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam"
 	FROM fedora:34
 	RUN yum --version || dnf install -y yum
 	RUN yum update -y
@@ -6077,8 +6163,10 @@ fedora-34/arm64
 	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel bubblewrap which m4 diffutils findutils && yum clean all
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN sed -i.bak '/LC_TIME LC_ALL LANGUAGE/aDefaults    env_keep += "OPAMYES OPAMJOBS OPAMVERBOSE"' /etc/sudoers
 	RUN echo 'opam ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/opam
 	RUN chmod 440 /etc/sudoers.d/opam
@@ -6134,6 +6222,8 @@ fedora-34/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam"
 	FROM fedora:34
 	RUN yum --version || dnf install -y yum
 	RUN yum update -y
@@ -6141,8 +6231,10 @@ fedora-34/amd64
 	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel bubblewrap which m4 diffutils findutils && yum clean all
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN sed -i.bak '/LC_TIME LC_ALL LANGUAGE/aDefaults    env_keep += "OPAMYES OPAMJOBS OPAMVERBOSE"' /etc/sudoers
 	RUN echo 'opam ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/opam
 	RUN chmod 440 /etc/sudoers.d/opam
@@ -6416,6 +6508,8 @@ oraclelinux-7/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam"
 	FROM oraclelinux:7
 	RUN yum --version || dnf install -y yum
 	RUN yum update -y
@@ -6423,8 +6517,10 @@ oraclelinux-7/amd64
 	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel bubblewrap which m4 diffutils findutils && yum clean all
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN sed -i.bak '/LC_TIME LC_ALL LANGUAGE/aDefaults    env_keep += "OPAMYES OPAMJOBS OPAMVERBOSE"' /etc/sudoers
 	RUN echo 'opam ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/opam
 	RUN chmod 440 /etc/sudoers.d/opam
@@ -6620,6 +6716,8 @@ oraclelinux-8/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam"
 	FROM oraclelinux:8
 	RUN yum --version || dnf install -y yum
 	RUN yum update -y
@@ -6627,8 +6725,10 @@ oraclelinux-8/amd64
 	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel bubblewrap which m4 diffutils findutils && yum clean all
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN sed -i.bak '/LC_TIME LC_ALL LANGUAGE/aDefaults    env_keep += "OPAMYES OPAMJOBS OPAMVERBOSE"' /etc/sudoers
 	RUN echo 'opam ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/opam
 	RUN chmod 440 /etc/sudoers.d/opam
@@ -6838,6 +6938,8 @@ opensuse-15.3/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/bin && cp /tmp/opam/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam"
 	FROM opensuse/leap:15.3
 	RUN zypper update -y
 	RUN zypper install --force-resolution -y -t pattern devel_C_C++
@@ -6845,8 +6947,10 @@ opensuse-15.3/amd64
 	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN useradd -u 1000  -d /home/opam -m --user-group opam
 	RUN echo 'opam ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/opam
 	RUN chmod 440 /etc/sudoers.d/opam
@@ -7050,11 +7154,15 @@ ubuntu-18.04/ppc64le
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM ubuntu:bionic
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -7115,11 +7223,15 @@ ubuntu-18.04/arm64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM ubuntu:bionic
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -7180,11 +7292,15 @@ ubuntu-18.04/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM ubuntu:bionic
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -7553,11 +7669,15 @@ ubuntu-20.04/ppc64le
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM ubuntu:focal
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -7618,11 +7738,15 @@ ubuntu-20.04/arm64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM ubuntu:focal
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -7683,11 +7807,15 @@ ubuntu-20.04/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM ubuntu:focal
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -8070,11 +8198,15 @@ ubuntu-21.04/ppc64le
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM ubuntu:hirsute
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -8135,11 +8267,15 @@ ubuntu-21.04/arm64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM ubuntu:hirsute
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
@@ -8200,11 +8336,15 @@ ubuntu-21.04/amd64
 	RUN sh -c "cd /tmp/opam && make cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout 2.1
 	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam"
+	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master
+	RUN sh -c "cd /tmp/opam && make CONFIGURE_ARGS=--with-0install-solver cold && mkdir -p /usr/local/bin && cp /tmp/opam/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam"
 	FROM ubuntu:hirsute
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
+	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
+	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
