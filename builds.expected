@@ -9499,6 +9499,7 @@ windows-msvc-1809/amd64
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
 	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
+	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
 4.13.1/amd64
@@ -9571,6 +9572,7 @@ windows-msvc-2004/amd64
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
 	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
+	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
 4.13.1/amd64
@@ -9643,6 +9645,7 @@ windows-msvc-20H2/amd64
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
 	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
+	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
 4.13.1/amd64
@@ -9715,6 +9718,7 @@ windows-msvc-ltsc2022/amd64
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
 	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
+	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
 4.13.1/amd64
