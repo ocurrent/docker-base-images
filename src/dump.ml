@@ -96,6 +96,7 @@ let run () =
     Fake.Current.Primitive.const { Git_repositories.
       opam_repository_master = Current_git.Commit_id.v ~repo:"opam_repository" ~gref:"master" ~hash:"master";
       opam_repository_mingw_opam2 = Current_git.Commit_id.v ~repo:"opam_repository_mingw_opam2" ~gref:"master" ~hash:"master";
+      opam_overlays = Current_git.Commit_id.v ~repo:"opam_repository_mingw_overlay" ~gref:"overlay" ~hash:"overlay";
       opam_2_0 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.0" ~hash:"2.0";
       opam_2_1 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.1" ~hash:"2.1";
       opam_master = Current_git.Commit_id.v ~repo:"opam" ~gref:"master" ~hash:"master";

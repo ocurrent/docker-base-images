@@ -95,6 +95,12 @@ let or_die = function
   | Ok x -> x
   | Error (`Msg m) -> failwith m
 
+let maybe_add_overlay distro hash =
+  match distro with
+  | `Windows (`Msvc, _) ->
+    Dockerfile.run "opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#%s --set-default" hash
+  | _ -> Dockerfile.empty
+
 module Make (OCurrent : S.OCURRENT) = struct
   open OCurrent
   open Current.Syntax
@@ -109,7 +115,7 @@ module Make (OCurrent : S.OCURRENT) = struct
       let arch_name = Ocaml_version.string_of_arch arch in
       let distro_tag, os_family = Dockerfile_distro.(tag_of_distro distro, os_family_of_distro distro) in
       Current.component "%s@,%s" distro_tag arch_name |>
-      let> {Git_repositories.opam_repository_master; opam_repository_mingw_opam2; opam_2_0; opam_2_1; opam_master} = repos in
+      let> {Git_repositories.opam_repository_master; opam_repository_mingw_opam2; opam_overlays; opam_2_0; opam_2_1; opam_master} = repos in
       let dockerfile =
         let opam_hashes = {
           Dockerfile_opam.opam_2_0_hash = Current_git.Commit_id.hash opam_2_0;
@@ -133,6 +139,7 @@ module Make (OCurrent : S.OCURRENT) = struct
               copy ~src:["."] ~dst:opam_repo () @@
               env [("OPAMROOT", opam_root)] @@
               run "opam init -k local -a \"%s\" --bare --disable-sandboxing" opam_repo @@
+              maybe_add_overlay distro (Current_git.Commit_id.hash opam_overlays) @@
               Dockerfile_windows.Cygwin.run_sh "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
             end @@
             copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
