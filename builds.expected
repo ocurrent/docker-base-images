@@ -8737,7 +8737,7 @@ windows-mingw-1809/amd64
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
+	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=wsl --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
 	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
@@ -8799,7 +8799,7 @@ windows-mingw-2004/amd64
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
+	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=wsl --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
 	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
@@ -8862,7 +8862,7 @@ windows-mingw-20H2/amd64
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
+	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=wsl --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
 	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
@@ -8925,7 +8925,7 @@ windows-mingw-ltsc2022/amd64
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
+	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=wsl --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
 	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
@@ -9475,7 +9475,7 @@ windows-msvc-1809/amd64
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
+	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=wsl --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
 	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
@@ -9499,6 +9499,7 @@ windows-msvc-1809/amd64
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
 	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
+	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
 4.13.1/amd64
@@ -9546,7 +9547,7 @@ windows-msvc-2004/amd64
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
+	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=wsl --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
 	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
@@ -9571,6 +9572,7 @@ windows-msvc-2004/amd64
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
 	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
+	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
 4.13.1/amd64
@@ -9618,7 +9620,7 @@ windows-msvc-20H2/amd64
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
+	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=wsl --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
 	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
@@ -9643,6 +9645,7 @@ windows-msvc-20H2/amd64
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
 	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
+	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
 4.13.1/amd64
@@ -9690,7 +9693,7 @@ windows-msvc-ltsc2022/amd64
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
 	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
+	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=wsl --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
 	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
@@ -9715,6 +9718,7 @@ windows-msvc-ltsc2022/amd64
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
 	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
+	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
 4.13.1/amd64
