@@ -8,10 +8,10 @@ let git_repositories () =
 (* [aliases_of d] gives other tags which should point to [d].
    e.g. just after the Ubuntu 20.04 release, [aliases_of ubuntu-20.04 = [ ubuntu; ubuntu-lts ]] *)
 let aliases_of =
-  let latest = Dockerfile_distro.distros |> List.map (fun d -> Dockerfile_distro.resolve_alias d, d) in
+  let latest = Dockerfile_distro.distros |> List.map (fun d -> (Dockerfile_distro.resolve_alias d : Dockerfile_distro.distro :> Dockerfile_distro.t), d) in
   fun d -> List.filter_map (fun (d2, alias) -> if d = d2 && d <> alias then Some alias else None) latest
 
-let master_distro = Dockerfile_distro.(resolve_alias master_distro)
+let master_distro = Dockerfile_distro.((resolve_alias master_distro : distro :> t))
 
 type 'a run = ('a, unit, string, Dockerfile.t) format4 -> 'a
 
@@ -206,7 +206,7 @@ module Make (OCurrent : S.OCURRENT) = struct
       in
       (* Build the archive image for the debian 10 / x86_64 image only *)
       let archive_image =
-        if distro = Dockerfile_distro.(master_distro |> resolve_alias) && arch = `X86_64 then
+        if distro = master_distro && arch = `X86_64 then
           let push_target =
             Tag.archive ~staging:true ()
             |> Cluster_api.Docker.Image_id.of_string
