@@ -34,8 +34,6 @@ let pool_name (distro:Dockerfile_distro.t) arch =
     let dedicated_pool = [`V1809] in
     begin match Dockerfile_distro.resolve_alias distro with
     | `Windows (_, release) | `Cygwin release when List.mem release dedicated_pool ->
-      (* Temporary but convenient alias as ltsc2022 is based on 21H1. *)
-      let release = if release = `Ltsc2022 then `V21H1 else release in
       "windows-" ^ Dockerfile_distro.win10_release_to_string release
     | `Windows _ | `Cygwin _ -> "windows"
     | _ -> assert false
