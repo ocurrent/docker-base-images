@@ -138,12 +138,14 @@ let setup_log =
 
 let cmd =
   let doc = "Build the ocaml/opam images for Docker Hub" in
-  Term.(term_result (const main $ setup_log $ Current.Config.cmdliner $ Current_web.cmdliner
-                     $ slack $ capnp_address $ Current_github.Auth.cmdliner $ submission_service
-                     $ staging_password)),
-  Term.info program_name ~doc
+  let info = Cmd.info program_name ~doc in
+  Cmd.v info
+    Term.(term_result (const main $ setup_log $ Current.Config.cmdliner $ Current_web.cmdliner
+                       $ slack $ capnp_address $ Current_github.Auth.cmdliner $ submission_service
+                       $ staging_password))
+
 
 let () =
   match Sys.argv with
   | [| _; "--dump" |] -> Dump.run ()
-  | _ -> Term.(exit @@ eval cmd)
+  | _ -> exit @@ Cmd.eval cmd

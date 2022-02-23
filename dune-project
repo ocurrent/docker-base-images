@@ -26,7 +26,7 @@
   current_web
   current_rpc
   (capnp-rpc-unix (>= "1.2.2"))
-  (cmdliner (< 1.1))
+  (cmdliner (>= 1.1.0))
   (dockerfile (>= "6.2.0"))
   (dockerfile-opam (>= "6.2.0"))
   (ocaml-version (>= "2.6.1"))))
