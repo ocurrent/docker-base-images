@@ -1,6 +1,6 @@
 FROM ocaml/opam:debian-10-ocaml-4.12@sha256:ba8cea1129194af6d938aa39bae99a534462c65c9512c8052d26c7d764e8549d AS build
 RUN sudo apt-get update && sudo apt-get install libev-dev capnproto graphviz m4 pkg-config libsqlite3-dev libgmp-dev libssl-dev libffi-dev -y --no-install-recommends
-RUN cd ~/opam-repository && git pull origin -q master && git reset --hard f4bd8cd444270a6baf9df0f9ca912da6bd7ff516 && opam update
+RUN cd ~/opam-repository && git pull origin -q master && git reset --hard 589783b06b2ae581b9393ec4d1bf83b28cdf6d71 && opam update
 COPY --chown=opam \
 	ocurrent/current.opam \
 	ocurrent/current_web.opam \
