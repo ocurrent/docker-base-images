@@ -40,6 +40,10 @@ module Fake = struct
       let const x = of_fn (fun _log -> x)
     end
 
+    module Level = struct
+      type nonrec t
+    end
+
     let force t log =
       match t.state with
       | `Ready fn -> let x = fn log in t.state <- `Done x; x
@@ -78,7 +82,7 @@ module Fake = struct
     type t = unit
 
     module Raw = struct
-      let build_and_push ?cache_hint:_ () ~push_target ~pool:_ ~src:_ ~options:_ spec =
+      let build_and_push ?level:_ ?cache_hint:_ () ~push_target ~pool:_ ~src:_ ~options:_ spec =
         Current.of_fn @@ fun log ->
         begin match spec with
           | `Contents c -> Log.note log c;

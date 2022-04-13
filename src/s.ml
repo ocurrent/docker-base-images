@@ -9,6 +9,10 @@ module type OCURRENT = sig
       val const : 'a -> 'a t
     end
 
+    module Level : sig
+      type t
+    end
+
     val component : ('a, Format.formatter, unit, description) format4 -> 'a
     val ignore_value : 'a t -> unit t
     val all : unit t list -> unit t
@@ -29,6 +33,7 @@ module type OCURRENT = sig
 
     module Raw : sig
       val build_and_push :
+        ?level:Current.Level.t ->
         ?cache_hint:string -> t -> push_target:Cluster_api.Docker.Image_id.t -> pool:string ->
         src:Current_git.Commit_id.t list -> options:Cluster_api.Docker.Spec.options -> [ `Contents of string | `Path of string ] ->
         string Current.Primitive.t
