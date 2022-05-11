@@ -23,6 +23,8 @@ depends: [
   "current_slack"
   "current_web"
   "current_rpc"
+  "multipart_form-lwt"
+  "csv"
   "capnp-rpc-unix" {>= "1.2.2"}
   "cmdliner" {>= "1.1.0"}
   "dockerfile" {>= "6.2.0"}
