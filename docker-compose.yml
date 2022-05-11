@@ -2,6 +2,7 @@ version: "3.8"
 services:
   scheduler:
     image: ocurrent/ocluster-scheduler:live
+    platform: linux/amd64
     command:
       - --secrets-dir=/capnp-secrets
       - --capnp-secret-key-file=/capnp-secrets/key.pem
@@ -30,8 +31,9 @@ services:
       - "capnp-secrets:/capnp-secrets"
   worker:
     image: ocurrent/ocluster-worker:live
+    platform: linux/amd64
     command:
-      - /capnp-secrets/pool-linux-x86_64.cap
+      - --connect=/capnp-secrets/pool-linux-x86_64.cap
       - --name=local
       - --allow-push=ocurrentbuilder/staging,ocurrent/opam-staging
       - --capacity=1

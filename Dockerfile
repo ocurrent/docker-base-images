@@ -28,7 +28,7 @@ RUN opam install -y --deps-only .
 ADD --chown=opam . .
 RUN opam config exec -- dune build ./src/base_images.exe
 
-FROM debian:11
+FROM --platform=linux/amd64 debian:11
 RUN apt-get update && apt-get install libev4 curl git graphviz libsqlite3-dev ca-certificates netbase gnupg2 -y --no-install-recommends
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 RUN echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' >> /etc/apt/sources.list
