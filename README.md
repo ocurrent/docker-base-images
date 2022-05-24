@@ -5,7 +5,7 @@ and architecture.
 The resulting images can be run as e.g.
 
 ```
-docker run --rm -it ocaml/opam:debian-10-ocaml-4.11
+docker run --rm -it ocaml/opam:debian-11-ocaml-4.14
 ```
 
 These images are very similar to the ones previously available as `ocaml/opam2`,
