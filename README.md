@@ -1,3 +1,6 @@
+
+[![OCaml-CI Build Status][ocaml-ci-shield]][ocaml-ci]
+
 This is an [OCurrent][] pipeline that builds Docker images for OCaml, for
 various combinations of Linux distribution, Windows version, OCaml version
 and architecture.
@@ -73,3 +76,6 @@ Once running with your chosen configuration, you can use the web UI to raise (or
 [conf.ml]: https://github.com/ocurrent/docker-base-images/blob/master/src/conf.ml
 [avsm/ocaml-dockerfile]: https://github.com/avsm/ocaml-dockerfile
 [OCluster]: https://github.com/ocurrent/ocluster
+
+[ocaml-ci]: https://ci.ocamllabs.io/github/ocurrent/docker-base-images
+[ocaml-ci-shield]: https://img.shields.io/endpoint?url=https%3A%2F%2Fci.ocamllabs.io%2Fbadge%2Focurrent%2Fdocker-base-images%2Fmaster&logo=ocaml
