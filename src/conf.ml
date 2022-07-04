@@ -27,14 +27,16 @@ let auth =
     None
   )
 
-let pool_name (distro:Dockerfile_distro.t) arch =
-  let os_family = Dockerfile_distro.os_family_of_distro distro in
+module Distro = Dockerfile_opam.Distro
+
+let pool_name (distro:Distro.t) arch =
+  let os_family = Distro.os_family_of_distro distro in
   let os_str = match os_family with
   | `Windows | `Cygwin ->
     let dedicated_pool = [`V1809] in
-    begin match Dockerfile_distro.resolve_alias distro with
+    begin match Distro.resolve_alias distro with
     | `Windows (_, release) | `Cygwin release when List.mem release dedicated_pool ->
-      "windows-" ^ Dockerfile_distro.win10_release_to_string release
+      "windows-" ^ Distro.win10_release_to_string release
     | `Windows _ | `Cygwin _ -> "windows"
     | _ -> assert false
     end
@@ -49,13 +51,13 @@ let pool_name (distro:Dockerfile_distro.t) arch =
   os_str ^ "-" ^ arch_str
 
 let switches ~arch ~distro =
-  let is_tier1 = List.mem distro (Dockerfile_distro.active_tier1_distros arch) in
+  let is_tier1 = List.mem distro (Distro.active_tier1_distros arch) in
   (* opam-repository-mingw doesn't package the development version of
      the compiler. *)
   let with_dev = match distro with `Windows _ -> false | _ -> true in
   let main_switches =
     Ocaml_version.Releases.(if with_dev then recent_with_dev else recent)
-    |> List.filter (fun ov -> Dockerfile_distro.distro_supported_on arch ov distro)
+    |> List.filter (fun ov -> Distro.distro_supported_on arch ov distro)
   in
   if is_tier1 then (
     List.map (Ocaml_version.Opam.V2.switches arch) main_switches |> List.concat
@@ -64,14 +66,14 @@ let switches ~arch ~distro =
   )
 
 (* We can't get the active distros directly, but assume x86_64 is a superset of everything else. *)
-let distros = Dockerfile_distro.(active_distros `X86_64 |> List.filter (fun d ->
+let distros = Distro.(active_distros `X86_64 |> List.filter (fun d ->
   match os_family_of_distro d with
   | `Linux | `Windows -> true
   | _ -> false))
 
-let arches_for ~distro = Dockerfile_distro.distro_arches Ocaml_version.Releases.latest distro
+let arches_for ~distro = Distro.distro_arches Ocaml_version.Releases.latest distro
 
-let win10_revision : Dockerfile_distro.win10_lcu = `LCU20220913
+let win10_revision : Distro.win10_lcu = `LCU20220913
 
 (* For testing, you can uncomment these lines to limit the number of combinations: *)
 

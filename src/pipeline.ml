@@ -1,3 +1,6 @@
+module Distro = Dockerfile_opam.Distro
+module Windows = Dockerfile_opam.Windows
+
 module Switch_map = Map.Make(Ocaml_version)
 
 let weekly = Current_cache.Schedule.v ~valid_for:(Duration.of_day 7) ()
@@ -8,10 +11,10 @@ let git_repositories () =
 (* [aliases_of d] gives other tags which should point to [d].
    e.g. just after the Ubuntu 20.04 release, [aliases_of ubuntu-20.04 = [ ubuntu; ubuntu-lts ]] *)
 let aliases_of =
-  let latest = Dockerfile_distro.distros |> List.map (fun d -> (Dockerfile_distro.resolve_alias d : Dockerfile_distro.distro :> Dockerfile_distro.t), d) in
+  let latest = Distro.distros |> List.map (fun d -> (Distro.resolve_alias d : Distro.distro :> Distro.t), d) in
   fun d -> List.filter_map (fun (d2, alias) -> if d = d2 && d <> alias then Some alias else None) latest
 
-let master_distro = Dockerfile_distro.((resolve_alias master_distro : distro :> t))
+let master_distro = Distro.((resolve_alias master_distro : distro :> t))
 
 type 'a run = ('a, unit, string, Dockerfile.t) format4 -> 'a
 
@@ -49,13 +52,13 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
   let (package_name, package_version) =
     match windows_port with
     | None -> Ocaml_version.Opam.V2.package switch
-    | Some port -> Dockerfile_windows.ocaml_for_windows_package_exn ~switch ~arch ~port
+    | Some port -> Windows.ocaml_for_windows_package_exn ~switch ~arch ~port
   in
   let open Dockerfile in
-  let os_family = Dockerfile_distro.os_family_of_distro distro in
-  let personality = Dockerfile_distro.personality os_family arch in
+  let os_family = Distro.os_family_of_distro distro in
+  let personality = Distro.personality os_family arch in
   let run, run_no_opam, depext, opam_exec =
-    let open Dockerfile_windows in
+    let open Windows in
     let bitness = if Ocaml_version.arch_is_32bit arch then "--32" else "--64" in
     match windows_port with
     | None ->
@@ -109,11 +112,16 @@ module Make (OCurrent : S.OCURRENT) = struct
   module Arch = struct
     (* 2020-04-29: On Windows, squashing images is still experimental (broken). *)
     let squash distro =
-      Dockerfile_distro.os_family_of_distro distro <> `Windows
+      Distro.os_family_of_distro distro <> `Windows
+
+    (* 2022-07-18: Windows Containers don't support BuildKit.
+       https://github.com/microsoft/Windows-Containers/issues/34 *)
+    let buildkit distro =
+      Distro.os_family_of_distro distro <> `Windows
 
     let install_opam ~arch ~ocluster ~distro ~repos ~push_target =
       let arch_name = Ocaml_version.string_of_arch arch in
-      let distro_tag, os_family = Dockerfile_distro.(tag_of_distro distro, os_family_of_distro distro) in
+      let distro_tag, os_family = Distro.(tag_of_distro distro, os_family_of_distro distro) in
       Current.component "%s@,%s" distro_tag arch_name |>
       let> {Git_repositories.opam_repository_master; opam_repository_mingw_opam2; opam_overlays; opam_2_0; opam_2_1; opam_master} = repos in
       let dockerfile =
@@ -134,13 +142,13 @@ module Make (OCurrent : S.OCURRENT) = struct
               run "opam init -k local -a /home/opam/opam-repository --bare" @@
               run "rm -rf .opam/repo/default/.git"
             | `Windows ->
-              let opam_repo = Dockerfile_windows.Cygwin.default.root ^ {|\home\opam\opam-repository|} in
+              let opam_repo = Windows.Cygwin.default.root ^ {|\home\opam\opam-repository|} in
               let opam_root = {|C:\opam\.opam|} in
               copy ~src:["."] ~dst:opam_repo () @@
               env [("OPAMROOT", opam_root)] @@
               run "opam init -k local -a \"%s\" --bare --disable-sandboxing" opam_repo @@
               maybe_add_overlay distro (Current_git.Commit_id.hash opam_overlays) @@
-              Dockerfile_windows.Cygwin.run_sh "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
+              Windows.Cygwin.run_sh "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
             end @@
             copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
           )
@@ -148,6 +156,7 @@ module Make (OCurrent : S.OCURRENT) = struct
       in
       let options = { Cluster_api.Docker.Spec.defaults with
                       squash = squash distro;
+                      buildkit = buildkit distro;
                       include_git = true } in
       let cache_hint = Printf.sprintf "opam-%s" distro_tag in
       let opam_repository = match os_family with `Windows -> opam_repository_mingw_opam2 | _ -> opam_repository_master in
@@ -163,7 +172,10 @@ module Make (OCurrent : S.OCURRENT) = struct
       let> base = base in
       let dockerfile = `Contents (install_compiler_df ~distro ~arch ~switch ?windows_port base |> Dockerfile.string_of_t) in
       (* ([include_git] doesn't do anything here, but it saves rebuilding during the upgrade) *)
-      let options = { Cluster_api.Docker.Spec.defaults with squash = squash distro; include_git = true } in
+      let options = { Cluster_api.Docker.Spec.defaults with
+                      squash = squash distro;
+                      buildkit = buildkit distro;
+                      include_git = true } in
       let cache_hint = Printf.sprintf "%s-%s-%s" (Ocaml_version.to_string switch) arch_name base in
       OCluster.Raw.build_and_push ocluster ~src:[] dockerfile
         ~cache_hint
@@ -175,7 +187,10 @@ module Make (OCurrent : S.OCURRENT) = struct
       Current.component "archive" |>
       let> base = base in
       let dockerfile = `Contents (install_package_archive base |> Dockerfile.string_of_t) in
-      let options = { Cluster_api.Docker.Spec.defaults with squash = squash distro; include_git = true } in
+      let options = { Cluster_api.Docker.Spec.defaults with
+                      squash = squash distro;
+                      buildkit = buildkit distro;
+                      include_git = true } in
       let cache_hint = Printf.sprintf "archive-%s" base in
       OCluster.Raw.build_and_push ocluster ~src:[] dockerfile
         ~cache_hint
@@ -265,7 +280,7 @@ module Make (OCurrent : S.OCURRENT) = struct
     multiarch_images, pipeline
 
   let linux_pipeline ~ocluster repos distro =
-    let distro_label = Dockerfile_distro.tag_of_distro distro in
+    let distro_label = Distro.tag_of_distro distro in
     let repos = label distro_label repos in
     Current.collapse ~key:"distro" ~value:distro_label ~input:repos @@
       let gen_tags _images full_tag switch distro_aliases =
@@ -344,7 +359,7 @@ module Make (OCurrent : S.OCURRENT) = struct
   (* The main pipeline. Builds images for all supported distribution, compiler version and architecture combinations. *)
   let v ~ocluster repos =
     let linux, mingw, msvc, cygwin = Conf.distros |> List.fold_left (fun (linux, mingw, msvc, cygwin) distro ->
-      let os_family = Dockerfile_distro.os_family_of_distro distro in
+      let os_family = Distro.os_family_of_distro distro in
       match os_family with
       | `Linux -> distro :: linux, mingw, msvc, cygwin
       | `Cygwin -> linux, mingw, msvc, distro :: cygwin

@@ -13,7 +13,7 @@ let v ?arch ?switch distro =
   let repo = if arch = None then Conf.public_repo else Conf.staging_repo in
   let distro =
     if distro = `Debian `Stable then "debian"
-    else Dockerfile_distro.tag_of_distro distro
+    else Dockerfile_opam.Distro.tag_of_distro distro
   in
   let switch =
     match switch with
@@ -25,7 +25,7 @@ let v ?arch ?switch distro =
 let v_alias alias =
   let alias =
     if alias = `Debian `Stable then "debian"
-    else Dockerfile_distro.tag_of_distro alias
+    else Dockerfile_opam.Distro.tag_of_distro alias
   in
   Fmt.str "%s:%s" Conf.public_repo alias
 
