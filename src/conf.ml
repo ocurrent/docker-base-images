@@ -44,7 +44,8 @@ let pool_name (distro:Dockerfile_distro.t) arch =
   | `X86_64 | `I386     -> "x86_64"
   | `Aarch64 | `Aarch32 -> "arm64"
   | `Ppc64le            -> "ppc64"
-  | `S390x              -> "s390x" in
+  | `S390x              -> "s390x"
+  | `Riscv64            -> "riscv64" in
   os_str ^ "-" ^ arch_str
 
 let switches ~arch ~distro =
