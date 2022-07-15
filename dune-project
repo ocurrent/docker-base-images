@@ -1,4 +1,4 @@
-(lang dune 2.5)
+(lang dune 3.3)
 (name base-images)
 (generate_opam_files true)
 (formatting disabled)
@@ -15,7 +15,7 @@
   ppx_sexp_conv
   ppx_deriving_yojson
   ppx_deriving
-  (lwt (>= 5.4.1))
+  (lwt (>= 5.6.1))
   logs
   (fmt (>= 0.8.7))
   current_git
