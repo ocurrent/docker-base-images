@@ -1,4 +1,4 @@
-(lang dune 2.5)
+(lang dune 3.3)
 (name base-images)
 (generate_opam_files true)
 (formatting disabled)
@@ -15,7 +15,7 @@
   ppx_sexp_conv
   ppx_deriving_yojson
   ppx_deriving
-  (lwt (>= 5.4.1))
+  (lwt (>= 5.6.1))
   logs
   (fmt (>= 0.8.7))
   current_git
@@ -27,6 +27,6 @@
   current_rpc
   (capnp-rpc-unix (>= "1.2.2"))
   (cmdliner (>= "1.1.0"))
-  (dockerfile (>= "6.2.0"))
-  (dockerfile-opam (>= "6.2.0"))
-  (ocaml-version (>= "2.6.1"))))
+  (dockerfile (>= "7.1.0"))
+  (dockerfile-opam (>= "7.1.0"))
+  (ocaml-version (>= "3.5.0"))))
