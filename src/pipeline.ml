@@ -77,6 +77,9 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
     let additional_packages = Ocaml_version.Opam.V2.additional_packages switch in
     String.concat "," (Printf.sprintf "%s.%s" package_name package_version :: additional_packages)
   in
+  (match os_family with
+   | `Linux -> parser_directive (`Syntax "docker/dockerfile:1")
+   | `Windows | `Cygwin -> parser_directive (`Escape '`')) @@
   from opam_image @@
   shell @@
   maybe_add_beta run switch @@
@@ -91,8 +94,13 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
   run "opam install -y %s" depext @@
   maybe_install_secondary_compiler run os_family switch @@
   entrypoint_exec (Option.to_list personality @ opam_exec) @@
-  (match os_family with `Linux | `Cygwin -> cmd "bash" | `Windows -> cmd_exec ["cmd.exe"]) @@
-  copy ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ()
+  (match os_family with
+   | `Linux ->
+     cmd "bash" @@
+     copy ~link:true ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ()
+   | `Windows | `Cygwin ->
+     cmd_exec ["cmd.exe"] @@
+     copy ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ())
 
 let or_die = function
   | Ok x -> x
@@ -137,10 +145,11 @@ module Make (OCurrent : S.OCURRENT) = struct
             opam @@
             begin match os_family with
             | `Cygwin | `Linux ->
-              copy ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
+              copy ~link:true ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
               run "opam-sandbox-disable" @@
               run "opam init -k local -a /home/opam/opam-repository --bare" @@
-              run "rm -rf .opam/repo/default/.git"
+              run "rm -rf .opam/repo/default/.git" @@
+              copy ~link:true ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
             | `Windows ->
               let opam_repo = Windows.Cygwin.default.root ^ {|\home\opam\opam-repository|} in
               let opam_root = {|C:\opam\.opam|} in
@@ -148,10 +157,9 @@ module Make (OCurrent : S.OCURRENT) = struct
               env [("OPAMROOT", opam_root)] @@
               run "opam init -k local -a \"%s\" --bare --disable-sandboxing" opam_repo @@
               maybe_add_overlay distro (Current_git.Commit_id.hash opam_overlays) @@
-              Windows.Cygwin.run_sh "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
-            end @@
-            copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
-          )
+              Windows.Cygwin.run_sh "rm -rf /cygdrive/c/opam/.opam/repo/default/.git" @@
+              copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
+            end)
         )
       in
       let options = { Cluster_api.Docker.Spec.defaults with
