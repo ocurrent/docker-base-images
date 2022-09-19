@@ -11009,7 +11009,7 @@ windows-mingw-1809/amd64
 	        $json | Set-Content -Encoding ascii -NoNewLine $path ; `
 	        winget settings"
 	ENV HOME="C:\cygwin64\home\opam"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true"
+	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
 	RUN powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
@@ -11073,7 +11073,7 @@ windows-mingw-21H2/amd64
 	        winget settings"
 	RUN winget install --exact --accept-source-agreements --accept-package-agreements Git.Git
 	ENV HOME="C:\cygwin64\home\opam"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true"
+	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
 	RUN powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
@@ -11432,7 +11432,7 @@ windows-msvc-1809/amd64
 	        $json | Set-Content -Encoding ascii -NoNewLine $path ; `
 	        winget settings"
 	ENV HOME="C:\cygwin64\home\opam"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true"
+	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
 	RUN powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
@@ -11506,7 +11506,7 @@ windows-msvc-21H2/amd64
 	        winget settings"
 	RUN winget install --exact --accept-source-agreements --accept-package-agreements Git.Git
 	ENV HOME="C:\cygwin64\home\opam"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true"
+	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
 	RUN powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
