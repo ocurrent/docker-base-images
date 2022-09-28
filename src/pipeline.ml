@@ -98,9 +98,10 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
    | `Linux ->
      cmd "bash" @@
      copy ~link:true ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ()
-   | `Windows | `Cygwin ->
+   | `Windows ->
      cmd_exec ["cmd.exe"] @@
-     copy ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ())
+     copy ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ()
+   | `Cygwin -> failwith "No support for Cygwin currently.")
 
 let or_die = function
   | Ok x -> x
@@ -144,7 +145,7 @@ module Make (OCurrent : S.OCURRENT) = struct
           string_of_t (
             opam @@
             begin match os_family with
-            | `Cygwin | `Linux ->
+            | `Linux ->
               copy ~link:true ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
               run "opam-sandbox-disable" @@
               run "opam init -k local -a /home/opam/opam-repository --bare" @@
@@ -159,6 +160,7 @@ module Make (OCurrent : S.OCURRENT) = struct
               maybe_add_overlay distro (Current_git.Commit_id.hash opam_overlays) @@
               Windows.Cygwin.run_sh "rm -rf /cygdrive/c/opam/.opam/repo/default/.git" @@
               copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
+            | `Cygwin -> failwith "No support for Cygwin currently."
             end)
         )
       in
