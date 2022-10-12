@@ -73,7 +73,7 @@ let distros = Distro.(active_distros `X86_64 |> List.filter (fun d ->
 
 let arches_for ~distro = Distro.distro_arches Ocaml_version.Releases.latest distro
 
-let win10_revision : Distro.win10_lcu = `LCU20221011
+let win10_revision : Distro.win10_lcu = Dockerfile_opam.Distro.win10_current_lcu
 
 (* For testing, you can uncomment these lines to limit the number of combinations: *)
 
