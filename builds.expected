@@ -12304,32 +12304,38 @@ windows-mingw-1809/amd64
 	LABEL distro_style="windows"
 	USER ContainerAdministrator
 	ADD [ "https://aka.ms/vs/16/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
-	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log
+	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log && `
+	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
 	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
 	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
-	ENV CYGWIN="winsymlinks:native"
-	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin-setup-x86_64.exe" ]
-	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
-	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
-	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
-	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=wsl --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
-	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\bin;%c"
-	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
-	WORKDIR C:\cygwin64\home\opam
-	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
 	COPY --from=winget-builder [ "C:\\Program Files\\winget-cli", "C:\\Program Files\\winget-cli" ]
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
 	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\Program Files\winget-cli;%c"
 	RUN powershell -Command "$path=(Join-Path $env:LOCALAPPDATA 'Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState'); New-Item $path -ItemType Directory -Force; '{ """"$schema"""": """"https://aka.ms/winget-settings.schema.json"""", """"telemetry"""": { """"disable"""": """"true"""" } }' | Out-File -encoding ASCII (Join-Path $path 'settings.json')"
+	ENV CYGWIN="winsymlinks:native"
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\bin;%c"
+	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin64\\setup-x86_64.exe" ]
+	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
+	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
+	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
+	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
+	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim && `
+	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
+	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
+	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
+	RUN powershell -Command "Foreach($file in Get-ChildItem -Path 'C:\cygwin64\dev' -Recurse -force) { `
+	        If (((Get-ItemProperty -Path $file.fullname).attributes -band [io.fileattributes]::System)) { `
+	            Set-ItemProperty -Path $file.fullname -Name attributes -Value ((Get-ItemProperty $file.fullname).attributes -BXOR [io.fileattributes]::System) `
+	        } `
+	     } #end Foreach"
+	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
+	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
-	RUN powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
 	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
@@ -12363,33 +12369,39 @@ windows-mingw-21H2/amd64
 	LABEL distro_style="windows"
 	USER ContainerAdministrator
 	ADD [ "https://aka.ms/vs/16/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
-	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log
+	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log && `
+	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
 	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
 	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
-	ENV CYGWIN="winsymlinks:native"
-	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin-setup-x86_64.exe" ]
-	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
-	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
-	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
-	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=wsl --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
-	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\bin;%c"
-	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
-	WORKDIR C:\cygwin64\home\opam
-	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
 	COPY --from=winget-builder [ "C:\\Program Files\\winget-cli", "C:\\Program Files\\winget-cli" ]
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
 	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\Program Files\winget-cli;%c"
 	RUN powershell -Command "$path=(Join-Path $env:LOCALAPPDATA 'Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState'); New-Item $path -ItemType Directory -Force; '{ """"$schema"""": """"https://aka.ms/winget-settings.schema.json"""", """"telemetry"""": { """"disable"""": """"true"""" } }' | Out-File -encoding ASCII (Join-Path $path 'settings.json')"
 	RUN winget install --exact --accept-source-agreements --accept-package-agreements Git.Git
+	ENV CYGWIN="winsymlinks:native"
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\bin;%c"
+	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin64\\setup-x86_64.exe" ]
+	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
+	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
+	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
+	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
+	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim && `
+	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
+	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
+	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
+	RUN powershell -Command "Foreach($file in Get-ChildItem -Path 'C:\cygwin64\dev' -Recurse -force) { `
+	        If (((Get-ItemProperty -Path $file.fullname).attributes -band [io.fileattributes]::System)) { `
+	            Set-ItemProperty -Path $file.fullname -Name attributes -Value ((Get-ItemProperty $file.fullname).attributes -BXOR [io.fileattributes]::System) `
+	        } `
+	     } #end Foreach"
+	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
+	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
-	RUN powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
 	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
@@ -12734,7 +12746,33 @@ windows-msvc-1809/amd64
 	LABEL distro_style="windows"
 	USER ContainerAdministrator
 	ADD [ "https://aka.ms/vs/16/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
-	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log
+	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log && `
+	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
+	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
+	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
+	COPY --from=winget-builder [ "C:\\Program Files\\winget-cli", "C:\\Program Files\\winget-cli" ]
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\Program Files\winget-cli;%c"
+	RUN powershell -Command "$path=(Join-Path $env:LOCALAPPDATA 'Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState'); New-Item $path -ItemType Directory -Force; '{ """"$schema"""": """"https://aka.ms/winget-settings.schema.json"""", """"telemetry"""": { """"disable"""": """"true"""" } }' | Out-File -encoding ASCII (Join-Path $path 'settings.json')"
+	ENV CYGWIN="winsymlinks:native"
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\bin;%c"
+	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin64\\setup-x86_64.exe" ]
+	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
+	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
+	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
+	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
+	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim && `
+	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
+	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
+	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
+	RUN powershell -Command "Foreach($file in Get-ChildItem -Path 'C:\cygwin64\dev' -Recurse -force) { `
+	        If (((Get-ItemProperty -Path $file.fullname).attributes -band [io.fileattributes]::System)) { `
+	            Set-ItemProperty -Path $file.fullname -Name attributes -Value ((Get-ItemProperty $file.fullname).attributes -BXOR [io.fileattributes]::System) `
+	        } `
+	     } #end Foreach"
 	ADD [ "https://raw.githubusercontent.com/avsm/ocaml-dockerfile/master/src-opam/Install.cmd", "C:\\TEMP\\" ]
 	ADD [ "https://aka.ms/vscollect.exe", "C:\\TEMP\\collect.exe" ]
 	ADD [ "https://aka.ms/vs/16/release/channel", "C:\\TEMP\\VisualStudio.chman" ]
@@ -12744,31 +12782,11 @@ windows-msvc-1809/amd64
 	        --installChannelUri C:\TEMP\VisualStudio.chman `
 	        --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
 	        --add Microsoft.VisualStudio.Component.Windows10SDK.18362
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
-	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
-	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
-	ENV CYGWIN="winsymlinks:native"
-	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin-setup-x86_64.exe" ]
-	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
-	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
-	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
-	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=wsl --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
-	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\bin;%c"
-	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
-	WORKDIR C:\cygwin64\home\opam
 	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
-	COPY --from=winget-builder [ "C:\\Program Files\\winget-cli", "C:\\Program Files\\winget-cli" ]
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\Program Files\winget-cli;%c"
-	RUN powershell -Command "$path=(Join-Path $env:LOCALAPPDATA 'Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState'); New-Item $path -ItemType Directory -Force; '{ """"$schema"""": """"https://aka.ms/winget-settings.schema.json"""", """"telemetry"""": { """"disable"""": """"true"""" } }' | Out-File -encoding ASCII (Join-Path $path 'settings.json')"
+	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
-	RUN powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
 	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
@@ -12803,7 +12821,34 @@ windows-msvc-21H2/amd64
 	LABEL distro_style="windows"
 	USER ContainerAdministrator
 	ADD [ "https://aka.ms/vs/16/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
-	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log
+	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log && `
+	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
+	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
+	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
+	COPY --from=winget-builder [ "C:\\Program Files\\winget-cli", "C:\\Program Files\\winget-cli" ]
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\Program Files\winget-cli;%c"
+	RUN powershell -Command "$path=(Join-Path $env:LOCALAPPDATA 'Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState'); New-Item $path -ItemType Directory -Force; '{ """"$schema"""": """"https://aka.ms/winget-settings.schema.json"""", """"telemetry"""": { """"disable"""": """"true"""" } }' | Out-File -encoding ASCII (Join-Path $path 'settings.json')"
+	RUN winget install --exact --accept-source-agreements --accept-package-agreements Git.Git
+	ENV CYGWIN="winsymlinks:native"
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\bin;%c"
+	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin64\\setup-x86_64.exe" ]
+	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
+	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
+	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
+	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
+	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim && `
+	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
+	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
+	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
+	RUN powershell -Command "Foreach($file in Get-ChildItem -Path 'C:\cygwin64\dev' -Recurse -force) { `
+	        If (((Get-ItemProperty -Path $file.fullname).attributes -band [io.fileattributes]::System)) { `
+	            Set-ItemProperty -Path $file.fullname -Name attributes -Value ((Get-ItemProperty $file.fullname).attributes -BXOR [io.fileattributes]::System) `
+	        } `
+	     } #end Foreach"
 	ADD [ "https://raw.githubusercontent.com/avsm/ocaml-dockerfile/master/src-opam/Install.cmd", "C:\\TEMP\\" ]
 	ADD [ "https://aka.ms/vscollect.exe", "C:\\TEMP\\collect.exe" ]
 	ADD [ "https://aka.ms/vs/16/release/channel", "C:\\TEMP\\VisualStudio.chman" ]
@@ -12813,32 +12858,11 @@ windows-msvc-21H2/amd64
 	        --installChannelUri C:\TEMP\VisualStudio.chman `
 	        --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
 	        --add Microsoft.VisualStudio.Component.Windows10SDK.18362
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
-	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
-	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
-	ENV CYGWIN="winsymlinks:native"
-	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin-setup-x86_64.exe" ]
-	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
-	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
-	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
-	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin-setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=wsl --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-g++,patch,rsync,unzip,vim
-	ADD [ "https://github.com/metastack/msvs-tools/archive/0.4.1.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-0.4.1/msvs-detect msvs-tools-0.4.1/msvs-promote-path /bin"
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\bin;%c"
-	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
-	WORKDIR C:\cygwin64\home\opam
 	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
-	COPY --from=winget-builder [ "C:\\Program Files\\winget-cli", "C:\\Program Files\\winget-cli" ]
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\Program Files\winget-cli;%c"
-	RUN powershell -Command "$path=(Join-Path $env:LOCALAPPDATA 'Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState'); New-Item $path -ItemType Directory -Force; '{ """"$schema"""": """"https://aka.ms/winget-settings.schema.json"""", """"telemetry"""": { """"disable"""": """"true"""" } }' | Out-File -encoding ASCII (Join-Path $path 'settings.json')"
-	RUN winget install --exact --accept-source-agreements --accept-package-agreements Git.Git
+	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
-	RUN powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
 	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
