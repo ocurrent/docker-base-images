@@ -132,11 +132,10 @@ module Make (OCurrent : S.OCURRENT) = struct
       let arch_name = Ocaml_version.string_of_arch arch in
       let distro_tag, os_family = Distro.(tag_of_distro distro, os_family_of_distro distro) in
       Current.component "%s@,%s" distro_tag arch_name |>
-      let> {Git_repositories.opam_repository_master; opam_repository_mingw_opam2; opam_overlays; opam_2_0; opam_2_1; opam_master} = repos in
+      let> {Git_repositories.opam_repository_master; opam_repository_mingw_opam2; opam_overlays; opam_2_1; opam_master} = repos in
       let dockerfile =
         let opam_hashes = {
-          Dockerfile_opam.opam_2_0_hash = Current_git.Commit_id.hash opam_2_0;
-          opam_2_1_hash = Current_git.Commit_id.hash opam_2_1;
+          Dockerfile_opam.opam_2_1_hash = Current_git.Commit_id.hash opam_2_1;
           opam_master_hash = Current_git.Commit_id.hash opam_master;
         } in
         `Contents (

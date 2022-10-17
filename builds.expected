@@ -9,7 +9,6 @@ alpine-3.15/arm64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	RUN strip /usr/local/bin/opam*
@@ -21,9 +20,8 @@ alpine-3.15/arm64
 	EOF
 	RUN apk update && apk upgrade
 	RUN apk add build-base patch tar ca-certificates git rsync curl sudo bash libx11-dev nano coreutils xz libexecinfo-dev ncurses-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN addgroup -S -g 1000 opam
@@ -80,7 +78,6 @@ alpine-3.15/amd64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	RUN strip /usr/local/bin/opam*
@@ -92,9 +89,8 @@ alpine-3.15/amd64
 	EOF
 	RUN apk update && apk upgrade
 	RUN apk add build-base patch tar ca-certificates git rsync curl sudo bash libx11-dev nano coreutils xz libexecinfo-dev ncurses-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN addgroup -S -g 1000 opam
@@ -441,7 +437,6 @@ alpine-3.16/arm64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	RUN strip /usr/local/bin/opam*
@@ -453,9 +448,8 @@ alpine-3.16/arm64
 	EOF
 	RUN apk update && apk upgrade
 	RUN apk add build-base patch tar ca-certificates git rsync curl sudo bash libx11-dev nano coreutils xz libexecinfo-dev ncurses-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN addgroup -S -g 1000 opam
@@ -512,7 +506,6 @@ alpine-3.16/amd64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	RUN strip /usr/local/bin/opam*
@@ -524,9 +517,8 @@ alpine-3.16/amd64
 	EOF
 	RUN apk update && apk upgrade
 	RUN apk add build-base patch tar ca-certificates git rsync curl sudo bash libx11-dev nano coreutils xz libexecinfo-dev ncurses-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN addgroup -S -g 1000 opam
@@ -1802,15 +1794,13 @@ archlinux/amd64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	RUN strip /usr/local/bin/opam*
 	FROM archlinux:latest
 	RUN pacman -Syu --noconfirm make gcc patch tar ca-certificates git rsync curl sudo bash libx11 nano coreutils xz ncurses diffutils unzip bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN useradd -u 1000  -d /home/opam -m --user-group opam
@@ -2049,7 +2039,6 @@ centos-7/amd64
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.0/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.1/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-master/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM centos:7
@@ -2060,9 +2049,8 @@ centos-7/amd64
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	RUN yum groupinstall -y "Development Tools" && yum clean all
 	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel which m4 diffutils findutils && yum clean all
-	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN sed -i.bak '/LC_TIME LC_ALL LANGUAGE/aDefaults    env_keep += "OPAMYES OPAMJOBS OPAMVERBOSE"' /etc/sudoers
@@ -2289,7 +2277,6 @@ debian-11/s390x
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM debian:11
@@ -2302,9 +2289,8 @@ debian-11/s390x
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -2364,7 +2350,6 @@ debian-11/ppc64le
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM debian:11
@@ -2377,9 +2362,8 @@ debian-11/ppc64le
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -2440,7 +2424,6 @@ debian-11/arm32v7
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM arm32v7/debian:11
@@ -2453,9 +2436,8 @@ debian-11/arm32v7
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -2516,7 +2498,6 @@ debian-11/arm64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM debian:11
@@ -2529,9 +2510,8 @@ debian-11/arm64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -2591,7 +2571,6 @@ debian-11/amd64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM debian:11
@@ -2604,9 +2583,8 @@ debian-11/amd64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -2667,7 +2645,6 @@ debian-11/i386
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM i386/debian:11
@@ -2680,9 +2657,8 @@ debian-11/i386
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -5959,7 +5935,6 @@ debian-10/s390x
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM debian:10
@@ -5973,9 +5948,8 @@ debian-10/s390x
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -6039,7 +6013,6 @@ debian-10/ppc64le
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM debian:10
@@ -6053,9 +6026,8 @@ debian-10/ppc64le
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -6120,7 +6092,6 @@ debian-10/arm32v7
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM arm32v7/debian:10
@@ -6134,9 +6105,8 @@ debian-10/arm32v7
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -6201,7 +6171,6 @@ debian-10/arm64
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM debian:10
@@ -6215,9 +6184,8 @@ debian-10/arm64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -6281,7 +6249,6 @@ debian-10/amd64
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM debian:10
@@ -6295,9 +6262,8 @@ debian-10/amd64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -6362,7 +6328,6 @@ debian-10/i386
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM i386/debian:10
@@ -6376,9 +6341,8 @@ debian-10/i386
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -7391,7 +7355,6 @@ debian-testing/amd64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM debian:testing
@@ -7404,9 +7367,8 @@ debian-testing/amd64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -7642,7 +7604,6 @@ debian-unstable/amd64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM debian:unstable
@@ -7655,9 +7616,8 @@ debian-unstable/amd64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -7894,7 +7854,6 @@ fedora-34/arm64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.0/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.1/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-master/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM fedora:34
@@ -7902,9 +7861,8 @@ fedora-34/arm64
 	RUN yum update -y
 	RUN yum groupinstall -y "Development Tools" && yum clean all
 	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel which m4 diffutils findutils bubblewrap && yum clean all
-	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN sed -i.bak '/LC_TIME LC_ALL LANGUAGE/aDefaults    env_keep += "OPAMYES OPAMJOBS OPAMVERBOSE"' /etc/sudoers
@@ -7966,7 +7924,6 @@ fedora-34/amd64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.0/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.1/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-master/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM fedora:34
@@ -7974,9 +7931,8 @@ fedora-34/amd64
 	RUN yum update -y
 	RUN yum groupinstall -y "Development Tools" && yum clean all
 	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel which m4 diffutils findutils bubblewrap && yum clean all
-	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN sed -i.bak '/LC_TIME LC_ALL LANGUAGE/aDefaults    env_keep += "OPAMYES OPAMJOBS OPAMVERBOSE"' /etc/sudoers
@@ -8306,7 +8262,6 @@ fedora-35/arm64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.0/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.1/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-master/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM fedora:35
@@ -8314,9 +8269,8 @@ fedora-35/arm64
 	RUN yum update -y
 	RUN yum groupinstall -y "Development Tools" && yum clean all
 	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel which m4 diffutils findutils bubblewrap && yum clean all
-	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN sed -i.bak '/LC_TIME LC_ALL LANGUAGE/aDefaults    env_keep += "OPAMYES OPAMJOBS OPAMVERBOSE"' /etc/sudoers
@@ -8378,7 +8332,6 @@ fedora-35/amd64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.0/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.1/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-master/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM fedora:35
@@ -8386,9 +8339,8 @@ fedora-35/amd64
 	RUN yum update -y
 	RUN yum groupinstall -y "Development Tools" && yum clean all
 	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel which m4 diffutils findutils bubblewrap && yum clean all
-	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN sed -i.bak '/LC_TIME LC_ALL LANGUAGE/aDefaults    env_keep += "OPAMYES OPAMJOBS OPAMVERBOSE"' /etc/sudoers
@@ -8738,7 +8690,6 @@ oraclelinux-7/amd64
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.0/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.1/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-master/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM oraclelinux:7
@@ -8747,9 +8698,8 @@ oraclelinux-7/amd64
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	RUN yum groupinstall -y "Development Tools" && yum clean all
 	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel which m4 diffutils findutils && yum clean all
-	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN sed -i.bak '/LC_TIME LC_ALL LANGUAGE/aDefaults    env_keep += "OPAMYES OPAMJOBS OPAMVERBOSE"' /etc/sudoers
@@ -8967,7 +8917,6 @@ oraclelinux-8/amd64
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.0/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.1/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-master/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM oraclelinux:8
@@ -8976,9 +8925,8 @@ oraclelinux-8/amd64
 	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
 	RUN yum groupinstall -y "Development Tools" && yum clean all
 	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel which m4 diffutils findutils && yum clean all
-	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN sed -i.bak '/LC_TIME LC_ALL LANGUAGE/aDefaults    env_keep += "OPAMYES OPAMJOBS OPAMVERBOSE"' /etc/sudoers
@@ -9232,7 +9180,6 @@ opensuse-15.3/amd64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.0/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.1/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-master/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM opensuse/leap:15.3
@@ -9242,9 +9189,8 @@ opensuse-15.3/amd64
 	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync
 	RUN zypper update -y
 	RUN zypper install --force-resolution -y bubblewrap
-	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN useradd -u 1000  -d /home/opam -m --user-group opam
@@ -9496,7 +9442,6 @@ ubuntu-18.04/s390x
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM ubuntu:bionic
@@ -9510,9 +9455,8 @@ ubuntu-18.04/s390x
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -9576,7 +9520,6 @@ ubuntu-18.04/ppc64le
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM ubuntu:bionic
@@ -9590,9 +9533,8 @@ ubuntu-18.04/ppc64le
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -9656,7 +9598,6 @@ ubuntu-18.04/arm64
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM ubuntu:bionic
@@ -9670,9 +9611,8 @@ ubuntu-18.04/arm64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -9736,7 +9676,6 @@ ubuntu-18.04/amd64
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM ubuntu:bionic
@@ -9750,9 +9689,8 @@ ubuntu-18.04/amd64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -10334,7 +10272,6 @@ ubuntu-20.04/s390x
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM ubuntu:focal
@@ -10348,9 +10285,8 @@ ubuntu-20.04/s390x
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -10414,7 +10350,6 @@ ubuntu-20.04/ppc64le
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM ubuntu:focal
@@ -10428,9 +10363,8 @@ ubuntu-20.04/ppc64le
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -10494,7 +10428,6 @@ ubuntu-20.04/arm64
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM ubuntu:focal
@@ -10508,9 +10441,8 @@ ubuntu-20.04/arm64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -10574,7 +10506,6 @@ ubuntu-20.04/amd64
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM ubuntu:focal
@@ -10588,9 +10519,8 @@ ubuntu-20.04/amd64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -10654,7 +10584,6 @@ ubuntu-20.04/riscv64
 	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
 	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM ubuntu:focal
@@ -10668,9 +10597,8 @@ ubuntu-20.04/riscv64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -11310,7 +11238,6 @@ ubuntu-22.04/s390x
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM ubuntu:jammy
@@ -11323,9 +11250,8 @@ ubuntu-22.04/s390x
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -11385,7 +11311,6 @@ ubuntu-22.04/ppc64le
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM ubuntu:jammy
@@ -11398,9 +11323,8 @@ ubuntu-22.04/ppc64le
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -11460,7 +11384,6 @@ ubuntu-22.04/arm64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM ubuntu:jammy
@@ -11473,9 +11396,8 @@ ubuntu-22.04/arm64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -11535,7 +11457,6 @@ ubuntu-22.04/amd64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM ubuntu:jammy
@@ -11548,9 +11469,8 @@ ubuntu-22.04/amd64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -11610,7 +11530,6 @@ ubuntu-22.04/riscv64
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-master/opam /usr/local/bin/opam-master && chmod a+x /usr/local/bin/opam-master && rm -rf /tmp/opam-build-master
 	FROM ubuntu:jammy
@@ -11623,9 +11542,8 @@ ubuntu-22.04/riscv64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
-	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
+	RUN ln /usr/bin/opam-2.1 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-master", "/usr/bin/opam-dev" ]
 	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
 	RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
