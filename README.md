@@ -1,4 +1,3 @@
-
 [![OCaml-CI Build Status][ocaml-ci-shield]][ocaml-ci]
 
 This is an [OCurrent][] pipeline that builds Docker images for OCaml, for
@@ -12,7 +11,7 @@ docker run --rm -it ocaml/opam:debian-11-ocaml-4.14
 ```
 
 These images are very similar to the ones previously available as `ocaml/opam2`,
-and use the same scripts from [avsm/ocaml-dockerfile][].
+and use the same scripts from [ocurrent/ocaml-dockerfile][].
 However, they are much smaller because each image only includes one OCaml compiler.
 
 Each image includes two Dockerfiles showing how it was made:
@@ -74,7 +73,7 @@ Once running with your chosen configuration, you can use the web UI to raise (or
 [OCurrent]: https://github.com/ocurrent/ocurrent
 [pipeline.ml]: https://github.com/ocurrent/docker-base-images/blob/master/src/pipeline.ml
 [conf.ml]: https://github.com/ocurrent/docker-base-images/blob/master/src/conf.ml
-[avsm/ocaml-dockerfile]: https://github.com/avsm/ocaml-dockerfile
+[ocurrent/ocaml-dockerfile]: https://github.com/ocurrent/ocaml-dockerfile
 [OCluster]: https://github.com/ocurrent/ocluster
 
 [ocaml-ci]: https://ci.ocamllabs.io/github/ocurrent/docker-base-images
