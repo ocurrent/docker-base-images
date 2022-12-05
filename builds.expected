@@ -1178,32 +1178,6 @@ ocurrent/opam-staging:alpine-3.17-ocaml-4.12-arm64, ocurrent/opam-staging:alpine
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:alpine-3.17-ocaml-4.12-afl-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-4.12-afl-amd64 -> ocaml/opam:alpine-3.17-ocaml-4.12-afl
 ocurrent/opam-staging:alpine-3.17-ocaml-4.12-afl-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-4.12-afl-amd64 -> ocaml/opam:alpine-ocaml-4.12-afl
-4.12.1+domains/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
-	RUN opam repo add multicore git+https://github.com/ocaml-multicore/multicore-opam --set-default
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.12 --packages=ocaml-variants.4.12.0+domains
-	RUN opam pin add -k version ocaml-variants 4.12.0+domains
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:alpine-3.17-ocaml-4.12-domains-amd64 -> ocaml/opam:alpine-3.17-ocaml-4.12-domains
-ocurrent/opam-staging:alpine-3.17-ocaml-4.12-domains-amd64 -> ocaml/opam:alpine-ocaml-4.12-domains
-4.12.1+domains+effects/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
-	RUN opam repo add multicore git+https://github.com/ocaml-multicore/multicore-opam --set-default
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.12 --packages=ocaml-variants.4.12.0+domains+effects
-	RUN opam pin add -k version ocaml-variants 4.12.0+domains+effects
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:alpine-3.17-ocaml-4.12-domains-effects-amd64 -> ocaml/opam:alpine-3.17-ocaml-4.12-domains-effects
-ocurrent/opam-staging:alpine-3.17-ocaml-4.12-domains-effects-amd64 -> ocaml/opam:alpine-ocaml-4.12-domains-effects
 4.12.1+flambda/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-arm64
@@ -4591,32 +4565,6 @@ ocurrent/opam-staging:debian-11-ocaml-4.12-s390x, ocurrent/opam-staging:debian-1
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:debian-11-ocaml-4.12-afl-s390x, ocurrent/opam-staging:debian-11-ocaml-4.12-afl-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.12-afl-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.12-afl-arm64, ocurrent/opam-staging:debian-11-ocaml-4.12-afl-amd64, ocurrent/opam-staging:debian-11-ocaml-4.12-afl-i386 -> ocaml/opam:debian-11-ocaml-4.12-afl
 ocurrent/opam-staging:debian-11-ocaml-4.12-afl-s390x, ocurrent/opam-staging:debian-11-ocaml-4.12-afl-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.12-afl-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.12-afl-arm64, ocurrent/opam-staging:debian-11-ocaml-4.12-afl-amd64, ocurrent/opam-staging:debian-11-ocaml-4.12-afl-i386 -> ocaml/opam:debian-ocaml-4.12-afl
-4.12.1+domains/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add multicore git+https://github.com/ocaml-multicore/multicore-opam --set-default
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.12 --packages=ocaml-variants.4.12.0+domains
-	RUN opam pin add -k version ocaml-variants 4.12.0+domains
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:debian-11-ocaml-4.12-domains-amd64 -> ocaml/opam:debian-11-ocaml-4.12-domains
-ocurrent/opam-staging:debian-11-ocaml-4.12-domains-amd64 -> ocaml/opam:debian-ocaml-4.12-domains
-4.12.1+domains+effects/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add multicore git+https://github.com/ocaml-multicore/multicore-opam --set-default
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.12 --packages=ocaml-variants.4.12.0+domains+effects
-	RUN opam pin add -k version ocaml-variants 4.12.0+domains+effects
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:debian-11-ocaml-4.12-domains-effects-amd64 -> ocaml/opam:debian-11-ocaml-4.12-domains-effects
-ocurrent/opam-staging:debian-11-ocaml-4.12-domains-effects-amd64 -> ocaml/opam:debian-ocaml-4.12-domains-effects
 4.12.1+flambda/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
