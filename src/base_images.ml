@@ -80,7 +80,7 @@ let main () config mode channel capnp_address github_auth submission_uri staging
     let routes =
       Routes.(s "login" /? nil @--> Current_github.Auth.login github_auth) ::
       Current_web.routes engine in
-    let site = Current_web.Site.v ?authn ~secure_cookies ~has_role ~name:program_name routes in
+    let site = Current_web.Site.v ?authn ~secure_cookies ~has_role ~name:program_name ~refresh_pipeline:60 routes in
     Lwt.choose [
       Current.Engine.thread engine;
       Current_web.run ~mode site;
