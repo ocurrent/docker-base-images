@@ -2018,10 +2018,10 @@ centos-7/amd64
 	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel which m4 diffutils findutils which tar curl xz libcap-devel openssl && yum clean all
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.0/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.1/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -5902,10 +5902,10 @@ debian-10/s390x
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -5982,10 +5982,10 @@ debian-10/ppc64le
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -6063,10 +6063,10 @@ debian-10/arm32v7
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -6144,10 +6144,10 @@ debian-10/arm64
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -6224,10 +6224,10 @@ debian-10/amd64
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -6305,10 +6305,10 @@ debian-10/i386
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -8681,10 +8681,10 @@ oraclelinux-7/amd64
 	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel which m4 diffutils findutils which tar curl xz libcap-devel openssl && yum clean all
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.0/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.1/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -8910,10 +8910,10 @@ oraclelinux-8/amd64
 	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel which m4 diffutils findutils which tar curl xz libcap-devel openssl && yum clean all
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.0/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.1/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -9439,10 +9439,10 @@ ubuntu-18.04/s390x
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -9519,10 +9519,10 @@ ubuntu-18.04/ppc64le
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -9599,10 +9599,10 @@ ubuntu-18.04/arm64
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -9679,10 +9679,10 @@ ubuntu-18.04/amd64
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -10277,10 +10277,10 @@ ubuntu-20.04/s390x
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -10357,10 +10357,10 @@ ubuntu-20.04/ppc64le
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -10437,10 +10437,10 @@ ubuntu-20.04/arm64
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -10517,10 +10517,10 @@ ubuntu-20.04/amd64
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -10597,10 +10597,10 @@ ubuntu-20.04/riscv64
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.6.2/bubblewrap-0.6.2.tar.xz
-	RUN tar xf bubblewrap-0.6.2.tar.xz
-	RUN cd bubblewrap-0.6.2 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.6.2.tar.xz bubblewrap-0.6.2
+	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
+	RUN tar xf bubblewrap-0.7.0.tar.xz
+	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
+	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.0/opam /usr/local/bin/opam-2.0 && chmod a+x /usr/local/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
 	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/local/bin && cp /tmp/opam-build-2.1/opam /usr/local/bin/opam-2.1 && chmod a+x /usr/local/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
@@ -13191,7 +13191,7 @@ ocurrent/opam-staging:ubuntu-22.10-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 windows-mingw
 windows-mingw-1809/amd64
 	# escape=`
-	FROM mcr.microsoft.com/windows:1809-KB5019966 as winget-builder
+	FROM mcr.microsoft.com/windows:1809-KB5022286 as winget-builder
 	USER ContainerAdministrator
 	ADD [ "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle", "C:\\TEMP\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip" ]
 	RUN powershell -Command "Expand-Archive -LiteralPath C:\TEMP\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip -DestinationPath C:\TEMP\winget-cli -Force"
@@ -13203,7 +13203,7 @@ windows-mingw-1809/amd64
 	  move "C:\TEMP\winget-cli\\resources.pri" "C:\Program Files\winget-cli\"
 	# escape=`
 	# Autogenerated by OCaml-Dockerfile scripts
-	FROM mcr.microsoft.com/windows:1809-KB5019966
+	FROM mcr.microsoft.com/windows:1809-KB5022286
 	LABEL distro_style="windows"
 	USER ContainerAdministrator
 	ADD [ "https://aka.ms/vs/16/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
@@ -13256,7 +13256,7 @@ windows-mingw-1809/amd64
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 windows-mingw-21H2/amd64
 	# escape=`
-	FROM mcr.microsoft.com/windows/server:ltsc2022-KB5019081 as winget-builder
+	FROM mcr.microsoft.com/windows/server:ltsc2022-KB5022291 as winget-builder
 	USER ContainerAdministrator
 	ADD [ "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle", "C:\\TEMP\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip" ]
 	RUN powershell -Command "Expand-Archive -LiteralPath C:\TEMP\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip -DestinationPath C:\TEMP\winget-cli -Force"
@@ -13268,7 +13268,7 @@ windows-mingw-21H2/amd64
 	  move "C:\TEMP\winget-cli\\resources.pri" "C:\Program Files\winget-cli\"
 	# escape=`
 	# Autogenerated by OCaml-Dockerfile scripts
-	FROM mcr.microsoft.com/windows/server:ltsc2022-KB5019081
+	FROM mcr.microsoft.com/windows/server:ltsc2022-KB5022291
 	LABEL distro_style="windows"
 	USER ContainerAdministrator
 	ADD [ "https://aka.ms/vs/16/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
@@ -13633,7 +13633,7 @@ ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-
 windows-msvc
 windows-msvc-1809/amd64
 	# escape=`
-	FROM mcr.microsoft.com/windows:1809-KB5019966 as winget-builder
+	FROM mcr.microsoft.com/windows:1809-KB5022286 as winget-builder
 	USER ContainerAdministrator
 	ADD [ "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle", "C:\\TEMP\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip" ]
 	RUN powershell -Command "Expand-Archive -LiteralPath C:\TEMP\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip -DestinationPath C:\TEMP\winget-cli -Force"
@@ -13645,7 +13645,7 @@ windows-msvc-1809/amd64
 	  move "C:\TEMP\winget-cli\\resources.pri" "C:\Program Files\winget-cli\"
 	# escape=`
 	# Autogenerated by OCaml-Dockerfile scripts
-	FROM mcr.microsoft.com/windows:1809-KB5019966
+	FROM mcr.microsoft.com/windows:1809-KB5022286
 	LABEL distro_style="windows"
 	USER ContainerAdministrator
 	ADD [ "https://aka.ms/vs/16/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
@@ -13708,7 +13708,7 @@ windows-msvc-1809/amd64
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 windows-msvc-21H2/amd64
 	# escape=`
-	FROM mcr.microsoft.com/windows/server:ltsc2022-KB5019081 as winget-builder
+	FROM mcr.microsoft.com/windows/server:ltsc2022-KB5022291 as winget-builder
 	USER ContainerAdministrator
 	ADD [ "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle", "C:\\TEMP\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip" ]
 	RUN powershell -Command "Expand-Archive -LiteralPath C:\TEMP\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip -DestinationPath C:\TEMP\winget-cli -Force"
@@ -13720,7 +13720,7 @@ windows-msvc-21H2/amd64
 	  move "C:\TEMP\winget-cli\\resources.pri" "C:\Program Files\winget-cli\"
 	# escape=`
 	# Autogenerated by OCaml-Dockerfile scripts
-	FROM mcr.microsoft.com/windows/server:ltsc2022-KB5019081
+	FROM mcr.microsoft.com/windows/server:ltsc2022-KB5022291
 	LABEL distro_style="windows"
 	USER ContainerAdministrator
 	ADD [ "https://aka.ms/vs/16/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
