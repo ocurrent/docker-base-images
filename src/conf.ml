@@ -71,7 +71,10 @@ let distros = Distro.(active_distros `X86_64 |> List.filter (fun d ->
   | `Linux | `Windows -> true
   | _ -> false))
 
-let arches_for ~distro = Distro.distro_arches Ocaml_version.Releases.latest distro
+let arches_for ~distro =
+  match distro with
+  | `Windows (`Msvc, _) -> [`X86_64]
+  | _ -> Distro.distro_arches Ocaml_version.Releases.latest distro
 
 let win10_revision : Distro.win10_lcu = Dockerfile_opam.Distro.win10_current_lcu
 

@@ -362,35 +362,33 @@ ocurrent/opam-staging:alpine-3.16-ocaml-4.12-arm64, ocurrent/opam-staging:alpine
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:alpine-3.16-ocaml-4.13-arm64, ocurrent/opam-staging:alpine-3.16-ocaml-4.13-amd64 -> ocaml/opam:alpine-3.16-ocaml-4.13
-4.14.0/arm64
+4.14.1/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.16-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/amd64
+4.14.1/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.16-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:alpine-3.16-ocaml-4.14-arm64, ocurrent/opam-staging:alpine-3.16-ocaml-4.14-amd64 -> ocaml/opam:alpine-3.16
 ocurrent/opam-staging:alpine-3.16-ocaml-4.14-arm64, ocurrent/opam-staging:alpine-3.16-ocaml-4.14-amd64 -> ocaml/opam:alpine-3.16-ocaml-4.14
 5.0.0/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.16-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -398,14 +396,14 @@ ocurrent/opam-staging:alpine-3.16-ocaml-4.14-arm64, ocurrent/opam-staging:alpine
 5.0.0/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.16-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:alpine-3.16-ocaml-5.0-arm64, ocurrent/opam-staging:alpine-3.16-ocaml-5.0-amd64 -> ocaml/opam:alpine-3.16
 ocurrent/opam-staging:alpine-3.16-ocaml-5.0-arm64, ocurrent/opam-staging:alpine-3.16-ocaml-5.0-amd64 -> ocaml/opam:alpine-3.16-ocaml-5.0
 5.1.0/arm64
 	# syntax=docker/dockerfile:1
@@ -1426,148 +1424,146 @@ ocurrent/opam-staging:alpine-3.17-ocaml-4.13-nnpchecker-amd64 -> ocaml/opam:alpi
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:alpine-3.17-ocaml-4.13-no-flat-float-array-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-4.13-no-flat-float-array-amd64 -> ocaml/opam:alpine-3.17-ocaml-4.13-no-flat-float-array
 ocurrent/opam-staging:alpine-3.17-ocaml-4.13-no-flat-float-array-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-4.13-no-flat-float-array-amd64 -> ocaml/opam:alpine-ocaml-4.13-no-flat-float-array
-4.14.0/arm64
+4.14.1/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/amd64
+4.14.1/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:alpine-3.17-ocaml-4.14-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-4.14-amd64 -> ocaml/opam:alpine
-ocurrent/opam-staging:alpine-3.17-ocaml-4.14-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-4.14-amd64 -> ocaml/opam:alpine-3.17
 ocurrent/opam-staging:alpine-3.17-ocaml-4.14-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-4.14-amd64 -> ocaml/opam:alpine-3.17-ocaml-4.14
 ocurrent/opam-staging:alpine-3.17-ocaml-4.14-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-4.14-amd64 -> ocaml/opam:alpine-ocaml-4.14
-4.14.0+afl/arm64
+4.14.1+afl/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+afl/amd64
+4.14.1+afl/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:alpine-3.17-ocaml-4.14-afl-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-4.14-afl-amd64 -> ocaml/opam:alpine-3.17-ocaml-4.14-afl
 ocurrent/opam-staging:alpine-3.17-ocaml-4.14-afl-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-4.14-afl-amd64 -> ocaml/opam:alpine-ocaml-4.14-afl
-4.14.0+flambda/arm64
+4.14.1+flambda/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+flambda/amd64
+4.14.1+flambda/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:alpine-3.17-ocaml-4.14-flambda-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-4.14-flambda-amd64 -> ocaml/opam:alpine-3.17-ocaml-4.14-flambda
 ocurrent/opam-staging:alpine-3.17-ocaml-4.14-flambda-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-4.14-flambda-amd64 -> ocaml/opam:alpine-ocaml-4.14-flambda
-4.14.0+flambda+fp/amd64
+4.14.1+flambda+fp/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-flambda-fp
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-flambda-fp
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:alpine-3.17-ocaml-4.14-flambda-fp-amd64 -> ocaml/opam:alpine-3.17-ocaml-4.14-flambda-fp
 ocurrent/opam-staging:alpine-3.17-ocaml-4.14-flambda-fp-amd64 -> ocaml/opam:alpine-ocaml-4.14-flambda-fp
-4.14.0+fp/amd64
+4.14.1+fp/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-fp
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-fp
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:alpine-3.17-ocaml-4.14-fp-amd64 -> ocaml/opam:alpine-3.17-ocaml-4.14-fp
 ocurrent/opam-staging:alpine-3.17-ocaml-4.14-fp-amd64 -> ocaml/opam:alpine-ocaml-4.14-fp
-4.14.0+nnp/arm64
+4.14.1+nnp/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-nnp
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-nnp
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+nnp/amd64
+4.14.1+nnp/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-nnp
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-nnp
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:alpine-3.17-ocaml-4.14-nnp-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-4.14-nnp-amd64 -> ocaml/opam:alpine-3.17-ocaml-4.14-nnp
 ocurrent/opam-staging:alpine-3.17-ocaml-4.14-nnp-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-4.14-nnp-amd64 -> ocaml/opam:alpine-ocaml-4.14-nnp
-4.14.0+nnpchecker/amd64
+4.14.1+nnpchecker/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-nnpchecker
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-nnpchecker
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:alpine-3.17-ocaml-4.14-nnpchecker-amd64 -> ocaml/opam:alpine-3.17-ocaml-4.14-nnpchecker
 ocurrent/opam-staging:alpine-3.17-ocaml-4.14-nnpchecker-amd64 -> ocaml/opam:alpine-ocaml-4.14-nnpchecker
-4.14.0+no-flat-float-array/arm64
+4.14.1+no-flat-float-array/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+no-flat-float-array/amd64
+4.14.1+no-flat-float-array/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -1577,10 +1573,9 @@ ocurrent/opam-staging:alpine-3.17-ocaml-4.14-no-flat-float-array-arm64, ocurrent
 5.0.0/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -1588,23 +1583,23 @@ ocurrent/opam-staging:alpine-3.17-ocaml-4.14-no-flat-float-array-arm64, ocurrent
 5.0.0/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:alpine-3.17-ocaml-5.0-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-5.0-amd64 -> ocaml/opam:alpine
+ocurrent/opam-staging:alpine-3.17-ocaml-5.0-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-5.0-amd64 -> ocaml/opam:alpine-3.17
 ocurrent/opam-staging:alpine-3.17-ocaml-5.0-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-5.0-amd64 -> ocaml/opam:alpine-3.17-ocaml-5.0
 ocurrent/opam-staging:alpine-3.17-ocaml-5.0-arm64, ocurrent/opam-staging:alpine-3.17-ocaml-5.0-amd64 -> ocaml/opam:alpine-ocaml-5.0
 5.0.0+afl/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -1612,10 +1607,9 @@ ocurrent/opam-staging:alpine-3.17-ocaml-5.0-arm64, ocurrent/opam-staging:alpine-
 5.0.0+afl/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -1625,10 +1619,9 @@ ocurrent/opam-staging:alpine-3.17-ocaml-5.0-afl-arm64, ocurrent/opam-staging:alp
 5.0.0+flambda/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -1636,10 +1629,9 @@ ocurrent/opam-staging:alpine-3.17-ocaml-5.0-afl-arm64, ocurrent/opam-staging:alp
 5.0.0+flambda/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -1649,10 +1641,9 @@ ocurrent/opam-staging:alpine-3.17-ocaml-5.0-flambda-arm64, ocurrent/opam-staging
 5.0.0+no-flat-float-array/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -1660,10 +1651,9 @@ ocurrent/opam-staging:alpine-3.17-ocaml-5.0-flambda-arm64, ocurrent/opam-staging
 5.0.0+no-flat-float-array/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -1968,29 +1958,28 @@ ocurrent/opam-staging:archlinux-ocaml-4.12-amd64 -> ocaml/opam:archlinux-ocaml-4
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:archlinux-ocaml-4.13-amd64 -> ocaml/opam:archlinux-ocaml-4.13
-4.14.0/amd64
+4.14.1/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:archlinux-ocaml-4.14-amd64 -> ocaml/opam:archlinux
 ocurrent/opam-staging:archlinux-ocaml-4.14-amd64 -> ocaml/opam:archlinux-ocaml-4.14
 5.0.0/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:archlinux-ocaml-5.0-amd64 -> ocaml/opam:archlinux
 ocurrent/opam-staging:archlinux-ocaml-5.0-amd64 -> ocaml/opam:archlinux-ocaml-5.0
 5.1.0/amd64
 	# syntax=docker/dockerfile:1
@@ -2004,253 +1993,6 @@ ocurrent/opam-staging:archlinux-ocaml-5.0-amd64 -> ocaml/opam:archlinux-ocaml-5.
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:archlinux-ocaml-5.1-amd64 -> ocaml/opam:archlinux-ocaml-5.1
-centos-7
-centos-7/amd64
-	# syntax=docker/dockerfile:1
-	# Autogenerated by OCaml-Dockerfile scripts
-	FROM centos:7
-	LABEL distro_style="rpm"
-	RUN yum --version || dnf install -y yum
-	RUN touch /var/lib/rpm/*
-	RUN yum install -y yum-plugin-ovl && yum clean all
-	RUN yum update -y
-	RUN yum groupinstall -y "Development Tools" && yum clean all
-	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel which m4 diffutils findutils which tar curl xz libcap-devel openssl && yum clean all
-	RUN git config --global user.email "docker@example.com"
-	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
-	RUN tar xf bubblewrap-0.7.0.tar.xz
-	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
-	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.0/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.1/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-master/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam-build-master
-	FROM centos:7
-	RUN yum --version || dnf install -y yum
-	RUN touch /var/lib/rpm/*
-	RUN yum install -y yum-plugin-ovl && yum clean all
-	RUN yum update -y
-	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
-	RUN yum groupinstall -y "Development Tools" && yum clean all
-	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel which m4 diffutils findutils && yum clean all
-	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
-	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
-	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
-	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
-	RUN sed -i.bak '/LC_TIME LC_ALL LANGUAGE/aDefaults    env_keep += "OPAMYES OPAMJOBS OPAMVERBOSE"' /etc/sudoers
-	COPY <<-EOF /etc/sudoers.d/opam
-		opam ALL=(ALL:ALL) NOPASSWD:ALL
-	EOF
-	RUN chmod 440 /etc/sudoers.d/opam
-	RUN chown root:root /etc/sudoers.d/opam
-	RUN sed -i.bak 's/^Defaults.*requiretty//g' /etc/sudoers
-	RUN useradd -d /home/opam -u 1000 -m -s /bin/bash opam
-	RUN passwd -l opam
-	RUN chown -R opam:opam /home/opam
-	USER opam
-	ENV HOME="/home/opam"
-	WORKDIR /home/opam
-	RUN mkdir .ssh
-	RUN chmod 700 .ssh
-	COPY --chown=opam <<-EOF /home/opam/.opamrc-nosandbox
-		wrap-build-commands: []
-		wrap-install-commands: []
-		wrap-remove-commands: []
-		required-tools: []
-	EOF
-	COPY --chown=opam <<-EOF /home/opam/opam-sandbox-disable
-		#!/bin/sh
-		cp ~/.opamrc-nosandbox ~/.opamrc
-		echo --- opam sandboxing disabled
-	EOF
-	RUN chmod a+x /home/opam/opam-sandbox-disable
-	RUN sudo mv /home/opam/opam-sandbox-disable /usr/bin/opam-sandbox-disable
-	COPY --chown=opam <<-EOF /home/opam/.opamrc-sandbox
-		wrap-build-commands: ["%{hooks}%/sandbox.sh" "build"]
-		wrap-install-commands: ["%{hooks}%/sandbox.sh" "install"]
-		wrap-remove-commands: ["%{hooks}%/sandbox.sh" "remove"]
-	EOF
-	COPY --chown=opam <<-EOF /home/opam/opam-sandbox-enable
-		#!/bin/sh
-		cp ~/.opamrc-sandbox ~/.opamrc
-		echo --- opam sandboxing enabled
-	EOF
-	RUN chmod a+x /home/opam/opam-sandbox-enable
-	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
-	RUN git config --global user.email "docker@example.com"
-	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
-	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
-	RUN rm -rf .opam/repo/default/.git
-	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
-ocurrent/opam-staging:centos-7-opam-amd64 -> ocaml/opam:centos-7-opam
-4.02.3/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:centos-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.02 --packages=ocaml-base-compiler.4.02.3
-	RUN opam pin add -k version ocaml-base-compiler 4.02.3
-	RUN opam install -y opam-depext
-	RUN opam install -y ocaml-secondary-compiler
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:centos-7-ocaml-4.02-amd64 -> ocaml/opam:centos-7-ocaml-4.02
-ocurrent/opam-staging:centos-7-ocaml-4.02-amd64 -> ocaml/opam:centos-ocaml-4.02
-4.03.0/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:centos-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.03 --packages=ocaml-base-compiler.4.03.0
-	RUN opam pin add -k version ocaml-base-compiler 4.03.0
-	RUN opam install -y opam-depext
-	RUN opam install -y ocaml-secondary-compiler
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:centos-7-ocaml-4.03-amd64 -> ocaml/opam:centos-7-ocaml-4.03
-ocurrent/opam-staging:centos-7-ocaml-4.03-amd64 -> ocaml/opam:centos-ocaml-4.03
-4.04.2/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:centos-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.04 --packages=ocaml-base-compiler.4.04.2
-	RUN opam pin add -k version ocaml-base-compiler 4.04.2
-	RUN opam install -y opam-depext
-	RUN opam install -y ocaml-secondary-compiler
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:centos-7-ocaml-4.04-amd64 -> ocaml/opam:centos-7-ocaml-4.04
-ocurrent/opam-staging:centos-7-ocaml-4.04-amd64 -> ocaml/opam:centos-ocaml-4.04
-4.05.0/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:centos-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.05 --packages=ocaml-base-compiler.4.05.0
-	RUN opam pin add -k version ocaml-base-compiler 4.05.0
-	RUN opam install -y opam-depext
-	RUN opam install -y ocaml-secondary-compiler
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:centos-7-ocaml-4.05-amd64 -> ocaml/opam:centos-7-ocaml-4.05
-ocurrent/opam-staging:centos-7-ocaml-4.05-amd64 -> ocaml/opam:centos-ocaml-4.05
-4.06.1/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:centos-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.06 --packages=ocaml-base-compiler.4.06.1
-	RUN opam pin add -k version ocaml-base-compiler 4.06.1
-	RUN opam install -y opam-depext
-	RUN opam install -y ocaml-secondary-compiler
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:centos-7-ocaml-4.06-amd64 -> ocaml/opam:centos-7-ocaml-4.06
-ocurrent/opam-staging:centos-7-ocaml-4.06-amd64 -> ocaml/opam:centos-ocaml-4.06
-4.07.1/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:centos-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.07 --packages=ocaml-base-compiler.4.07.1
-	RUN opam pin add -k version ocaml-base-compiler 4.07.1
-	RUN opam install -y opam-depext
-	RUN opam install -y ocaml-secondary-compiler
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:centos-7-ocaml-4.07-amd64 -> ocaml/opam:centos-7-ocaml-4.07
-ocurrent/opam-staging:centos-7-ocaml-4.07-amd64 -> ocaml/opam:centos-ocaml-4.07
-4.08.1/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:centos-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
-	RUN opam pin add -k version ocaml-base-compiler 4.08.1
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:centos-7-ocaml-4.08-amd64 -> ocaml/opam:centos-7-ocaml-4.08
-ocurrent/opam-staging:centos-7-ocaml-4.08-amd64 -> ocaml/opam:centos-ocaml-4.08
-4.09.1/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:centos-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
-	RUN opam pin add -k version ocaml-base-compiler 4.09.1
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:centos-7-ocaml-4.09-amd64 -> ocaml/opam:centos-7-ocaml-4.09
-ocurrent/opam-staging:centos-7-ocaml-4.09-amd64 -> ocaml/opam:centos-ocaml-4.09
-4.10.2/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:centos-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
-	RUN opam pin add -k version ocaml-base-compiler 4.10.2
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:centos-7-ocaml-4.10-amd64 -> ocaml/opam:centos-7-ocaml-4.10
-ocurrent/opam-staging:centos-7-ocaml-4.10-amd64 -> ocaml/opam:centos-ocaml-4.10
-4.11.2/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:centos-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
-	RUN opam pin add -k version ocaml-base-compiler 4.11.2
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:centos-7-ocaml-4.11-amd64 -> ocaml/opam:centos-7-ocaml-4.11
-ocurrent/opam-staging:centos-7-ocaml-4.11-amd64 -> ocaml/opam:centos-ocaml-4.11
-4.12.1/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:centos-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
-	RUN opam pin add -k version ocaml-base-compiler 4.12.1
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:centos-7-ocaml-4.12-amd64 -> ocaml/opam:centos-7-ocaml-4.12
-ocurrent/opam-staging:centos-7-ocaml-4.12-amd64 -> ocaml/opam:centos-ocaml-4.12
-4.13.1/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:centos-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
-	RUN opam pin add -k version ocaml-base-compiler 4.13.1
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:centos-7-ocaml-4.13-amd64 -> ocaml/opam:centos-7-ocaml-4.13
-ocurrent/opam-staging:centos-7-ocaml-4.13-amd64 -> ocaml/opam:centos-ocaml-4.13
-4.14.0/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:centos-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:centos-7-ocaml-4.14-amd64 -> ocaml/opam:centos
-ocurrent/opam-staging:centos-7-ocaml-4.14-amd64 -> ocaml/opam:centos-7
-ocurrent/opam-staging:centos-7-ocaml-4.14-amd64 -> ocaml/opam:centos-7-ocaml-4.14
-ocurrent/opam-staging:centos-7-ocaml-4.14-amd64 -> ocaml/opam:centos-ocaml-4.14
 debian-11
 debian-11/s390x
 	# syntax=docker/dockerfile:1
@@ -5151,359 +4893,356 @@ ocurrent/opam-staging:debian-11-ocaml-4.13-nnpchecker-amd64 -> ocaml/opam:debian
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-s390x, ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-arm64, ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-amd64, ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-i386 -> ocaml/opam:debian-11-ocaml-4.13-no-flat-float-array
 ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-s390x, ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-arm64, ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-amd64, ocurrent/opam-staging:debian-11-ocaml-4.13-no-flat-float-array-i386 -> ocaml/opam:debian-ocaml-4.13-no-flat-float-array
-4.14.0/s390x
+4.14.1/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/ppc64le
+4.14.1/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-ppc64le
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/arm32v7
+4.14.1/arm32v7
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/arm64
+4.14.1/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/amd64
+4.14.1/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/i386
+4.14.1/i386
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:debian-11-ocaml-4.14-s390x, ocurrent/opam-staging:debian-11-ocaml-4.14-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.14-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.14-arm64, ocurrent/opam-staging:debian-11-ocaml-4.14-amd64, ocurrent/opam-staging:debian-11-ocaml-4.14-i386 -> ocaml/opam:latest
-ocurrent/opam-staging:debian-11-ocaml-4.14-s390x, ocurrent/opam-staging:debian-11-ocaml-4.14-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.14-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.14-arm64, ocurrent/opam-staging:debian-11-ocaml-4.14-amd64, ocurrent/opam-staging:debian-11-ocaml-4.14-i386 -> ocaml/opam:debian
-ocurrent/opam-staging:debian-11-ocaml-4.14-s390x, ocurrent/opam-staging:debian-11-ocaml-4.14-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.14-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.14-arm64, ocurrent/opam-staging:debian-11-ocaml-4.14-amd64, ocurrent/opam-staging:debian-11-ocaml-4.14-i386 -> ocaml/opam:debian-11
 ocurrent/opam-staging:debian-11-ocaml-4.14-s390x, ocurrent/opam-staging:debian-11-ocaml-4.14-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.14-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.14-arm64, ocurrent/opam-staging:debian-11-ocaml-4.14-amd64, ocurrent/opam-staging:debian-11-ocaml-4.14-i386 -> ocaml/opam:debian-11-ocaml-4.14
 ocurrent/opam-staging:debian-11-ocaml-4.14-s390x, ocurrent/opam-staging:debian-11-ocaml-4.14-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.14-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.14-arm64, ocurrent/opam-staging:debian-11-ocaml-4.14-amd64, ocurrent/opam-staging:debian-11-ocaml-4.14-i386 -> ocaml/opam:debian-ocaml-4.14
-4.14.0+afl/s390x
+4.14.1+afl/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+afl/ppc64le
+4.14.1+afl/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-ppc64le
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+afl/arm32v7
+4.14.1+afl/arm32v7
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+afl/arm64
+4.14.1+afl/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+afl/amd64
+4.14.1+afl/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+afl/i386
+4.14.1+afl/i386
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:debian-11-ocaml-4.14-afl-s390x, ocurrent/opam-staging:debian-11-ocaml-4.14-afl-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.14-afl-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.14-afl-arm64, ocurrent/opam-staging:debian-11-ocaml-4.14-afl-amd64, ocurrent/opam-staging:debian-11-ocaml-4.14-afl-i386 -> ocaml/opam:debian-11-ocaml-4.14-afl
 ocurrent/opam-staging:debian-11-ocaml-4.14-afl-s390x, ocurrent/opam-staging:debian-11-ocaml-4.14-afl-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.14-afl-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.14-afl-arm64, ocurrent/opam-staging:debian-11-ocaml-4.14-afl-amd64, ocurrent/opam-staging:debian-11-ocaml-4.14-afl-i386 -> ocaml/opam:debian-ocaml-4.14-afl
-4.14.0+flambda/s390x
+4.14.1+flambda/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+flambda/ppc64le
+4.14.1+flambda/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-ppc64le
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+flambda/arm32v7
+4.14.1+flambda/arm32v7
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+flambda/arm64
+4.14.1+flambda/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+flambda/amd64
+4.14.1+flambda/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+flambda/i386
+4.14.1+flambda/i386
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-s390x, ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-arm64, ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-amd64, ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-i386 -> ocaml/opam:debian-11-ocaml-4.14-flambda
 ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-s390x, ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-arm64, ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-amd64, ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-i386 -> ocaml/opam:debian-ocaml-4.14-flambda
-4.14.0+flambda+fp/amd64
+4.14.1+flambda+fp/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-flambda-fp
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-flambda-fp
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-fp-amd64 -> ocaml/opam:debian-11-ocaml-4.14-flambda-fp
 ocurrent/opam-staging:debian-11-ocaml-4.14-flambda-fp-amd64 -> ocaml/opam:debian-ocaml-4.14-flambda-fp
-4.14.0+fp/amd64
+4.14.1+fp/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-fp
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-fp
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:debian-11-ocaml-4.14-fp-amd64 -> ocaml/opam:debian-11-ocaml-4.14-fp
 ocurrent/opam-staging:debian-11-ocaml-4.14-fp-amd64 -> ocaml/opam:debian-ocaml-4.14-fp
-4.14.0+nnp/s390x
+4.14.1+nnp/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-nnp
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-nnp
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+nnp/ppc64le
+4.14.1+nnp/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-ppc64le
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-nnp
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-nnp
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+nnp/arm32v7
+4.14.1+nnp/arm32v7
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-nnp
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-nnp
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+nnp/arm64
+4.14.1+nnp/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-nnp
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-nnp
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+nnp/amd64
+4.14.1+nnp/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-nnp
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-nnp
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+nnp/i386
+4.14.1+nnp/i386
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-nnp
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-nnp
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-s390x, ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-arm64, ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-amd64, ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-i386 -> ocaml/opam:debian-11-ocaml-4.14-nnp
 ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-s390x, ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-ppc64le, ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-arm32v7, ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-arm64, ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-amd64, ocurrent/opam-staging:debian-11-ocaml-4.14-nnp-i386 -> ocaml/opam:debian-ocaml-4.14-nnp
-4.14.0+nnpchecker/amd64
+4.14.1+nnpchecker/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-nnpchecker
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-nnpchecker
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:debian-11-ocaml-4.14-nnpchecker-amd64 -> ocaml/opam:debian-11-ocaml-4.14-nnpchecker
 ocurrent/opam-staging:debian-11-ocaml-4.14-nnpchecker-amd64 -> ocaml/opam:debian-ocaml-4.14-nnpchecker
-4.14.0+no-flat-float-array/s390x
+4.14.1+no-flat-float-array/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+no-flat-float-array/ppc64le
+4.14.1+no-flat-float-array/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-ppc64le
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+no-flat-float-array/arm32v7
+4.14.1+no-flat-float-array/arm32v7
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+no-flat-float-array/arm64
+4.14.1+no-flat-float-array/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+no-flat-float-array/amd64
+4.14.1+no-flat-float-array/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0+no-flat-float-array/i386
+4.14.1+no-flat-float-array/i386
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.0+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 4.14.0+options
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 4.14.1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
@@ -5513,10 +5252,9 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-no-flat-float-array-s390x, ocurrent/o
 5.0.0/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -5524,10 +5262,9 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-no-flat-float-array-s390x, ocurrent/o
 5.0.0/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-ppc64le
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -5536,10 +5273,9 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-no-flat-float-array-s390x, ocurrent/o
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
@@ -5547,10 +5283,9 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-no-flat-float-array-s390x, ocurrent/o
 5.0.0/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -5558,10 +5293,9 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-no-flat-float-array-s390x, ocurrent/o
 5.0.0/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -5570,23 +5304,24 @@ ocurrent/opam-staging:debian-11-ocaml-4.14-no-flat-float-array-s390x, ocurrent/o
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:debian-11-ocaml-5.0-s390x, ocurrent/opam-staging:debian-11-ocaml-5.0-ppc64le, ocurrent/opam-staging:debian-11-ocaml-5.0-arm32v7, ocurrent/opam-staging:debian-11-ocaml-5.0-arm64, ocurrent/opam-staging:debian-11-ocaml-5.0-amd64, ocurrent/opam-staging:debian-11-ocaml-5.0-i386 -> ocaml/opam:latest
+ocurrent/opam-staging:debian-11-ocaml-5.0-s390x, ocurrent/opam-staging:debian-11-ocaml-5.0-ppc64le, ocurrent/opam-staging:debian-11-ocaml-5.0-arm32v7, ocurrent/opam-staging:debian-11-ocaml-5.0-arm64, ocurrent/opam-staging:debian-11-ocaml-5.0-amd64, ocurrent/opam-staging:debian-11-ocaml-5.0-i386 -> ocaml/opam:debian
+ocurrent/opam-staging:debian-11-ocaml-5.0-s390x, ocurrent/opam-staging:debian-11-ocaml-5.0-ppc64le, ocurrent/opam-staging:debian-11-ocaml-5.0-arm32v7, ocurrent/opam-staging:debian-11-ocaml-5.0-arm64, ocurrent/opam-staging:debian-11-ocaml-5.0-amd64, ocurrent/opam-staging:debian-11-ocaml-5.0-i386 -> ocaml/opam:debian-11
 ocurrent/opam-staging:debian-11-ocaml-5.0-s390x, ocurrent/opam-staging:debian-11-ocaml-5.0-ppc64le, ocurrent/opam-staging:debian-11-ocaml-5.0-arm32v7, ocurrent/opam-staging:debian-11-ocaml-5.0-arm64, ocurrent/opam-staging:debian-11-ocaml-5.0-amd64, ocurrent/opam-staging:debian-11-ocaml-5.0-i386 -> ocaml/opam:debian-11-ocaml-5.0
 ocurrent/opam-staging:debian-11-ocaml-5.0-s390x, ocurrent/opam-staging:debian-11-ocaml-5.0-ppc64le, ocurrent/opam-staging:debian-11-ocaml-5.0-arm32v7, ocurrent/opam-staging:debian-11-ocaml-5.0-arm64, ocurrent/opam-staging:debian-11-ocaml-5.0-amd64, ocurrent/opam-staging:debian-11-ocaml-5.0-i386 -> ocaml/opam:debian-ocaml-5.0
 5.0.0+afl/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -5594,10 +5329,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.0-s390x, ocurrent/opam-staging:debian-11
 5.0.0+afl/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -5607,10 +5341,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.0-afl-arm64, ocurrent/opam-staging:debia
 5.0.0+flambda/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -5618,10 +5351,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.0-afl-arm64, ocurrent/opam-staging:debia
 5.0.0+flambda/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -5631,10 +5363,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.0-flambda-arm64, ocurrent/opam-staging:d
 5.0.0+no-flat-float-array/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -5642,10 +5373,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.0-flambda-arm64, ocurrent/opam-staging:d
 5.0.0+no-flat-float-array/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-ppc64le
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -5654,10 +5384,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.0-flambda-arm64, ocurrent/opam-staging:d
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
@@ -5665,10 +5394,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.0-flambda-arm64, ocurrent/opam-staging:d
 5.0.0+no-flat-float-array/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -5676,10 +5404,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.0-flambda-arm64, ocurrent/opam-staging:d
 5.0.0+no-flat-float-array/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -5688,10 +5415,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.0-flambda-arm64, ocurrent/opam-staging:d
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-11-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
@@ -7129,77 +6855,75 @@ ocurrent/opam-staging:debian-10-ocaml-4.12-s390x, ocurrent/opam-staging:debian-1
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:debian-10-ocaml-4.13-s390x, ocurrent/opam-staging:debian-10-ocaml-4.13-ppc64le, ocurrent/opam-staging:debian-10-ocaml-4.13-arm32v7, ocurrent/opam-staging:debian-10-ocaml-4.13-arm64, ocurrent/opam-staging:debian-10-ocaml-4.13-amd64, ocurrent/opam-staging:debian-10-ocaml-4.13-i386 -> ocaml/opam:debian-10-ocaml-4.13
-4.14.0/s390x
+4.14.1/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-10-opam-s390x
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/ppc64le
+4.14.1/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-10-opam-ppc64le
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/arm32v7
+4.14.1/arm32v7
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-10-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/arm64
+4.14.1/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-10-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/amd64
+4.14.1/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-10-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/i386
+4.14.1/i386
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-10-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:debian-10-ocaml-4.14-s390x, ocurrent/opam-staging:debian-10-ocaml-4.14-ppc64le, ocurrent/opam-staging:debian-10-ocaml-4.14-arm32v7, ocurrent/opam-staging:debian-10-ocaml-4.14-arm64, ocurrent/opam-staging:debian-10-ocaml-4.14-amd64, ocurrent/opam-staging:debian-10-ocaml-4.14-i386 -> ocaml/opam:debian-10
 ocurrent/opam-staging:debian-10-ocaml-4.14-s390x, ocurrent/opam-staging:debian-10-ocaml-4.14-ppc64le, ocurrent/opam-staging:debian-10-ocaml-4.14-arm32v7, ocurrent/opam-staging:debian-10-ocaml-4.14-arm64, ocurrent/opam-staging:debian-10-ocaml-4.14-amd64, ocurrent/opam-staging:debian-10-ocaml-4.14-i386 -> ocaml/opam:debian-10-ocaml-4.14
 5.0.0/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-10-opam-s390x
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -7207,10 +6931,9 @@ ocurrent/opam-staging:debian-10-ocaml-4.14-s390x, ocurrent/opam-staging:debian-1
 5.0.0/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-10-opam-ppc64le
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -7219,10 +6942,9 @@ ocurrent/opam-staging:debian-10-ocaml-4.14-s390x, ocurrent/opam-staging:debian-1
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-10-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
@@ -7230,10 +6952,9 @@ ocurrent/opam-staging:debian-10-ocaml-4.14-s390x, ocurrent/opam-staging:debian-1
 5.0.0/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-10-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -7241,10 +6962,9 @@ ocurrent/opam-staging:debian-10-ocaml-4.14-s390x, ocurrent/opam-staging:debian-1
 5.0.0/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-10-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -7253,14 +6973,14 @@ ocurrent/opam-staging:debian-10-ocaml-4.14-s390x, ocurrent/opam-staging:debian-1
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-10-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:debian-10-ocaml-5.0-s390x, ocurrent/opam-staging:debian-10-ocaml-5.0-ppc64le, ocurrent/opam-staging:debian-10-ocaml-5.0-arm32v7, ocurrent/opam-staging:debian-10-ocaml-5.0-arm64, ocurrent/opam-staging:debian-10-ocaml-5.0-amd64, ocurrent/opam-staging:debian-10-ocaml-5.0-i386 -> ocaml/opam:debian-10
 ocurrent/opam-staging:debian-10-ocaml-5.0-s390x, ocurrent/opam-staging:debian-10-ocaml-5.0-ppc64le, ocurrent/opam-staging:debian-10-ocaml-5.0-arm32v7, ocurrent/opam-staging:debian-10-ocaml-5.0-arm64, ocurrent/opam-staging:debian-10-ocaml-5.0-amd64, ocurrent/opam-staging:debian-10-ocaml-5.0-i386 -> ocaml/opam:debian-10-ocaml-5.0
 5.1.0/s390x
 	# syntax=docker/dockerfile:1
@@ -7546,29 +7266,28 @@ ocurrent/opam-staging:debian-testing-ocaml-4.12-amd64 -> ocaml/opam:debian-testi
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:debian-testing-ocaml-4.13-amd64 -> ocaml/opam:debian-testing-ocaml-4.13
-4.14.0/amd64
+4.14.1/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-testing-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:debian-testing-ocaml-4.14-amd64 -> ocaml/opam:debian-testing
 ocurrent/opam-staging:debian-testing-ocaml-4.14-amd64 -> ocaml/opam:debian-testing-ocaml-4.14
 5.0.0/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-testing-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:debian-testing-ocaml-5.0-amd64 -> ocaml/opam:debian-testing
 ocurrent/opam-staging:debian-testing-ocaml-5.0-amd64 -> ocaml/opam:debian-testing-ocaml-5.0
 5.1.0/amd64
 	# syntax=docker/dockerfile:1
@@ -7797,29 +7516,28 @@ ocurrent/opam-staging:debian-unstable-ocaml-4.12-amd64 -> ocaml/opam:debian-unst
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:debian-unstable-ocaml-4.13-amd64 -> ocaml/opam:debian-unstable-ocaml-4.13
-4.14.0/amd64
+4.14.1/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-unstable-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:debian-unstable-ocaml-4.14-amd64 -> ocaml/opam:debian-unstable
 ocurrent/opam-staging:debian-unstable-ocaml-4.14-amd64 -> ocaml/opam:debian-unstable-ocaml-4.14
 5.0.0/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:debian-unstable-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:debian-unstable-ocaml-5.0-amd64 -> ocaml/opam:debian-unstable
 ocurrent/opam-staging:debian-unstable-ocaml-5.0-amd64 -> ocaml/opam:debian-unstable-ocaml-5.0
 5.1.0/amd64
 	# syntax=docker/dockerfile:1
@@ -8177,35 +7895,33 @@ ocurrent/opam-staging:fedora-36-ocaml-4.12-arm64, ocurrent/opam-staging:fedora-3
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:fedora-36-ocaml-4.13-arm64, ocurrent/opam-staging:fedora-36-ocaml-4.13-amd64 -> ocaml/opam:fedora-36-ocaml-4.13
-4.14.0/arm64
+4.14.1/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:fedora-36-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/amd64
+4.14.1/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:fedora-36-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:fedora-36-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-36-ocaml-4.14-amd64 -> ocaml/opam:fedora-36
 ocurrent/opam-staging:fedora-36-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-36-ocaml-4.14-amd64 -> ocaml/opam:fedora-36-ocaml-4.14
 5.0.0/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:fedora-36-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -8213,14 +7929,14 @@ ocurrent/opam-staging:fedora-36-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-3
 5.0.0/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:fedora-36-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:fedora-36-ocaml-5.0-arm64, ocurrent/opam-staging:fedora-36-ocaml-5.0-amd64 -> ocaml/opam:fedora-36
 ocurrent/opam-staging:fedora-36-ocaml-5.0-arm64, ocurrent/opam-staging:fedora-36-ocaml-5.0-amd64 -> ocaml/opam:fedora-36-ocaml-5.0
 5.1.0/arm64
 	# syntax=docker/dockerfile:1
@@ -8601,37 +8317,34 @@ ocurrent/opam-staging:fedora-37-ocaml-4.12-arm64, ocurrent/opam-staging:fedora-3
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:fedora-37-ocaml-4.13-arm64, ocurrent/opam-staging:fedora-37-ocaml-4.13-amd64 -> ocaml/opam:fedora-37-ocaml-4.13
 ocurrent/opam-staging:fedora-37-ocaml-4.13-arm64, ocurrent/opam-staging:fedora-37-ocaml-4.13-amd64 -> ocaml/opam:fedora-ocaml-4.13
-4.14.0/arm64
+4.14.1/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:fedora-37-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/amd64
+4.14.1/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:fedora-37-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:fedora-37-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-37-ocaml-4.14-amd64 -> ocaml/opam:fedora
-ocurrent/opam-staging:fedora-37-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-37-ocaml-4.14-amd64 -> ocaml/opam:fedora-37
 ocurrent/opam-staging:fedora-37-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-37-ocaml-4.14-amd64 -> ocaml/opam:fedora-37-ocaml-4.14
 ocurrent/opam-staging:fedora-37-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-37-ocaml-4.14-amd64 -> ocaml/opam:fedora-ocaml-4.14
 5.0.0/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:fedora-37-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -8639,14 +8352,15 @@ ocurrent/opam-staging:fedora-37-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-3
 5.0.0/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:fedora-37-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:fedora-37-ocaml-5.0-arm64, ocurrent/opam-staging:fedora-37-ocaml-5.0-amd64 -> ocaml/opam:fedora
+ocurrent/opam-staging:fedora-37-ocaml-5.0-arm64, ocurrent/opam-staging:fedora-37-ocaml-5.0-amd64 -> ocaml/opam:fedora-37
 ocurrent/opam-staging:fedora-37-ocaml-5.0-arm64, ocurrent/opam-staging:fedora-37-ocaml-5.0-amd64 -> ocaml/opam:fedora-37-ocaml-5.0
 ocurrent/opam-staging:fedora-37-ocaml-5.0-arm64, ocurrent/opam-staging:fedora-37-ocaml-5.0-amd64 -> ocaml/opam:fedora-ocaml-5.0
 5.1.0/arm64
@@ -8673,235 +8387,6 @@ ocurrent/opam-staging:fedora-37-ocaml-5.0-arm64, ocurrent/opam-staging:fedora-37
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:fedora-37-ocaml-5.1-arm64, ocurrent/opam-staging:fedora-37-ocaml-5.1-amd64 -> ocaml/opam:fedora-37-ocaml-5.1
 ocurrent/opam-staging:fedora-37-ocaml-5.1-arm64, ocurrent/opam-staging:fedora-37-ocaml-5.1-amd64 -> ocaml/opam:fedora-ocaml-5.1
-oraclelinux-7
-oraclelinux-7/amd64
-	# syntax=docker/dockerfile:1
-	# Autogenerated by OCaml-Dockerfile scripts
-	FROM oraclelinux:7
-	LABEL distro_style="rpm"
-	RUN yum --version || dnf install -y yum
-	RUN yum update -y
-	RUN yum groupinstall -y "Development Tools" && yum clean all
-	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel which m4 diffutils findutils which tar curl xz libcap-devel openssl && yum clean all
-	RUN git config --global user.email "docker@example.com"
-	RUN git config --global user.name "Docker"
-	RUN curl -fOL https://github.com/containers/bubblewrap/releases/download/v0.7.0/bubblewrap-0.7.0.tar.xz
-	RUN tar xf bubblewrap-0.7.0.tar.xz
-	RUN cd bubblewrap-0.7.0 && ./configure --prefix=/usr/local && make && sudo make install
-	RUN rm -rf bubblewrap-0.7.0.tar.xz bubblewrap-0.7.0
-	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.0 && cd ../opam-build-2.0 && git checkout 2.0 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.0/opam /usr/bin/opam-2.0 && chmod a+x /usr/bin/opam-2.0 && rm -rf /tmp/opam-build-2.0
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-2.1 && cd ../opam-build-2.1 && git checkout 2.1 && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-2.1/opam /usr/bin/opam-2.1 && chmod a+x /usr/bin/opam-2.1 && rm -rf /tmp/opam-build-2.1
-	RUN cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && ln -s ../opam/src_ext/archives src_ext/archives && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make lib-ext all && mkdir -p /usr/bin && cp /tmp/opam-build-master/opam /usr/bin/opam-master && chmod a+x /usr/bin/opam-master && rm -rf /tmp/opam-build-master
-	FROM oraclelinux:7
-	RUN yum --version || dnf install -y yum
-	RUN yum update -y
-	COPY --from=0 [ "/usr/local/bin/bwrap", "/usr/bin/bwrap" ]
-	RUN yum groupinstall -y "Development Tools" && yum clean all
-	RUN yum install -y sudo passwd bzip2 patch rsync nano gcc-c++ git tar curl xz libX11-devel which m4 diffutils findutils && yum clean all
-	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
-	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
-	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
-	COPY --from=0 [ "/usr/bin/opam-master", "/usr/bin/opam-dev" ]
-	RUN ln /usr/bin/opam-dev /usr/bin/opam-2.2
-	RUN sed -i.bak '/LC_TIME LC_ALL LANGUAGE/aDefaults    env_keep += "OPAMYES OPAMJOBS OPAMVERBOSE"' /etc/sudoers
-	COPY <<-EOF /etc/sudoers.d/opam
-		opam ALL=(ALL:ALL) NOPASSWD:ALL
-	EOF
-	RUN chmod 440 /etc/sudoers.d/opam
-	RUN chown root:root /etc/sudoers.d/opam
-	RUN sed -i.bak 's/^Defaults.*requiretty//g' /etc/sudoers
-	RUN useradd -d /home/opam -u 1000 -m -s /bin/bash opam
-	RUN passwd -l opam
-	RUN chown -R opam:opam /home/opam
-	USER opam
-	ENV HOME="/home/opam"
-	WORKDIR /home/opam
-	RUN mkdir .ssh
-	RUN chmod 700 .ssh
-	COPY --chown=opam <<-EOF /home/opam/.opamrc-nosandbox
-		wrap-build-commands: []
-		wrap-install-commands: []
-		wrap-remove-commands: []
-		required-tools: []
-	EOF
-	COPY --chown=opam <<-EOF /home/opam/opam-sandbox-disable
-		#!/bin/sh
-		cp ~/.opamrc-nosandbox ~/.opamrc
-		echo --- opam sandboxing disabled
-	EOF
-	RUN chmod a+x /home/opam/opam-sandbox-disable
-	RUN sudo mv /home/opam/opam-sandbox-disable /usr/bin/opam-sandbox-disable
-	COPY --chown=opam <<-EOF /home/opam/.opamrc-sandbox
-		wrap-build-commands: ["%{hooks}%/sandbox.sh" "build"]
-		wrap-install-commands: ["%{hooks}%/sandbox.sh" "install"]
-		wrap-remove-commands: ["%{hooks}%/sandbox.sh" "remove"]
-	EOF
-	COPY --chown=opam <<-EOF /home/opam/opam-sandbox-enable
-		#!/bin/sh
-		cp ~/.opamrc-sandbox ~/.opamrc
-		echo --- opam sandboxing enabled
-	EOF
-	RUN chmod a+x /home/opam/opam-sandbox-enable
-	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
-	RUN git config --global user.email "docker@example.com"
-	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
-	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
-	RUN rm -rf .opam/repo/default/.git
-	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
-ocurrent/opam-staging:oraclelinux-7-opam-amd64 -> ocaml/opam:oraclelinux-7-opam
-4.02.3/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:oraclelinux-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.02 --packages=ocaml-base-compiler.4.02.3
-	RUN opam pin add -k version ocaml-base-compiler 4.02.3
-	RUN opam install -y opam-depext
-	RUN opam install -y ocaml-secondary-compiler
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:oraclelinux-7-ocaml-4.02-amd64 -> ocaml/opam:oraclelinux-7-ocaml-4.02
-4.03.0/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:oraclelinux-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.03 --packages=ocaml-base-compiler.4.03.0
-	RUN opam pin add -k version ocaml-base-compiler 4.03.0
-	RUN opam install -y opam-depext
-	RUN opam install -y ocaml-secondary-compiler
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:oraclelinux-7-ocaml-4.03-amd64 -> ocaml/opam:oraclelinux-7-ocaml-4.03
-4.04.2/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:oraclelinux-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.04 --packages=ocaml-base-compiler.4.04.2
-	RUN opam pin add -k version ocaml-base-compiler 4.04.2
-	RUN opam install -y opam-depext
-	RUN opam install -y ocaml-secondary-compiler
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:oraclelinux-7-ocaml-4.04-amd64 -> ocaml/opam:oraclelinux-7-ocaml-4.04
-4.05.0/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:oraclelinux-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.05 --packages=ocaml-base-compiler.4.05.0
-	RUN opam pin add -k version ocaml-base-compiler 4.05.0
-	RUN opam install -y opam-depext
-	RUN opam install -y ocaml-secondary-compiler
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:oraclelinux-7-ocaml-4.05-amd64 -> ocaml/opam:oraclelinux-7-ocaml-4.05
-4.06.1/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:oraclelinux-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.06 --packages=ocaml-base-compiler.4.06.1
-	RUN opam pin add -k version ocaml-base-compiler 4.06.1
-	RUN opam install -y opam-depext
-	RUN opam install -y ocaml-secondary-compiler
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:oraclelinux-7-ocaml-4.06-amd64 -> ocaml/opam:oraclelinux-7-ocaml-4.06
-4.07.1/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:oraclelinux-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.07 --packages=ocaml-base-compiler.4.07.1
-	RUN opam pin add -k version ocaml-base-compiler 4.07.1
-	RUN opam install -y opam-depext
-	RUN opam install -y ocaml-secondary-compiler
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:oraclelinux-7-ocaml-4.07-amd64 -> ocaml/opam:oraclelinux-7-ocaml-4.07
-4.08.1/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:oraclelinux-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
-	RUN opam pin add -k version ocaml-base-compiler 4.08.1
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:oraclelinux-7-ocaml-4.08-amd64 -> ocaml/opam:oraclelinux-7-ocaml-4.08
-4.09.1/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:oraclelinux-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
-	RUN opam pin add -k version ocaml-base-compiler 4.09.1
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:oraclelinux-7-ocaml-4.09-amd64 -> ocaml/opam:oraclelinux-7-ocaml-4.09
-4.10.2/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:oraclelinux-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
-	RUN opam pin add -k version ocaml-base-compiler 4.10.2
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:oraclelinux-7-ocaml-4.10-amd64 -> ocaml/opam:oraclelinux-7-ocaml-4.10
-4.11.2/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:oraclelinux-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
-	RUN opam pin add -k version ocaml-base-compiler 4.11.2
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:oraclelinux-7-ocaml-4.11-amd64 -> ocaml/opam:oraclelinux-7-ocaml-4.11
-4.12.1/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:oraclelinux-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
-	RUN opam pin add -k version ocaml-base-compiler 4.12.1
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:oraclelinux-7-ocaml-4.12-amd64 -> ocaml/opam:oraclelinux-7-ocaml-4.12
-4.13.1/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:oraclelinux-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
-	RUN opam pin add -k version ocaml-base-compiler 4.13.1
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:oraclelinux-7-ocaml-4.13-amd64 -> ocaml/opam:oraclelinux-7-ocaml-4.13
-4.14.0/amd64
-	# syntax=docker/dockerfile:1
-	FROM ocurrent/opam-staging:oraclelinux-7-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
-	RUN opam install -y opam-depext
-	ENTRYPOINT [ "opam", "exec", "--" ]
-	CMD bash
-	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:oraclelinux-7-ocaml-4.14-amd64 -> ocaml/opam:oraclelinux-7
-ocurrent/opam-staging:oraclelinux-7-ocaml-4.14-amd64 -> ocaml/opam:oraclelinux-7-ocaml-4.14
 oraclelinux-8
 oraclelinux-8/amd64
 	# syntax=docker/dockerfile:1
@@ -9131,31 +8616,30 @@ ocurrent/opam-staging:oraclelinux-8-ocaml-4.12-amd64 -> ocaml/opam:oraclelinux-o
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:oraclelinux-8-ocaml-4.13-amd64 -> ocaml/opam:oraclelinux-8-ocaml-4.13
 ocurrent/opam-staging:oraclelinux-8-ocaml-4.13-amd64 -> ocaml/opam:oraclelinux-ocaml-4.13
-4.14.0/amd64
+4.14.1/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:oraclelinux-8-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:oraclelinux-8-ocaml-4.14-amd64 -> ocaml/opam:oraclelinux
-ocurrent/opam-staging:oraclelinux-8-ocaml-4.14-amd64 -> ocaml/opam:oraclelinux-8
 ocurrent/opam-staging:oraclelinux-8-ocaml-4.14-amd64 -> ocaml/opam:oraclelinux-8-ocaml-4.14
 ocurrent/opam-staging:oraclelinux-8-ocaml-4.14-amd64 -> ocaml/opam:oraclelinux-ocaml-4.14
 5.0.0/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:oraclelinux-8-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:oraclelinux-8-ocaml-5.0-amd64 -> ocaml/opam:oraclelinux
+ocurrent/opam-staging:oraclelinux-8-ocaml-5.0-amd64 -> ocaml/opam:oraclelinux-8
 ocurrent/opam-staging:oraclelinux-8-ocaml-5.0-amd64 -> ocaml/opam:oraclelinux-8-ocaml-5.0
 ocurrent/opam-staging:oraclelinux-8-ocaml-5.0-amd64 -> ocaml/opam:oraclelinux-ocaml-5.0
 5.1.0/amd64
@@ -9392,31 +8876,30 @@ ocurrent/opam-staging:opensuse-15.3-ocaml-4.12-amd64 -> ocaml/opam:opensuse-ocam
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:opensuse-15.3-ocaml-4.13-amd64 -> ocaml/opam:opensuse-15.3-ocaml-4.13
 ocurrent/opam-staging:opensuse-15.3-ocaml-4.13-amd64 -> ocaml/opam:opensuse-ocaml-4.13
-4.14.0/amd64
+4.14.1/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:opensuse-15.3-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:opensuse-15.3-ocaml-4.14-amd64 -> ocaml/opam:opensuse
-ocurrent/opam-staging:opensuse-15.3-ocaml-4.14-amd64 -> ocaml/opam:opensuse-15.3
 ocurrent/opam-staging:opensuse-15.3-ocaml-4.14-amd64 -> ocaml/opam:opensuse-15.3-ocaml-4.14
 ocurrent/opam-staging:opensuse-15.3-ocaml-4.14-amd64 -> ocaml/opam:opensuse-ocaml-4.14
 5.0.0/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:opensuse-15.3-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:opensuse-15.3-ocaml-5.0-amd64 -> ocaml/opam:opensuse
+ocurrent/opam-staging:opensuse-15.3-ocaml-5.0-amd64 -> ocaml/opam:opensuse-15.3
 ocurrent/opam-staging:opensuse-15.3-ocaml-5.0-amd64 -> ocaml/opam:opensuse-15.3-ocaml-5.0
 ocurrent/opam-staging:opensuse-15.3-ocaml-5.0-amd64 -> ocaml/opam:opensuse-ocaml-5.0
 5.1.0/amd64
@@ -10138,55 +9621,53 @@ ocurrent/opam-staging:ubuntu-18.04-ocaml-4.12-s390x, ocurrent/opam-staging:ubunt
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:ubuntu-18.04-ocaml-4.13-s390x, ocurrent/opam-staging:ubuntu-18.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubuntu-18.04-ocaml-4.13-arm64, ocurrent/opam-staging:ubuntu-18.04-ocaml-4.13-amd64 -> ocaml/opam:ubuntu-18.04-ocaml-4.13
-4.14.0/s390x
+4.14.1/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-18.04-opam-s390x
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/ppc64le
+4.14.1/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-18.04-opam-ppc64le
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/arm64
+4.14.1/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-18.04-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/amd64
+4.14.1/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-18.04-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:ubuntu-18.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubuntu-18.04-ocaml-4.14-ppc64le, ocurrent/opam-staging:ubuntu-18.04-ocaml-4.14-arm64, ocurrent/opam-staging:ubuntu-18.04-ocaml-4.14-amd64 -> ocaml/opam:ubuntu-18.04
 ocurrent/opam-staging:ubuntu-18.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubuntu-18.04-ocaml-4.14-ppc64le, ocurrent/opam-staging:ubuntu-18.04-ocaml-4.14-arm64, ocurrent/opam-staging:ubuntu-18.04-ocaml-4.14-amd64 -> ocaml/opam:ubuntu-18.04-ocaml-4.14
 5.0.0/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-18.04-opam-s390x
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -10194,10 +9675,9 @@ ocurrent/opam-staging:ubuntu-18.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 5.0.0/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-18.04-opam-ppc64le
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -10205,10 +9685,9 @@ ocurrent/opam-staging:ubuntu-18.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 5.0.0/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-18.04-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -10216,14 +9695,14 @@ ocurrent/opam-staging:ubuntu-18.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 5.0.0/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-18.04-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:ubuntu-18.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu-18.04-ocaml-5.0-ppc64le, ocurrent/opam-staging:ubuntu-18.04-ocaml-5.0-arm64, ocurrent/opam-staging:ubuntu-18.04-ocaml-5.0-amd64 -> ocaml/opam:ubuntu-18.04
 ocurrent/opam-staging:ubuntu-18.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu-18.04-ocaml-5.0-ppc64le, ocurrent/opam-staging:ubuntu-18.04-ocaml-5.0-arm64, ocurrent/opam-staging:ubuntu-18.04-ocaml-5.0-amd64 -> ocaml/opam:ubuntu-18.04-ocaml-5.0
 5.1.0/s390x
 	# syntax=docker/dockerfile:1
@@ -11086,65 +10565,63 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-4.12-s390x, ocurrent/opam-staging:ubunt
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:ubuntu-20.04-ocaml-4.13-s390x, ocurrent/opam-staging:ubuntu-20.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubuntu-20.04-ocaml-4.13-arm64, ocurrent/opam-staging:ubuntu-20.04-ocaml-4.13-amd64, ocurrent/opam-staging:ubuntu-20.04-ocaml-4.13-riscv64 -> ocaml/opam:ubuntu-20.04-ocaml-4.13
-4.14.0/s390x
+4.14.1/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-s390x
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/ppc64le
+4.14.1/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-ppc64le
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/arm64
+4.14.1/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/amd64
+4.14.1/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/riscv64
+4.14.1/riscv64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-riscv64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:ubuntu-20.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubuntu-20.04-ocaml-4.14-ppc64le, ocurrent/opam-staging:ubuntu-20.04-ocaml-4.14-arm64, ocurrent/opam-staging:ubuntu-20.04-ocaml-4.14-amd64, ocurrent/opam-staging:ubuntu-20.04-ocaml-4.14-riscv64 -> ocaml/opam:ubuntu-20.04
 ocurrent/opam-staging:ubuntu-20.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubuntu-20.04-ocaml-4.14-ppc64le, ocurrent/opam-staging:ubuntu-20.04-ocaml-4.14-arm64, ocurrent/opam-staging:ubuntu-20.04-ocaml-4.14-amd64, ocurrent/opam-staging:ubuntu-20.04-ocaml-4.14-riscv64 -> ocaml/opam:ubuntu-20.04-ocaml-4.14
 5.0.0/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-s390x
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -11152,10 +10629,9 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 5.0.0/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-ppc64le
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -11163,10 +10639,9 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 5.0.0/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -11174,10 +10649,9 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 5.0.0/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -11185,14 +10659,14 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 5.0.0/riscv64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-riscv64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:ubuntu-20.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu-20.04-ocaml-5.0-ppc64le, ocurrent/opam-staging:ubuntu-20.04-ocaml-5.0-arm64, ocurrent/opam-staging:ubuntu-20.04-ocaml-5.0-amd64, ocurrent/opam-staging:ubuntu-20.04-ocaml-5.0-riscv64 -> ocaml/opam:ubuntu-20.04
 ocurrent/opam-staging:ubuntu-20.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu-20.04-ocaml-5.0-ppc64le, ocurrent/opam-staging:ubuntu-20.04-ocaml-5.0-arm64, ocurrent/opam-staging:ubuntu-20.04-ocaml-5.0-amd64, ocurrent/opam-staging:ubuntu-20.04-ocaml-5.0-riscv64 -> ocaml/opam:ubuntu-20.04-ocaml-5.0
 5.1.0/s390x
 	# syntax=docker/dockerfile:1
@@ -12053,67 +11527,64 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-4.12-s390x, ocurrent/opam-staging:ubunt
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:ubuntu-22.04-ocaml-4.13-s390x, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.13-arm64, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.13-amd64, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.13-riscv64 -> ocaml/opam:ubuntu-22.04-ocaml-4.13
 ocurrent/opam-staging:ubuntu-22.04-ocaml-4.13-s390x, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.13-arm64, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.13-amd64, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.13-riscv64 -> ocaml/opam:ubuntu-lts-ocaml-4.13
-4.14.0/s390x
+4.14.1/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-s390x
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/ppc64le
+4.14.1/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-ppc64le
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/arm64
+4.14.1/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/amd64
+4.14.1/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/riscv64
+4.14.1/riscv64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-riscv64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-ppc64le, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-arm64, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-amd64, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-riscv64 -> ocaml/opam:ubuntu-lts
-ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-ppc64le, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-arm64, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-amd64, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-riscv64 -> ocaml/opam:ubuntu-22.04
 ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-ppc64le, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-arm64, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-amd64, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-riscv64 -> ocaml/opam:ubuntu-22.04-ocaml-4.14
 ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-ppc64le, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-arm64, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-amd64, ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-riscv64 -> ocaml/opam:ubuntu-lts-ocaml-4.14
 5.0.0/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-s390x
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -12121,10 +11592,9 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 5.0.0/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-ppc64le
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -12132,10 +11602,9 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 5.0.0/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -12143,10 +11612,9 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 5.0.0/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -12154,14 +11622,15 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 5.0.0/riscv64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-riscv64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-ppc64le, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-arm64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-amd64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-riscv64 -> ocaml/opam:ubuntu-lts
+ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-ppc64le, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-arm64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-amd64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-riscv64 -> ocaml/opam:ubuntu-22.04
 ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-ppc64le, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-arm64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-amd64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-riscv64 -> ocaml/opam:ubuntu-22.04-ocaml-5.0
 ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-ppc64le, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-arm64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-amd64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-riscv64 -> ocaml/opam:ubuntu-lts-ocaml-5.0
 5.1.0/s390x
@@ -13024,67 +12493,64 @@ ocurrent/opam-staging:ubuntu-22.10-ocaml-4.12-s390x, ocurrent/opam-staging:ubunt
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:ubuntu-22.10-ocaml-4.13-s390x, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.13-arm64, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.13-amd64, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.13-riscv64 -> ocaml/opam:ubuntu-22.10-ocaml-4.13
 ocurrent/opam-staging:ubuntu-22.10-ocaml-4.13-s390x, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.13-ppc64le, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.13-arm64, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.13-amd64, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.13-riscv64 -> ocaml/opam:ubuntu-ocaml-4.13
-4.14.0/s390x
+4.14.1/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.10-opam-s390x
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/ppc64le
+4.14.1/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.10-opam-ppc64le
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/arm64
+4.14.1/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.10-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/amd64
+4.14.1/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.10-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-4.14.0/riscv64
+4.14.1/riscv64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.10-opam-riscv64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.0
-	RUN opam pin add -k version ocaml-base-compiler 4.14.0
+	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.1
+	RUN opam pin add -k version ocaml-base-compiler 4.14.1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-s390x, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-ppc64le, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-arm64, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-amd64, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-riscv64 -> ocaml/opam:ubuntu
-ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-s390x, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-ppc64le, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-arm64, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-amd64, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-riscv64 -> ocaml/opam:ubuntu-22.10
 ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-s390x, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-ppc64le, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-arm64, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-amd64, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-riscv64 -> ocaml/opam:ubuntu-22.10-ocaml-4.14
 ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-s390x, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-ppc64le, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-arm64, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-amd64, ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-riscv64 -> ocaml/opam:ubuntu-ocaml-4.14
 5.0.0/s390x
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.10-opam-s390x
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -13092,10 +12558,9 @@ ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 5.0.0/ppc64le
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.10-opam-ppc64le
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -13103,10 +12568,9 @@ ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 5.0.0/arm64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.10-opam-arm64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -13114,10 +12578,9 @@ ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 5.0.0/amd64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.10-opam-amd64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
@@ -13125,14 +12588,15 @@ ocurrent/opam-staging:ubuntu-22.10-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 5.0.0/riscv64
 	# syntax=docker/dockerfile:1
 	FROM ocurrent/opam-staging:ubuntu-22.10-opam-riscv64
-	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+trunk
-	RUN opam pin add -k version ocaml-variants 5.0.0+trunk
+	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
+	RUN opam pin add -k version ocaml-base-compiler 5.0.0
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-ppc64le, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-arm64, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-amd64, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-riscv64 -> ocaml/opam:ubuntu
+ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-ppc64le, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-arm64, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-amd64, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-riscv64 -> ocaml/opam:ubuntu-22.10
 ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-ppc64le, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-arm64, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-amd64, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-riscv64 -> ocaml/opam:ubuntu-22.10-ocaml-5.0
 ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-ppc64le, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-arm64, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-amd64, ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-riscv64 -> ocaml/opam:ubuntu-ocaml-5.0
 5.1.0/s390x
@@ -13248,12 +12712,12 @@ windows-mingw-1809/amd64
 	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
-4.14.0/amd64
+5.0.0/amd64
 	# escape=`
 	FROM ocurrent/opam-staging:windows-mingw-1809-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.0+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.14.0+mingw64
+	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.0 --packages=ocaml-variants.5.0.0+mingw64
+	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.0.0+mingw64
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
 	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
 	CMD [ "cmd.exe" ]
@@ -13314,17 +12778,38 @@ windows-mingw-21H2/amd64
 	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
-4.14.0/amd64
+5.0.0/amd64
 	# escape=`
 	FROM ocurrent/opam-staging:windows-mingw-21H2-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.0+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.14.0+mingw64
+	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.0 --packages=ocaml-variants.5.0.0+mingw64
+	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.0.0+mingw64
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
 	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.14-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw
+ocurrent/opam-staging:windows-mingw-1809-ocaml-5.0-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-5.0-amd64 -> ocaml/opam:windows-mingw
+ocurrent/opam-staging:windows-mingw-1809-ocaml-5.0-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-5.0-amd64 -> ocaml/opam:windows-mingw-ocaml-5.0
+4.14.1/amd64
+	# escape=`
+	FROM ocurrent/opam-staging:windows-mingw-1809-opam-amd64
+	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.1+mingw64
+	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.14.1+mingw64
+	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	CMD [ "cmd.exe" ]
+	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
+4.14.1/amd64
+	# escape=`
+	FROM ocurrent/opam-staging:windows-mingw-21H2-opam-amd64
+	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.1+mingw64
+	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.14.1+mingw64
+	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	CMD [ "cmd.exe" ]
+	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 ocurrent/opam-staging:windows-mingw-1809-ocaml-4.14-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-ocaml-4.14
 4.13.1/amd64
 	# escape=`
@@ -13603,9 +13088,11 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.12-amd64 -> ocaml/opam:windows-
 ocurrent/opam-staging:windows-mingw-1809-ocaml-4.12-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.12
 ocurrent/opam-staging:windows-mingw-1809-ocaml-4.13-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-4.13
 ocurrent/opam-staging:windows-mingw-1809-ocaml-4.13-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.13
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-1809
 ocurrent/opam-staging:windows-mingw-1809-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-4.14
 ocurrent/opam-staging:windows-mingw-1809-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.14
+ocurrent/opam-staging:windows-mingw-1809-ocaml-5.0-amd64 -> ocaml/opam:windows-mingw-1809
+ocurrent/opam-staging:windows-mingw-1809-ocaml-5.0-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-5.0
+ocurrent/opam-staging:windows-mingw-1809-ocaml-5.0-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-5.0
 ocurrent/opam-staging:windows-mingw-21H2-opam-amd64 -> ocaml/opam:windows-mingw-21H2-opam
 ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.02-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.02
 ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.02-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.02
@@ -13631,9 +13118,11 @@ ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.12-amd64 -> ocaml/opam:windows-
 ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.12-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.12
 ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.13-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.13
 ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.13-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.13
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-21H2
 ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.14
 ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.14
+ocurrent/opam-staging:windows-mingw-21H2-ocaml-5.0-amd64 -> ocaml/opam:windows-mingw-21H2
+ocurrent/opam-staging:windows-mingw-21H2-ocaml-5.0-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-5.0
+ocurrent/opam-staging:windows-mingw-21H2-ocaml-5.0-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-5.0
 windows-msvc
 windows-msvc-1809/amd64
 	# escape=`
@@ -13700,12 +13189,12 @@ windows-msvc-1809/amd64
 	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
-4.14.0/amd64
+4.14.1/amd64
 	# escape=`
 	FROM ocurrent/opam-staging:windows-msvc-1809-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms=vs2019 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.0+msvc64
-	RUN ocaml-env exec --64 --ms=vs2019 -- opam pin add -k version ocaml-variants 4.14.0+msvc64
+	RUN ocaml-env exec --64 --ms=vs2019 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.1+msvc64
+	RUN ocaml-env exec --64 --ms=vs2019 -- opam pin add -k version ocaml-variants 4.14.1+msvc64
 	RUN ocaml-env exec --64 --ms=vs2019 -- opam install -y depext
 	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms=vs2019", "--" ]
 	CMD [ "cmd.exe" ]
@@ -13776,17 +13265,16 @@ windows-msvc-21H2/amd64
 	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
-4.14.0/amd64
+4.14.1/amd64
 	# escape=`
 	FROM ocurrent/opam-staging:windows-msvc-21H2-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms=vs2019 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.0+msvc64
-	RUN ocaml-env exec --64 --ms=vs2019 -- opam pin add -k version ocaml-variants 4.14.0+msvc64
+	RUN ocaml-env exec --64 --ms=vs2019 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.1+msvc64
+	RUN ocaml-env exec --64 --ms=vs2019 -- opam pin add -k version ocaml-variants 4.14.1+msvc64
 	RUN ocaml-env exec --64 --ms=vs2019 -- opam install -y depext
 	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms=vs2019", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.14-amd64, ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc
 ocurrent/opam-staging:windows-msvc-1809-ocaml-4.14-amd64, ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-ocaml-4.14
 4.13.1/amd64
 	# escape=`
@@ -13973,7 +13461,6 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.12-amd64 -> ocaml/opam:windows-m
 ocurrent/opam-staging:windows-msvc-1809-ocaml-4.12-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.12
 ocurrent/opam-staging:windows-msvc-1809-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-1809-ocaml-4.13
 ocurrent/opam-staging:windows-msvc-1809-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.13
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-1809
 ocurrent/opam-staging:windows-msvc-1809-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-1809-ocaml-4.14
 ocurrent/opam-staging:windows-msvc-1809-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.14
 ocurrent/opam-staging:windows-msvc-21H2-opam-amd64 -> ocaml/opam:windows-msvc-21H2-opam
@@ -13993,6 +13480,5 @@ ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.12-amd64 -> ocaml/opam:windows-m
 ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.12-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.12
 ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-21H2-ocaml-4.13
 ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.13
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-21H2
 ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-21H2-ocaml-4.14
 ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.14
