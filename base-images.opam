@@ -3,6 +3,7 @@ opam-version: "2.0"
 synopsis: "Generate Docker base images for OCaml and opam using ocurrent"
 maintainer: ["talex5@gmail.com"]
 authors: ["talex5@gmail.com" "anil@recoil.org"]
+license: "Apache-2.0"
 homepage: "https://github.com/ocurrent/docker-base-images"
 bug-reports: "https://github.com/ocurrent/docker-base-images/issues"
 depends: [

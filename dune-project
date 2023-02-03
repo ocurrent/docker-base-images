@@ -2,9 +2,12 @@
 (name base-images)
 (generate_opam_files true)
 (formatting (enabled_for dune))
+
 (source (github ocurrent/docker-base-images))
 (authors "talex5@gmail.com" "anil@recoil.org")
 (maintainers "talex5@gmail.com")
+(license "Apache-2.0")
+
 (package
  (name base-images)
  (synopsis "Generate Docker base images for OCaml and opam using ocurrent")
