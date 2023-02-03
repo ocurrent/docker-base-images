@@ -6,7 +6,7 @@ authors: ["talex5@gmail.com" "anil@recoil.org"]
 homepage: "https://github.com/ocurrent/docker-base-images"
 bug-reports: "https://github.com/ocurrent/docker-base-images/issues"
 depends: [
-  "dune" {>= "3.3"}
+  "dune" {>= "3.6"}
   "ocaml" {>= "4.12"}
   "conf-libev" {os != "win32"}
   "prometheus-app" {>= "1.0"}

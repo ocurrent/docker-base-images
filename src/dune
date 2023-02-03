@@ -1,17 +1,19 @@
 (executable
-  (public_name base-images)
-  (name base_images)
-  (libraries current
-             current_web
-             current_docker
-             current_slack
-             current_git
-             current_github
-             current_ocluster
-             current_rpc
-             capnp-rpc-unix
-             dockerfile-opam
-             lwt.unix
-             prometheus-app.unix
-             logs.cli)
-  (preprocess (pps ppx_deriving_yojson)))
+ (public_name base-images)
+ (name base_images)
+ (libraries
+  current
+  current_web
+  current_docker
+  current_slack
+  current_git
+  current_github
+  current_ocluster
+  current_rpc
+  capnp-rpc-unix
+  dockerfile-opam
+  lwt.unix
+  prometheus-app.unix
+  logs.cli)
+ (preprocess
+  (pps ppx_deriving_yojson)))

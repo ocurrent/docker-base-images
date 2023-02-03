@@ -1,11 +1,13 @@
 (dirs :standard \ var)
+
 (vendored_dirs ocaml-version ocaml-dockerfile ocurrent ocluster)
 
 (rule
-  (target builds.actual)
-  (action
-    (with-stdout-to %{target}
-      (run ./src/base_images.exe --dump))))
+ (target builds.actual)
+ (action
+  (with-stdout-to
+   %{target}
+   (run ./src/base_images.exe --dump))))
 
 (rule
  (alias runtest)
