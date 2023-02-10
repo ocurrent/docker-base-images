@@ -12747,12 +12747,12 @@ windows-msvc-1809/amd64
 	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
-4.13.1/amd64
+4.14.0/amd64
 	# escape=`
 	FROM ocurrent/opam-staging:windows-msvc-1809-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms=vs2019 --no-opam -- opam switch create 4.13 --packages=ocaml-variants.4.13.1+msvc64
-	RUN ocaml-env exec --64 --ms=vs2019 -- opam pin add -k version ocaml-variants 4.13.1+msvc64
+	RUN ocaml-env exec --64 --ms=vs2019 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.0+msvc64
+	RUN ocaml-env exec --64 --ms=vs2019 -- opam pin add -k version ocaml-variants 4.14.0+msvc64
 	RUN ocaml-env exec --64 --ms=vs2019 -- opam install -y depext
 	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms=vs2019", "--" ]
 	CMD [ "cmd.exe" ]
@@ -12846,6 +12846,27 @@ windows-msvc-21H2/amd64
 	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
+4.14.0/amd64
+	# escape=`
+	FROM ocurrent/opam-staging:windows-msvc-21H2-opam-amd64
+	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --ms=vs2019 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.0+msvc64
+	RUN ocaml-env exec --64 --ms=vs2019 -- opam pin add -k version ocaml-variants 4.14.0+msvc64
+	RUN ocaml-env exec --64 --ms=vs2019 -- opam install -y depext
+	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms=vs2019", "--" ]
+	CMD [ "cmd.exe" ]
+	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
+ocurrent/opam-staging:windows-msvc-1809-ocaml-4.14-amd64, ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-ocaml-4.14
+4.13.1/amd64
+	# escape=`
+	FROM ocurrent/opam-staging:windows-msvc-1809-opam-amd64
+	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --ms=vs2019 --no-opam -- opam switch create 4.13 --packages=ocaml-variants.4.13.1+msvc64
+	RUN ocaml-env exec --64 --ms=vs2019 -- opam pin add -k version ocaml-variants 4.13.1+msvc64
+	RUN ocaml-env exec --64 --ms=vs2019 -- opam install -y depext
+	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms=vs2019", "--" ]
+	CMD [ "cmd.exe" ]
+	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 4.13.1/amd64
 	# escape=`
 	FROM ocurrent/opam-staging:windows-msvc-21H2-opam-amd64
@@ -13021,6 +13042,8 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.12-amd64 -> ocaml/opam:windows-m
 ocurrent/opam-staging:windows-msvc-1809-ocaml-4.12-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.12
 ocurrent/opam-staging:windows-msvc-1809-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-1809-ocaml-4.13
 ocurrent/opam-staging:windows-msvc-1809-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.13
+ocurrent/opam-staging:windows-msvc-1809-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-1809-ocaml-4.14
+ocurrent/opam-staging:windows-msvc-1809-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.14
 ocurrent/opam-staging:windows-msvc-21H2-opam-amd64 -> ocaml/opam:windows-msvc-21H2-opam
 ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.06-amd64 -> ocaml/opam:windows-msvc-21H2-ocaml-4.06
 ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.06-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.06
@@ -13038,3 +13061,5 @@ ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.12-amd64 -> ocaml/opam:windows-m
 ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.12-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.12
 ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-21H2-ocaml-4.13
 ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.13
+ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-21H2-ocaml-4.14
+ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.14
