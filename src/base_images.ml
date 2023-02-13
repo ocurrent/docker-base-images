@@ -5,8 +5,9 @@ let program_name = "base_images"
 
 module Rpc = Current_rpc.Impl(Current)
 
-let setup_log default_level =
+let setup_log style_renderer default_level =
   Prometheus_unix.Logging.init ?default_level ();
+  Fmt_tty.setup_std_outputs ?style_renderer ();
   ()
 
 (* A low-security Docker Hub user used to push images to the staging area.
@@ -135,7 +136,8 @@ let staging_password =
     ["staging-password-file"]
 
 let setup_log =
-  Term.(const setup_log $ Logs_cli.level ())
+  let docs = Manpage.s_common_options in
+  Term.(const setup_log $ Fmt_cli.style_renderer ~docs () $ Logs_cli.level ~docs ())
 
 let cmd =
   let doc = "Build the ocaml/opam images for Docker Hub" in
