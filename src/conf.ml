@@ -83,7 +83,9 @@ let distros = Distro.(active_distros `X86_64 |> List.filter (fun d ->
 
 let arches_for ~distro =
   match distro with
-  | `Windows (`Msvc, _) -> [`X86_64]
+  (* opam-repository-mingw doesn't package OCaml 4.14.1 nor OCaml 5.0.
+     TODO: remove when upstream opam gains OCaml packages on Windows. *)
+  | `Windows _ -> Distro.distro_arches Ocaml_version.Releases.v4_14_0 distro
   | _ -> Distro.distro_arches Ocaml_version.Releases.latest distro
 
 let win10_revision : Distro.win10_lcu = Dockerfile_opam.Distro.win10_current_lcu
