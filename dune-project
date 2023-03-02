@@ -21,6 +21,7 @@
   (lwt (>= 5.6.1))
   logs
   (fmt (>= 0.8.7))
+  (current (>= 0.6.4))
   current_git
   current_github
   current_docker
@@ -28,8 +29,8 @@
   current_slack
   current_web
   current_rpc
-  (capnp-rpc-unix (>= "1.2.2"))
+  (capnp-rpc-unix (>= "1.2.3"))
   (cmdliner (>= "1.1.0"))
-  (dockerfile (>= "7.1.0"))
-  (dockerfile-opam (>= "7.1.0"))
-  (ocaml-version (>= "3.5.0"))))
+  (dockerfile (>= "8.1.0"))
+  (dockerfile-opam (>= "8.1.0"))
+  (ocaml-version (>= "3.6.0"))))
