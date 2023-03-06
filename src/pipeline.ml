@@ -89,6 +89,7 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
        "OPAMERRLOGLEN", "0"; (* Show the whole log if it fails *)
        "OPAMPRECISETRACKING", "1"; (* Mitigate https://github.com/ocaml/opam/issues/3997 *)
       ] @@
+  Dockerfile_opam.ocaml_depexts distro switch @@
   run_no_opam "opam switch create %s --packages=%s" switch_name packages @@
   run "opam pin add -k version %s %s" package_name package_version @@
   run "opam install -y %s" depext @@

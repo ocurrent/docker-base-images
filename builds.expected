@@ -410,6 +410,8 @@ ocurrent/opam-staging:alpine-3.16-ocaml-5.0-arm64, ocurrent/opam-staging:alpine-
 	FROM ocurrent/opam-staging:alpine-3.16-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apk update && apk upgrade
+	RUN apk add zstd
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -421,6 +423,8 @@ ocurrent/opam-staging:alpine-3.16-ocaml-5.0-arm64, ocurrent/opam-staging:alpine-
 	FROM ocurrent/opam-staging:alpine-3.16-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apk update && apk upgrade
+	RUN apk add zstd
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -1665,6 +1669,8 @@ ocurrent/opam-staging:alpine-3.17-ocaml-5.0-no-flat-float-array-arm64, ocurrent/
 	FROM ocurrent/opam-staging:alpine-3.17-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apk update && apk upgrade
+	RUN apk add zstd
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -1676,6 +1682,8 @@ ocurrent/opam-staging:alpine-3.17-ocaml-5.0-no-flat-float-array-arm64, ocurrent/
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apk update && apk upgrade
+	RUN apk add zstd
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -1689,6 +1697,8 @@ ocurrent/opam-staging:alpine-3.17-ocaml-5.1-arm64, ocurrent/opam-staging:alpine-
 	FROM ocurrent/opam-staging:alpine-3.17-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apk update && apk upgrade
+	RUN apk add zstd
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -1700,6 +1710,8 @@ ocurrent/opam-staging:alpine-3.17-ocaml-5.1-arm64, ocurrent/opam-staging:alpine-
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apk update && apk upgrade
+	RUN apk add zstd
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -1713,6 +1725,8 @@ ocurrent/opam-staging:alpine-3.17-ocaml-5.1-afl-arm64, ocurrent/opam-staging:alp
 	FROM ocurrent/opam-staging:alpine-3.17-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apk update && apk upgrade
+	RUN apk add zstd
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -1724,6 +1738,8 @@ ocurrent/opam-staging:alpine-3.17-ocaml-5.1-afl-arm64, ocurrent/opam-staging:alp
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apk update && apk upgrade
+	RUN apk add zstd
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -1737,6 +1753,8 @@ ocurrent/opam-staging:alpine-3.17-ocaml-5.1-flambda-arm64, ocurrent/opam-staging
 	FROM ocurrent/opam-staging:alpine-3.17-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apk update && apk upgrade
+	RUN apk add zstd
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -1748,6 +1766,8 @@ ocurrent/opam-staging:alpine-3.17-ocaml-5.1-flambda-arm64, ocurrent/opam-staging
 	FROM ocurrent/opam-staging:alpine-3.17-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apk update && apk upgrade
+	RUN apk add zstd
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -1986,6 +2006,7 @@ ocurrent/opam-staging:archlinux-ocaml-5.0-amd64 -> ocaml/opam:archlinux-ocaml-5.
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN pacman -Syu --noconfirm zstd && yes | pacman -Scc
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5417,6 +5438,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.0-no-flat-float-array-s390x, ocurrent/op
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5428,6 +5452,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.0-no-flat-float-array-s390x, ocurrent/op
 	FROM ocurrent/opam-staging:debian-11-opam-ppc64le
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5440,6 +5467,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.0-no-flat-float-array-s390x, ocurrent/op
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5451,6 +5481,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.0-no-flat-float-array-s390x, ocurrent/op
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5462,6 +5495,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.0-no-flat-float-array-s390x, ocurrent/op
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5474,6 +5510,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.0-no-flat-float-array-s390x, ocurrent/op
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5487,6 +5526,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-s390x, ocurrent/opam-staging:debian-11
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5498,6 +5540,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-s390x, ocurrent/opam-staging:debian-11
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5511,6 +5556,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-afl-arm64, ocurrent/opam-staging:debia
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5522,6 +5570,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-afl-arm64, ocurrent/opam-staging:debia
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5535,6 +5586,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-flambda-arm64, ocurrent/opam-staging:d
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5546,6 +5600,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-flambda-arm64, ocurrent/opam-staging:d
 	FROM ocurrent/opam-staging:debian-11-opam-ppc64le
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5558,6 +5615,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-flambda-arm64, ocurrent/opam-staging:d
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5569,6 +5629,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-flambda-arm64, ocurrent/opam-staging:d
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5580,6 +5643,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-flambda-arm64, ocurrent/opam-staging:d
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -5592,6 +5658,9 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-flambda-arm64, ocurrent/opam-staging:d
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -6963,6 +7032,9 @@ ocurrent/opam-staging:debian-10-ocaml-5.0-s390x, ocurrent/opam-staging:debian-10
 	FROM ocurrent/opam-staging:debian-10-opam-s390x
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -6974,6 +7046,9 @@ ocurrent/opam-staging:debian-10-ocaml-5.0-s390x, ocurrent/opam-staging:debian-10
 	FROM ocurrent/opam-staging:debian-10-opam-ppc64le
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -6986,6 +7061,9 @@ ocurrent/opam-staging:debian-10-ocaml-5.0-s390x, ocurrent/opam-staging:debian-10
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -6997,6 +7075,9 @@ ocurrent/opam-staging:debian-10-ocaml-5.0-s390x, ocurrent/opam-staging:debian-10
 	FROM ocurrent/opam-staging:debian-10-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -7008,6 +7089,9 @@ ocurrent/opam-staging:debian-10-ocaml-5.0-s390x, ocurrent/opam-staging:debian-10
 	FROM ocurrent/opam-staging:debian-10-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -7020,6 +7104,9 @@ ocurrent/opam-staging:debian-10-ocaml-5.0-s390x, ocurrent/opam-staging:debian-10
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -7268,6 +7355,9 @@ ocurrent/opam-staging:debian-testing-ocaml-5.0-amd64 -> ocaml/opam:debian-testin
 	FROM ocurrent/opam-staging:debian-testing-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -7516,6 +7606,9 @@ ocurrent/opam-staging:debian-unstable-ocaml-5.0-amd64 -> ocaml/opam:debian-unsta
 	FROM ocurrent/opam-staging:debian-unstable-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -7915,6 +8008,7 @@ ocurrent/opam-staging:fedora-36-ocaml-5.0-arm64, ocurrent/opam-staging:fedora-36
 	FROM ocurrent/opam-staging:fedora-36-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN yum install -y zstd && yum clean packages
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -7926,6 +8020,7 @@ ocurrent/opam-staging:fedora-36-ocaml-5.0-arm64, ocurrent/opam-staging:fedora-36
 	FROM ocurrent/opam-staging:fedora-36-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN yum install -y zstd && yum clean packages
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -8340,6 +8435,7 @@ ocurrent/opam-staging:fedora-37-ocaml-5.0-arm64, ocurrent/opam-staging:fedora-37
 	FROM ocurrent/opam-staging:fedora-37-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN yum install -y zstd && yum clean packages
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -8351,6 +8447,7 @@ ocurrent/opam-staging:fedora-37-ocaml-5.0-arm64, ocurrent/opam-staging:fedora-37
 	FROM ocurrent/opam-staging:fedora-37-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN yum install -y zstd && yum clean packages
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -8604,6 +8701,7 @@ ocurrent/opam-staging:oraclelinux-8-ocaml-5.0-amd64 -> ocaml/opam:oraclelinux-8-
 	FROM ocurrent/opam-staging:oraclelinux-8-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN yum install -y zstd && yum clean packages
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -8866,6 +8964,7 @@ ocurrent/opam-staging:oraclelinux-9-ocaml-5.0-amd64 -> ocaml/opam:oraclelinux-oc
 	FROM ocurrent/opam-staging:oraclelinux-9-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN yum install -y zstd && yum clean packages
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -9124,6 +9223,8 @@ ocurrent/opam-staging:opensuse-15.4-ocaml-5.0-amd64 -> ocaml/opam:opensuse-ocaml
 	FROM ocurrent/opam-staging:opensuse-15.4-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN zypper update -y
+	RUN zypper install --force-resolution -y zstd
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -9918,6 +10019,9 @@ ocurrent/opam-staging:ubuntu-18.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-18.04-opam-s390x
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -9929,6 +10033,9 @@ ocurrent/opam-staging:ubuntu-18.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-18.04-opam-ppc64le
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -9940,6 +10047,9 @@ ocurrent/opam-staging:ubuntu-18.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-18.04-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -9951,6 +10061,9 @@ ocurrent/opam-staging:ubuntu-18.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-18.04-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -10872,6 +10985,9 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-s390x
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -10883,6 +10999,9 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-ppc64le
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -10894,6 +11013,9 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -10905,6 +11027,9 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -10916,6 +11041,9 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-riscv64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -11827,6 +11955,9 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-s390x
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -11838,6 +11969,9 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-ppc64le
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -11849,6 +11983,9 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -11860,6 +11997,9 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -11871,6 +12011,9 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-riscv64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -12783,6 +12926,9 @@ ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-22.10-opam-s390x
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -12794,6 +12940,9 @@ ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-22.10-opam-ppc64le
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -12805,6 +12954,9 @@ ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-22.10-opam-arm64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -12816,6 +12968,9 @@ ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-22.10-opam-amd64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
@@ -12827,6 +12982,9 @@ ocurrent/opam-staging:ubuntu-22.10-ocaml-5.0-s390x, ocurrent/opam-staging:ubuntu
 	FROM ocurrent/opam-staging:ubuntu-22.10-opam-riscv64
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN apt-get -y update
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.1.0+trunk
 	RUN opam install -y opam-depext
