@@ -56,12 +56,11 @@ let switches ~arch ~distro =
      the compiler. *)
   let with_dev = match distro with `Windows _ -> false | _ -> true in
   let filter_windows main_switches =
-    (* opam-repository-mingw doesn't package OCaml 4.14.1 nor OCaml 5.0.
+    (* opam-repository-mingw doesn't package OCaml 5.0.
        TODO: remove when upstream opam gains OCaml packages on Windows. *)
     match distro with
     | `Windows _ ->
-       List.filter (fun ov -> Ocaml_version.(compare ov Releases.v4_14_0) <= 0) main_switches
-       @ [Ocaml_version.Releases.v4_14_0]
+       List.filter (fun ov -> Ocaml_version.(compare ov Releases.v4_14) <= 0) main_switches
     | _ -> main_switches
   in
   let main_switches =
@@ -83,9 +82,9 @@ let distros = Distro.(active_distros `X86_64 |> List.filter (fun d ->
 
 let arches_for ~distro =
   match distro with
-  (* opam-repository-mingw doesn't package OCaml 4.14.1 nor OCaml 5.0.
+  (* opam-repository-mingw doesn't package OCaml 5.0.
      TODO: remove when upstream opam gains OCaml packages on Windows. *)
-  | `Windows _ -> Distro.distro_arches Ocaml_version.Releases.v4_14_0 distro
+  | `Windows _ -> Distro.distro_arches Ocaml_version.Releases.v4_14 distro
   | _ -> Distro.distro_arches Ocaml_version.Releases.latest distro
 
 let win10_revision : Distro.win10_lcu = Dockerfile_opam.Distro.win10_current_lcu
