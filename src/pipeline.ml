@@ -132,7 +132,7 @@ module Make (OCurrent : S.OCURRENT) = struct
       let arch_name = Ocaml_version.string_of_arch arch in
       let distro_tag, os_family = Distro.(tag_of_distro distro, os_family_of_distro distro) in
       Current.component "%s@,%s" distro_tag arch_name |>
-      let> {Git_repositories.opam_repository_master; opam_repository_mingw_opam2; opam_overlays; opam_2_0; opam_2_1; opam_master} = repos in
+      let> {Git_repositories.opam_repository_master; opam_repository_mingw_sunset; opam_overlays; opam_2_0; opam_2_1; opam_master} = repos in
       let dockerfile =
         let opam_hashes = {
           Dockerfile_opam.opam_2_0_hash = Current_git.Commit_id.hash opam_2_0;
@@ -169,7 +169,7 @@ module Make (OCurrent : S.OCURRENT) = struct
                       buildkit = buildkit distro;
                       include_git = true } in
       let cache_hint = Printf.sprintf "opam-%s" distro_tag in
-      let opam_repository = match os_family with `Windows -> opam_repository_mingw_opam2 | _ -> opam_repository_master in
+      let opam_repository = match os_family with `Windows -> opam_repository_mingw_sunset | _ -> opam_repository_master in
       OCluster.Raw.build_and_push ocluster ~src:[opam_repository] dockerfile
         ~cache_hint
         ~options
