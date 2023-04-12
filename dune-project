@@ -1,4 +1,4 @@
-(lang dune 3.6)
+(lang dune 3.7)
 (name base-images)
 (generate_opam_files true)
 (formatting (enabled_for dune))
@@ -30,7 +30,7 @@
   current_web
   current_rpc
   (capnp-rpc-unix (>= "1.2.3"))
-  (cmdliner (>= "1.1.0"))
-  (dockerfile (>= "8.1.0"))
-  (dockerfile-opam (>= "8.1.0"))
-  (ocaml-version (>= "3.6.0"))))
+  (cmdliner (>= "1.1.1"))
+  (dockerfile (>= "8.2.1"))
+  (dockerfile-opam (>= "8.2.1"))
+  (ocaml-version (>= "3.6.1"))))
