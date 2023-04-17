@@ -12,7 +12,7 @@ module Log = struct
   let note t msg =
     let lines =
       String.split_on_char '\n' msg
-      |> List.rev_map (fun x -> t.indent ^ x)
+      |> List.rev_map (function "" -> "" | x -> t.indent ^ x)
     in
     t.lines <- lines @ t.lines
 
