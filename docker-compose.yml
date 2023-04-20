@@ -2,7 +2,7 @@ version: "3.8"
 services:
   scheduler:
     image: ocurrent/ocluster-scheduler:live
-    platform: linux/amd64
+    platform: linux
     command:
       - --secrets-dir=/capnp-secrets
       - --capnp-secret-key-file=/capnp-secrets/key.pem
@@ -30,15 +30,23 @@ services:
       - 'base-builder-data:/var/lib/ocurrent'
       - "capnp-secrets:/capnp-secrets"
   worker:
-    image: ocurrent/ocluster-worker:live
-    platform: linux/amd64
+    build:
+      dockerfile: docker/worker/Dockerfile
+      context: .
+    platform: linux
     command:
       - --connect=/capnp-secrets/pool-linux-x86_64.cap
+      # - --connect=/capnp-secrets/pool-linux-arm64.cap  # NOTE replace with arm64 if running on macos/arm64
       - --name=local
       - --allow-push=ocurrentbuilder/staging,ocurrent/opam-staging
       - --capacity=1
       - --state-dir=/var/lib/ocluster
+      - --store=rsync:/var/cache/obuilder
+      - --rsync-mode=hardlink
+      - --obuilder-healthcheck=0
+      - --verbose
     init: true
+    privileged: true            # required for the Docker in Docker container to work
     restart: on-failure         # (wait for the scheduler to write the pool cap)
     volumes:
       - 'worker-data:/var/lib/ocluster'

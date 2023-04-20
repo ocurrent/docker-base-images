@@ -28,11 +28,11 @@ RUN opam install -y --deps-only .
 ADD --chown=opam . .
 RUN opam config exec -- dune build ./src/base_images.exe
 
-FROM --platform=linux/amd64 debian:11
+FROM debian:11
 RUN apt-get update && apt-get install libev4 curl git graphviz libsqlite3-dev ca-certificates netbase gnupg2 -y --no-install-recommends
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-RUN echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' >> /etc/apt/sources.list
-RUN apt-get update && apt-get install docker-ce -y --no-install-recommends
+RUN echo 'deb https://download.docker.com/linux/debian buster stable' >> /etc/apt/sources.list
+RUN apt-get update && apt-get install docker-ce docker-buildx-plugin -y --no-install-recommends
 COPY --from=build /src/_build/default/src/base_images.exe /usr/local/bin/base-images
 WORKDIR /var/lib/ocurrent
 ENTRYPOINT ["/usr/local/bin/base-images"]
