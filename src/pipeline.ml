@@ -64,9 +64,9 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
     | None ->
       (fun fmt -> run fmt), (fun fmt -> run fmt), "opam-depext", ["opam"; "exec"; "--"]
     | Some `Msvc ->
-      (fun fmt -> run_ocaml_env [bitness; "--ms=vs2019"] fmt),
-      (fun fmt -> run_ocaml_env [bitness; "--ms=vs2019"; "--no-opam"] fmt),
-       "depext", ["ocaml-env"; "exec"; bitness; "--ms=vs2019"; "--"]
+      (fun fmt -> run_ocaml_env [bitness; "--ms"] fmt),
+      (fun fmt -> run_ocaml_env [bitness; "--ms"; "--no-opam"] fmt),
+       "depext", ["ocaml-env"; "exec"; bitness; "--ms"; "--"]
     | Some `Mingw ->
       (fun fmt -> run_ocaml_env [bitness] fmt),
       (fun fmt -> run_ocaml_env [bitness; "--no-opam"] fmt),
