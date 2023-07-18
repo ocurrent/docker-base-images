@@ -12,7 +12,7 @@
  (name base-images)
  (synopsis "Generate Docker base images for OCaml and opam using ocurrent")
  (depends
-  (ocaml (>= 4.12))
+  (ocaml (>= 4.14))
   (conf-libev (<> :os "win32"))
   (prometheus-app (>= 1.0))
   ppx_sexp_conv
@@ -29,8 +29,8 @@
   current_slack
   current_web
   current_rpc
-  (capnp-rpc-unix (>= "1.2.3"))
-  (cmdliner (>= "1.1.1"))
-  (dockerfile (>= "8.2.1"))
-  (dockerfile-opam (>= "8.2.1"))
-  (ocaml-version (>= "3.6.1"))))
+  (capnp-rpc-unix (>= 1.2.3))
+  (cmdliner (>= 1.1.1))
+  (dockerfile (>= 8.2.1))
+  (dockerfile-opam (>= 8.2.1))
+  (ocaml-version (>= 3.6.1))))
