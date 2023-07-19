@@ -8,7 +8,7 @@ homepage: "https://github.com/ocurrent/docker-base-images"
 bug-reports: "https://github.com/ocurrent/docker-base-images/issues"
 depends: [
   "dune" {>= "3.7"}
-  "ocaml" {>= "4.12"}
+  "ocaml" {>= "4.14"}
   "conf-libev" {os != "win32"}
   "prometheus-app" {>= "1.0"}
   "ppx_sexp_conv"
