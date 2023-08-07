@@ -41,7 +41,7 @@ services:
       - --allow-push=ocurrentbuilder/staging,ocurrent/opam-staging
       - --capacity=1
       - --state-dir=/var/lib/ocluster
-      - --store=rsync:/var/cache/obuilder
+      - --obuilder-store=rsync:/var/cache/obuilder
       - --rsync-mode=hardlink
       - --obuilder-healthcheck=0
       - --verbose
