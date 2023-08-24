@@ -1,4 +1,4 @@
-FROM ocaml/opam:debian-11-ocaml-4.14@sha256:18fcbeb356957c58cf8f37bc43adcca5683d50163a120d9b322b173428281e61 AS build
+FROM ocaml/opam:debian-12-ocaml-4.14@sha256:45b04e2a4c933c57549382045dfac12cb7e872cace0456f92f4b022066e48111 as build
 RUN sudo apt-get update && sudo apt-get install libev-dev capnproto graphviz m4 pkg-config libsqlite3-dev libgmp-dev libssl-dev libffi-dev -y --no-install-recommends
 RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard 1853726ac7f8449674c8bc6bc54288ad5f58b857 && opam update
 COPY --chown=opam \
@@ -28,10 +28,10 @@ RUN opam install -y --deps-only .
 ADD --chown=opam . .
 RUN opam config exec -- dune build ./src/base_images.exe
 
-FROM debian:11
+FROM debian:12
 RUN apt-get update && apt-get install libev4 curl git graphviz libsqlite3-dev ca-certificates netbase gnupg2 -y --no-install-recommends
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-RUN echo 'deb https://download.docker.com/linux/debian buster stable' >> /etc/apt/sources.list
+RUN echo 'deb https://download.docker.com/linux/debian bookworm stable' >> /etc/apt/sources.list
 RUN apt-get update && apt-get install docker-ce docker-buildx-plugin -y --no-install-recommends
 COPY --from=build /src/_build/default/src/base_images.exe /usr/local/bin/base-images
 WORKDIR /var/lib/ocurrent
