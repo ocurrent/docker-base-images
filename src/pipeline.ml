@@ -16,6 +16,12 @@ let aliases_of =
 
 let master_distro = Distro.((resolve_alias master_distro : distro :> t))
 
+(* Windows Containers don't support BuildKit as of v0.12.2.
+   https://github.com/microsoft/Windows-Containers/issues/34 *)
+let buildkit : Distro.os_family -> bool = function
+  | `Windows | `Cygwin -> false
+  | `Linux -> true
+
 type 'a run = ('a, unit, string, Dockerfile.t) format4 -> 'a
 
 let maybe_add_beta (run : 'a run) switch =
@@ -96,13 +102,13 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
   maybe_install_secondary_compiler run os_family switch @@
   entrypoint_exec (Option.to_list personality @ opam_exec) @@
   (match os_family with
-   | `Linux ->
+   | `Linux | `Cygwin ->
+     let link = buildkit os_family in
      cmd "bash" @@
-     copy ~link:true ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ()
+     copy ~link ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ()
    | `Windows ->
      cmd_exec ["cmd.exe"] @@
-     copy ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ()
-   | `Cygwin -> failwith "No support for Cygwin currently.")
+     copy ~src:["Dockerfile"] ~dst:"/Dockerfile.ocaml" ())
 
 let or_die = function
   | Ok x -> x
@@ -120,14 +126,10 @@ module Make (OCurrent : S.OCURRENT) = struct
 
   (* Pipeline to build the opam base image and the compiler images for a particular architecture. *)
   module Arch = struct
-    (* 2020-04-29: On Windows, squashing images is still experimental (broken). *)
-    let squash distro =
-      Distro.os_family_of_distro distro <> `Windows
-
-    (* 2022-07-18: Windows Containers don't support BuildKit.
-       https://github.com/microsoft/Windows-Containers/issues/34 *)
-    let buildkit distro =
-      Distro.os_family_of_distro distro <> `Windows
+    (* On Windows, squashing images is still experimental (broken). *)
+    let squash : Distro.os_family -> bool = function
+      | `Windows | `Cygwin -> false
+      | `Linux -> true
 
     let install_opam ~arch ~ocluster ~distro ~repos ~push_target =
       let arch_name = Ocaml_version.string_of_arch arch in
@@ -146,12 +148,13 @@ module Make (OCurrent : S.OCURRENT) = struct
           string_of_t (
             opam @@
             begin match os_family with
-            | `Linux ->
-              copy ~link:true ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
+            | `Linux | `Cygwin ->
+              let link = buildkit os_family in
+              copy ~link ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
               run "opam-sandbox-disable" @@
               run "opam init -k local -a /home/opam/opam-repository --bare" @@
               run "rm -rf .opam/repo/default/.git" @@
-              copy ~link:true ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
+              copy ~link ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
             | `Windows ->
               let opam_repo = Windows.Cygwin.default.root ^ {|\home\opam\opam-repository|} in
               let opam_root = {|C:\opam\.opam|} in
@@ -161,13 +164,12 @@ module Make (OCurrent : S.OCURRENT) = struct
               maybe_add_overlay distro (Current_git.Commit_id.hash opam_overlays) @@
               Windows.Cygwin.run_sh "rm -rf /cygdrive/c/opam/.opam/repo/default/.git" @@
               copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
-            | `Cygwin -> failwith "No support for Cygwin currently."
             end)
         )
       in
       let options = { Cluster_api.Docker.Spec.defaults with
-                      squash = squash distro;
-                      buildkit = buildkit distro;
+                      squash = squash os_family;
+                      buildkit = buildkit os_family;
                       include_git = true } in
       let cache_hint = Printf.sprintf "opam-%s" distro_tag in
       let opam_repository = match os_family with `Windows -> opam_repository_mingw_sunset | _ -> opam_repository_master in
@@ -183,10 +185,12 @@ module Make (OCurrent : S.OCURRENT) = struct
       let> base = base in
       let dockerfile = `Contents (install_compiler_df ~distro ~arch ~switch ?windows_port base |> Dockerfile.string_of_t) in
       (* ([include_git] doesn't do anything here, but it saves rebuilding during the upgrade) *)
-      let options = { Cluster_api.Docker.Spec.defaults with
-                      squash = squash distro;
-                      buildkit = buildkit distro;
-                      include_git = true } in
+      let options =
+        let os_family = Dockerfile_opam.Distro.os_family_of_distro distro in
+        { Cluster_api.Docker.Spec.defaults with
+          squash = squash os_family;
+          buildkit = buildkit os_family;
+          include_git = true } in
       let cache_hint = Printf.sprintf "%s-%s-%s" (Ocaml_version.to_string switch) arch_name base in
       OCluster.Raw.build_and_push ocluster ~src:[] dockerfile
         ~cache_hint
@@ -198,10 +202,12 @@ module Make (OCurrent : S.OCURRENT) = struct
       Current.component "archive" |>
       let> base = base in
       let dockerfile = `Contents (install_package_archive base |> Dockerfile.string_of_t) in
-      let options = { Cluster_api.Docker.Spec.defaults with
-                      squash = squash distro;
-                      buildkit = buildkit distro;
-                      include_git = true } in
+      let options =
+        let os_family = Dockerfile_opam.Distro.os_family_of_distro distro in
+        { Cluster_api.Docker.Spec.defaults with
+          squash = squash os_family;
+          buildkit = buildkit os_family;
+          include_git = true } in
       let cache_hint = Printf.sprintf "archive-%s" base in
       OCluster.Raw.build_and_push ocluster ~src:[] dockerfile
         ~cache_hint

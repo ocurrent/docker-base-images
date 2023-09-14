@@ -75,10 +75,7 @@ let switches ~arch ~distro =
   )
 
 (* We can't get the active distros directly, but assume x86_64 is a superset of everything else. *)
-let distros = Distro.(active_distros `X86_64 |> List.filter (fun d ->
-  match os_family_of_distro d with
-  | `Linux | `Windows -> true
-  | _ -> false))
+let distros = Distro.active_distros `X86_64
 
 let arches_for ~distro =
   match distro with
