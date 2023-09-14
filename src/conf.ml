@@ -69,7 +69,7 @@ let switches ~arch ~distro =
     |> filter_windows
   in
   if is_tier1 then (
-    List.map (Ocaml_version.Opam.V2.switches arch) main_switches |> List.concat
+    List.concat_map (Ocaml_version.Opam.V2.switches arch) main_switches
   ) else (
     main_switches
   )
