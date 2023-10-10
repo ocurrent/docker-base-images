@@ -1,6 +1,28 @@
 open Capnp_rpc_lwt
 open Lwt.Infix
 
+module Metrics = struct
+  open Prometheus
+
+  let namespace = "baseimages"
+  let subsystem = "pipeline"
+
+  let master =
+    let help = "Number of images by platform" in
+    Gauge.v_label ~label_name:"state" ~help ~namespace ~subsystem
+      "image_state_total"
+
+  module StrMap = Map.Make(String)
+
+  type stats = { ok : int; failed : int; active : int; blocked : int }
+  type t = stats StrMap.t
+
+
+
+  
+
+end
+
 let program_name = "base_images"
 
 module Rpc = Current_rpc.Impl(Current)
@@ -64,7 +86,7 @@ let has_role user = function
            ) -> true
     | _ -> false
 
-let main () config mode channel capnp_address github_auth submission_uri staging_password_file =
+let main () config mode channel capnp_address github_auth submission_uri staging_password_file prometheus_config =
   Lwt_main.run begin
     let channel = Option.map read_channel_uri channel in
     let staging_auth = staging_password_file |> Option.map (fun path -> staging_user, read_first_line path) in
@@ -84,10 +106,11 @@ let main () config mode channel capnp_address github_auth submission_uri staging
       Routes.(s "login" /? nil @--> Current_github.Auth.login github_auth) ::
       Current_web.routes engine in
     let site = Current_web.Site.v ?authn ~secure_cookies ~has_role ~name:program_name ~refresh_pipeline:60 routes in
-    Lwt.choose [
+    let prometheus = List.map (Lwt.map Result.ok) (Prometheus_unix.serve prometheus_config) in
+    Lwt.choose ([
       Current.Engine.thread engine;
       Current_web.run ~mode site;
-    ]
+    ] @ prometheus)
   end
 
 (* Command-line parsing *)
@@ -143,10 +166,20 @@ let setup_log =
 
 let cmd =
   let doc = "Build the ocaml/opam images for Docker Hub" in
-  Cmd.v (Cmd.info program_name ~doc)
-  Term.(term_result (const main $ setup_log $ Current.Config.cmdliner $ Current_web.cmdliner
-                     $ slack $ capnp_address $ Current_github.Auth.cmdliner $ submission_service
-                     $ staging_password))
+  let info = Cmd.info program_name ~doc in 
+  Cmd.v info
+    Term.(
+      term_result (
+        const main
+        $ setup_log
+        $ Current.Config.cmdliner
+        $ Current_web.cmdliner
+        $ slack
+        $ capnp_address
+        $ Current_github.Auth.cmdliner
+        $ submission_service
+        $ staging_password
+        $ Prometheus_unix.opts))
 
 let () =
   match Sys.argv with
