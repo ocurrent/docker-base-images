@@ -15,12 +15,14 @@ module type OCURRENT = sig
 
     val component : ('a, Format.formatter, unit, description) format4 -> 'a
     val ignore_value : 'a t -> unit t
+    val state : ?hidden:bool -> 'a t -> ( 'a, [ `Active of Current_term.Output.active | `Msg of string ] ) result t
     val all : unit t list -> unit t
     val all_labelled : (string * unit t) list -> unit t
     val collapse : key:string -> value:string -> input:_ t -> 'a t -> 'a t
 
     module Syntax : sig
       val (let>) : 'a t -> ('a -> 'b Primitive.t) -> description -> 'b t
+      val (let+) : 'a t -> ('a -> 'b) -> 'b t
     end
   end
 

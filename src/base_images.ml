@@ -7,20 +7,33 @@ module Metrics = struct
   let namespace = "baseimages"
   let subsystem = "pipeline"
 
-  let master =
+  let family =
     let help = "Number of images by platform" in
-    Gauge.v_label ~label_name:"state" ~help ~namespace ~subsystem
+    Gauge.v_labels ~label_names:["platform"; "state"] ~help ~namespace ~subsystem
       "image_state_total"
 
-  module StrMap = Map.Make(String)
-
   type stats = { ok : int; failed : int; active : int; blocked : int }
-  type t = stats StrMap.t
+  let stats_empty = { ok = 0; failed = 0; active = 0; blocked = 0 }
 
-
-
-  
-
+  let update () =
+    let f platform sm =
+      let stats =
+        Index.Switch_map.fold
+          (fun _ state stats ->
+            match state with
+            | Index.Ok -> { stats with ok = stats.ok + 1 }
+            | Index.Failed -> { stats with failed = stats.failed + 1 }
+            | Index.Active -> { stats with active = stats.active + 1 }
+            | Index.Blocked -> { stats with blocked = stats.blocked + 1 })
+          sm stats_empty
+      in
+      Gauge.set (Gauge.labels family [platform; "ok"]) (float_of_int stats.ok);
+      Gauge.set (Gauge.labels family [platform; "failed"]) (float_of_int stats.failed);
+      Gauge.set (Gauge.labels family [platform; "active"]) (float_of_int stats.active);
+      Gauge.set (Gauge.labels family [platform; "blocked"]) (float_of_int stats.blocked)
+    in
+    let v = Index.get () in
+    Index.Platform_map.iter f v
 end
 
 let program_name = "base_images"
@@ -30,7 +43,7 @@ module Rpc = Current_rpc.Impl(Current)
 let setup_log style_renderer default_level =
   Prometheus_unix.Logging.init ?default_level ();
   Fmt_tty.setup_std_outputs ?style_renderer ();
-  ()
+  Prometheus.CollectorRegistry.(register_pre_collect default) Metrics.update
 
 (* A low-security Docker Hub user used to push images to the staging area.
    Low-security because we never rely on the tags in this repository, just the hashes. *)
