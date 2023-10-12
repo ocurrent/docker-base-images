@@ -12,8 +12,8 @@ module Metrics = struct
     Gauge.v_labels ~label_names:["platform"; "state"] ~help ~namespace ~subsystem
       "image_state_total"
 
-  type stats = { ok : int; failed : int; active : int; blocked : int }
-  let stats_empty = { ok = 0; failed = 0; active = 0; blocked = 0 }
+  type stats = { ok : int; failed : int; active : int }
+  let stats_empty = { ok = 0; failed = 0; active = 0 }
 
   let update () =
     let f platform sm =
@@ -23,14 +23,12 @@ module Metrics = struct
             match state with
             | Index.Ok -> { stats with ok = stats.ok + 1 }
             | Index.Failed -> { stats with failed = stats.failed + 1 }
-            | Index.Active -> { stats with active = stats.active + 1 }
-            | Index.Blocked -> { stats with blocked = stats.blocked + 1 })
+            | Index.Active -> { stats with active = stats.active + 1 })
           sm stats_empty
       in
       Gauge.set (Gauge.labels family [platform; "ok"]) (float_of_int stats.ok);
       Gauge.set (Gauge.labels family [platform; "failed"]) (float_of_int stats.failed);
-      Gauge.set (Gauge.labels family [platform; "active"]) (float_of_int stats.active);
-      Gauge.set (Gauge.labels family [platform; "blocked"]) (float_of_int stats.blocked)
+      Gauge.set (Gauge.labels family [platform; "active"]) (float_of_int stats.active)
     in
     let v = Index.get () in
     Index.Platform_map.iter f v

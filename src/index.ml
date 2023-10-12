@@ -1,7 +1,7 @@
 module Platform_map = Map.Make (String)
 module Switch_map = Map.Make (Ocaml_version)
 
-type state = Ok | Failed | Active | Blocked
+type state = Ok | Failed | Active
 type t = state Switch_map.t Platform_map.t
 
 let v : t ref = ref Platform_map.empty

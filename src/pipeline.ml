@@ -211,7 +211,6 @@ module Make (OCurrent : S.OCURRENT) = struct
 
     (* Build the base image for [distro], plus an image for each compiler version. *)
     let pipeline ~ocluster ~repos ~distro arch =
-      Logs.err (fun m -> m "%s" (Distro.human_readable_string_of_distro distro));
       let opam_image =
         let push_target =
           Tag.v distro ~arch
@@ -242,7 +241,6 @@ module Make (OCurrent : S.OCURRENT) = struct
             ~switch s
         in
         ignore x;
-        Logs.err (fun m -> m "  %s" (Ocaml_version.to_string switch));
         (switch, repo_id)
       in
       (* Build the archive image for the debian 10 / x86_64 image only *)
