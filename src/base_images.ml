@@ -16,22 +16,27 @@ module Metrics = struct
   let stats_empty = { ok = 0; failed = 0; active = 0 }
 
   let update () =
-    let f platform sm =
+    let incr_stats stats = function
+      | Index.Ok -> { stats with ok = stats.ok + 1 }
+      | Index.Failed -> { stats with failed = stats.failed + 1 }
+      | Index.Active -> { stats with active = stats.active + 1 }
+    in
+    let f opam_map platform sm =
       let stats =
         Index.Switch_map.fold
-          (fun _ state stats ->
-            match state with
-            | Index.Ok -> { stats with ok = stats.ok + 1 }
-            | Index.Failed -> { stats with failed = stats.failed + 1 }
-            | Index.Active -> { stats with active = stats.active + 1 })
+          (fun _ state stats -> incr_stats stats state)
           sm stats_empty
+      in
+      let stats =
+        Option.map (incr_stats stats) (Index.Platform_map.find_opt platform opam_map)
+        |> Option.value ~default:stats
       in
       Gauge.set (Gauge.labels family [platform; "ok"]) (float_of_int stats.ok);
       Gauge.set (Gauge.labels family [platform; "failed"]) (float_of_int stats.failed);
       Gauge.set (Gauge.labels family [platform; "active"]) (float_of_int stats.active)
     in
     let v = Index.get () in
-    Index.Platform_map.iter f v
+    Index.Platform_map.iter (f (snd v)) (fst v)
 end
 
 let program_name = "base_images"
