@@ -56,6 +56,8 @@ module Fake = struct
     let ignore_value t =
       of_fn (fun log -> ignore (force t log))
 
+    let state ?hidden t = ignore hidden; of_fn (fun log -> force t log |> Result.ok)
+
     let all xs = of_fn (fun log -> List.iter (fun x -> force x log) xs)
     let all_labelled xs = of_fn (fun log -> List.iter (fun (_l, x) -> force x log) xs)
 
@@ -67,6 +69,12 @@ module Fake = struct
         let x = force x log in
         Log.note log description;
         Log.with_indent (force (fn x)) log
+
+      let (let+) x f =
+        of_fn @@ fun log ->
+        match x.state with
+        | `Ready fn -> f @@ fn log
+        | `Done x -> f x
     end
   end
 

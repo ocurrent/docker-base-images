@@ -211,6 +211,17 @@ module Make (OCurrent : S.OCURRENT) = struct
 
     (* Build the base image for [distro], plus an image for each compiler version. *)
     let pipeline ~ocluster ~repos ~distro arch =
+      let update_index current distro switch =
+        let+ state = Current.state ~hidden:true current in
+        let s = match state with
+        | Ok _ -> Index.Ok
+        | Error (`Active _) -> Active
+        | Error (`Msg _) -> Failed
+        in
+        Index.update
+          ~platform:(Distro.human_readable_string_of_distro distro)
+          ~switch s
+      in
       let opam_image =
         let push_target =
           Tag.v distro ~arch
@@ -219,6 +230,7 @@ module Make (OCurrent : S.OCURRENT) = struct
         in
         install_opam ~arch ~ocluster ~distro ~repos ~push_target
       in
+      let _ = update_index opam_image distro None in
       let compiler_images =
         Conf.switches ~arch ~distro |> List.map @@ fun switch ->
         let push_target =
@@ -228,6 +240,7 @@ module Make (OCurrent : S.OCURRENT) = struct
         in
         let windows_port = match distro with  `Windows (port, _) -> Some port | _ -> None in
         let repo_id = install_compiler ~distro ~arch ~ocluster ~switch ~push_target ?windows_port opam_image in
+        let _ = update_index repo_id distro (Some switch) in
         (switch, repo_id)
       in
       (* Build the archive image for the debian 10 / x86_64 image only *)

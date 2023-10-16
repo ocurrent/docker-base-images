@@ -1,6 +1,44 @@
 open Capnp_rpc_lwt
 open Lwt.Infix
 
+module Metrics = struct
+  open Prometheus
+
+  let namespace = "baseimages"
+  let subsystem = "pipeline"
+
+  let family =
+    let help = "Number of images by platform" in
+    Gauge.v_labels ~label_names:["platform"; "state"] ~help ~namespace ~subsystem
+      "image_state_total"
+
+  type stats = { ok : int; failed : int; active : int }
+  let stats_empty = { ok = 0; failed = 0; active = 0 }
+
+  let update () =
+    let incr_stats stats = function
+      | Index.Ok -> { stats with ok = stats.ok + 1 }
+      | Index.Failed -> { stats with failed = stats.failed + 1 }
+      | Index.Active -> { stats with active = stats.active + 1 }
+    in
+    let f opam_map platform sm =
+      let stats =
+        Index.Switch_map.fold
+          (fun _ state stats -> incr_stats stats state)
+          sm stats_empty
+      in
+      let stats =
+        Option.map (incr_stats stats) (Index.Platform_map.find_opt platform opam_map)
+        |> Option.value ~default:stats
+      in
+      Gauge.set (Gauge.labels family [platform; "ok"]) (float_of_int stats.ok);
+      Gauge.set (Gauge.labels family [platform; "failed"]) (float_of_int stats.failed);
+      Gauge.set (Gauge.labels family [platform; "active"]) (float_of_int stats.active)
+    in
+    let v = Index.get () in
+    Index.Platform_map.iter (f (snd v)) (fst v)
+end
+
 let program_name = "base_images"
 
 module Rpc = Current_rpc.Impl(Current)
@@ -8,7 +46,7 @@ module Rpc = Current_rpc.Impl(Current)
 let setup_log style_renderer default_level =
   Prometheus_unix.Logging.init ?default_level ();
   Fmt_tty.setup_std_outputs ?style_renderer ();
-  ()
+  Prometheus.CollectorRegistry.(register_pre_collect default) Metrics.update
 
 (* A low-security Docker Hub user used to push images to the staging area.
    Low-security because we never rely on the tags in this repository, just the hashes. *)
@@ -64,7 +102,7 @@ let has_role user = function
            ) -> true
     | _ -> false
 
-let main () config mode channel capnp_address github_auth submission_uri staging_password_file =
+let main () config mode channel capnp_address github_auth submission_uri staging_password_file prometheus_config =
   Lwt_main.run begin
     let channel = Option.map read_channel_uri channel in
     let staging_auth = staging_password_file |> Option.map (fun path -> staging_user, read_first_line path) in
@@ -84,10 +122,11 @@ let main () config mode channel capnp_address github_auth submission_uri staging
       Routes.(s "login" /? nil @--> Current_github.Auth.login github_auth) ::
       Current_web.routes engine in
     let site = Current_web.Site.v ?authn ~secure_cookies ~has_role ~name:program_name ~refresh_pipeline:60 routes in
-    Lwt.choose [
+    let prometheus = List.map (Lwt.map Result.ok) (Prometheus_unix.serve prometheus_config) in
+    Lwt.choose ([
       Current.Engine.thread engine;
       Current_web.run ~mode site;
-    ]
+    ] @ prometheus)
   end
 
 (* Command-line parsing *)
@@ -143,10 +182,20 @@ let setup_log =
 
 let cmd =
   let doc = "Build the ocaml/opam images for Docker Hub" in
-  Cmd.v (Cmd.info program_name ~doc)
-  Term.(term_result (const main $ setup_log $ Current.Config.cmdliner $ Current_web.cmdliner
-                     $ slack $ capnp_address $ Current_github.Auth.cmdliner $ submission_service
-                     $ staging_password))
+  let info = Cmd.info program_name ~doc in 
+  Cmd.v info
+    Term.(
+      term_result (
+        const main
+        $ setup_log
+        $ Current.Config.cmdliner
+        $ Current_web.cmdliner
+        $ slack
+        $ capnp_address
+        $ Current_github.Auth.cmdliner
+        $ submission_service
+        $ staging_password
+        $ Prometheus_unix.opts))
 
 let () =
   match Sys.argv with
