@@ -1,7 +1,6 @@
 (lang dune 3.7)
 (name base-images)
 (generate_opam_files true)
-(formatting (enabled_for dune))
 
 (source (github ocurrent/docker-base-images))
 (authors "talex5@gmail.com" "anil@recoil.org")
