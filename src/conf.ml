@@ -1,6 +1,5 @@
 (* For staging arch-specific builds before creating the manifest. *)
 let staging_repo = "ocurrent/opam-staging"
-
 let public_repo = "ocaml/opam"
 
 let password_path =
@@ -22,32 +21,33 @@ let auth =
     let len = in_channel_length ch in
     let password = really_input_string ch len |> String.trim in
     close_in ch;
-    Some ("ocurrent", password)
-  ) else (
-    None
-  )
+    Some ("ocurrent", password))
+  else None
 
 module Distro = Dockerfile_opam.Distro
 
-let pool_name (distro:Distro.t) arch =
+let pool_name (distro : Distro.t) arch =
   let os_family = Distro.os_family_of_distro distro in
-  let os_str = match os_family with
-  | `Windows | `Cygwin ->
-    let dedicated_pool = [`V1809] in
-    begin match Distro.resolve_alias distro with
-    | `Windows (_, release) | `Cygwin release when List.mem release dedicated_pool ->
-      "windows-" ^ Distro.win10_release_to_string release
-    | `Windows _ | `Cygwin _ -> "windows"
-    | _ -> assert false
-    end
-  | `Linux -> "linux"
+  let os_str =
+    match os_family with
+    | `Windows | `Cygwin -> (
+        let dedicated_pool = [ `V1809 ] in
+        match Distro.resolve_alias distro with
+        | (`Windows (_, release) | `Cygwin release)
+          when List.mem release dedicated_pool ->
+            "windows-" ^ Distro.win10_release_to_string release
+        | `Windows _ | `Cygwin _ -> "windows"
+        | _ -> assert false)
+    | `Linux -> "linux"
   in
-  let arch_str = match arch with
-  | `X86_64 | `I386     -> "x86_64"
-  | `Aarch64 | `Aarch32 -> "arm64"
-  | `Ppc64le            -> "ppc64"
-  | `S390x              -> "s390x"
-  | `Riscv64            -> "riscv64" in
+  let arch_str =
+    match arch with
+    | `X86_64 | `I386 -> "x86_64"
+    | `Aarch64 | `Aarch32 -> "arm64"
+    | `Ppc64le -> "ppc64"
+    | `S390x -> "s390x"
+    | `Riscv64 -> "riscv64"
+  in
   os_str ^ "-" ^ arch_str
 
 let switches ~arch ~distro =
@@ -60,7 +60,9 @@ let switches ~arch ~distro =
        TODO: remove when upstream opam gains OCaml packages on Windows. *)
     match distro with
     | `Windows _ ->
-       List.filter (fun ov -> Ocaml_version.(compare ov Releases.v4_14) <= 0) main_switches
+        List.filter
+          (fun ov -> Ocaml_version.(compare ov Releases.v4_14) <= 0)
+          main_switches
     | _ -> main_switches
   in
   let main_switches =
@@ -68,17 +70,18 @@ let switches ~arch ~distro =
     |> List.filter (fun ov -> Distro.distro_supported_on arch ov distro)
     |> filter_windows
   in
-  if is_tier1 then (
+  if is_tier1 then
     List.concat_map (Ocaml_version.Opam.V2.switches arch) main_switches
-  ) else (
-    main_switches
-  )
+  else main_switches
 
 (* We can't get the active distros directly, but assume x86_64 is a superset of everything else. *)
-let distros = Distro.(active_distros `X86_64 |> List.filter (fun d ->
-  match os_family_of_distro d with
-  | `Linux | `Windows -> true
-  | _ -> false))
+let distros =
+  Distro.(
+    active_distros `X86_64
+    |> List.filter (fun d ->
+           match os_family_of_distro d with
+           | `Linux | `Windows -> true
+           | _ -> false))
 
 let arches_for ~distro =
   match distro with

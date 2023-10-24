@@ -4,10 +4,10 @@ let pp_arch f = function
 
 let tag_of_compiler switch =
   Ocaml_version.to_string ~sep:'-' (Ocaml_version.without_patch switch)
-  |> String.map (function   (* e.g. "4.08-fp+flambda-amd64" *)
-      | '+' -> '-'
-      | x -> x
-    )
+  |> String.map (function
+       (* e.g. "4.08-fp+flambda-amd64" *)
+       | '+' -> '-'
+       | x -> x)
 
 let v ?arch ?switch distro =
   let repo = if arch = None then Conf.public_repo else Conf.staging_repo in
@@ -29,8 +29,7 @@ let v_alias alias =
   in
   Fmt.str "%s:%s" Conf.public_repo alias
 
-let latest =
-  Fmt.str "%s:latest" Conf.public_repo
+let latest = Fmt.str "%s:latest" Conf.public_repo
 
-let archive ?(staging=false) () =
+let archive ?(staging = false) () =
   Fmt.str "%s:archive" (if staging then Conf.staging_repo else Conf.public_repo)
