@@ -3,7 +3,9 @@ module Windows = Dockerfile_opam.Windows
 
 module Switch_map = Map.Make(Ocaml_version)
 
-let weekly = Current_cache.Schedule.v ~valid_for:(Duration.of_day 7) ()
+let days_between_rebuilds = 7
+
+let weekly = Current_cache.Schedule.v ~valid_for:(Duration.of_day days_between_rebuilds) ()
 
 let git_repositories () =
   Git_repositories.get ~schedule:weekly
@@ -218,7 +220,7 @@ module Make (OCurrent : S.OCURRENT) = struct
         | Error (`Active _) -> Active
         | Error (`Msg _) -> Failed
         in
-        Index.update
+        Index.update_images_per_platform
           ~platform:(Distro.human_readable_string_of_distro distro)
           ~switch s
       in

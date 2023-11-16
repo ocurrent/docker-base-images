@@ -6,6 +6,8 @@ type state = Ok | Failed | Active
 
 type t = state Switch_map.t Platform_map.t * state Platform_map.t
 
-val update : platform:string -> switch:Ocaml_version.t option -> state -> unit
+val update_images_per_platform : platform:string -> switch:Ocaml_version.t option -> state -> unit
 
-val get : unit -> t
+val get_images_per_platform : unit -> t
+
+val get_latest_build_time : unit -> float option

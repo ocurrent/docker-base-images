@@ -12,6 +12,10 @@ module Metrics = struct
     Gauge.v_labels ~label_names:["platform"; "state"] ~help ~namespace ~subsystem
       "image_state_total"
 
+  let next_build_time =
+    let help = "The next time that the images will be rebuilt, in unix time" in
+    Gauge.v ~help ~namespace ~subsystem "next_build_time"
+
   type stats = { ok : int; failed : int; active : int }
   let stats_empty = { ok = 0; failed = 0; active = 0 }
 
@@ -35,8 +39,16 @@ module Metrics = struct
       Gauge.set (Gauge.labels family [platform; "failed"]) (float_of_int stats.failed);
       Gauge.set (Gauge.labels family [platform; "active"]) (float_of_int stats.active)
     in
-    let v = Index.get () in
+    let v = Index.get_images_per_platform () in
     Index.Platform_map.iter (f (snd v)) (fst v)
+
+  let set_next_build_time () =
+    Index.get_latest_build_time ()
+    |> Option.iter (fun t ->
+      let time_delta_seconds =
+        float_of_int @@ Pipeline.days_between_rebuilds * 60 * 60 * 24
+      in
+      Gauge.set next_build_time (t +. time_delta_seconds))
 end
 
 let program_name = "base_images"
@@ -46,7 +58,8 @@ module Rpc = Current_rpc.Impl(Current)
 let setup_log style_renderer default_level =
   Prometheus_unix.Logging.init ?default_level ();
   Fmt_tty.setup_std_outputs ?style_renderer ();
-  Prometheus.CollectorRegistry.(register_pre_collect default) Metrics.update
+  Prometheus.CollectorRegistry.(register_pre_collect default) Metrics.update;
+  Metrics.set_next_build_time ()
 
 (* A low-security Docker Hub user used to push images to the staging area.
    Low-security because we never rely on the tags in this repository, just the hashes. *)
