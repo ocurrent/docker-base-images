@@ -3,9 +3,7 @@ module Windows = Dockerfile_opam.Windows
 
 module Switch_map = Map.Make(Ocaml_version)
 
-let days_between_rebuilds = 7
-
-let weekly = Current_cache.Schedule.v ~valid_for:(Duration.of_day days_between_rebuilds) ()
+let weekly = Current_cache.Schedule.v ~valid_for:(Duration.of_day Conf.days_between_rebuilds) ()
 
 let git_repositories () =
   Git_repositories.get ~schedule:weekly
