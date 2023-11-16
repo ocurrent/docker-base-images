@@ -9,7 +9,7 @@ let setup_log style_renderer default_level =
   Prometheus_unix.Logging.init ?default_level ();
   Fmt_tty.setup_std_outputs ?style_renderer ();
   Prometheus.CollectorRegistry.(register_pre_collect default) Metrics.update;
-  Metrics.init_next_build_time ()
+  Metrics.init_last_build_time ()
 
 (* A low-security Docker Hub user used to push images to the staging area.
    Low-security because we never rely on the tags in this repository, just the hashes. *)
