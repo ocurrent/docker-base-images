@@ -15,6 +15,7 @@
   lwt.unix
   prometheus-app.unix
   fmt.cli
-  logs.cli)
+  logs.cli
+  timedesc)
  (preprocess
   (pps ppx_deriving_yojson)))

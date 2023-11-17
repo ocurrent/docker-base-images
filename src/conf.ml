@@ -8,6 +8,8 @@ let password_path =
   let root = v (if Sys.win32 then "C:\\ProgramData\\Docker" else "/run") in
   root / "secrets" / "ocurrent-hub" |> to_string
 
+let days_between_rebuilds = 7
+
 module Capnp = struct
   (* Cap'n Proto RPC is enabled by passing --capnp-public-address. These values are hard-coded
      (because they're just internal to the Docker container). *)

@@ -62,6 +62,7 @@ module Repositories = struct
     Lwt.return (Ok (String.trim hash))
 
   let build No_context job {Key.opam_repository_master; opam_repository_mingw_sunset; opam_overlays; opam_2_0; opam_2_1; opam_master} =
+    Metrics.set_last_build_time_now ();
     Current.Job.start job ~level:Current.Level.Mostly_harmless >>= fun () ->
     get_commit_hash ~job ~repo:opam_repository_master ~branch:"master" >>!= fun opam_repository_master ->
     get_commit_hash ~job ~repo:opam_repository_mingw_sunset ~branch:"sunset" >>!= fun opam_repository_mingw_sunset ->
