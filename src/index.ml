@@ -63,5 +63,6 @@ let get_latest_build_time () =
   | [ ready ] ->
     (match ready with
     | Sqlite3.Data.TEXT v -> parse v
+    | Sqlite3.Data.NULL -> None
     | _ -> Fmt.failwith "get_latest_build_time: data was not type TEXT")
   | row -> Fmt.failwith "get_latest_build_time: more than one value returned %a" Db.dump_row row
