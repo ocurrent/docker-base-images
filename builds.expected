@@ -17828,6 +17828,7 @@ windows-mingw-1809/amd64
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
 	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages diffutils,git,make,mingw64-i686-gcc-g++,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch && `
 	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
+	RUN C:\cygwin64\bin\peflags -d0 C:\cygwin64\bin\cygwin1.dll
 	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /tmp/opam-sources"
@@ -17861,6 +17862,7 @@ windows-mingw-1809/amd64
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
 	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,patch,perl,rsync,unzip && `
 	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
+	RUN C:\cygwin64\bin\peflags -d0 C:\cygwin64\bin\cygwin1.dll
 	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
 	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
@@ -18382,6 +18384,7 @@ windows-msvc-1809/amd64
 	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
 	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages diffutils,git,make,patch && `
 	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
+	RUN C:\cygwin64\bin\peflags -d0 C:\cygwin64\bin\cygwin1.dll
 	ADD [ "https://github.com/metastack/msvs-tools/archive/refs/heads/master.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-master/msvs-detect msvs-tools-master/msvs-promote-path /bin && rm -rf /cygdrive/c/TEMP/msvs-tools/*"
 	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
