@@ -56,7 +56,8 @@ let switches ~arch ~distro =
   let is_tier1 = List.mem distro (Distro.active_tier1_distros arch) in
   (* opam-repository-mingw doesn't package the development version of
      the compiler. *)
-  let with_dev = match distro with `Windows _ -> false | _ -> true in
+  (* TODO: Does Windows include alpha, beta, and release candidate versions? *)
+  let with_unreleased = match distro with `Windows _ -> false | _ -> true in
   let filter_windows main_switches =
     (* opam-repository-mingw doesn't package OCaml 5.0.
        TODO: remove when upstream opam gains OCaml packages on Windows. *)
@@ -66,7 +67,7 @@ let switches ~arch ~distro =
     | _ -> main_switches
   in
   let main_switches =
-    Ocaml_version.Releases.(if with_dev then recent_with_dev else recent)
+    Ocaml_version.Releases.(if with_unreleased then recent_with_dev @ unreleased_betas else recent)
     |> List.filter (fun ov -> Distro.distro_supported_on arch ov distro)
     |> filter_windows
   in
