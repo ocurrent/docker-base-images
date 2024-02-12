@@ -55,7 +55,7 @@ let get_latest_build_time () =
     | Error msg -> Fmt.failwith "get_latest_build_time: failure parsing %s: %s" v msg
     | Ok v ->
       Timedesc.(to_timestamp_float_s v
-      |> min_of_local_dt_result)
+      |> min_of_local_date_time_result)
       |> Option.some
   in
   match ts with
