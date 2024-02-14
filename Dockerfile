@@ -1,28 +1,28 @@
-FROM ocaml/opam:debian-12-ocaml-4.14@sha256:45b04e2a4c933c57549382045dfac12cb7e872cace0456f92f4b022066e48111 as build
+FROM ocaml/opam:debian-12-ocaml-4.14@sha256:b716ae07fd6520cc80c71eb199239c73558732a3df313a6296a61999c8b44ab0 as build
 RUN sudo apt-get update && sudo apt-get install libev-dev capnproto graphviz m4 pkg-config libsqlite3-dev libgmp-dev libssl-dev libffi-dev -y --no-install-recommends
-RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard cf93548ddc4f36b87b006f4858fac7ae73ccaa0f && opam update
+RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard e9109edc27c28041e35e0da1290a86275573c98a && opam update
 COPY --chown=opam \
-	ocurrent/current.opam \
-	ocurrent/current_web.opam \
-	ocurrent/current_docker.opam \
-	ocurrent/current_git.opam \
-	ocurrent/current_github.opam \
-	ocurrent/current_slack.opam \
-	ocurrent/current_rpc.opam \
-	/src/ocurrent/
+  ocurrent/current.opam \
+  ocurrent/current_web.opam \
+  ocurrent/current_docker.opam \
+  ocurrent/current_git.opam \
+  ocurrent/current_github.opam \
+  ocurrent/current_slack.opam \
+  ocurrent/current_rpc.opam \
+  /src/ocurrent/
 COPY --chown=opam \
-        ocluster/*.opam \
-        /src/ocluster/
+  ocluster/*.opam \
+  /src/ocluster/
 WORKDIR /src
 RUN opam pin add -yn current_docker.dev "./ocurrent" && \
-    opam pin add -yn current_git.dev "./ocurrent" && \
-    opam pin add -yn current_github.dev "./ocurrent" && \
-    opam pin add -yn current.dev "./ocurrent" && \
-    opam pin add -yn current_rpc.dev "./ocurrent" && \
-    opam pin add -yn current_slack.dev "./ocurrent" && \
-    opam pin add -yn current_web.dev "./ocurrent" && \
-    opam pin add -yn current_ocluster.dev "./ocluster" && \
-    opam pin add -yn ocluster-api.dev "./ocluster"
+  opam pin add -yn current_git.dev "./ocurrent" && \
+  opam pin add -yn current_github.dev "./ocurrent" && \
+  opam pin add -yn current.dev "./ocurrent" && \
+  opam pin add -yn current_rpc.dev "./ocurrent" && \
+  opam pin add -yn current_slack.dev "./ocurrent" && \
+  opam pin add -yn current_web.dev "./ocurrent" && \
+  opam pin add -yn current_ocluster.dev "./ocluster" && \
+  opam pin add -yn ocluster-api.dev "./ocluster"
 COPY --chown=opam base-images.opam /src/
 RUN opam install -y --deps-only .
 ADD --chown=opam . .
