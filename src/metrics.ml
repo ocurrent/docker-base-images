@@ -47,14 +47,9 @@ let init_last_build_time () =
   |> Option.iter (Gauge.set last_build_time);
   Gauge.set image_valid_time
     (float_of_int @@ Conf.days_between_rebuilds * 60 * 60 * 24)
-(** Initialise the next build time by reading
-   the last build time from the OCurrent DB
-   and adding `days_between_rebuilds` *)
 
 let set_last_build_time_now () =
   Timedesc.(now ()
   |> to_timestamp_float_s
-  |> min_of_local_dt_result)
+  |> min_of_local_date_time_result)
   |> Gauge.set last_build_time
-(** Set the next build time to the current
-   time adding `days_between_rebuilds` *)

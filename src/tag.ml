@@ -3,9 +3,10 @@ let pp_arch f = function
   | Some arch -> Fmt.pf f "-%s" (Ocaml_version.string_of_arch arch)
 
 let tag_of_compiler switch =
-  Ocaml_version.to_string ~sep:'-' (Ocaml_version.without_patch switch)
-  |> String.map (function   (* e.g. "4.08-fp+flambda-amd64" *)
-      | '+' -> '-'
+  Ocaml_version.to_string ~prerelease_sep:'-' ~sep:'-'
+    (Ocaml_version.without_patch switch)
+  |> String.map (function (* e.g. "4.08-fp+flambda-amd64" *)
+      | '+' | '~' -> '-'
       | x -> x
     )
 

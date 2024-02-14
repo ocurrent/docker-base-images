@@ -34,4 +34,4 @@
   (dockerfile (>= 8.2.1))
   (dockerfile-opam (>= 8.2.1))
   (ocaml-version (>= 3.6.1))
-  (timedesc (>= 0.9.0))))
+  (timedesc (>= 3.0.0))))
