@@ -111,6 +111,7 @@ let or_die = function
 
 let maybe_add_overlay distro hash =
   match distro with
+  | `WindowsServer (`Msvc, _)
   | `Windows (`Msvc, _) ->
     Dockerfile.run "opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#%s --set-default" hash
   | _ -> Dockerfile.empty
@@ -142,7 +143,7 @@ module Make (OCurrent : S.OCURRENT) = struct
           opam_master_hash = Current_git.Commit_id.hash opam_master;
         } in
         `Contents (
-          let opam = snd @@ Dockerfile_opam.gen_opam2_distro ~win10_revision:Conf.win10_revision ~arch ~clone_opam_repo:false ~opam_hashes distro in
+          let opam = snd @@ Dockerfile_opam.gen_opam2_distro ~arch ~clone_opam_repo:false ~opam_hashes distro in
           let open Dockerfile in
           string_of_t (
             opam @@
@@ -239,7 +240,10 @@ module Make (OCurrent : S.OCURRENT) = struct
           |> Cluster_api.Docker.Image_id.of_string
           |> or_die
         in
-        let windows_port = match distro with  `Windows (port, _) -> Some port | _ -> None in
+        let windows_port = match distro with
+        | `WindowsServer (port, _) -> Some port
+        | `Windows (port, _) -> Some port
+        | _ -> None in
         let repo_id = install_compiler ~distro ~arch ~ocluster ~switch ~push_target ?windows_port opam_image in
         let _ = update_index repo_id distro (Some switch) in
         (switch, repo_id)
@@ -390,7 +394,9 @@ module Make (OCurrent : S.OCURRENT) = struct
       | `Cygwin -> linux, mingw, msvc, distro :: cygwin
       | `Windows ->
          match distro with
+         | `WindowsServer (`Mingw, _)
          | `Windows (`Mingw, _) -> linux, distro :: mingw, msvc, cygwin
+         | `WindowsServer (`Msvc, _)
          | `Windows (`Msvc, _) -> linux, mingw, distro :: msvc, cygwin
          | _ -> assert false) ([], [], [], [])
     in
