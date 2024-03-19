@@ -1566,6 +1566,7 @@ ocurrent/opam-staging:alpine-3.19-ocaml-5.1-no-flat-float-array-arm64, ocurrent/
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:alpine-3.19-opam-arm64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
@@ -1582,6 +1583,7 @@ ocurrent/opam-staging:alpine-3.19-ocaml-5.1-no-flat-float-array-arm64, ocurrent/
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:alpine-3.19-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
@@ -2262,6 +2264,7 @@ ocurrent/opam-staging:archlinux-ocaml-5.1-amd64 -> ocaml/opam:archlinux-ocaml-5.
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN pacman -Syu --noconfirm zstd && yes | pacman -Scc
@@ -6577,6 +6580,7 @@ ocurrent/opam-staging:debian-12-ocaml-5.1-no-flat-float-array-s390x, ocurrent/op
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-12-opam-s390x
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -6594,6 +6598,7 @@ ocurrent/opam-staging:debian-12-ocaml-5.1-no-flat-float-array-s390x, ocurrent/op
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-12-opam-ppc64le
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -6612,6 +6617,7 @@ ocurrent/opam-staging:debian-12-ocaml-5.1-no-flat-float-array-s390x, ocurrent/op
 
 	FROM ocurrent/opam-staging:debian-12-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -6629,6 +6635,7 @@ ocurrent/opam-staging:debian-12-ocaml-5.1-no-flat-float-array-s390x, ocurrent/op
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-12-opam-arm64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -6646,6 +6653,7 @@ ocurrent/opam-staging:debian-12-ocaml-5.1-no-flat-float-array-s390x, ocurrent/op
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-12-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -6664,6 +6672,7 @@ ocurrent/opam-staging:debian-12-ocaml-5.1-no-flat-float-array-s390x, ocurrent/op
 
 	FROM ocurrent/opam-staging:debian-12-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -9080,6 +9089,7 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-s390x, ocurrent/opam-staging:debian-11
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-11-opam-s390x
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -9097,6 +9107,7 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-s390x, ocurrent/opam-staging:debian-11
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-11-opam-ppc64le
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -9115,6 +9126,7 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-s390x, ocurrent/opam-staging:debian-11
 
 	FROM ocurrent/opam-staging:debian-11-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -9132,6 +9144,7 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-s390x, ocurrent/opam-staging:debian-11
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -9149,6 +9162,7 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-s390x, ocurrent/opam-staging:debian-11
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -9167,6 +9181,7 @@ ocurrent/opam-staging:debian-11-ocaml-5.1-s390x, ocurrent/opam-staging:debian-11
 
 	FROM ocurrent/opam-staging:debian-11-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -11047,6 +11062,7 @@ ocurrent/opam-staging:debian-10-ocaml-5.1-s390x, ocurrent/opam-staging:debian-10
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-10-opam-s390x
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -11064,6 +11080,7 @@ ocurrent/opam-staging:debian-10-ocaml-5.1-s390x, ocurrent/opam-staging:debian-10
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-10-opam-ppc64le
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -11082,6 +11099,7 @@ ocurrent/opam-staging:debian-10-ocaml-5.1-s390x, ocurrent/opam-staging:debian-10
 
 	FROM ocurrent/opam-staging:debian-10-opam-arm32v7
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -11099,6 +11117,7 @@ ocurrent/opam-staging:debian-10-ocaml-5.1-s390x, ocurrent/opam-staging:debian-10
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-10-opam-arm64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -11116,6 +11135,7 @@ ocurrent/opam-staging:debian-10-ocaml-5.1-s390x, ocurrent/opam-staging:debian-10
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-10-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -11134,6 +11154,7 @@ ocurrent/opam-staging:debian-10-ocaml-5.1-s390x, ocurrent/opam-staging:debian-10
 
 	FROM ocurrent/opam-staging:debian-10-opam-i386
 	SHELL [ "/usr/bin/linux32", "/bin/sh", "-c" ]
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -11660,6 +11681,7 @@ ocurrent/opam-staging:debian-testing-ocaml-5.1-amd64 -> ocaml/opam:debian-testin
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-testing-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -12002,6 +12024,7 @@ ocurrent/opam-staging:debian-unstable-ocaml-5.1-amd64 -> ocaml/opam:debian-unsta
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-unstable-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -12526,6 +12549,7 @@ ocurrent/opam-staging:fedora-37-ocaml-5.1-arm64, ocurrent/opam-staging:fedora-37
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-37-opam-arm64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN yum install -y zstd && yum clean packages
@@ -12541,6 +12565,7 @@ ocurrent/opam-staging:fedora-37-ocaml-5.1-arm64, ocurrent/opam-staging:fedora-37
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-37-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN yum install -y zstd && yum clean packages
@@ -13107,6 +13132,7 @@ ocurrent/opam-staging:fedora-38-ocaml-5.1-arm64, ocurrent/opam-staging:fedora-38
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-38-opam-arm64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN yum install -y zstd && yum clean packages
@@ -13122,6 +13148,7 @@ ocurrent/opam-staging:fedora-38-ocaml-5.1-arm64, ocurrent/opam-staging:fedora-38
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-38-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN yum install -y zstd && yum clean packages
@@ -13494,6 +13521,7 @@ ocurrent/opam-staging:oraclelinux-8-ocaml-5.1-amd64 -> ocaml/opam:oraclelinux-8-
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:oraclelinux-8-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN yum install -y zstd && yum clean packages
@@ -13842,6 +13870,7 @@ ocurrent/opam-staging:oraclelinux-9-ocaml-5.1-amd64 -> ocaml/opam:oraclelinux-oc
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:oraclelinux-9-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN yum install -y zstd && yum clean packages
@@ -14459,6 +14488,7 @@ ocurrent/opam-staging:opensuse-15.5-ocaml-5.1-arm64, ocurrent/opam-staging:opens
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.5-opam-arm64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
@@ -14476,6 +14506,7 @@ ocurrent/opam-staging:opensuse-15.5-ocaml-5.1-arm64, ocurrent/opam-staging:opens
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.5-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
@@ -14854,6 +14885,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-5.1-amd64 -> ocaml/opam:opensuse
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-tumbleweed-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
@@ -16023,6 +16055,7 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-s390x
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -16040,6 +16073,7 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-ppc64le
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -16057,6 +16091,7 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-arm64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -16074,6 +16109,7 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -16091,6 +16127,7 @@ ocurrent/opam-staging:ubuntu-20.04-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-20.04-opam-riscv64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -17395,6 +17432,7 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-s390x
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -17412,6 +17450,7 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-ppc64le
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -17429,6 +17468,7 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-arm64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -17446,6 +17486,7 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -17463,6 +17504,7 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-riscv64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -18754,6 +18796,7 @@ ocurrent/opam-staging:ubuntu-23.04-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-23.04-opam-s390x
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -18771,6 +18814,7 @@ ocurrent/opam-staging:ubuntu-23.04-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-23.04-opam-ppc64le
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -18788,6 +18832,7 @@ ocurrent/opam-staging:ubuntu-23.04-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-23.04-opam-arm64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -18805,6 +18850,7 @@ ocurrent/opam-staging:ubuntu-23.04-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-23.04-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -18822,6 +18868,7 @@ ocurrent/opam-staging:ubuntu-23.04-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-23.04-opam-riscv64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -19972,6 +20019,7 @@ ocurrent/opam-staging:ubuntu-23.10-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-23.10-opam-s390x
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -19989,6 +20037,7 @@ ocurrent/opam-staging:ubuntu-23.10-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-23.10-opam-ppc64le
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -20006,6 +20055,7 @@ ocurrent/opam-staging:ubuntu-23.10-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-23.10-opam-arm64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update
@@ -20023,6 +20073,7 @@ ocurrent/opam-staging:ubuntu-23.10-ocaml-5.1-s390x, ocurrent/opam-staging:ubuntu
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-23.10-opam-amd64
+	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apt-get -y update

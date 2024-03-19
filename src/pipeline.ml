@@ -19,7 +19,8 @@ let master_distro = Distro.((resolve_alias master_distro : distro :> t))
 type 'a run = ('a, unit, string, Dockerfile.t) format4 -> 'a
 
 let maybe_add_beta (run : 'a run) switch =
-  if Ocaml_version.Releases.is_dev switch then
+  if Ocaml_version.Releases.is_dev switch ||
+      List.mem switch Ocaml_version.Releases.unreleased_betas then
     run "opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default"
   else
     Dockerfile.empty
