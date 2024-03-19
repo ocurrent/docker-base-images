@@ -2,7 +2,7 @@ module Platform_map = Map.Make (String)
 module Switch_map = Map.Make (Ocaml_version)
 
 type state = Ok | Failed | Active
-(* Each platform builds one non-OCaml opam image, and then an image for every version of OCaml *)
+
 type t = state Switch_map.t Platform_map.t * state Platform_map.t
 
 let v : t ref = ref Platform_map.(empty, empty)
