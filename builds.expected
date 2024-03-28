@@ -12810,7 +12810,6 @@ ocurrent/opam-staging:fedora-38-opam-arm64, ocurrent/opam-staging:fedora-38-opam
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-4.02-amd64 -> ocaml/opam:fedora-38-ocaml-4.02
-ocurrent/opam-staging:fedora-38-ocaml-4.02-amd64 -> ocaml/opam:fedora-ocaml-4.02
 4.03.0/amd64
 	# syntax=docker/dockerfile:1
 
@@ -12825,7 +12824,6 @@ ocurrent/opam-staging:fedora-38-ocaml-4.02-amd64 -> ocaml/opam:fedora-ocaml-4.02
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-4.03-amd64 -> ocaml/opam:fedora-38-ocaml-4.03
-ocurrent/opam-staging:fedora-38-ocaml-4.03-amd64 -> ocaml/opam:fedora-ocaml-4.03
 4.04.2/amd64
 	# syntax=docker/dockerfile:1
 
@@ -12840,7 +12838,6 @@ ocurrent/opam-staging:fedora-38-ocaml-4.03-amd64 -> ocaml/opam:fedora-ocaml-4.03
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-4.04-amd64 -> ocaml/opam:fedora-38-ocaml-4.04
-ocurrent/opam-staging:fedora-38-ocaml-4.04-amd64 -> ocaml/opam:fedora-ocaml-4.04
 4.05.0/amd64
 	# syntax=docker/dockerfile:1
 
@@ -12855,7 +12852,6 @@ ocurrent/opam-staging:fedora-38-ocaml-4.04-amd64 -> ocaml/opam:fedora-ocaml-4.04
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-4.05-amd64 -> ocaml/opam:fedora-38-ocaml-4.05
-ocurrent/opam-staging:fedora-38-ocaml-4.05-amd64 -> ocaml/opam:fedora-ocaml-4.05
 4.06.1/amd64
 	# syntax=docker/dockerfile:1
 
@@ -12870,7 +12866,6 @@ ocurrent/opam-staging:fedora-38-ocaml-4.05-amd64 -> ocaml/opam:fedora-ocaml-4.05
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-4.06-amd64 -> ocaml/opam:fedora-38-ocaml-4.06
-ocurrent/opam-staging:fedora-38-ocaml-4.06-amd64 -> ocaml/opam:fedora-ocaml-4.06
 4.07.1/amd64
 	# syntax=docker/dockerfile:1
 
@@ -12885,7 +12880,6 @@ ocurrent/opam-staging:fedora-38-ocaml-4.06-amd64 -> ocaml/opam:fedora-ocaml-4.06
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-4.07-amd64 -> ocaml/opam:fedora-38-ocaml-4.07
-ocurrent/opam-staging:fedora-38-ocaml-4.07-amd64 -> ocaml/opam:fedora-ocaml-4.07
 4.08.1/arm64
 	# syntax=docker/dockerfile:1
 
@@ -12911,7 +12905,6 @@ ocurrent/opam-staging:fedora-38-ocaml-4.07-amd64 -> ocaml/opam:fedora-ocaml-4.07
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-4.08-arm64, ocurrent/opam-staging:fedora-38-ocaml-4.08-amd64 -> ocaml/opam:fedora-38-ocaml-4.08
-ocurrent/opam-staging:fedora-38-ocaml-4.08-arm64, ocurrent/opam-staging:fedora-38-ocaml-4.08-amd64 -> ocaml/opam:fedora-ocaml-4.08
 4.09.1/arm64
 	# syntax=docker/dockerfile:1
 
@@ -12937,7 +12930,6 @@ ocurrent/opam-staging:fedora-38-ocaml-4.08-arm64, ocurrent/opam-staging:fedora-3
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-4.09-arm64, ocurrent/opam-staging:fedora-38-ocaml-4.09-amd64 -> ocaml/opam:fedora-38-ocaml-4.09
-ocurrent/opam-staging:fedora-38-ocaml-4.09-arm64, ocurrent/opam-staging:fedora-38-ocaml-4.09-amd64 -> ocaml/opam:fedora-ocaml-4.09
 4.10.2/arm64
 	# syntax=docker/dockerfile:1
 
@@ -12963,7 +12955,6 @@ ocurrent/opam-staging:fedora-38-ocaml-4.09-arm64, ocurrent/opam-staging:fedora-3
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-4.10-arm64, ocurrent/opam-staging:fedora-38-ocaml-4.10-amd64 -> ocaml/opam:fedora-38-ocaml-4.10
-ocurrent/opam-staging:fedora-38-ocaml-4.10-arm64, ocurrent/opam-staging:fedora-38-ocaml-4.10-amd64 -> ocaml/opam:fedora-ocaml-4.10
 4.11.2/arm64
 	# syntax=docker/dockerfile:1
 
@@ -12989,7 +12980,6 @@ ocurrent/opam-staging:fedora-38-ocaml-4.10-arm64, ocurrent/opam-staging:fedora-3
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-4.11-arm64, ocurrent/opam-staging:fedora-38-ocaml-4.11-amd64 -> ocaml/opam:fedora-38-ocaml-4.11
-ocurrent/opam-staging:fedora-38-ocaml-4.11-arm64, ocurrent/opam-staging:fedora-38-ocaml-4.11-amd64 -> ocaml/opam:fedora-ocaml-4.11
 4.12.1/arm64
 	# syntax=docker/dockerfile:1
 
@@ -13015,7 +13005,6 @@ ocurrent/opam-staging:fedora-38-ocaml-4.11-arm64, ocurrent/opam-staging:fedora-3
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-4.12-arm64, ocurrent/opam-staging:fedora-38-ocaml-4.12-amd64 -> ocaml/opam:fedora-38-ocaml-4.12
-ocurrent/opam-staging:fedora-38-ocaml-4.12-arm64, ocurrent/opam-staging:fedora-38-ocaml-4.12-amd64 -> ocaml/opam:fedora-ocaml-4.12
 4.13.1/arm64
 	# syntax=docker/dockerfile:1
 
@@ -13041,7 +13030,6 @@ ocurrent/opam-staging:fedora-38-ocaml-4.12-arm64, ocurrent/opam-staging:fedora-3
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-4.13-arm64, ocurrent/opam-staging:fedora-38-ocaml-4.13-amd64 -> ocaml/opam:fedora-38-ocaml-4.13
-ocurrent/opam-staging:fedora-38-ocaml-4.13-arm64, ocurrent/opam-staging:fedora-38-ocaml-4.13-amd64 -> ocaml/opam:fedora-ocaml-4.13
 4.14.2/arm64
 	# syntax=docker/dockerfile:1
 
@@ -13067,7 +13055,6 @@ ocurrent/opam-staging:fedora-38-ocaml-4.13-arm64, ocurrent/opam-staging:fedora-3
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-38-ocaml-4.14-amd64 -> ocaml/opam:fedora-38-ocaml-4.14
-ocurrent/opam-staging:fedora-38-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-38-ocaml-4.14-amd64 -> ocaml/opam:fedora-ocaml-4.14
 5.0.0/arm64
 	# syntax=docker/dockerfile:1
 
@@ -13093,7 +13080,6 @@ ocurrent/opam-staging:fedora-38-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-3
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-5.0-arm64, ocurrent/opam-staging:fedora-38-ocaml-5.0-amd64 -> ocaml/opam:fedora-38-ocaml-5.0
-ocurrent/opam-staging:fedora-38-ocaml-5.0-arm64, ocurrent/opam-staging:fedora-38-ocaml-5.0-amd64 -> ocaml/opam:fedora-ocaml-5.0
 5.1.1/arm64
 	# syntax=docker/dockerfile:1
 
@@ -13124,10 +13110,8 @@ ocurrent/opam-staging:fedora-38-ocaml-5.0-arm64, ocurrent/opam-staging:fedora-38
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:fedora-38-ocaml-5.1-arm64, ocurrent/opam-staging:fedora-38-ocaml-5.1-amd64 -> ocaml/opam:fedora
 ocurrent/opam-staging:fedora-38-ocaml-5.1-arm64, ocurrent/opam-staging:fedora-38-ocaml-5.1-amd64 -> ocaml/opam:fedora-38
 ocurrent/opam-staging:fedora-38-ocaml-5.1-arm64, ocurrent/opam-staging:fedora-38-ocaml-5.1-amd64 -> ocaml/opam:fedora-38-ocaml-5.1
-ocurrent/opam-staging:fedora-38-ocaml-5.1-arm64, ocurrent/opam-staging:fedora-38-ocaml-5.1-amd64 -> ocaml/opam:fedora-ocaml-5.1
 5.2.0~alpha1/arm64
 	# syntax=docker/dockerfile:1
 
@@ -13161,7 +13145,6 @@ ocurrent/opam-staging:fedora-38-ocaml-5.1-arm64, ocurrent/opam-staging:fedora-38
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-5.2-alpha1-arm64, ocurrent/opam-staging:fedora-38-ocaml-5.2-alpha1-amd64 -> ocaml/opam:fedora-38-ocaml-5.2-alpha1
-ocurrent/opam-staging:fedora-38-ocaml-5.2-alpha1-arm64, ocurrent/opam-staging:fedora-38-ocaml-5.2-alpha1-amd64 -> ocaml/opam:fedora-ocaml-5.2-alpha1
 5.2.0/arm64
 	# syntax=docker/dockerfile:1
 
@@ -13195,7 +13178,6 @@ ocurrent/opam-staging:fedora-38-ocaml-5.2-alpha1-arm64, ocurrent/opam-staging:fe
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-5.2-arm64, ocurrent/opam-staging:fedora-38-ocaml-5.2-amd64 -> ocaml/opam:fedora-38-ocaml-5.2
-ocurrent/opam-staging:fedora-38-ocaml-5.2-arm64, ocurrent/opam-staging:fedora-38-ocaml-5.2-amd64 -> ocaml/opam:fedora-ocaml-5.2
 5.3.0/arm64
 	# syntax=docker/dockerfile:1
 
@@ -13229,7 +13211,6 @@ ocurrent/opam-staging:fedora-38-ocaml-5.2-arm64, ocurrent/opam-staging:fedora-38
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
 ocurrent/opam-staging:fedora-38-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-38-ocaml-5.3-amd64 -> ocaml/opam:fedora-38-ocaml-5.3
-ocurrent/opam-staging:fedora-38-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-38-ocaml-5.3-amd64 -> ocaml/opam:fedora-ocaml-5.3
 oraclelinux-8
 oraclelinux-8/amd64
 	# syntax=docker/dockerfile:1
@@ -20238,11 +20219,11 @@ ocurrent/opam-staging:ubuntu-23.10-ocaml-5.2-s390x, ocurrent/opam-staging:ubuntu
 ocurrent/opam-staging:ubuntu-23.10-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu-23.10-ocaml-5.3-ppc64le, ocurrent/opam-staging:ubuntu-23.10-ocaml-5.3-arm64, ocurrent/opam-staging:ubuntu-23.10-ocaml-5.3-amd64 -> ocaml/opam:ubuntu-23.10-ocaml-5.3
 ocurrent/opam-staging:ubuntu-23.10-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu-23.10-ocaml-5.3-ppc64le, ocurrent/opam-staging:ubuntu-23.10-ocaml-5.3-arm64, ocurrent/opam-staging:ubuntu-23.10-ocaml-5.3-amd64 -> ocaml/opam:ubuntu-ocaml-5.3
 windows-mingw
-windows-mingw-1809/amd64
+windows-server-mingw-ltsc2022/amd64
 	# escape=`
 
 	# Autogenerated by OCaml-Dockerfile scripts
-	FROM mcr.microsoft.com/windows:1809-KB5032196 as winget-builder
+	FROM mcr.microsoft.com/windows/server:ltsc2022 as winget-builder
 	USER ContainerAdministrator
 	ADD [ "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle", "C:\\TEMP\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip" ]
 	RUN powershell -Command "Expand-Archive -LiteralPath C:\TEMP\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip -DestinationPath C:\TEMP\winget-cli -Force"
@@ -20253,100 +20234,7 @@ windows-mingw-1809/amd64
 	  move "C:\TEMP\winget-cli\\WindowsPackageManager.dll" "C:\Program Files\winget-cli\" && `
 	  move "C:\TEMP\winget-cli\\resources.pri" "C:\Program Files\winget-cli\"
 
-	FROM mcr.microsoft.com/windows:1809-KB5032196 as opam-builder
-	USER ContainerAdministrator
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
-	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
-	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
-	ENV CYGWIN="nodosfilewarning winsymlinks:native"
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\bin;%c"
-	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin64\\setup-x86_64.exe" ]
-	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
-	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
-	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
-	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages diffutils,git,make,mingw64-i686-gcc-g++,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch && `
-	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
-	RUN C:\cygwin64\bin\peflags -d0 C:\cygwin64\bin\cygwin1.dll
-	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
-	ENV HOME="C:\cygwin64\home\opam"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /tmp/opam-sources"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && git config --global --add safe.directory /tmp/opam-build-master"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && make compiler && make lib-pkg"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && ./configure --enable-cold-check --with-private-runtime --with-0install-solver && make && make install"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /usr/local/bin && tar -cf /cygdrive/c/opam.tar ."
-
-	# Autogenerated by OCaml-Dockerfile scripts
-	FROM mcr.microsoft.com/windows:1809-KB5032196
-	LABEL distro_style="windows"
-	USER ContainerAdministrator
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
-	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
-	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
-	ADD [ "https://aka.ms/vs/17/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
-	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log && `
-	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
-	COPY --from=winget-builder [ "C:\\Program Files\\winget-cli", "C:\\Program Files\\winget-cli" ]
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\Program Files\winget-cli;%c"
-	RUN powershell -Command "$path=(Join-Path $env:LOCALAPPDATA 'Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState'); New-Item $path -ItemType Directory -Force; '{ """"$schema"""": """"https://aka.ms/winget-settings.schema.json"""", """"telemetry"""": { """"disable"""": """"true"""" } }' | Out-File -encoding ASCII (Join-Path $path 'settings.json')"
-	ENV CYGWIN="nodosfilewarning winsymlinks:native"
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\bin;%c"
-	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin64\\setup-x86_64.exe" ]
-	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
-	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
-	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
-	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,patch,perl,rsync,unzip && `
-	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
-	RUN C:\cygwin64\bin\peflags -d0 C:\cygwin64\bin\cygwin1.dll
-	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
-	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
-	COPY --from=opam-builder [ "C:\\opam.tar", "C:\\TEMP\\" ]
-	RUN C:\cygwin64\bin\tar.exe -xf /cygdrive/c/TEMP/opam.tar -C /usr/local/bin && del C:\TEMP\opam.tar && `
-	  mklink C:\cygwin64\bin\opam-dev.exe C:\cygwin64\usr\local\bin\opam.exe && `
-	  mklink C:\cygwin64\bin\opam-2.2.exe C:\cygwin64\bin\opam-dev.exe
-	WORKDIR C:\cygwin64\home\opam
-	ENV HOME="C:\cygwin64\home\opam"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
-	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
-	ENV OPAMROOT="C:\opam\.opam"
-	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
-	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
-	COPY [ "Dockerfile", "/Dockerfile.opam" ]
-
-4.14.2/amd64
-	# escape=`
-
-	FROM ocurrent/opam-staging:windows-mingw-1809-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.2+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.14.2+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
-	CMD [ "cmd.exe" ]
-	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
-
-windows-mingw-21H2/amd64
-	# escape=`
-
-	# Autogenerated by OCaml-Dockerfile scripts
-	FROM mcr.microsoft.com/windows/server:ltsc2022-KB5032198 as winget-builder
-	USER ContainerAdministrator
-	ADD [ "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle", "C:\\TEMP\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip" ]
-	RUN powershell -Command "Expand-Archive -LiteralPath C:\TEMP\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip -DestinationPath C:\TEMP\winget-cli -Force"
-	RUN ren C:\TEMP\winget-cli\AppInstaller_x64.msix AppInstaller_x64.zip
-	RUN powershell -Command "Expand-Archive -LiteralPath C:\TEMP\winget-cli\AppInstaller_x64.zip -DestinationPath C:\TEMP\winget-cli\ -Force"
-	RUN mkdir "C:\Program Files\winget-cli" && `
-	  move "C:\TEMP\winget-cli\\winget.exe" "C:\Program Files\winget-cli\" && `
-	  move "C:\TEMP\winget-cli\\WindowsPackageManager.dll" "C:\Program Files\winget-cli\" && `
-	  move "C:\TEMP\winget-cli\\resources.pri" "C:\Program Files\winget-cli\"
-
-	FROM mcr.microsoft.com/windows/server:ltsc2022-KB5032198 as opam-builder
+	FROM mcr.microsoft.com/windows/server:ltsc2022 as opam-builder
 	USER ContainerAdministrator
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
 	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
@@ -20371,7 +20259,7 @@ windows-mingw-21H2/amd64
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /usr/local/bin && tar -cf /cygdrive/c/opam.tar ."
 
 	# Autogenerated by OCaml-Dockerfile scripts
-	FROM mcr.microsoft.com/windows/server:ltsc2022-KB5032198
+	FROM mcr.microsoft.com/windows/server:ltsc2022
 	LABEL distro_style="windows"
 	USER ContainerAdministrator
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
@@ -20414,7 +20302,7 @@ windows-mingw-21H2/amd64
 4.14.2/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.2+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.14.2+mingw64
@@ -20423,11 +20311,104 @@ windows-mingw-21H2/amd64
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.14-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-ocaml-4.14
+windows-mingw-ltsc2019/amd64
+	# escape=`
+
+	# Autogenerated by OCaml-Dockerfile scripts
+	FROM mcr.microsoft.com/windows:ltsc2019 as winget-builder
+	USER ContainerAdministrator
+	ADD [ "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle", "C:\\TEMP\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip" ]
+	RUN powershell -Command "Expand-Archive -LiteralPath C:\TEMP\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip -DestinationPath C:\TEMP\winget-cli -Force"
+	RUN ren C:\TEMP\winget-cli\AppInstaller_x64.msix AppInstaller_x64.zip
+	RUN powershell -Command "Expand-Archive -LiteralPath C:\TEMP\winget-cli\AppInstaller_x64.zip -DestinationPath C:\TEMP\winget-cli\ -Force"
+	RUN mkdir "C:\Program Files\winget-cli" && `
+	  move "C:\TEMP\winget-cli\\winget.exe" "C:\Program Files\winget-cli\" && `
+	  move "C:\TEMP\winget-cli\\WindowsPackageManager.dll" "C:\Program Files\winget-cli\" && `
+	  move "C:\TEMP\winget-cli\\resources.pri" "C:\Program Files\winget-cli\"
+
+	FROM mcr.microsoft.com/windows:ltsc2019 as opam-builder
+	USER ContainerAdministrator
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
+	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
+	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
+	ENV CYGWIN="nodosfilewarning winsymlinks:native"
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\bin;%c"
+	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin64\\setup-x86_64.exe" ]
+	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
+	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
+	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
+	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
+	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages diffutils,git,make,mingw64-i686-gcc-g++,mingw64-x86_64-gcc-core,mingw64-x86_64-gcc-g++,patch && `
+	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
+	RUN C:\cygwin64\bin\peflags -d0 C:\cygwin64\bin\cygwin1.dll
+	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
+	ENV HOME="C:\cygwin64\home\opam"
+	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /tmp/opam-sources"
+	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master"
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && git config --global --add safe.directory /tmp/opam-build-master"
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && make compiler && make lib-pkg"
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && ./configure --enable-cold-check --with-private-runtime --with-0install-solver && make && make install"
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /usr/local/bin && tar -cf /cygdrive/c/opam.tar ."
+
+	# Autogenerated by OCaml-Dockerfile scripts
+	FROM mcr.microsoft.com/windows:ltsc2019
+	LABEL distro_style="windows"
+	USER ContainerAdministrator
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
+	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
+	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
+	ADD [ "https://aka.ms/vs/17/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
+	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log && `
+	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
+	COPY --from=winget-builder [ "C:\\Program Files\\winget-cli", "C:\\Program Files\\winget-cli" ]
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\Program Files\winget-cli;%c"
+	RUN powershell -Command "$path=(Join-Path $env:LOCALAPPDATA 'Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState'); New-Item $path -ItemType Directory -Force; '{ """"$schema"""": """"https://aka.ms/winget-settings.schema.json"""", """"telemetry"""": { """"disable"""": """"true"""" } }' | Out-File -encoding ASCII (Join-Path $path 'settings.json')"
+	ENV CYGWIN="nodosfilewarning winsymlinks:native"
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\bin;%c"
+	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin64\\setup-x86_64.exe" ]
+	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
+	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
+	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
+	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
+	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,patch,perl,rsync,unzip && `
+	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
+	RUN C:\cygwin64\bin\peflags -d0 C:\cygwin64\bin\cygwin1.dll
+	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
+	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
+	COPY --from=opam-builder [ "C:\\opam.tar", "C:\\TEMP\\" ]
+	RUN C:\cygwin64\bin\tar.exe -xf /cygdrive/c/TEMP/opam.tar -C /usr/local/bin && del C:\TEMP\opam.tar && `
+	  mklink C:\cygwin64\bin\opam-dev.exe C:\cygwin64\usr\local\bin\opam.exe && `
+	  mklink C:\cygwin64\bin\opam-2.2.exe C:\cygwin64\bin\opam-dev.exe
+	WORKDIR C:\cygwin64\home\opam
+	ENV HOME="C:\cygwin64\home\opam"
+	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
+	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
+	ENV OPAMROOT="C:\opam\.opam"
+	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
+	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
+	COPY [ "Dockerfile", "/Dockerfile.opam" ]
+
+4.14.2/amd64
+	# escape=`
+
+	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
+	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.2+mingw64
+	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.14.2+mingw64
+	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	CMD [ "cmd.exe" ]
+	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
+
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.14-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-ocaml-4.14
 4.13.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.13 --packages=ocaml-variants.4.13.1+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.13.1+mingw64
@@ -20439,7 +20420,7 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.14-amd64, ocurrent/opam-staging
 4.13.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.13 --packages=ocaml-variants.4.13.1+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.13.1+mingw64
@@ -20448,11 +20429,11 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.14-amd64, ocurrent/opam-staging
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.13-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.13-amd64 -> ocaml/opam:windows-mingw-ocaml-4.13
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.13-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.13-amd64 -> ocaml/opam:windows-mingw-ocaml-4.13
 4.12.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.12 --packages=ocaml-variants.4.12.1+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.12.1+mingw64
@@ -20464,7 +20445,7 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.13-amd64, ocurrent/opam-staging
 4.12.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.12 --packages=ocaml-variants.4.12.1+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.12.1+mingw64
@@ -20473,11 +20454,11 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.13-amd64, ocurrent/opam-staging
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.12-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.12-amd64 -> ocaml/opam:windows-mingw-ocaml-4.12
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.12-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.12-amd64 -> ocaml/opam:windows-mingw-ocaml-4.12
 4.11.2/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.11 --packages=ocaml-variants.4.11.2+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.11.2+mingw64
@@ -20489,7 +20470,7 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.12-amd64, ocurrent/opam-staging
 4.11.2/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.11 --packages=ocaml-variants.4.11.2+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.11.2+mingw64
@@ -20498,11 +20479,11 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.12-amd64, ocurrent/opam-staging
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.11-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.11-amd64 -> ocaml/opam:windows-mingw-ocaml-4.11
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.11-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.11-amd64 -> ocaml/opam:windows-mingw-ocaml-4.11
 4.10.2/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.10 --packages=ocaml-variants.4.10.2+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.10.2+mingw64
@@ -20514,7 +20495,7 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.11-amd64, ocurrent/opam-staging
 4.10.2/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.10 --packages=ocaml-variants.4.10.2+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.10.2+mingw64
@@ -20523,11 +20504,11 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.11-amd64, ocurrent/opam-staging
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.10-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.10-amd64 -> ocaml/opam:windows-mingw-ocaml-4.10
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.10-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.10-amd64 -> ocaml/opam:windows-mingw-ocaml-4.10
 4.09.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.09 --packages=ocaml-variants.4.09.1+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.09.1+mingw64
@@ -20539,7 +20520,7 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.10-amd64, ocurrent/opam-staging
 4.09.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.09 --packages=ocaml-variants.4.09.1+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.09.1+mingw64
@@ -20548,11 +20529,11 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.10-amd64, ocurrent/opam-staging
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.09-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.09-amd64 -> ocaml/opam:windows-mingw-ocaml-4.09
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.09-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.09-amd64 -> ocaml/opam:windows-mingw-ocaml-4.09
 4.08.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.08 --packages=ocaml-variants.4.08.1+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.08.1+mingw64
@@ -20564,7 +20545,7 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.09-amd64, ocurrent/opam-staging
 4.08.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.08 --packages=ocaml-variants.4.08.1+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.08.1+mingw64
@@ -20573,11 +20554,11 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.09-amd64, ocurrent/opam-staging
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.08-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.08-amd64 -> ocaml/opam:windows-mingw-ocaml-4.08
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.08-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.08-amd64 -> ocaml/opam:windows-mingw-ocaml-4.08
 4.07.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.07 --packages=ocaml-variants.4.07.1+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.07.1+mingw64
@@ -20589,7 +20570,7 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.08-amd64, ocurrent/opam-staging
 4.07.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.07 --packages=ocaml-variants.4.07.1+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.07.1+mingw64
@@ -20598,11 +20579,11 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.08-amd64, ocurrent/opam-staging
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.07-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.07-amd64 -> ocaml/opam:windows-mingw-ocaml-4.07
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.07-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.07-amd64 -> ocaml/opam:windows-mingw-ocaml-4.07
 4.06.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.06 --packages=ocaml-variants.4.06.1+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.06.1+mingw64
@@ -20614,7 +20595,7 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.07-amd64, ocurrent/opam-staging
 4.06.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.06 --packages=ocaml-variants.4.06.1+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.06.1+mingw64
@@ -20623,11 +20604,11 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.07-amd64, ocurrent/opam-staging
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.06-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.06-amd64 -> ocaml/opam:windows-mingw-ocaml-4.06
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.06-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.06-amd64 -> ocaml/opam:windows-mingw-ocaml-4.06
 4.05.0/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.05 --packages=ocaml-variants.4.05.0+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.05.0+mingw64
@@ -20639,7 +20620,7 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.06-amd64, ocurrent/opam-staging
 4.05.0/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.05 --packages=ocaml-variants.4.05.0+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.05.0+mingw64
@@ -20648,11 +20629,11 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.06-amd64, ocurrent/opam-staging
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.05-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.05-amd64 -> ocaml/opam:windows-mingw-ocaml-4.05
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.05-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.05-amd64 -> ocaml/opam:windows-mingw-ocaml-4.05
 4.04.2/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.04 --packages=ocaml-variants.4.04.2+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.04.2+mingw64
@@ -20664,7 +20645,7 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.05-amd64, ocurrent/opam-staging
 4.04.2/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.04 --packages=ocaml-variants.4.04.2+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.04.2+mingw64
@@ -20673,11 +20654,11 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.05-amd64, ocurrent/opam-staging
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.04-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.04-amd64 -> ocaml/opam:windows-mingw-ocaml-4.04
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.04-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.04-amd64 -> ocaml/opam:windows-mingw-ocaml-4.04
 4.03.0/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.03 --packages=ocaml-variants.4.03.0+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.03.0+mingw64
@@ -20689,7 +20670,7 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.04-amd64, ocurrent/opam-staging
 4.03.0/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.03 --packages=ocaml-variants.4.03.0+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.03.0+mingw64
@@ -20698,11 +20679,11 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.04-amd64, ocurrent/opam-staging
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.03-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.03-amd64 -> ocaml/opam:windows-mingw-ocaml-4.03
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.03-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.03-amd64 -> ocaml/opam:windows-mingw-ocaml-4.03
 4.02.3/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.02 --packages=ocaml-variants.4.02.3+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.02.3+mingw64
@@ -20714,7 +20695,7 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.03-amd64, ocurrent/opam-staging
 4.02.3/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-mingw-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.02 --packages=ocaml-variants.4.02.3+mingw64
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.02.3+mingw64
@@ -20723,67 +20704,67 @@ ocurrent/opam-staging:windows-mingw-1809-ocaml-4.03-amd64, ocurrent/opam-staging
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.02-amd64, ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.02-amd64 -> ocaml/opam:windows-mingw-ocaml-4.02
-ocurrent/opam-staging:windows-mingw-1809-opam-amd64 -> ocaml/opam:windows-mingw-1809-opam
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.02-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-4.02
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.02-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.02
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.03-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-4.03
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.03-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.03
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.04-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-4.04
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.04-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.04
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.05-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-4.05
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.05-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.05
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.06-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-4.06
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.06-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.06
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.07-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-4.07
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.07-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.07
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.08-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-4.08
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.08-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.08
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.09-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-4.09
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.09-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.09
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.10-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-4.10
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.10-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.10
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.11-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-4.11
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.11-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.11
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.12-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-4.12
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.12-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.12
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.13-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-4.13
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.13-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.13
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-1809-ocaml-4.14
-ocurrent/opam-staging:windows-mingw-1809-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.14
-ocurrent/opam-staging:windows-mingw-21H2-opam-amd64 -> ocaml/opam:windows-mingw-21H2-opam
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.02-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.02
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.02-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.02
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.03-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.03
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.03-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.03
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.04-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.04
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.04-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.04
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.05-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.05
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.05-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.05
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.06-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.06
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.06-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.06
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.07-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.07
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.07-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.07
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.08-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.08
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.08-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.08
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.09-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.09
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.09-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.09
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.10-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.10
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.10-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.10
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.11-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.11
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.11-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.11
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.12-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.12
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.12-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.12
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.13-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.13
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.13-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.13
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-21H2-ocaml-4.14
-ocurrent/opam-staging:windows-mingw-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-ltsc2022-ocaml-4.14
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.02-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.02-amd64 -> ocaml/opam:windows-mingw-ocaml-4.02
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-opam
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.02-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-ocaml-4.02
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.02-amd64 -> ocaml/opam:windows-server-mingw-ocaml-4.02
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.03-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-ocaml-4.03
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.03-amd64 -> ocaml/opam:windows-server-mingw-ocaml-4.03
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.04-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-ocaml-4.04
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.04-amd64 -> ocaml/opam:windows-server-mingw-ocaml-4.04
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.05-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-ocaml-4.05
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.05-amd64 -> ocaml/opam:windows-server-mingw-ocaml-4.05
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.06-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-ocaml-4.06
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.06-amd64 -> ocaml/opam:windows-server-mingw-ocaml-4.06
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.07-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-ocaml-4.07
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.07-amd64 -> ocaml/opam:windows-server-mingw-ocaml-4.07
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.08-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-ocaml-4.08
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.08-amd64 -> ocaml/opam:windows-server-mingw-ocaml-4.08
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.09-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-ocaml-4.09
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.09-amd64 -> ocaml/opam:windows-server-mingw-ocaml-4.09
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.10-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-ocaml-4.10
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.10-amd64 -> ocaml/opam:windows-server-mingw-ocaml-4.10
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.11-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-ocaml-4.11
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.11-amd64 -> ocaml/opam:windows-server-mingw-ocaml-4.11
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.12-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-ocaml-4.12
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.12-amd64 -> ocaml/opam:windows-server-mingw-ocaml-4.12
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.13-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-ocaml-4.13
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.13-amd64 -> ocaml/opam:windows-server-mingw-ocaml-4.13
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.14-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-ocaml-4.14
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.14-amd64 -> ocaml/opam:windows-server-mingw-ocaml-4.14
+ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64 -> ocaml/opam:windows-mingw-ltsc2019-opam
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.02-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.02
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.02-amd64 -> ocaml/opam:windows-mingw-ocaml-4.02
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.03-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.03
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.03-amd64 -> ocaml/opam:windows-mingw-ocaml-4.03
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.04-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.04
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.04-amd64 -> ocaml/opam:windows-mingw-ocaml-4.04
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.05-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.05
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.05-amd64 -> ocaml/opam:windows-mingw-ocaml-4.05
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.06-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.06
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.06-amd64 -> ocaml/opam:windows-mingw-ocaml-4.06
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.07-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.07
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.07-amd64 -> ocaml/opam:windows-mingw-ocaml-4.07
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.08-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.08
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.08-amd64 -> ocaml/opam:windows-mingw-ocaml-4.08
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.09-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.09
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.09-amd64 -> ocaml/opam:windows-mingw-ocaml-4.09
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.10-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.10
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.10-amd64 -> ocaml/opam:windows-mingw-ocaml-4.10
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.11-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.11
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.11-amd64 -> ocaml/opam:windows-mingw-ocaml-4.11
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.12-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.12
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.12-amd64 -> ocaml/opam:windows-mingw-ocaml-4.12
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.13-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.13
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.13-amd64 -> ocaml/opam:windows-mingw-ocaml-4.13
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-ltsc2019-ocaml-4.14
+ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-ocaml-4.14
 windows-msvc
-windows-msvc-1809/amd64
+windows-server-msvc-ltsc2022/amd64
 	# escape=`
 
 	# Autogenerated by OCaml-Dockerfile scripts
-	FROM mcr.microsoft.com/windows:1809-KB5032196 as winget-builder
+	FROM mcr.microsoft.com/windows/server:ltsc2022 as winget-builder
 	USER ContainerAdministrator
 	ADD [ "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle", "C:\\TEMP\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip" ]
 	RUN powershell -Command "Expand-Archive -LiteralPath C:\TEMP\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip -DestinationPath C:\TEMP\winget-cli -Force"
@@ -20794,106 +20775,7 @@ windows-msvc-1809/amd64
 	  move "C:\TEMP\winget-cli\\WindowsPackageManager.dll" "C:\Program Files\winget-cli\" && `
 	  move "C:\TEMP\winget-cli\\resources.pri" "C:\Program Files\winget-cli\"
 
-	FROM mcr.microsoft.com/windows:1809-KB5032196 as cygwin-msvc
-	USER ContainerAdministrator
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
-	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
-	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
-	ADD [ "https://raw.githubusercontent.com/ocurrent/ocaml-dockerfile/master/src-opam/Install.cmd", "C:\\TEMP\\" ]
-	ADD [ "https://aka.ms/vscollect.exe", "C:\\TEMP\\collect.exe" ]
-	ADD [ "https://aka.ms/vs/17/release/channel", "C:\\TEMP\\VisualStudio.chman" ]
-	RUN curl -SL --output C:\TEMP\vs_buildtools.exe https://aka.ms/vs/17/release/vs_buildtools.exe `
-	    && (call C:\TEMP\Install.cmd C:\TEMP\vs_buildtools.exe --quiet --wait --norestart --nocache install `
-	        --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools" `
-	        --channelUri C:\TEMP\VisualStudio.chman `
-	        --installChannelUri C:\TEMP\VisualStudio.chman `
-	        --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
-	        --add Microsoft.VisualStudio.Component.Windows10SDK.18362 `
-	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 `
-	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 `
-	        --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 `
-	        --remove Microsoft.VisualStudio.Component.Windows81SDK) `
-	    && del /q C:\TEMP\vs_buildtools.exe
-	ENV CYGWIN="nodosfilewarning winsymlinks:native"
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\bin;%c"
-	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin64\\setup-x86_64.exe" ]
-	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
-	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
-	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
-	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
-	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages diffutils,git,make,patch && `
-	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
-	RUN C:\cygwin64\bin\peflags -d0 C:\cygwin64\bin\cygwin1.dll
-	ADD [ "https://github.com/metastack/msvs-tools/archive/refs/heads/master.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-master/msvs-detect msvs-tools-master/msvs-promote-path /bin && rm -rf /cygdrive/c/TEMP/msvs-tools/*"
-	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
-
-	FROM cygwin-msvc as opam-builder
-	ENV HOME="C:\cygwin64\home\opam"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /tmp/opam-sources"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && git config --global --add safe.directory /tmp/opam-build-master"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && eval $(msvs-detect --arch=x64) && export PATH="$MSVS_PATH:$PATH" && export LIB="$MSVS_LIB" && export INCLUDE="$MSVS_INC" && make compiler OCAML_PORT=msvc64 && make lib-pkg"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && eval $(msvs-detect --arch=x64) && export PATH="$MSVS_PATH:$PATH" && export LIB="$MSVS_LIB" && export INCLUDE="$MSVS_INC" && ./configure --enable-cold-check  --with-0install-solver && make && make install"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /usr/local/bin && tar -cf /cygdrive/c/opam.tar ."
-
-	FROM cygwin-msvc
-	LABEL distro_style="windows"
-	USER ContainerAdministrator
-	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,patch,perl,rsync,unzip && `
-	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
-	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
-	ADD [ "https://aka.ms/vs/17/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
-	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log && `
-	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
-	COPY --from=winget-builder [ "C:\\Program Files\\winget-cli", "C:\\Program Files\\winget-cli" ]
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\Program Files\winget-cli;%c"
-	RUN powershell -Command "$path=(Join-Path $env:LOCALAPPDATA 'Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState'); New-Item $path -ItemType Directory -Force; '{ """"$schema"""": """"https://aka.ms/winget-settings.schema.json"""", """"telemetry"""": { """"disable"""": """"true"""" } }' | Out-File -encoding ASCII (Join-Path $path 'settings.json')"
-	COPY --from=opam-builder [ "C:\\opam.tar", "C:\\TEMP\\" ]
-	RUN C:\cygwin64\bin\tar.exe -xf /cygdrive/c/TEMP/opam.tar -C /usr/local/bin && del C:\TEMP\opam.tar && `
-	  mklink C:\cygwin64\bin\opam-dev.exe C:\cygwin64\usr\local\bin\opam.exe && `
-	  mklink C:\cygwin64\bin\opam-2.2.exe C:\cygwin64\bin\opam-dev.exe
-	WORKDIR C:\cygwin64\home\opam
-	ENV HOME="C:\cygwin64\home\opam"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
-	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
-	ENV OPAMROOT="C:\opam\.opam"
-	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
-	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
-	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
-	COPY [ "Dockerfile", "/Dockerfile.opam" ]
-
-4.14.2/amd64
-	# escape=`
-
-	FROM ocurrent/opam-staging:windows-msvc-1809-opam-amd64
-	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.14.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
-	CMD [ "cmd.exe" ]
-	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
-
-windows-msvc-21H2/amd64
-	# escape=`
-
-	# Autogenerated by OCaml-Dockerfile scripts
-	FROM mcr.microsoft.com/windows/server:ltsc2022-KB5032198 as winget-builder
-	USER ContainerAdministrator
-	ADD [ "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle", "C:\\TEMP\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip" ]
-	RUN powershell -Command "Expand-Archive -LiteralPath C:\TEMP\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip -DestinationPath C:\TEMP\winget-cli -Force"
-	RUN ren C:\TEMP\winget-cli\AppInstaller_x64.msix AppInstaller_x64.zip
-	RUN powershell -Command "Expand-Archive -LiteralPath C:\TEMP\winget-cli\AppInstaller_x64.zip -DestinationPath C:\TEMP\winget-cli\ -Force"
-	RUN mkdir "C:\Program Files\winget-cli" && `
-	  move "C:\TEMP\winget-cli\\winget.exe" "C:\Program Files\winget-cli\" && `
-	  move "C:\TEMP\winget-cli\\WindowsPackageManager.dll" "C:\Program Files\winget-cli\" && `
-	  move "C:\TEMP\winget-cli\\resources.pri" "C:\Program Files\winget-cli\"
-
-	FROM mcr.microsoft.com/windows/server:ltsc2022-KB5032198 as cygwin-msvc
+	FROM mcr.microsoft.com/windows/server:ltsc2022 as cygwin-msvc
 	USER ContainerAdministrator
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
 	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
@@ -20968,7 +20850,7 @@ windows-msvc-21H2/amd64
 4.14.2/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.2+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.14.2+msvc64
@@ -20977,11 +20859,110 @@ windows-msvc-21H2/amd64
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.14-amd64, ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-ocaml-4.14
+windows-msvc-ltsc2019/amd64
+	# escape=`
+
+	# Autogenerated by OCaml-Dockerfile scripts
+	FROM mcr.microsoft.com/windows:ltsc2019 as winget-builder
+	USER ContainerAdministrator
+	ADD [ "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle", "C:\\TEMP\\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip" ]
+	RUN powershell -Command "Expand-Archive -LiteralPath C:\TEMP\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.zip -DestinationPath C:\TEMP\winget-cli -Force"
+	RUN ren C:\TEMP\winget-cli\AppInstaller_x64.msix AppInstaller_x64.zip
+	RUN powershell -Command "Expand-Archive -LiteralPath C:\TEMP\winget-cli\AppInstaller_x64.zip -DestinationPath C:\TEMP\winget-cli\ -Force"
+	RUN mkdir "C:\Program Files\winget-cli" && `
+	  move "C:\TEMP\winget-cli\\winget.exe" "C:\Program Files\winget-cli\" && `
+	  move "C:\TEMP\winget-cli\\WindowsPackageManager.dll" "C:\Program Files\winget-cli\" && `
+	  move "C:\TEMP\winget-cli\\resources.pri" "C:\Program Files\winget-cli\"
+
+	FROM mcr.microsoft.com/windows:ltsc2019 as cygwin-msvc
+	USER ContainerAdministrator
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "\\$"') do `
+	          for /f "delims=" %l in ('cmd /v:on /c "set v=%c&& echo !v:~0,-1!"') do `
+	            reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "%l"
+	ADD [ "https://raw.githubusercontent.com/ocurrent/ocaml-dockerfile/master/src-opam/Install.cmd", "C:\\TEMP\\" ]
+	ADD [ "https://aka.ms/vscollect.exe", "C:\\TEMP\\collect.exe" ]
+	ADD [ "https://aka.ms/vs/17/release/channel", "C:\\TEMP\\VisualStudio.chman" ]
+	RUN curl -SL --output C:\TEMP\vs_buildtools.exe https://aka.ms/vs/17/release/vs_buildtools.exe `
+	    && (call C:\TEMP\Install.cmd C:\TEMP\vs_buildtools.exe --quiet --wait --norestart --nocache install `
+	        --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools" `
+	        --channelUri C:\TEMP\VisualStudio.chman `
+	        --installChannelUri C:\TEMP\VisualStudio.chman `
+	        --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
+	        --add Microsoft.VisualStudio.Component.Windows10SDK.18362 `
+	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 `
+	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 `
+	        --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 `
+	        --remove Microsoft.VisualStudio.Component.Windows81SDK) `
+	    && del /q C:\TEMP\vs_buildtools.exe
+	ENV CYGWIN="nodosfilewarning winsymlinks:native"
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\bin;%c"
+	ADD [ "https://www.cygwin.com/setup-x86_64.exe", "C:\\cygwin64\\setup-x86_64.exe" ]
+	RUN mkdir C:\cygwin64\lib\cygsympathy && mkdir C:\cygwin64\etc\postinstall
+	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.cmd", "C:\\cygwin64\\lib\\cygsympathy\\" ]
+	ADD [ "https://raw.githubusercontent.com/metastack/cygsympathy/master/cygsympathy.sh", "C:\\cygwin64\\lib\\cygsympathy\\cygsympathy" ]
+	RUN mklink C:\cygwin64\etc\postinstall\zp_zcygsympathy.sh C:\cygwin64\lib\cygsympathy\cygsympathy
+	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages diffutils,git,make,patch && `
+	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
+	RUN C:\cygwin64\bin\peflags -d0 C:\cygwin64\bin\cygwin1.dll
+	ADD [ "https://github.com/metastack/msvs-tools/archive/refs/heads/master.tar.gz", "C:\\TEMP\\msvs-tools.tar.gz" ]
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/msvs-tools.tar.gz && cp msvs-tools-master/msvs-detect msvs-tools-master/msvs-promote-path /bin && rm -rf /cygdrive/c/TEMP/msvs-tools/*"
+	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
+
+	FROM cygwin-msvc as opam-builder
+	ENV HOME="C:\cygwin64\home\opam"
+	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /tmp/opam-sources"
+	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master"
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && git config --global --add safe.directory /tmp/opam-build-master"
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && eval $(msvs-detect --arch=x64) && export PATH="$MSVS_PATH:$PATH" && export LIB="$MSVS_LIB" && export INCLUDE="$MSVS_INC" && make compiler OCAML_PORT=msvc64 && make lib-pkg"
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && eval $(msvs-detect --arch=x64) && export PATH="$MSVS_PATH:$PATH" && export LIB="$MSVS_LIB" && export INCLUDE="$MSVS_INC" && ./configure --enable-cold-check  --with-0install-solver && make && make install"
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /usr/local/bin && tar -cf /cygdrive/c/opam.tar ."
+
+	FROM cygwin-msvc
+	LABEL distro_style="windows"
+	USER ContainerAdministrator
+	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,patch,perl,rsync,unzip && `
+	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
+	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
+	ADD [ "https://aka.ms/vs/17/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
+	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log && `
+	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
+	COPY --from=winget-builder [ "C:\\Program Files\\winget-cli", "C:\\Program Files\\winget-cli" ]
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\Program Files\winget-cli;%c"
+	RUN powershell -Command "$path=(Join-Path $env:LOCALAPPDATA 'Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState'); New-Item $path -ItemType Directory -Force; '{ """"$schema"""": """"https://aka.ms/winget-settings.schema.json"""", """"telemetry"""": { """"disable"""": """"true"""" } }' | Out-File -encoding ASCII (Join-Path $path 'settings.json')"
+	COPY --from=opam-builder [ "C:\\opam.tar", "C:\\TEMP\\" ]
+	RUN C:\cygwin64\bin\tar.exe -xf /cygdrive/c/TEMP/opam.tar -C /usr/local/bin && del C:\TEMP\opam.tar && `
+	  mklink C:\cygwin64\bin\opam-dev.exe C:\cygwin64\usr\local\bin\opam.exe && `
+	  mklink C:\cygwin64\bin\opam-2.2.exe C:\cygwin64\bin\opam-dev.exe
+	WORKDIR C:\cygwin64\home\opam
+	ENV HOME="C:\cygwin64\home\opam"
+	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
+	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
+	ENV OPAMROOT="C:\opam\.opam"
+	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
+	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
+	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
+	COPY [ "Dockerfile", "/Dockerfile.opam" ]
+
+4.14.2/amd64
+	# escape=`
+
+	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
+	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.2+msvc64
+	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.14.2+msvc64
+	RUN ocaml-env exec --64 --ms -- opam install -y depext
+	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	CMD [ "cmd.exe" ]
+	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
+
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.14-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-ocaml-4.14
 4.13.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.13 --packages=ocaml-variants.4.13.1+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.13.1+msvc64
@@ -20993,7 +20974,7 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.14-amd64, ocurrent/opam-staging:
 4.13.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.13 --packages=ocaml-variants.4.13.1+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.13.1+msvc64
@@ -21002,11 +20983,11 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.14-amd64, ocurrent/opam-staging:
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.13-amd64, ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-ocaml-4.13
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.13-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-ocaml-4.13
 4.12.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.12 --packages=ocaml-variants.4.12.1+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.12.1+msvc64
@@ -21018,7 +20999,7 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.13-amd64, ocurrent/opam-staging:
 4.12.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.12 --packages=ocaml-variants.4.12.1+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.12.1+msvc64
@@ -21027,11 +21008,11 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.13-amd64, ocurrent/opam-staging:
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.12-amd64, ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.12-amd64 -> ocaml/opam:windows-msvc-ocaml-4.12
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.12-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.12-amd64 -> ocaml/opam:windows-msvc-ocaml-4.12
 4.11.2/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.11 --packages=ocaml-variants.4.11.2+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.11.2+msvc64
@@ -21043,7 +21024,7 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.12-amd64, ocurrent/opam-staging:
 4.11.2/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.11 --packages=ocaml-variants.4.11.2+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.11.2+msvc64
@@ -21052,11 +21033,11 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.12-amd64, ocurrent/opam-staging:
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.11-amd64, ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.11-amd64 -> ocaml/opam:windows-msvc-ocaml-4.11
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.11-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.11-amd64 -> ocaml/opam:windows-msvc-ocaml-4.11
 4.10.2/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.10 --packages=ocaml-variants.4.10.2+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.10.2+msvc64
@@ -21068,7 +21049,7 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.11-amd64, ocurrent/opam-staging:
 4.10.2/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.10 --packages=ocaml-variants.4.10.2+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.10.2+msvc64
@@ -21077,11 +21058,11 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.11-amd64, ocurrent/opam-staging:
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.10-amd64, ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.10-amd64 -> ocaml/opam:windows-msvc-ocaml-4.10
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.10-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.10-amd64 -> ocaml/opam:windows-msvc-ocaml-4.10
 4.09.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.09 --packages=ocaml-variants.4.09.1+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.09.1+msvc64
@@ -21093,7 +21074,7 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.10-amd64, ocurrent/opam-staging:
 4.09.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.09 --packages=ocaml-variants.4.09.1+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.09.1+msvc64
@@ -21102,11 +21083,11 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.10-amd64, ocurrent/opam-staging:
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.09-amd64, ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.09-amd64 -> ocaml/opam:windows-msvc-ocaml-4.09
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.09-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.09-amd64 -> ocaml/opam:windows-msvc-ocaml-4.09
 4.08.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.08 --packages=ocaml-variants.4.08.1+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.08.1+msvc64
@@ -21118,7 +21099,7 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.09-amd64, ocurrent/opam-staging:
 4.08.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.08 --packages=ocaml-variants.4.08.1+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.08.1+msvc64
@@ -21127,11 +21108,11 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.09-amd64, ocurrent/opam-staging:
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.08-amd64, ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.08-amd64 -> ocaml/opam:windows-msvc-ocaml-4.08
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.08-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.08-amd64 -> ocaml/opam:windows-msvc-ocaml-4.08
 4.07.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.07 --packages=ocaml-variants.4.07.1+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.07.1+msvc64
@@ -21143,7 +21124,7 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.08-amd64, ocurrent/opam-staging:
 4.07.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.07 --packages=ocaml-variants.4.07.1+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.07.1+msvc64
@@ -21152,11 +21133,11 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.08-amd64, ocurrent/opam-staging:
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.07-amd64, ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.07-amd64 -> ocaml/opam:windows-msvc-ocaml-4.07
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.07-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.07-amd64 -> ocaml/opam:windows-msvc-ocaml-4.07
 4.06.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-1809-opam-amd64
+	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.06 --packages=ocaml-variants.4.06.1+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.06.1+msvc64
@@ -21168,7 +21149,7 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.07-amd64, ocurrent/opam-staging:
 4.06.1/amd64
 	# escape=`
 
-	FROM ocurrent/opam-staging:windows-msvc-21H2-opam-amd64
+	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.06 --packages=ocaml-variants.4.06.1+msvc64
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.06.1+msvc64
@@ -21177,42 +21158,102 @@ ocurrent/opam-staging:windows-msvc-1809-ocaml-4.07-amd64, ocurrent/opam-staging:
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.06-amd64, ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.06-amd64 -> ocaml/opam:windows-msvc-ocaml-4.06
-ocurrent/opam-staging:windows-msvc-1809-opam-amd64 -> ocaml/opam:windows-msvc-1809-opam
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.06-amd64 -> ocaml/opam:windows-msvc-1809-ocaml-4.06
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.06-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.06
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.07-amd64 -> ocaml/opam:windows-msvc-1809-ocaml-4.07
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.07-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.07
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.08-amd64 -> ocaml/opam:windows-msvc-1809-ocaml-4.08
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.08-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.08
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.09-amd64 -> ocaml/opam:windows-msvc-1809-ocaml-4.09
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.09-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.09
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.10-amd64 -> ocaml/opam:windows-msvc-1809-ocaml-4.10
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.10-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.10
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.11-amd64 -> ocaml/opam:windows-msvc-1809-ocaml-4.11
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.11-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.11
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.12-amd64 -> ocaml/opam:windows-msvc-1809-ocaml-4.12
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.12-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.12
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-1809-ocaml-4.13
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.13
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-1809-ocaml-4.14
-ocurrent/opam-staging:windows-msvc-1809-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.14
-ocurrent/opam-staging:windows-msvc-21H2-opam-amd64 -> ocaml/opam:windows-msvc-21H2-opam
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.06-amd64 -> ocaml/opam:windows-msvc-21H2-ocaml-4.06
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.06-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.06
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.07-amd64 -> ocaml/opam:windows-msvc-21H2-ocaml-4.07
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.07-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.07
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.08-amd64 -> ocaml/opam:windows-msvc-21H2-ocaml-4.08
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.08-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.08
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.09-amd64 -> ocaml/opam:windows-msvc-21H2-ocaml-4.09
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.09-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.09
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.10-amd64 -> ocaml/opam:windows-msvc-21H2-ocaml-4.10
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.10-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.10
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.11-amd64 -> ocaml/opam:windows-msvc-21H2-ocaml-4.11
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.11-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.11
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.12-amd64 -> ocaml/opam:windows-msvc-21H2-ocaml-4.12
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.12-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.12
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-21H2-ocaml-4.13
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.13
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-21H2-ocaml-4.14
-ocurrent/opam-staging:windows-msvc-21H2-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-ltsc2022-ocaml-4.14
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.06-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.06-amd64 -> ocaml/opam:windows-msvc-ocaml-4.06
+4.05.0/amd64
+	# escape=`
+
+	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
+	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.05 --packages=ocaml-variants.4.05.0+msvc64
+	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.05.0+msvc64
+	RUN ocaml-env exec --64 --ms -- opam install -y depext
+	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	CMD [ "cmd.exe" ]
+	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
+
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.05-amd64 -> ocaml/opam:windows-msvc-ocaml-4.05
+4.04.2/amd64
+	# escape=`
+
+	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
+	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.04 --packages=ocaml-variants.4.04.2+msvc64
+	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.04.2+msvc64
+	RUN ocaml-env exec --64 --ms -- opam install -y depext
+	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	CMD [ "cmd.exe" ]
+	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
+
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.04-amd64 -> ocaml/opam:windows-msvc-ocaml-4.04
+4.03.0/amd64
+	# escape=`
+
+	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
+	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.03 --packages=ocaml-variants.4.03.0+msvc64
+	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.03.0+msvc64
+	RUN ocaml-env exec --64 --ms -- opam install -y depext
+	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	CMD [ "cmd.exe" ]
+	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
+
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.03-amd64 -> ocaml/opam:windows-msvc-ocaml-4.03
+4.02.3/amd64
+	# escape=`
+
+	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
+	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.02 --packages=ocaml-variants.4.02.3+msvc64
+	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.02.3+msvc64
+	RUN ocaml-env exec --64 --ms -- opam install -y depext
+	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	CMD [ "cmd.exe" ]
+	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
+
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.02-amd64 -> ocaml/opam:windows-msvc-ocaml-4.02
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-opam
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.02-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-ocaml-4.02
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.02-amd64 -> ocaml/opam:windows-server-msvc-ocaml-4.02
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.03-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-ocaml-4.03
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.03-amd64 -> ocaml/opam:windows-server-msvc-ocaml-4.03
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.04-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-ocaml-4.04
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.04-amd64 -> ocaml/opam:windows-server-msvc-ocaml-4.04
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.05-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-ocaml-4.05
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.05-amd64 -> ocaml/opam:windows-server-msvc-ocaml-4.05
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.06-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-ocaml-4.06
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.06-amd64 -> ocaml/opam:windows-server-msvc-ocaml-4.06
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.07-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-ocaml-4.07
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.07-amd64 -> ocaml/opam:windows-server-msvc-ocaml-4.07
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.08-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-ocaml-4.08
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.08-amd64 -> ocaml/opam:windows-server-msvc-ocaml-4.08
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.09-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-ocaml-4.09
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.09-amd64 -> ocaml/opam:windows-server-msvc-ocaml-4.09
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.10-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-ocaml-4.10
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.10-amd64 -> ocaml/opam:windows-server-msvc-ocaml-4.10
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.11-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-ocaml-4.11
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.11-amd64 -> ocaml/opam:windows-server-msvc-ocaml-4.11
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.12-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-ocaml-4.12
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.12-amd64 -> ocaml/opam:windows-server-msvc-ocaml-4.12
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.13-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-ocaml-4.13
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.13-amd64 -> ocaml/opam:windows-server-msvc-ocaml-4.13
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.14-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-ocaml-4.14
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.14-amd64 -> ocaml/opam:windows-server-msvc-ocaml-4.14
+ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64 -> ocaml/opam:windows-msvc-ltsc2019-opam
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.06-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.06
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.06-amd64 -> ocaml/opam:windows-msvc-ocaml-4.06
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.07-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.07
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.07-amd64 -> ocaml/opam:windows-msvc-ocaml-4.07
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.08-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.08
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.08-amd64 -> ocaml/opam:windows-msvc-ocaml-4.08
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.09-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.09
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.09-amd64 -> ocaml/opam:windows-msvc-ocaml-4.09
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.10-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.10
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.10-amd64 -> ocaml/opam:windows-msvc-ocaml-4.10
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.11-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.11
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.11-amd64 -> ocaml/opam:windows-msvc-ocaml-4.11
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.12-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.12
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.12-amd64 -> ocaml/opam:windows-msvc-ocaml-4.12
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.13
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-ocaml-4.13
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-4.14
+ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-ocaml-4.14
