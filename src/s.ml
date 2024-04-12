@@ -22,6 +22,7 @@ module type OCURRENT = sig
 
     module Syntax : sig
       val (let>) : 'a t -> ('a -> 'b Primitive.t) -> description -> 'b t
+      val (and>) : 'a t -> 'b t -> ('a * 'b) t
       val (let+) : 'a t -> ('a -> 'b) -> 'b t
     end
   end

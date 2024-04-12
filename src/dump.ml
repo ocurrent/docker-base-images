@@ -70,6 +70,12 @@ module Fake = struct
         Log.note log description;
         Log.with_indent (force (fn x)) log
 
+      let (and>) x y =
+        of_fn @@ fun log ->
+        let x = force x log in
+        let y = force y log in
+        (x, y)
+
       let (let+) x f =
         of_fn @@ fun log ->
         match x.state with
@@ -113,5 +119,6 @@ let run () =
       opam_2_1 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.1" ~hash:"2.1";
       opam_master = Current_git.Commit_id.v ~repo:"opam" ~gref:"master" ~hash:"master";
     } in
-  let log = Log.run @@ Fake.Current.force (Dump.v ~ocluster:() repos) in
+  let win_ver = Fake.Current.Primitive.const "10.0.0.0" in
+  let log = Log.run @@ Fake.Current.force (Dump.v ~ocluster:() repos win_ver) in
   List.iter print_endline log
