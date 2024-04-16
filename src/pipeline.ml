@@ -5,8 +5,8 @@ module Switch_map = Map.Make(Ocaml_version)
 
 let weekly = Current_cache.Schedule.v ~valid_for:(Duration.of_day Conf.days_between_rebuilds) ()
 
-let win_ver () =
-  Win_ver.get ~schedule:weekly
+let win_ver ocluster =
+  Conf.windows_distros |> List.map (Win_ver.get ~schedule:weekly ocluster)
 
 let git_repositories () =
   Git_repositories.get ~schedule:weekly
@@ -235,6 +235,12 @@ module Make (OCurrent : S.OCURRENT) = struct
           |> Cluster_api.Docker.Image_id.of_string
           |> or_die
         in
+        (*
+        let windows_version = match distro with
+        | `WindowsServer _ -> windows_version
+        | `Windows _ -> windows_version
+        | _ -> Current.return "" in
+        *)
         install_opam ~arch ~ocluster ~distro ~repos ~windows_version ~push_target ()
       in
       let _ = update_index opam_image distro None in
@@ -406,8 +412,10 @@ module Make (OCurrent : S.OCURRENT) = struct
          | _ -> assert false) ([], [], [], [])
     in
     let pipelines =
-      List.rev_map (linux_pipeline ~ocluster repos win_ver) linux
-      @ windows_pipeline ~ocluster repos win_ver mingw msvc cygwin in
+      let a = List.hd win_ver in
+      let b = List.hd (List.tl win_ver) in
+      List.rev_map (linux_pipeline ~ocluster repos a) linux
+      @ windows_pipeline ~ocluster repos b mingw msvc cygwin in
     Current.all pipelines
 end
 
@@ -434,6 +442,6 @@ let notify_status ?channel x =
 
 let v ?channel ~ocluster () =
   if Conf.auth = None then Fmt.pr "Password file %S not found; images will not be pushed to hub@." Conf.password_path;
-  let wv = win_ver () in
   let repos = git_repositories () in
+  let wv = win_ver ocluster in
   Real.v ~ocluster repos wv |> notify_status ?channel

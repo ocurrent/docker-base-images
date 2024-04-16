@@ -1,2 +1,2 @@
 
-val get : schedule:Current_cache.Schedule.t -> string Current.t
+val get : schedule:Current_cache.Schedule.t -> Current_ocluster.t -> string * string -> string Current.t
