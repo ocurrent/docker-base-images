@@ -2,11 +2,15 @@ module Distro = Dockerfile_opam.Distro
 module Windows = Dockerfile_opam.Windows
 
 module Switch_map = Map.Make(Ocaml_version)
+module Windows_map = Map.Make(Distro)
 
 let weekly = Current_cache.Schedule.v ~valid_for:(Duration.of_day Conf.days_between_rebuilds) ()
 
 let win_ver ocluster =
-  Conf.windows_distros |> List.map (Win_ver.get ~schedule:weekly ocluster)
+  Conf.windows_distros
+  |> List.fold_left (fun m (distro, product, pool) ->
+    let w = Win_ver.get ~schedule:weekly ocluster product pool in
+    Windows_map.add distro w m) Windows_map.empty
 
 let git_repositories () =
   Git_repositories.get ~schedule:weekly
@@ -235,12 +239,7 @@ module Make (OCurrent : S.OCURRENT) = struct
           |> Cluster_api.Docker.Image_id.of_string
           |> or_die
         in
-        (*
-        let windows_version = match distro with
-        | `WindowsServer _ -> windows_version
-        | `Windows _ -> windows_version
-        | _ -> Current.return "" in
-        *)
+        let windows_version = Windows_map.find_opt distro windows_version |> Option.value ~default:(Current.return "") in
         install_opam ~arch ~ocluster ~distro ~repos ~windows_version ~push_target ()
       in
       let _ = update_index opam_image distro None in
@@ -412,10 +411,8 @@ module Make (OCurrent : S.OCURRENT) = struct
          | _ -> assert false) ([], [], [], [])
     in
     let pipelines =
-      let a = List.hd win_ver in
-      let b = List.hd (List.tl win_ver) in
-      List.rev_map (linux_pipeline ~ocluster repos a) linux
-      @ windows_pipeline ~ocluster repos b mingw msvc cygwin in
+      List.rev_map (linux_pipeline ~ocluster repos win_ver) linux
+      @ windows_pipeline ~ocluster repos win_ver mingw msvc cygwin in
     Current.all pipelines
 end
 

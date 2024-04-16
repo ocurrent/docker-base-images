@@ -87,7 +87,7 @@ let windows_distros = Distro.(latest_distros |> List.filter (fun d ->
   | _ -> false)
   |> List.map (fun d ->
      let bdt = base_distro_tag d in
-     (fst bdt) ^ ":" ^ (snd bdt), pool_name d `X86_64))
+     d, (fst bdt) ^ ":" ^ (snd bdt), pool_name d `X86_64))
 
 let arches_for ~distro =
   match distro with

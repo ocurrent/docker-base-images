@@ -49,6 +49,9 @@ module Fake = struct
       | `Ready fn -> let x = fn log in t.state <- `Done x; x
       | `Done x -> x
 
+    let return ?label:_ x =
+      Primitive.const x
+
     let component fmt =
       fmt |> Fmt.kstr @@ fun msg ->
       msg |> String.split_on_char '\n' |> String.concat "/"
@@ -119,6 +122,6 @@ let run () =
       opam_2_1 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.1" ~hash:"2.1";
       opam_master = Current_git.Commit_id.v ~repo:"opam" ~gref:"master" ~hash:"master";
     } in
-  let win_ver = [ Fake.Current.Primitive.const "10.0.0.0"; Fake.Current.Primitive.const "10.0.0.0"; Fake.Current.Primitive.const "" ] in
+  let win_ver = Pipeline.Windows_map.empty in
   let log = Log.run @@ Fake.Current.force (Dump.v ~ocluster:() repos win_ver) in
   List.iter print_endline log

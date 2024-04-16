@@ -19,6 +19,7 @@ module type OCURRENT = sig
     val all : unit t list -> unit t
     val all_labelled : (string * unit t) list -> unit t
     val collapse : key:string -> value:string -> input:_ t -> 'a t -> 'a t
+    val return : ?label:string -> 'a -> 'a t
 
     module Syntax : sig
       val (let>) : 'a t -> ('a -> 'b Primitive.t) -> description -> 'b t
