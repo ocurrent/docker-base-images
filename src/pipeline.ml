@@ -221,7 +221,7 @@ module Make (OCurrent : S.OCURRENT) = struct
         ~pool:(Conf.pool_name distro `X86_64)
 
     (* Build the base image for [distro], plus an image for each compiler version. *)
-    let pipeline ~ocluster ~repos ~windows_version ~distro arch =
+    let pipeline ~ocluster ~repos ?(windows_version = Windows_map.empty) ~distro arch =
       let update_index current distro switch =
         let+ state = Current.state ~hidden:false current in
         let s = match state with
@@ -285,11 +285,11 @@ module Make (OCurrent : S.OCURRENT) = struct
     let> v = t in
     Current.Primitive.const v
 
-  let pipeline ~ocluster repos windows_version distro gen_tags =
+  let pipeline ~ocluster ~repos ?windows_version distro gen_tags =
     let opam_images, ocaml_images, archive_image =
       let arch_results =
         let arches = Conf.arches_for ~distro in
-        List.map (Arch.pipeline ~ocluster ~repos ~distro ~windows_version) arches in
+        List.map (Arch.pipeline ~ocluster ~repos ~distro ?windows_version) arches in
       List.fold_left (fun (aa,ba,ca) (a,b,c) ->
           let ca = match ca,c with Some v, _ -> Some v | None, v -> v in
           a::aa, b::ba, ca) ([], [], None) arch_results
@@ -318,7 +318,7 @@ module Make (OCurrent : S.OCURRENT) = struct
     in
     multiarch_images, pipeline
 
-  let linux_pipeline ~ocluster repos windows_version distro =
+  let linux_pipeline ~ocluster ~repos distro =
     let distro_label = Distro.tag_of_distro distro in
     let repos = label distro_label repos in
     Current.collapse ~key:"distro" ~value:distro_label ~input:repos @@
@@ -342,10 +342,10 @@ module Make (OCurrent : S.OCURRENT) = struct
         (* Fmt.pr "Aliases: %s -> %a@." full_tag Fmt.(Dump.list string) (List.sort String.compare tags); *)
         Switch_map.empty, tags
       in
-      let (_multiarch_images, pipeline) = pipeline ~ocluster repos windows_version distro gen_tags in
+      let (_multiarch_images, pipeline) = pipeline ~ocluster ~repos distro gen_tags in
       pipeline
 
-  let windows_distro_pipeline ~ocluster repos windows_version distro_label distro_versions =
+  let windows_distro_pipeline ~ocluster ~repos ~windows_version distro_label distro_versions =
     let distro_pipeline multiarches distro =
       let gen_tags images full_tag switch distro_aliases =
         let tags =
@@ -361,7 +361,7 @@ module Make (OCurrent : S.OCURRENT) = struct
         (* Fmt.pr "Aliases: %s -> %a@." full_tag Fmt.(Dump.list string) (List.sort String.compare tags); *)
         Switch_map.add switch images Switch_map.empty, tags
       in
-      let (multiarch_images, pipeline) = pipeline ~ocluster repos windows_version distro gen_tags in
+      let (multiarch_images, pipeline) = pipeline ~ocluster ~repos ~windows_version distro gen_tags in
       let multiarch_images =
         let update images = function None -> Some images | Some images' -> Some (images @ images') in
         let fold switch images acc = Switch_map.update switch (update images) acc in
@@ -386,17 +386,17 @@ module Make (OCurrent : S.OCURRENT) = struct
     in
     Current.(collapse ~key:"distro" ~value:distro_label ~input:repos (all ((all_labelled pushes) :: pipelines)))
 
-  let windows_pipeline ~ocluster repos windows_version mingw msvc cygwin =
+  let windows_pipeline ~ocluster ~repos ~windows_version mingw msvc cygwin =
     List.filter_map (fun (distro_label, distros) ->
         match distros with
         | [] -> None
         | distro_versions ->
            let repos = label distro_label repos in
-           windows_distro_pipeline ~ocluster repos windows_version distro_label distro_versions |> Option.some)
+           windows_distro_pipeline ~ocluster ~repos ~windows_version distro_label distro_versions |> Option.some)
       [("windows-mingw", mingw); ("windows-msvc", msvc); ("cygwin", cygwin)]
 
   (* The main pipeline. Builds images for all supported distribution, compiler version and architecture combinations. *)
-  let v ~ocluster repos win_ver =
+  let v ~ocluster ~repos ~windows_version =
     let linux, mingw, msvc, cygwin = Conf.distros |> List.fold_left (fun (linux, mingw, msvc, cygwin) distro ->
       let os_family = Distro.os_family_of_distro distro in
       match os_family with
@@ -411,8 +411,8 @@ module Make (OCurrent : S.OCURRENT) = struct
          | _ -> assert false) ([], [], [], [])
     in
     let pipelines =
-      List.rev_map (linux_pipeline ~ocluster repos win_ver) linux
-      @ windows_pipeline ~ocluster repos win_ver mingw msvc cygwin in
+      List.rev_map (linux_pipeline ~ocluster ~repos) linux
+      @ windows_pipeline ~ocluster ~repos ~windows_version mingw msvc cygwin in
     Current.all pipelines
 end
 
@@ -441,4 +441,4 @@ let v ?channel ~ocluster () =
   if Conf.auth = None then Fmt.pr "Password file %S not found; images will not be pushed to hub@." Conf.password_path;
   let repos = git_repositories () in
   let wv = win_ver ocluster in
-  Real.v ~ocluster repos wv |> notify_status ?channel
+  Real.v ~ocluster ~repos ~windows_version:wv |> notify_status ?channel

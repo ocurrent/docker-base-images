@@ -122,6 +122,6 @@ let run () =
       opam_2_1 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.1" ~hash:"2.1";
       opam_master = Current_git.Commit_id.v ~repo:"opam" ~gref:"master" ~hash:"master";
     } in
-  let win_ver = Pipeline.Windows_map.empty in
-  let log = Log.run @@ Fake.Current.force (Dump.v ~ocluster:() repos win_ver) in
+  let windows_version = Pipeline.Windows_map.empty in
+  let log = Log.run @@ Fake.Current.force (Dump.v ~ocluster:() ~repos ~windows_version) in
   List.iter print_endline log
