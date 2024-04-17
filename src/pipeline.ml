@@ -151,23 +151,25 @@ module Make (OCurrent : S.OCURRENT) = struct
           opam_master_hash = Current_git.Commit_id.hash opam_master;
         } in
         `Contents (
-          let opam = snd @@ Dockerfile_opam.gen_opam2_distro ~arch ~clone_opam_repo:false ~opam_hashes distro in
           let open Dockerfile in
           string_of_t (
-            opam @@
             begin match os_family with
             | `Linux ->
+              let opam = snd (Dockerfile_opam.gen_opam2_distro ~arch ~clone_opam_repo:false ~opam_hashes distro) in
+              opam @@
               copy ~link:true ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
               run "opam-sandbox-disable" @@
               run "opam init -k local -a /home/opam/opam-repository --bare" @@
               run "rm -rf .opam/repo/default/.git" @@
               copy ~link:true ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
             | `Windows ->
+              let opam = snd (Dockerfile_opam.gen_opam2_distro ~arch ~override_tag:windows_version ~clone_opam_repo:false ~opam_hashes distro) in
+              opam @@
+              comment "Windows version %S" windows_version @@
               let opam_repo = Windows.Cygwin.default.root ^ {|\home\opam\opam-repository|} in
               let opam_root = {|C:\opam\.opam|} in
               copy ~src:["."] ~dst:opam_repo () @@
               env [("OPAMROOT", opam_root)] @@
-              comment "%S" windows_version @@
               run "opam init -k local -a \"%s\" --bare --disable-sandboxing" opam_repo @@
               maybe_add_overlay distro (Current_git.Commit_id.hash opam_overlays) @@
               Windows.Cygwin.run_sh "rm -rf /cygdrive/c/opam/.opam/repo/default/.git" @@
