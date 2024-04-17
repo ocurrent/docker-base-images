@@ -5,11 +5,12 @@ module Switch_map = Map.Make(Ocaml_version)
 module Windows_map = Map.Make(Distro)
 
 let weekly = Current_cache.Schedule.v ~valid_for:(Duration.of_day Conf.days_between_rebuilds) ()
+let daily = Current_cache.Schedule.v ~valid_for:(Duration.of_day 1) ()
 
 let win_ver ocluster =
   Conf.windows_distros
   |> List.fold_left (fun m (distro, product, pool) ->
-    let w = Win_ver.get ~schedule:weekly ocluster product pool in
+    let w = Win_ver.get ~schedule:daily ocluster product pool in
     Windows_map.add distro w m) Windows_map.empty
 
 let git_repositories () =
@@ -242,7 +243,7 @@ module Make (OCurrent : S.OCURRENT) = struct
           |> Cluster_api.Docker.Image_id.of_string
           |> or_die
         in
-        let windows_version = Windows_map.find_opt distro windows_version |> Option.value ~default:(Current.return "10.0.17763.5696") in
+        let windows_version = Windows_map.find_opt distro windows_version |> Option.value ~default:(Current.return "") in
         install_opam ~arch ~ocluster ~distro ~repos ~windows_version ~push_target ()
       in
       let _ = update_index opam_image distro None in

@@ -3,6 +3,7 @@ module Windows_map : sig
   type key = Dockerfile_opam.Distro.t
   type 'a t = 'a Map.Make(Dockerfile_opam.Distro).t
   val empty : 'a t
+  val add : key -> 'a -> 'a t -> 'a t
 end
 
 module Make (OCurrent : S.OCURRENT) : sig

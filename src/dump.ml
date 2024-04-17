@@ -122,6 +122,11 @@ let run () =
       opam_2_1 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.1" ~hash:"2.1";
       opam_master = Current_git.Commit_id.v ~repo:"opam" ~gref:"master" ~hash:"master";
     } in
-  let windows_version = Pipeline.Windows_map.empty in
+  let windows_version = List.fold_left (fun m (d, v) -> Pipeline.Windows_map.add d v m) Pipeline.Windows_map.empty
+    [ `Windows (`Msvc, `Ltsc2019), Fake.Current.return "10.0.17763.316";
+      `Windows (`Mingw, `Ltsc2019), Fake.Current.return "10.0.17763.316";
+      `WindowsServer (`Msvc, `Ltsc2022), Fake.Current.return "10.0.20348.169";
+      `WindowsServer (`Mingw, `Ltsc2022), Fake.Current.return "10.0.20348.169"; ]
+  in
   let log = Log.run @@ Fake.Current.force (Dump.v ~ocluster:() ~repos ~windows_version) in
   List.iter print_endline log
