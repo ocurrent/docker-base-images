@@ -73,7 +73,7 @@ end
 module Cache = Current_cache.Make(Products)
 
 let get ~schedule ocluster product pool =
-  Current.component "Windows Version" |>
+  Current.component "%s" product |>
   let> key = Current.return { Products.Key.product = product; pool } in
   Cache.get ~schedule { Products.ocluster } key
 
