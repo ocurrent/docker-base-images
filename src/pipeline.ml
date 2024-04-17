@@ -242,7 +242,7 @@ module Make (OCurrent : S.OCURRENT) = struct
           |> Cluster_api.Docker.Image_id.of_string
           |> or_die
         in
-        let windows_version = Windows_map.find_opt distro windows_version |> Option.value ~default:(Current.return "") in
+        let windows_version = Windows_map.find_opt distro windows_version |> Option.value ~default:(Current.return "10.0.17763.5696") in
         install_opam ~arch ~ocluster ~distro ~repos ~windows_version ~push_target ()
       in
       let _ = update_index opam_image distro None in
