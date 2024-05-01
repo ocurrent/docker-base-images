@@ -139,12 +139,43 @@ module Make (OCurrent : S.OCURRENT) = struct
     let buildkit distro =
       Distro.os_family_of_distro distro <> `Windows
 
+    let build_distro_base ocluster arch distro =
+      let dist, release = Distro.base_distro_tag distro in
+      Current.component "%s %s" dist release |>
+      let> distro = Current.return distro in
+      let dockerfile =
+        let open Dockerfile in
+        `Contents (
+        string_of_t (
+          from "ubuntu:jammy-20220801 AS base" @@
+          workdir "/base" @@
+          run "apt update && apt install -y debootstrap" @@
+          run "ln -s gutsy /usr/share/debootstrap/scripts/noble" @@
+          run "debootstrap %s /base" release @@
+          from "scratch" @@
+          copy ~from:"base" ~src:["/base"] ~dst:"/" () @@
+          cmd "/bin/bash")) in
+      let options = { Cluster_api.Docker.Spec.defaults with
+                      squash = squash distro;
+                      buildkit = buildkit distro } in
+      let cache_hint = "ubuntu-" ^ release in
+      OCluster.Raw.build_and_push ocluster dockerfile
+        ~src:[]
+        ~cache_hint
+        ~push_target:(Cluster_api.Docker.Image_id.of_string Tag.(base ~arch distro) |> or_die)
+        ~options
+        ~pool:(Conf.pool_name (`Ubuntu `LTS) `Riscv64)
+
     let install_opam ~arch ~ocluster ~distro ~repos ~push_target ~windows_version () =
+      let base = match distro, arch with
+        | `Ubuntu _, `Riscv64 -> build_distro_base ocluster arch distro
+        | _ -> Current.return "" in
       let arch_name = Ocaml_version.string_of_arch arch in
       let distro_tag, os_family = Distro.(tag_of_distro distro, os_family_of_distro distro) in
       Current.component "%s@,%s" distro_tag arch_name |>
       let> {Git_repositories.opam_repository_master; opam_repository_mingw_sunset; opam_overlays; opam_2_0; opam_2_1; opam_master} = repos
-      and> windows_version = windows_version in
+      and> windows_version = windows_version
+      and> _ = base in
       let dockerfile =
         let opam_hashes = {
           Dockerfile_opam.opam_2_0_hash = Current_git.Commit_id.hash opam_2_0;
