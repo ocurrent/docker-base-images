@@ -377,6 +377,7 @@ module Make (OCurrent : S.OCURRENT) = struct
     let multiarch, pipelines = List.fold_left_map distro_pipeline Switch_map.empty distro_versions in
     let pushes =
       Switch_map.fold (fun switch images pushes ->
+        let distro_label = String.split_on_char '-' distro_label |> String.concat "-all-" in
         let full_tag = Printf.sprintf "%s:%s-ocaml-%s" Conf.public_repo distro_label (Tag.tag_of_compiler switch) in
         let tags =
           let tags = [full_tag] in

@@ -20941,7 +20941,7 @@ windows-mingw-ltsc2019/amd64
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.14-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.14-amd64 -> ocaml/opam:windows-mingw-ocaml-4.14
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.14-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.14-amd64 -> ocaml/opam:windows-all-mingw-ocaml-4.14
 4.13.1/amd64
 	# escape=`
 
@@ -20966,7 +20966,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.14-amd64, ocurrent/o
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.13-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.13-amd64 -> ocaml/opam:windows-mingw-ocaml-4.13
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.13-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.13-amd64 -> ocaml/opam:windows-all-mingw-ocaml-4.13
 4.12.1/amd64
 	# escape=`
 
@@ -20991,7 +20991,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.13-amd64, ocurrent/o
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.12-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.12-amd64 -> ocaml/opam:windows-mingw-ocaml-4.12
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.12-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.12-amd64 -> ocaml/opam:windows-all-mingw-ocaml-4.12
 4.11.2/amd64
 	# escape=`
 
@@ -21016,7 +21016,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.12-amd64, ocurrent/o
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.11-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.11-amd64 -> ocaml/opam:windows-mingw-ocaml-4.11
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.11-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.11-amd64 -> ocaml/opam:windows-all-mingw-ocaml-4.11
 4.10.2/amd64
 	# escape=`
 
@@ -21041,7 +21041,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.11-amd64, ocurrent/o
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.10-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.10-amd64 -> ocaml/opam:windows-mingw-ocaml-4.10
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.10-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.10-amd64 -> ocaml/opam:windows-all-mingw-ocaml-4.10
 4.09.1/amd64
 	# escape=`
 
@@ -21066,7 +21066,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.10-amd64, ocurrent/o
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.09-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.09-amd64 -> ocaml/opam:windows-mingw-ocaml-4.09
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.09-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.09-amd64 -> ocaml/opam:windows-all-mingw-ocaml-4.09
 4.08.1/amd64
 	# escape=`
 
@@ -21091,7 +21091,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.09-amd64, ocurrent/o
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.08-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.08-amd64 -> ocaml/opam:windows-mingw-ocaml-4.08
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.08-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.08-amd64 -> ocaml/opam:windows-all-mingw-ocaml-4.08
 4.07.1/amd64
 	# escape=`
 
@@ -21116,7 +21116,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.08-amd64, ocurrent/o
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.07-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.07-amd64 -> ocaml/opam:windows-mingw-ocaml-4.07
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.07-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.07-amd64 -> ocaml/opam:windows-all-mingw-ocaml-4.07
 4.06.1/amd64
 	# escape=`
 
@@ -21141,7 +21141,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.07-amd64, ocurrent/o
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.06-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.06-amd64 -> ocaml/opam:windows-mingw-ocaml-4.06
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.06-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.06-amd64 -> ocaml/opam:windows-all-mingw-ocaml-4.06
 4.05.0/amd64
 	# escape=`
 
@@ -21166,7 +21166,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.06-amd64, ocurrent/o
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.05-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.05-amd64 -> ocaml/opam:windows-mingw-ocaml-4.05
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.05-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.05-amd64 -> ocaml/opam:windows-all-mingw-ocaml-4.05
 4.04.2/amd64
 	# escape=`
 
@@ -21191,7 +21191,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.05-amd64, ocurrent/o
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.04-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.04-amd64 -> ocaml/opam:windows-mingw-ocaml-4.04
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.04-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.04-amd64 -> ocaml/opam:windows-all-mingw-ocaml-4.04
 4.03.0/amd64
 	# escape=`
 
@@ -21216,7 +21216,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.04-amd64, ocurrent/o
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.03-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.03-amd64 -> ocaml/opam:windows-mingw-ocaml-4.03
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.03-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.03-amd64 -> ocaml/opam:windows-all-mingw-ocaml-4.03
 4.02.3/amd64
 	# escape=`
 
@@ -21241,7 +21241,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.03-amd64, ocurrent/o
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.02-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.02-amd64 -> ocaml/opam:windows-mingw-ocaml-4.02
+ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.02-amd64, ocurrent/opam-staging:windows-mingw-ltsc2019-ocaml-4.02-amd64 -> ocaml/opam:windows-all-mingw-ocaml-4.02
 ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-opam
 ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.02-amd64 -> ocaml/opam:windows-server-mingw-ltsc2022-ocaml-4.02
 ocurrent/opam-staging:windows-server-mingw-ltsc2022-ocaml-4.02-amd64 -> ocaml/opam:windows-server-mingw-ocaml-4.02
@@ -21495,7 +21495,7 @@ windows-msvc-ltsc2019/amd64
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.14-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.14-amd64 -> ocaml/opam:windows-msvc-ocaml-4.14
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.14-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.14-amd64 -> ocaml/opam:windows-all-msvc-ocaml-4.14
 4.13.1/amd64
 	# escape=`
 
@@ -21520,7 +21520,7 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.14-amd64, ocurrent/op
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.13-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.13-amd64 -> ocaml/opam:windows-msvc-ocaml-4.13
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.13-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.13-amd64 -> ocaml/opam:windows-all-msvc-ocaml-4.13
 4.12.1/amd64
 	# escape=`
 
@@ -21545,7 +21545,7 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.13-amd64, ocurrent/op
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.12-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.12-amd64 -> ocaml/opam:windows-msvc-ocaml-4.12
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.12-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.12-amd64 -> ocaml/opam:windows-all-msvc-ocaml-4.12
 4.11.2/amd64
 	# escape=`
 
@@ -21570,7 +21570,7 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.12-amd64, ocurrent/op
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.11-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.11-amd64 -> ocaml/opam:windows-msvc-ocaml-4.11
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.11-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.11-amd64 -> ocaml/opam:windows-all-msvc-ocaml-4.11
 4.10.2/amd64
 	# escape=`
 
@@ -21595,7 +21595,7 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.11-amd64, ocurrent/op
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.10-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.10-amd64 -> ocaml/opam:windows-msvc-ocaml-4.10
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.10-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.10-amd64 -> ocaml/opam:windows-all-msvc-ocaml-4.10
 4.09.1/amd64
 	# escape=`
 
@@ -21620,7 +21620,7 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.10-amd64, ocurrent/op
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.09-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.09-amd64 -> ocaml/opam:windows-msvc-ocaml-4.09
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.09-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.09-amd64 -> ocaml/opam:windows-all-msvc-ocaml-4.09
 4.08.1/amd64
 	# escape=`
 
@@ -21645,7 +21645,7 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.09-amd64, ocurrent/op
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.08-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.08-amd64 -> ocaml/opam:windows-msvc-ocaml-4.08
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.08-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.08-amd64 -> ocaml/opam:windows-all-msvc-ocaml-4.08
 4.07.1/amd64
 	# escape=`
 
@@ -21670,7 +21670,7 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.08-amd64, ocurrent/op
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.07-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.07-amd64 -> ocaml/opam:windows-msvc-ocaml-4.07
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.07-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.07-amd64 -> ocaml/opam:windows-all-msvc-ocaml-4.07
 4.06.1/amd64
 	# escape=`
 
@@ -21695,7 +21695,7 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.07-amd64, ocurrent/op
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.06-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.06-amd64 -> ocaml/opam:windows-msvc-ocaml-4.06
+ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.06-amd64, ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-4.06-amd64 -> ocaml/opam:windows-all-msvc-ocaml-4.06
 ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-opam
 ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.06-amd64 -> ocaml/opam:windows-server-msvc-ltsc2022-ocaml-4.06
 ocurrent/opam-staging:windows-server-msvc-ltsc2022-ocaml-4.06-amd64 -> ocaml/opam:windows-server-msvc-ocaml-4.06
