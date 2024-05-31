@@ -8,6 +8,9 @@ val v : ?arch:Ocaml_version.arch -> ?switch:Ocaml_version.t -> Dockerfile_opam.D
     with no switches. If [arch] is set then this is a staging image, which will later be combined
     into a cross-platform image. *)
 
+val base : ?arch:Ocaml_version.arch -> Dockerfile_opam.Distro.t -> string
+(** [base ?arch distro] is the Docker tag to use for a base image for [distro] and [arch]. *)
+
 val v_alias : Dockerfile_opam.Distro.t -> string
 (** [v_alias distro] is a short tag for [distro], without the OCaml version. *)
 
