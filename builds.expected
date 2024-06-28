@@ -20271,8 +20271,8 @@ windows-server-mingw-ltsc2022/amd64
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /tmp/opam-sources"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master"
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && git config --global --add safe.directory /tmp/opam-build-master"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && make compiler && make lib-pkg"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && ./configure --enable-cold-check --with-private-runtime --with-0install-solver && make && make install"
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && make compiler "
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && ./configure --enable-cold-check --with-private-runtime --with-vendored_deps --with-0install-solver && make && make install"
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /usr/local/bin && tar -cf /cygdrive/c/opam.tar ."
 
 	FROM mcr.microsoft.com/windows/server:10.0.20348.2402
@@ -20364,8 +20364,8 @@ windows-mingw-ltsc2019/amd64
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /tmp/opam-sources"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master"
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && git config --global --add safe.directory /tmp/opam-build-master"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && make compiler && make lib-pkg"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && ./configure --enable-cold-check --with-private-runtime --with-0install-solver && make && make install"
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && make compiler "
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && ./configure --enable-cold-check --with-private-runtime --with-vendored_deps --with-0install-solver && make && make install"
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /usr/local/bin && tar -cf /cygdrive/c/opam.tar ."
 
 	FROM mcr.microsoft.com/windows:10.0.17763.5696
@@ -20831,8 +20831,8 @@ windows-server-msvc-ltsc2022/amd64
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /tmp/opam-sources"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master"
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && git config --global --add safe.directory /tmp/opam-build-master"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && eval $(msvs-detect --arch=x64) && export PATH="$MSVS_PATH:$PATH" && export LIB="$MSVS_LIB" && export INCLUDE="$MSVS_INC" && make compiler OCAML_PORT=msvc64 && make lib-pkg"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && eval $(msvs-detect --arch=x64) && export PATH="$MSVS_PATH:$PATH" && export LIB="$MSVS_LIB" && export INCLUDE="$MSVS_INC" && ./configure --enable-cold-check  --with-0install-solver && make && make install"
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && make compiler OCAML_PORT=msvc64"
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && ./configure --enable-cold-check  --with-vendored_deps --with-0install-solver && make && make install"
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /usr/local/bin && tar -cf /cygdrive/c/opam.tar ."
 
 	FROM cygwin-msvc
@@ -20931,8 +20931,8 @@ windows-msvc-ltsc2019/amd64
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /tmp/opam-sources"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master"
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-sources && cp -P -R -p . ../opam-build-master && cd ../opam-build-master && git checkout master && git config --global --add safe.directory /tmp/opam-build-master"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && eval $(msvs-detect --arch=x64) && export PATH="$MSVS_PATH:$PATH" && export LIB="$MSVS_LIB" && export INCLUDE="$MSVS_INC" && make compiler OCAML_PORT=msvc64 && make lib-pkg"
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && eval $(msvs-detect --arch=x64) && export PATH="$MSVS_PATH:$PATH" && export LIB="$MSVS_LIB" && export INCLUDE="$MSVS_INC" && ./configure --enable-cold-check  --with-0install-solver && make && make install"
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && make compiler OCAML_PORT=msvc64"
+	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-master && ./configure --enable-cold-check  --with-vendored_deps --with-0install-solver && make && make install"
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /usr/local/bin && tar -cf /cygdrive/c/opam.tar ."
 
 	FROM cygwin-msvc
