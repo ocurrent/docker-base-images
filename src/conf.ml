@@ -34,14 +34,11 @@ module Distro = Dockerfile_opam.Distro
 let pool_name (distro:Distro.t) arch =
   let os_family = Distro.os_family_of_distro distro in
   let os_str = match os_family with
-  | `Windows | `Cygwin ->
-    let dedicated_pool = [`V1809] in
-    begin match Distro.resolve_alias distro with
-    | `Windows (_, release) | `Cygwin release when List.mem release dedicated_pool ->
-      "windows-" ^ Distro.win10_release_to_string release
-    | `Windows _ | `Cygwin _ -> "windows"
-    | _ -> assert false
-    end
+  | `Cygwin -> "windows"
+  | `Windows -> begin match distro with
+     | `Windows _ -> "windows-1809"
+     | `WindowsServer _ -> "windows"
+     | _ -> assert false end
   | `Linux -> "linux"
   in
   let arch_str = match arch with
@@ -57,11 +54,12 @@ let switches ~arch ~distro =
   (* opam-repository-mingw doesn't package the development version of
      the compiler. *)
   (* TODO: Does Windows include alpha, beta, and release candidate versions? *)
-  let with_unreleased = match distro with `Windows _ -> false | _ -> true in
+  let with_unreleased = match distro with `WindowsServer _ | `Windows _ -> false | _ -> true in
   let filter_windows main_switches =
     (* opam-repository-mingw doesn't package OCaml 5.0.
        TODO: remove when upstream opam gains OCaml packages on Windows. *)
     match distro with
+    | `WindowsServer _
     | `Windows _ ->
        List.filter (fun ov -> Ocaml_version.(compare ov Releases.v4_14) <= 0) main_switches
     | _ -> main_switches
@@ -83,10 +81,19 @@ let distros = Distro.(active_distros `X86_64 |> List.filter (fun d ->
   | `Linux | `Windows -> true
   | _ -> false))
 
+let windows_distros = Distro.(latest_distros |> List.filter (fun d ->
+  match os_family_of_distro d with
+  | `Windows -> true
+  | _ -> false)
+  |> List.map (fun d ->
+     let bdt = base_distro_tag d in
+     d, (fst bdt) ^ ":" ^ (snd bdt), pool_name d `X86_64))
+
 let arches_for ~distro =
   match distro with
   (* opam-repository-mingw doesn't package OCaml 5.0.
      TODO: remove when upstream opam gains OCaml packages on Windows. *)
+  | `WindowsServer _
   | `Windows _ -> Distro.distro_arches Ocaml_version.Releases.v4_14 distro
   | `Ubuntu (`V23_10) ->
     (* There does not yet exist risc-v ubuntu 23.10 docker images
@@ -94,8 +101,6 @@ let arches_for ~distro =
     Distro.distro_arches Ocaml_version.Releases.latest distro
     |> List.filter (fun arch -> arch != `Riscv64)
   | _ -> Distro.distro_arches Ocaml_version.Releases.latest distro
-
-let win10_revision : Distro.win10_lcu = Dockerfile_opam.Distro.win10_current_lcu
 
 (* For testing, you can uncomment these lines to limit the number of combinations: *)
 

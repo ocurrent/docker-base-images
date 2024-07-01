@@ -2,8 +2,16 @@ module Distro = Dockerfile_opam.Distro
 module Windows = Dockerfile_opam.Windows
 
 module Switch_map = Map.Make(Ocaml_version)
+module Windows_map = Map.Make(Distro)
 
 let weekly = Current_cache.Schedule.v ~valid_for:(Duration.of_day Conf.days_between_rebuilds) ()
+let daily = Current_cache.Schedule.v ~valid_for:(Duration.of_day 1) ()
+
+let win_ver ocluster =
+  Conf.windows_distros
+  |> List.fold_left (fun m (distro, product, pool) ->
+    let w = Win_ver.get ~schedule:daily ocluster product pool in
+    Windows_map.add distro w m) Windows_map.empty
 
 let git_repositories () =
   Git_repositories.get ~schedule:weekly
@@ -111,6 +119,7 @@ let or_die = function
 
 let maybe_add_overlay distro hash =
   match distro with
+  | `WindowsServer (`Msvc, _)
   | `Windows (`Msvc, _) ->
     Dockerfile.run "opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#%s --set-default" hash
   | _ -> Dockerfile.empty
@@ -130,11 +139,43 @@ module Make (OCurrent : S.OCURRENT) = struct
     let buildkit distro =
       Distro.os_family_of_distro distro <> `Windows
 
-    let install_opam ~arch ~ocluster ~distro ~repos ~push_target =
+    let build_distro_base ocluster arch distro =
+      let dist, release = Distro.base_distro_tag distro in
+      Current.component "%s %s" dist release |>
+      let> distro = Current.return distro in
+      let dockerfile =
+        let open Dockerfile in
+        `Contents (
+        string_of_t (
+          from "ubuntu:jammy-20220801 AS base" @@
+          workdir "/base" @@
+          run "apt update && apt install -y debootstrap" @@
+          run "ln -s gutsy /usr/share/debootstrap/scripts/noble" @@
+          run "debootstrap %s /base" release @@
+          from "scratch" @@
+          copy ~from:"base" ~src:["/base"] ~dst:"/" () @@
+          cmd "/bin/bash")) in
+      let options = { Cluster_api.Docker.Spec.defaults with
+                      squash = squash distro;
+                      buildkit = buildkit distro } in
+      let cache_hint = "ubuntu-" ^ release in
+      OCluster.Raw.build_and_push ocluster dockerfile
+        ~src:[]
+        ~cache_hint
+        ~push_target:(Cluster_api.Docker.Image_id.of_string Tag.(base ~arch distro) |> or_die)
+        ~options
+        ~pool:(Conf.pool_name (`Ubuntu `LTS) `Riscv64)
+
+    let install_opam ~arch ~ocluster ~distro ~repos ~push_target ~windows_version () =
+      let base = match distro, arch with
+        | `Ubuntu _, `Riscv64 -> build_distro_base ocluster arch distro
+        | _ -> Current.return "" in
       let arch_name = Ocaml_version.string_of_arch arch in
       let distro_tag, os_family = Distro.(tag_of_distro distro, os_family_of_distro distro) in
       Current.component "%s@,%s" distro_tag arch_name |>
-      let> {Git_repositories.opam_repository_master; opam_repository_mingw_sunset; opam_overlays; opam_2_0; opam_2_1; opam_master} = repos in
+      let> {Git_repositories.opam_repository_master; opam_repository_mingw_sunset; opam_overlays; opam_2_0; opam_2_1; opam_master} = repos
+      and> windows_version = windows_version
+      and> _ = base in
       let dockerfile =
         let opam_hashes = {
           Dockerfile_opam.opam_2_0_hash = Current_git.Commit_id.hash opam_2_0;
@@ -142,18 +183,22 @@ module Make (OCurrent : S.OCURRENT) = struct
           opam_master_hash = Current_git.Commit_id.hash opam_master;
         } in
         `Contents (
-          let opam = snd @@ Dockerfile_opam.gen_opam2_distro ~win10_revision:Conf.win10_revision ~arch ~clone_opam_repo:false ~opam_hashes distro in
+          let opam = snd @@ match windows_version with
+          | "" -> Dockerfile_opam.gen_opam2_distro ~arch ~clone_opam_repo:false ~opam_hashes distro
+          | override_tag -> Dockerfile_opam.gen_opam2_distro ~arch ~override_tag ~clone_opam_repo:false ~opam_hashes distro
+          in
           let open Dockerfile in
           string_of_t (
-            opam @@
             begin match os_family with
             | `Linux ->
+              opam @@
               copy ~link:true ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
               run "opam-sandbox-disable" @@
               run "opam init -k local -a /home/opam/opam-repository --bare" @@
               run "rm -rf .opam/repo/default/.git" @@
               copy ~link:true ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
             | `Windows ->
+              opam @@
               let opam_repo = Windows.Cygwin.default.root ^ {|\home\opam\opam-repository|} in
               let opam_root = {|C:\opam\.opam|} in
               copy ~src:["."] ~dst:opam_repo () @@
@@ -211,9 +256,9 @@ module Make (OCurrent : S.OCURRENT) = struct
         ~pool:(Conf.pool_name distro `X86_64)
 
     (* Build the base image for [distro], plus an image for each compiler version. *)
-    let pipeline ~ocluster ~repos ~distro arch =
+    let pipeline ~ocluster ~repos ?(windows_version = Windows_map.empty) ~distro arch =
       let update_index current distro switch =
-        let+ state = Current.state ~hidden:true current in
+        let+ state = Current.state ~hidden:false current in
         let s = match state with
         | Ok _ -> Index.Ok
         | Error (`Active _) -> Active
@@ -229,7 +274,8 @@ module Make (OCurrent : S.OCURRENT) = struct
           |> Cluster_api.Docker.Image_id.of_string
           |> or_die
         in
-        install_opam ~arch ~ocluster ~distro ~repos ~push_target
+        let windows_version = Windows_map.find_opt distro windows_version |> Option.value ~default:(Current.return "") in
+        install_opam ~arch ~ocluster ~distro ~repos ~windows_version ~push_target ()
       in
       let _ = update_index opam_image distro None in
       let compiler_images =
@@ -239,7 +285,10 @@ module Make (OCurrent : S.OCURRENT) = struct
           |> Cluster_api.Docker.Image_id.of_string
           |> or_die
         in
-        let windows_port = match distro with  `Windows (port, _) -> Some port | _ -> None in
+        let windows_port = match distro with
+        | `WindowsServer (port, _) -> Some port
+        | `Windows (port, _) -> Some port
+        | _ -> None in
         let repo_id = install_compiler ~distro ~arch ~ocluster ~switch ~push_target ?windows_port opam_image in
         let _ = update_index repo_id distro (Some switch) in
         (switch, repo_id)
@@ -271,11 +320,11 @@ module Make (OCurrent : S.OCURRENT) = struct
     let> v = t in
     Current.Primitive.const v
 
-  let pipeline ~ocluster repos distro gen_tags =
+  let pipeline ~ocluster ~repos ?windows_version distro gen_tags =
     let opam_images, ocaml_images, archive_image =
       let arch_results =
         let arches = Conf.arches_for ~distro in
-        List.map (Arch.pipeline ~ocluster ~repos ~distro) arches in
+        List.map (Arch.pipeline ~ocluster ~repos ~distro ?windows_version) arches in
       List.fold_left (fun (aa,ba,ca) (a,b,c) ->
           let ca = match ca,c with Some v, _ -> Some v | None, v -> v in
           a::aa, b::ba, ca) ([], [], None) arch_results
@@ -304,7 +353,7 @@ module Make (OCurrent : S.OCURRENT) = struct
     in
     multiarch_images, pipeline
 
-  let linux_pipeline ~ocluster repos distro =
+  let linux_pipeline ~ocluster ~repos distro =
     let distro_label = Distro.tag_of_distro distro in
     let repos = label distro_label repos in
     Current.collapse ~key:"distro" ~value:distro_label ~input:repos @@
@@ -328,10 +377,10 @@ module Make (OCurrent : S.OCURRENT) = struct
         (* Fmt.pr "Aliases: %s -> %a@." full_tag Fmt.(Dump.list string) (List.sort String.compare tags); *)
         Switch_map.empty, tags
       in
-      let (_multiarch_images, pipeline) = pipeline ~ocluster repos distro gen_tags in
+      let (_multiarch_images, pipeline) = pipeline ~ocluster ~repos distro gen_tags in
       pipeline
 
-  let windows_distro_pipeline ~ocluster repos distro_label distro_versions =
+  let windows_distro_pipeline ~ocluster ~repos ~windows_version distro_label distro_versions =
     let distro_pipeline multiarches distro =
       let gen_tags images full_tag switch distro_aliases =
         let tags =
@@ -347,7 +396,7 @@ module Make (OCurrent : S.OCURRENT) = struct
         (* Fmt.pr "Aliases: %s -> %a@." full_tag Fmt.(Dump.list string) (List.sort String.compare tags); *)
         Switch_map.add switch images Switch_map.empty, tags
       in
-      let (multiarch_images, pipeline) = pipeline ~ocluster repos distro gen_tags in
+      let (multiarch_images, pipeline) = pipeline ~ocluster ~repos ~windows_version distro gen_tags in
       let multiarch_images =
         let update images = function None -> Some images | Some images' -> Some (images @ images') in
         let fold switch images acc = Switch_map.update switch (update images) acc in
@@ -359,6 +408,7 @@ module Make (OCurrent : S.OCURRENT) = struct
     let multiarch, pipelines = List.fold_left_map distro_pipeline Switch_map.empty distro_versions in
     let pushes =
       Switch_map.fold (fun switch images pushes ->
+        let distro_label = String.split_on_char '-' distro_label |> String.concat "-all-" in
         let full_tag = Printf.sprintf "%s:%s-ocaml-%s" Conf.public_repo distro_label (Tag.tag_of_compiler switch) in
         let tags =
           let tags = [full_tag] in
@@ -372,17 +422,17 @@ module Make (OCurrent : S.OCURRENT) = struct
     in
     Current.(collapse ~key:"distro" ~value:distro_label ~input:repos (all ((all_labelled pushes) :: pipelines)))
 
-  let windows_pipeline ~ocluster repos mingw msvc cygwin =
+  let windows_pipeline ~ocluster ~repos ~windows_version mingw msvc cygwin =
     List.filter_map (fun (distro_label, distros) ->
         match distros with
         | [] -> None
         | distro_versions ->
            let repos = label distro_label repos in
-           windows_distro_pipeline ~ocluster repos distro_label distro_versions |> Option.some)
+           windows_distro_pipeline ~ocluster ~repos ~windows_version distro_label distro_versions |> Option.some)
       [("windows-mingw", mingw); ("windows-msvc", msvc); ("cygwin", cygwin)]
 
   (* The main pipeline. Builds images for all supported distribution, compiler version and architecture combinations. *)
-  let v ~ocluster repos =
+  let v ~ocluster ~repos ~windows_version =
     let linux, mingw, msvc, cygwin = Conf.distros |> List.fold_left (fun (linux, mingw, msvc, cygwin) distro ->
       let os_family = Distro.os_family_of_distro distro in
       match os_family with
@@ -390,13 +440,15 @@ module Make (OCurrent : S.OCURRENT) = struct
       | `Cygwin -> linux, mingw, msvc, distro :: cygwin
       | `Windows ->
          match distro with
+         | `WindowsServer (`Mingw, _)
          | `Windows (`Mingw, _) -> linux, distro :: mingw, msvc, cygwin
+         | `WindowsServer (`Msvc, _)
          | `Windows (`Msvc, _) -> linux, mingw, distro :: msvc, cygwin
          | _ -> assert false) ([], [], [], [])
     in
     let pipelines =
-      List.rev_map (linux_pipeline ~ocluster repos) linux
-      @ windows_pipeline ~ocluster repos mingw msvc cygwin in
+      List.rev_map (linux_pipeline ~ocluster ~repos) linux
+      @ windows_pipeline ~ocluster ~repos ~windows_version mingw msvc cygwin in
     Current.all pipelines
 end
 
@@ -424,4 +476,5 @@ let notify_status ?channel x =
 let v ?channel ~ocluster () =
   if Conf.auth = None then Fmt.pr "Password file %S not found; images will not be pushed to hub@." Conf.password_path;
   let repos = git_repositories () in
-  Real.v ~ocluster repos |> notify_status ?channel
+  let wv = win_ver ocluster in
+  Real.v ~ocluster ~repos ~windows_version:wv |> notify_status ?channel

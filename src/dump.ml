@@ -49,6 +49,9 @@ module Fake = struct
       | `Ready fn -> let x = fn log in t.state <- `Done x; x
       | `Done x -> x
 
+    let return ?label:_ x =
+      Primitive.const x
+
     let component fmt =
       fmt |> Fmt.kstr @@ fun msg ->
       msg |> String.split_on_char '\n' |> String.concat "/"
@@ -69,6 +72,12 @@ module Fake = struct
         let x = force x log in
         Log.note log description;
         Log.with_indent (force (fn x)) log
+
+      let (and>) x y =
+        of_fn @@ fun log ->
+        let x = force x log in
+        let y = force y log in
+        (x, y)
 
       let (let+) x f =
         of_fn @@ fun log ->
@@ -113,5 +122,15 @@ let run () =
       opam_2_1 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.1" ~hash:"2.1";
       opam_master = Current_git.Commit_id.v ~repo:"opam" ~gref:"master" ~hash:"master";
     } in
-  let log = Log.run @@ Fake.Current.force (Dump.v ~ocluster:() repos) in
+  (* The version numbers given below are correct as of April 2024.  They do not need to be updated and serve only as static
+   * placeholder values to test the version number substitution.  Alternatively, windows_version could be an empty set which
+   * would output the default tags. e.g. ltsc2022 / ltsc2019
+   * let windows_version = Pipeline.Windows_map.empty *)
+  let windows_version = List.fold_left (fun m (d, v) -> Pipeline.Windows_map.add d v m) Pipeline.Windows_map.empty
+    [ `Windows (`Msvc, `Ltsc2019), Fake.Current.return "10.0.17763.5696";
+      `Windows (`Mingw, `Ltsc2019), Fake.Current.return "10.0.17763.5696";
+      `WindowsServer (`Msvc, `Ltsc2022), Fake.Current.return "10.0.20348.2402";
+      `WindowsServer (`Mingw, `Ltsc2022), Fake.Current.return "10.0.20348.2402"; ]
+  in
+  let log = Log.run @@ Fake.Current.force (Dump.v ~ocluster:() ~repos ~windows_version) in
   List.iter print_endline log
