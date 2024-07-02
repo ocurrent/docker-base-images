@@ -20,16 +20,18 @@ module Repositories = struct
       opam_overlays : repo;
       opam_2_0 : repo;
       opam_2_1 : repo;
+      opam_2_2 : repo;
       opam_master : repo;
     }
 
-    let digest {opam_repository_master; opam_repository_mingw_sunset; opam_overlays; opam_2_0; opam_2_1; opam_master} =
+    let digest {opam_repository_master; opam_repository_mingw_sunset; opam_overlays; opam_2_0; opam_2_1; opam_2_2; opam_master} =
       let json = `Assoc [
         "opam-repository__master", `String opam_repository_master;
         "opam-repository-mingw__sunset", `String opam_repository_mingw_sunset;
         "opam-repository-mingw__overlay", `String opam_overlays;
         "opam__2.0", `String opam_2_0;
         "opam__2.1", `String opam_2_1;
+        "opam__2.2", `String opam_2_2;
         "opam__master", `String opam_master;
       ] in
       Yojson.Safe.to_string json
@@ -44,6 +46,7 @@ module Repositories = struct
       opam_overlays : hash;
       opam_2_0 : hash;
       opam_2_1 : hash;
+      opam_2_2 : hash;
       opam_master : hash;
     } [@@deriving yojson]
 
@@ -61,7 +64,7 @@ module Repositories = struct
     Current.Process.check_output ~cwd ~cancellable:true ~job ("", [|"git"; "rev-parse"; "HEAD"|]) >>!= fun hash ->
     Lwt.return (Ok (String.trim hash))
 
-  let build No_context job {Key.opam_repository_master; opam_repository_mingw_sunset; opam_overlays; opam_2_0; opam_2_1; opam_master} =
+  let build No_context job {Key.opam_repository_master; opam_repository_mingw_sunset; opam_overlays; opam_2_0; opam_2_1; opam_2_2; opam_master} =
     Metrics.set_last_build_time_now ();
     Current.Job.start job ~level:Current.Level.Mostly_harmless >>= fun () ->
     get_commit_hash ~job ~repo:opam_repository_master ~branch:"master" >>!= fun opam_repository_master ->
@@ -69,8 +72,9 @@ module Repositories = struct
     get_commit_hash ~job ~repo:opam_overlays ~branch:"overlay" >>!= fun opam_overlays ->
     get_commit_hash ~job ~repo:opam_2_0 ~branch:"2.0" >>!= fun opam_2_0 ->
     get_commit_hash ~job ~repo:opam_2_1 ~branch:"2.1" >>!= fun opam_2_1 ->
+    get_commit_hash ~job ~repo:opam_2_2 ~branch:"2.2" >>!= fun opam_2_2 ->
     get_commit_hash ~job ~repo:opam_master ~branch:"master" >>!= fun opam_master ->
-    Lwt.return (Ok {Value.opam_repository_master; opam_repository_mingw_sunset; opam_overlays; opam_2_0; opam_2_1; opam_master})
+    Lwt.return (Ok {Value.opam_repository_master; opam_repository_mingw_sunset; opam_overlays; opam_2_0; opam_2_1; opam_2_2; opam_master})
 
   let pp f _ = Fmt.string f "Git repositories"
 
@@ -85,6 +89,7 @@ type t = {
   opam_overlays : Current_git.Commit_id.t;
   opam_2_0 : Current_git.Commit_id.t;
   opam_2_1 : Current_git.Commit_id.t;
+  opam_2_2 : Current_git.Commit_id.t;
   opam_master : Current_git.Commit_id.t;
 }
 
@@ -96,9 +101,10 @@ let get ~schedule =
     opam_overlays = "https://github.com/ocurrent/opam-repository-mingw";
     opam_2_0 = "https://github.com/ocaml/opam";
     opam_2_1 = "https://github.com/ocaml/opam";
+    opam_2_2 = "https://github.com/ocaml/opam";
     opam_master = "https://github.com/ocaml/opam";
   } in
-  let+ {Repositories.Value.opam_repository_master; opam_repository_mingw_sunset; opam_overlays; opam_2_0; opam_2_1; opam_master} =
+  let+ {Repositories.Value.opam_repository_master; opam_repository_mingw_sunset; opam_overlays; opam_2_0; opam_2_1; opam_2_2; opam_master} =
     Current.component "Git-repositories" |>
     let> key = Current.return key in
     Cache.get ~schedule Repositories.No_context key
@@ -114,6 +120,8 @@ let get ~schedule =
       Current_git.Commit_id.v ~repo:key.opam_2_0 ~gref:"2.0" ~hash:opam_2_0;
     opam_2_1 =
       Current_git.Commit_id.v ~repo:key.opam_2_1 ~gref:"2.1" ~hash:opam_2_1;
+    opam_2_2 =
+      Current_git.Commit_id.v ~repo:key.opam_2_2 ~gref:"2.2" ~hash:opam_2_2;
     opam_master =
       Current_git.Commit_id.v ~repo:key.opam_master ~gref:"master" ~hash:opam_master;
   }

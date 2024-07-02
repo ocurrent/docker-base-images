@@ -120,6 +120,7 @@ let run () =
       opam_overlays = Current_git.Commit_id.v ~repo:"opam_repository_mingw_overlay" ~gref:"overlay" ~hash:"overlay";
       opam_2_0 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.0" ~hash:"2.0";
       opam_2_1 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.1" ~hash:"2.1";
+      opam_2_2 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.2" ~hash:"2.2";
       opam_master = Current_git.Commit_id.v ~repo:"opam" ~gref:"master" ~hash:"master";
     } in
   (* The version numbers given below are correct as of April 2024.  They do not need to be updated and serve only as static
