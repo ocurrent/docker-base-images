@@ -16,6 +16,7 @@
   logs.cli
   lwt.unix
   prometheus-app.unix
+  str
   timedesc)
  (preprocess
   (pps ppx_deriving_yojson)))
