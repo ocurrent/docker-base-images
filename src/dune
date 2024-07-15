@@ -2,20 +2,20 @@
  (public_name base-images)
  (name base_images)
  (libraries
+  capnp-rpc-unix
   current
-  current_web
   current_docker
-  current_slack
   current_git
   current_github
   current_ocluster
   current_rpc
-  capnp-rpc-unix
+  current_slack
+  current_web
   dockerfile-opam
-  lwt.unix
-  prometheus-app.unix
   fmt.cli
   logs.cli
+  lwt.unix
+  prometheus-app.unix
   timedesc)
  (preprocess
   (pps ppx_deriving_yojson)))
