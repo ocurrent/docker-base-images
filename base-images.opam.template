@@ -1,0 +1,2 @@
+# See https://github.com/ocurrent/ocaml-ci/issues/931
+available: !(os-distribution = "debian" & os-version = "12" & arch = "x86_32")
