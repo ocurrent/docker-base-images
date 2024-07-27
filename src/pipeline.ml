@@ -453,10 +453,88 @@ module Make (OCurrent : S.OCURRENT) = struct
     Current.all pipelines
 end
 
+module Docker_with_retry_push_manifest = struct
+  include Current_docker
+
+  (* [wait s] is a current that waits for [s] seconds *)
+  let wait : float -> unit Current.t
+    = let module Wait_current = Current_cache.Make (
+      struct
+        type t = float
+        (* How long to wait for *)
+
+        let id = "wait"
+
+        module Key = struct
+          type t = unit
+          let digest _ = ""
+        end
+
+        module Value = struct
+          type t = unit
+          let marshal _ = ""
+          let unmarshal _ = ()
+        end
+
+        let build duration _job () =
+          Lwt_unix.sleep duration |> Lwt_result.ok
+
+        let pp fmt () = Format.fprintf fmt "waiting"
+
+        let auto_cancel = true
+      end
+      )
+    in
+    fun duration ->
+      let info = Current.component "waiting before retry" in
+      Current.return ()
+      |> Current.primitive ~info (Wait_current.get duration)
+
+  let max_retries = 5
+  let wait_duration = 5.0
+
+  let flakey_failure_msg_fragments : Str.regexp list =
+    [ "error parsing HTTP 400 response body" ]
+    |> List.map Str.regexp
+
+  let contains_regex (s:string) (r:Str.regexp) : bool =
+    match Str.search_forward r s 0 with
+    | exception Not_found -> false
+    | _ -> true
+
+  let is_flakey_failure_msg msg =
+    List.exists (contains_regex msg) flakey_failure_msg_fragments
+
+  let push_manifest ?auth ~tag images =
+    let rec retry retries_left =
+        let open Current.Syntax in
+        let* result = Current_docker.push_manifest ?auth ~tag images |> Current.catch in
+        match result with
+        | Ok repo_id -> Current.return repo_id
+        | Error (`Msg err) when is_flakey_failure_msg err ->
+          if retries_left > 0 then (
+            Logs.err (fun f ->
+                f "docker push failed with error '%s' and %i retries left"
+                  err retries_left);
+            let* () = wait wait_duration in
+            retry (pred retries_left)
+          ) else (
+            let msg = Printf.sprintf "docker push failed with '%s' after %i retries" err max_retries in
+            Current.fail msg
+          )
+        | Error (`Msg err) ->
+          Logs.info (fun f ->
+              f "docker push failed with fatal error '%s' after %i retries"
+                err (max_retries - retries_left));
+          Current.fail err
+    in
+    retry max_retries
+end
+
 module Real = Make(struct
     module Current = Current
     module OCluster = Current_ocluster
-    module Docker = Current_docker
+    module Docker = Docker_with_retry_push_manifest
   end)
 
 open Current.Syntax
