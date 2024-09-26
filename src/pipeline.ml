@@ -41,6 +41,7 @@ let maybe_add_overlay (run : 'a run) distro switch =
     Dockerfile.empty
 
 let maybe_add_beta (run : 'a run) switch =
+  let switch = Ocaml_version.without_variant switch in
   if Ocaml_version.Releases.is_dev switch ||
       List.mem switch Ocaml_version.Releases.unreleased_betas then
     run "opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default"
