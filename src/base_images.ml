@@ -76,7 +76,7 @@ let main () config mode channel capnp_address github_auth submission_uri staging
     let submission_cap = Capnp_rpc_unix.Vat.import_exn vat submission_uri in
     let connection = Current_ocluster.Connection.create submission_cap in
     let ocluster = Current_ocluster.v ?push_auth:staging_auth ~urgent:`Never connection in
-    let engine = Current.Engine.create ~config (Pipeline.v ?channel ~ocluster) in
+    let engine = Current.Engine.create ~config (Pipeline.v ?channel ~connection ~ocluster) in
     rpc_engine_resolver |> Option.iter (fun r -> Capability.resolve_ok r (Rpc.engine engine));
     let authn = Option.map Current_github.Auth.make_login_uri github_auth in
     let has_role =
