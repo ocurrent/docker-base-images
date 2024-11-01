@@ -157,7 +157,7 @@ let get ~schedule =
     opam_2_2 =
       Current_git.Commit_id.v ~repo:key.opam_2_2 ~gref:"2.2" ~hash:opam_2_2;
     opam_2_3 =
-      Current_git.Commit_id.v ~repo:key.opam_2_2 ~gref:"2.3" ~hash:opam_2_3;
+      Current_git.Commit_id.v ~repo:key.opam_2_3 ~gref:"2.3" ~hash:opam_2_3;
     opam_master =
       Current_git.Commit_id.v ~repo:key.opam_master ~gref:"master" ~hash:opam_master;
   }
