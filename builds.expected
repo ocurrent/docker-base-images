@@ -10906,6 +10906,7 @@ ocurrent/opam-staging:fedora-41-opam-arm64, ocurrent/opam-staging:fedora-41-opam
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-41-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.02 --packages=ocaml-base-compiler.4.02.3
 	RUN opam pin add -k version ocaml-base-compiler 4.02.3
@@ -10921,6 +10922,7 @@ ocurrent/opam-staging:fedora-41-ocaml-4.02-amd64 -> ocaml/opam:fedora-ocaml-4.02
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-41-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.03 --packages=ocaml-base-compiler.4.03.0
 	RUN opam pin add -k version ocaml-base-compiler 4.03.0
@@ -10936,6 +10938,7 @@ ocurrent/opam-staging:fedora-41-ocaml-4.03-amd64 -> ocaml/opam:fedora-ocaml-4.03
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-41-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.04 --packages=ocaml-base-compiler.4.04.2
 	RUN opam pin add -k version ocaml-base-compiler 4.04.2
@@ -10951,6 +10954,7 @@ ocurrent/opam-staging:fedora-41-ocaml-4.04-amd64 -> ocaml/opam:fedora-ocaml-4.04
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-41-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.05 --packages=ocaml-base-compiler.4.05.0
 	RUN opam pin add -k version ocaml-base-compiler 4.05.0
@@ -10966,6 +10970,7 @@ ocurrent/opam-staging:fedora-41-ocaml-4.05-amd64 -> ocaml/opam:fedora-ocaml-4.05
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-41-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.06 --packages=ocaml-base-compiler.4.06.1
 	RUN opam pin add -k version ocaml-base-compiler 4.06.1
@@ -10981,6 +10986,7 @@ ocurrent/opam-staging:fedora-41-ocaml-4.06-amd64 -> ocaml/opam:fedora-ocaml-4.06
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-41-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.07 --packages=ocaml-base-compiler.4.07.1
 	RUN opam pin add -k version ocaml-base-compiler 4.07.1
