@@ -36,6 +36,7 @@ let maybe_add_overlay (run : 'a run) distro switch =
   | true, `Debian `Unstable
   | true, `Fedora `V40
   | true, `Fedora `V41
+  | true, `Ubuntu `V24_10
   | true, `OpenSUSE `Tumbleweed ->
     run "opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default"
   | _, _ ->
