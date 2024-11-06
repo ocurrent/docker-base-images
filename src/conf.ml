@@ -105,7 +105,7 @@ let arches_for ~distro =
 (* For testing, you can uncomment these lines to limit the number of combinations: *)
 
 (*
-let distros = ignore distros; [`Debian `V11]
-let switches ~arch:_ ~distro:_ = ignore switches; Ocaml_version.Releases.[v4_08]
+let distros = ignore distros; [`Debian `V12]
+let switches ~arch:_ ~distro:_ = ignore switches; Ocaml_version.Releases.[v5_2]
 let arches_for ~distro:_ = ignore arches_for; [`X86_64]
 *)
