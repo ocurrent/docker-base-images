@@ -5,7 +5,7 @@
 [submodule "ocaml-dockerfile"]
 	path = ocaml-dockerfile
 	url = https://github.com/ocurrent/ocaml-dockerfile.git
-	branch = master
+	branch = apt-cache-buildkit
 [submodule "ocluster"]
 	path = ocluster
 	url = https://github.com/ocurrent/ocluster.git
