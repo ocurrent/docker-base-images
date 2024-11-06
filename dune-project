@@ -21,11 +21,11 @@
   (lwt (>= 5.6.1))
   logs
   (fmt (>= 0.8.7))
-  (current (>= 0.6.4))
+  (current (>= 0.6.6))
   current_git
   current_github
   current_docker
-  current_ocluster
+  (current_ocluster (>= 0.3.0))
   current_slack
   current_web
   current_rpc
@@ -33,5 +33,5 @@
   (cmdliner (>= 1.1.1))
   (dockerfile (>= 8.2.3))
   (dockerfile-opam (>= 8.2.3))
-  (ocaml-version (>= 3.6.1))
+  (ocaml-version (>= 3.6.9))
   (timedesc (>= 3.0.0))))

@@ -4,9 +4,8 @@ open Current.Syntax
 let ( >>!= ) = Lwt_result.bind
 
 module Products = struct
-  type t = {
-    ocluster : Current_ocluster.t;
-  }
+  type t = Current_ocluster.Connection.t
+
 
   let id = "win-version"
 
@@ -58,10 +57,10 @@ module Products = struct
       | [_; rest ] when Astring.String.is_prefix ~affix:"OuTPuT\r\n" rest -> Lwt_result.return ""
       | _ -> Lwt_result.fail (`Msg "Missing output from command\n\n")
 
-  let build { ocluster } job {Key.product; pool} =
+  let build connection job {Key.product; pool} =
     let spec_str = Printf.sprintf "FROM %s\nRUN for /f \"tokens=4 delims=[] \" %%a in ('ver') do echo %.0f& echo OuTPuT& echo %%a& echo OuTPuT" product (Unix.time ()) in
     let action = Cluster_api.Submission.docker_build (`Contents spec_str) in
-    let pool = Current_ocluster.Connection.pool ~job ~pool ~action ~cache_hint:product (Current_ocluster.connection ocluster) in
+    let pool = Current_ocluster.Connection.pool ~job ~pool ~action ~cache_hint:product connection in
     Current.Job.start_with ~pool job ~level:Current.Level.Mostly_harmless >>=
     parse_output job
 
@@ -72,8 +71,7 @@ end
 
 module Cache = Current_cache.Make(Products)
 
-let get ~schedule ocluster product pool =
+let get ~schedule connection product pool =
   Current.component "%s" product |>
   let> key = Current.return { Products.Key.product = product; pool } in
-  Cache.get ~schedule { Products.ocluster } key
-
+  Cache.get ~schedule connection key

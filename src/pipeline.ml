@@ -470,8 +470,8 @@ let notify_status ?channel x =
       x   (* If [x] fails, the whole pipeline should fail too. *)
     ]
 
-let v ?channel ~ocluster () =
+let v ?channel ~connection ~ocluster () =
   if Conf.auth = None then Fmt.pr "Password file %S not found; images will not be pushed to hub@." Conf.password_path;
   let repos = git_repositories () in
-  let wv = win_ver ocluster in
+  let wv = win_ver connection  in
   Real.v ~ocluster ~repos ~windows_version:wv |> notify_status ?channel
