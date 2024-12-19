@@ -1,10 +1,10 @@
 FROM ocaml/opam:debian-12-ocaml-4.14@sha256:b716ae07fd6520cc80c71eb199239c73558732a3df313a6296a61999c8b44ab0 AS build
 RUN sudo apt-get update && sudo apt-get install libev-dev capnproto graphviz m4 pkg-config libsqlite3-dev libgmp-dev libssl-dev libffi-dev -y --no-install-recommends
-RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard e57ab1a26e2a9ef176034f22915009039c5dc390 && opam update
+RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard 5c7ffb23c89c6943b51f8e215548b72a12e3abd1 && opam update
 
 WORKDIR /src
 # See https://github.com/ocurrent/ocaml-docs-ci/pull/177#issuecomment-2445338172
-RUN sudo chown opam:opam $(pwd)
+# RUN sudo chown opam:opam $(pwd)
 
 COPY --chown=opam base-images.opam /src/
 RUN opam install -y --deps-only .
