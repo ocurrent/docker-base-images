@@ -1,17 +1,47 @@
-FROM ocaml/opam:debian-12-ocaml-4.14@sha256:b716ae07fd6520cc80c71eb199239c73558732a3df313a6296a61999c8b44ab0 AS build
-RUN sudo apt-get update && sudo apt-get install libev-dev capnproto graphviz m4 pkg-config libsqlite3-dev libgmp-dev libssl-dev libffi-dev -y --no-install-recommends
+# syntax=docker/dockerfile:1
+FROM ocaml/opam:debian-12-ocaml-4.14@sha256:9351c2340600e1a562184c9fe08722846f9b1ec2c9eb3707864a718089107107 AS build
+RUN sudo ln -sf /usr/bin/opam-2.3 /usr/bin/opam && opam init --reinit -ni
+RUN sudo rm -f /etc/apt/apt.conf.d/docker-clean; echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' | sudo tee /etc/apt/apt.conf.d/keep-cache
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    sudo apt update && sudo apt-get --no-install-recommends install -y \
+    capnproto \
+    graphviz \
+    libev-dev \
+    libffi-dev \
+    libgmp-dev \
+    libsqlite3-dev \
+    libssl-dev \
+    m4 \
+    pkg-config
 RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard 5c7ffb23c89c6943b51f8e215548b72a12e3abd1 && opam update
-COPY --chown=opam base-images.opam /src/
+COPY --chown=opam --link base-images.opam /src/
 WORKDIR /src
-RUN opam install -y --deps-only .
+RUN --mount=type=cache,target=/home/opam/.opam/download-cache,sharing=locked,uid=1000,gid=1000 \
+    opam install -y --deps-only .
 ADD --chown=opam . .
 RUN opam config exec -- dune build ./src/base_images.exe
 
 FROM debian:12
-RUN apt-get update && apt-get install libev4 curl git graphviz libsqlite3-dev ca-certificates netbase gnupg2 -y --no-install-recommends
+RUN rm -f /etc/apt/apt.conf.d/docker-clean; echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' > /etc/apt/apt.conf.d/keep-cache
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && apt-get --no-install-recommends install -y \
+    ca-certificates \
+    curl \
+    git \
+    gnupg2 \
+    graphviz \
+    libev4 \
+    libsqlite3-dev \
+    netbase
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 RUN echo 'deb https://download.docker.com/linux/debian bookworm stable' >> /etc/apt/sources.list
-RUN apt-get update && apt-get install docker-ce docker-buildx-plugin -y --no-install-recommends
-COPY --from=build /src/_build/default/src/base_images.exe /usr/local/bin/base-images
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt update && apt-get --no-install-recommends install -y \
+    docker-buildx-plugin \
+    docker-ce
+COPY --from=build --link /src/_build/default/src/base_images.exe /usr/local/bin/base-images
 WORKDIR /var/lib/ocurrent
 ENTRYPOINT ["/usr/local/bin/base-images"]
