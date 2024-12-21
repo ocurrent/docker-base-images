@@ -31,6 +31,7 @@ type 'a run = ('a, unit, string, Dockerfile.t) format4 -> 'a
 let maybe_add_overlay (run : 'a run) distro switch =
   let gcc14_minimum = Ocaml_version.Releases.v4_08 in
   match Ocaml_version.compare switch gcc14_minimum < 0, distro with
+  | true, `Alpine `V3_21
   | true, `Archlinux `Latest
   | true, `Debian `Testing
   | true, `Debian `Unstable
