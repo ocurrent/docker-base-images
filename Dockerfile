@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ocaml/opam:debian-ocaml-4.14@sha256:31a40cd0c0b36aba5d92710b5fcb977e07263aa4a84481238a73c477d59b001b AS build
+FROM ocaml/opam:debian-ocaml-4.14 AS build
 RUN sudo ln -sf /usr/bin/opam-2.3 /usr/bin/opam && opam init --reinit -ni
 RUN sudo rm -f /etc/apt/apt.conf.d/docker-clean; echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' | sudo tee /etc/apt/apt.conf.d/keep-cache
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
@@ -14,7 +14,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     libssl-dev \
     m4 \
     pkg-config
-RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard 40261e81b0d4449cd32f7834e272aa9d38a28c49 && opam update
+RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard 20f04c842252bdb1bd98bbe0f9c813f203d2b5dc && opam update
 COPY --chown=opam --link base-images.opam /src/
 WORKDIR /src
 RUN --mount=type=cache,target=/home/opam/.opam/download-cache,sharing=locked,uid=1000,gid=1000 \
