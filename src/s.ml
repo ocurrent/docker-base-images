@@ -29,7 +29,7 @@ module type OCURRENT = sig
   end
 
   module Docker : sig
-    val push_manifest : ?auth:(string * string) -> tag:string -> Current_docker.S.repo_id Current.t list -> Current_docker.S.repo_id Current.t
+    val push_manifest : ?auth:(string * string) -> ?server:string -> tag:string -> Current_docker.S.repo_id Current.t list -> Current_docker.S.repo_id Current.t
   end
 
   module OCluster : sig

@@ -5,7 +5,7 @@
 
 (source (github ocurrent/docker-base-images))
 (authors "talex5@gmail.com" "anil@recoil.org")
-(maintainers "talex5@gmail.com")
+(maintainers "mark.elvers@tunbury.org")
 (license "Apache-2.0")
 
 (package
@@ -21,7 +21,7 @@
   (lwt (>= 5.9.0))
   logs
   (fmt (>= 0.8.7))
-  (current (>= 0.6.6))
+  (current (>= 0.7.0))
   current_git
   current_github
   current_docker
