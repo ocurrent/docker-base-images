@@ -109,6 +109,7 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
    | `Windows | `Cygwin -> parser_directive (`Escape '`')) @@
   from opam_image @@
   shell @@
+  run "opam repo add opam-repository-archive git+https://github.com/ocaml/opam-repository-archive --set-default" @@
   maybe_add_overlay run distro switch @@
   maybe_add_beta run switch @@
   maybe_add_multicore run switch @@
