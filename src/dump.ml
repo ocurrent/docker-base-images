@@ -88,7 +88,7 @@ module Fake = struct
   end
 
   module Docker = struct
-    let push_manifest ?auth:_ ~tag ids =
+    let push_manifest ?auth:_ ?server:_ ~tag ids =
       Current.of_fn @@ fun log ->
       let ids = List.map (fun x -> Current.force x log) ids in
       Log.note log @@ Fmt.str "@[<h>%a -> %s@]" Fmt.(list string ~sep:comma) ids tag;
