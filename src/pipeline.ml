@@ -26,23 +26,6 @@ let master_distro = Distro.((resolve_alias master_distro : distro :> t))
 
 type 'a run = ('a, unit, string, Dockerfile.t) format4 -> 'a
 
-(* TODO: This opam repository overlay contains patches to OCaml which allows version < 4.08 to build on GCC14
- * See https://github.com/ocurrent/docker-base-images/issues/279 *)
-let maybe_add_overlay (run : 'a run) distro switch =
-  let gcc14_minimum = Ocaml_version.Releases.v4_08 in
-  match Ocaml_version.compare switch gcc14_minimum < 0, distro with
-  | true, `Alpine `V3_21
-  | true, `Archlinux `Latest
-  | true, `Debian `Testing
-  | true, `Debian `Unstable
-  | true, `Fedora `V40
-  | true, `Fedora `V41
-  | true, `Ubuntu `V24_10
-  | true, `OpenSUSE `Tumbleweed ->
-    run "opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default"
-  | _, _ ->
-    Dockerfile.empty
-
 let maybe_add_beta (run : 'a run) switch =
   let switch = Ocaml_version.without_variant switch in
   if Ocaml_version.Releases.is_dev switch ||
@@ -109,8 +92,6 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
    | `Windows | `Cygwin -> parser_directive (`Escape '`')) @@
   from opam_image @@
   shell @@
-  run_no_opam "opam repo add opam-repository-archive git+https://github.com/ocaml/opam-repository-archive --set-default" @@
-  maybe_add_overlay run distro switch @@
   maybe_add_beta run switch @@
   maybe_add_multicore run switch @@
   env ["OPAMYES", "1";
