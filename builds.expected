@@ -72,7 +72,7 @@ alpine-3.21/arm64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -149,7 +149,7 @@ alpine-3.21/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -1761,7 +1761,7 @@ archlinux/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -2013,7 +2013,7 @@ debian-12/s390x
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -2093,7 +2093,7 @@ debian-12/ppc64le
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -2176,7 +2176,7 @@ debian-12/arm32v7
 	ENTRYPOINT [ "/usr/bin/linux32" ]
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -2256,7 +2256,7 @@ debian-12/arm64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -2336,7 +2336,7 @@ debian-12/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -2419,7 +2419,7 @@ debian-12/i386
 	ENTRYPOINT [ "/usr/bin/linux32" ]
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -6106,7 +6106,7 @@ debian-11/arm32v7
 	ENTRYPOINT [ "/usr/bin/linux32" ]
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -6186,7 +6186,7 @@ debian-11/arm64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -6266,7 +6266,7 @@ debian-11/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -6349,7 +6349,7 @@ debian-11/i386
 	ENTRYPOINT [ "/usr/bin/linux32" ]
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -7128,7 +7128,7 @@ debian-testing/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -7388,7 +7388,7 @@ debian-unstable/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -7646,7 +7646,7 @@ fedora-40/arm64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -7724,7 +7724,7 @@ fedora-40/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -8131,7 +8131,7 @@ fedora-41/arm64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -8209,7 +8209,7 @@ fedora-41/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -8634,7 +8634,7 @@ oraclelinux-8/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -8884,7 +8884,7 @@ oraclelinux-9/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -9146,7 +9146,7 @@ opensuse-15.6/arm64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -9223,7 +9223,7 @@ opensuse-15.6/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -9658,7 +9658,7 @@ opensuse-tumbleweed/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -9923,7 +9923,7 @@ ubuntu-20.04/s390x
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -10008,7 +10008,7 @@ ubuntu-20.04/ppc64le
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -10093,7 +10093,7 @@ ubuntu-20.04/arm64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -10178,7 +10178,7 @@ ubuntu-20.04/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -10263,7 +10263,7 @@ ubuntu-20.04/riscv64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -11147,7 +11147,7 @@ ubuntu-22.04/s390x
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -11227,7 +11227,7 @@ ubuntu-22.04/ppc64le
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -11307,7 +11307,7 @@ ubuntu-22.04/arm64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -11387,7 +11387,7 @@ ubuntu-22.04/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -11467,7 +11467,7 @@ ubuntu-22.04/riscv64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -12351,7 +12351,7 @@ ubuntu-24.04/s390x
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -12431,7 +12431,7 @@ ubuntu-24.04/ppc64le
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -12511,7 +12511,7 @@ ubuntu-24.04/arm64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -12591,7 +12591,7 @@ ubuntu-24.04/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -12671,7 +12671,7 @@ ubuntu-24.04/riscv64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -13568,7 +13568,7 @@ ubuntu-24.10/s390x
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -13648,7 +13648,7 @@ ubuntu-24.10/ppc64le
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -13728,7 +13728,7 @@ ubuntu-24.10/arm64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -13808,7 +13808,7 @@ ubuntu-24.10/amd64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -13888,7 +13888,7 @@ ubuntu-24.10/riscv64
 	RUN git config --global user.name "Docker"
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
-	RUN opam init -k local -a /home/opam/opam-repository --bare
+	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -14789,7 +14789,7 @@ windows-server-mingw-ltsc2022/amd64
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
-	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
+	RUN opam init -k git -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -14886,7 +14886,7 @@ windows-mingw-ltsc2019/amd64
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
-	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
+	RUN opam init -k git -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -15170,7 +15170,7 @@ windows-server-msvc-ltsc2022/amd64
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
-	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
+	RUN opam init -k git -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
 	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]
@@ -15273,7 +15273,7 @@ windows-msvc-ltsc2019/amd64
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
 	COPY [ ".", "C:\\cygwin64\\home\\opam\\opam-repository" ]
 	ENV OPAMROOT="C:\opam\.opam"
-	RUN opam init -k local -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
+	RUN opam init -k git -a "C:\cygwin64\home\opam\opam-repository" --bare --disable-sandboxing
 	RUN opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#overlay --set-default
 	RUN C:\cygwin64\bin\bash.exe --login -c "rm -rf /cygdrive/c/opam/.opam/repo/default/.git"
 	COPY [ "Dockerfile", "/Dockerfile.opam" ]

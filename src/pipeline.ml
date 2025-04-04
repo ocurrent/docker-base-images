@@ -174,7 +174,7 @@ module Make (OCurrent : S.OCURRENT) = struct
               opam @@
               copy ~link:true ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
               run "opam-sandbox-disable" @@
-              run "opam init -k local -a /home/opam/opam-repository --bare" @@
+              run "opam init -k git -a /home/opam/opam-repository --bare" @@
               run "rm -rf .opam/repo/default/.git" @@
               copy ~link:true ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
             | `Windows ->
@@ -183,7 +183,7 @@ module Make (OCurrent : S.OCURRENT) = struct
               let opam_root = {|C:\opam\.opam|} in
               copy ~src:["."] ~dst:opam_repo () @@
               env [("OPAMROOT", opam_root)] @@
-              run "opam init -k local -a \"%s\" --bare --disable-sandboxing" opam_repo @@
+              run "opam init -k git -a \"%s\" --bare --disable-sandboxing" opam_repo @@
               maybe_add_overlay distro (Current_git.Commit_id.hash opam_overlays) @@
               Windows.Cygwin.run_sh "rm -rf /cygdrive/c/opam/.opam/repo/default/.git" @@
               copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
