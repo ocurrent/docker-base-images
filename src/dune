@@ -16,6 +16,7 @@
   prometheus-app.unix
   fmt.cli
   logs.cli
-  timedesc)
+  timedesc
+  opam-core)
  (preprocess
   (pps ppx_deriving_yojson)))
