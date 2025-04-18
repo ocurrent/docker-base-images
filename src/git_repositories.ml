@@ -76,6 +76,24 @@ module Repositories = struct
     Current.Process.check_output ~cwd ~cancellable:true ~job ("", [|"git"; "rev-parse"; "HEAD"|]) >>!= fun hash ->
     Lwt.return (Ok (String.trim hash))
 
+  let get_latest_release_hash ~job ~repo =
+    Current.Process.with_tmpdir ~prefix:"git-checkout" @@ fun cwd ->
+    Current.Process.exec ~cwd ~cancellable:true ~job ("", [|"git"; "clone"; repo; "."|]) >>!= fun () ->
+    Current.Process.check_output ~cwd ~cancellable:true ~job ("", [|"git"; "tag"; "--format"; "%(objectname) %(refname:strip=2)"|]) >>!= fun all_tags ->
+    let rec parse = function
+      | "" -> []
+      | s -> Scanf.sscanf s "%s %s %s@!" (fun sha tag r -> (tag, sha) :: parse r) in
+    let hash = parse all_tags
+      |> List.filter_map (fun (tag, sha) ->
+        match tag.[0] with
+        | '0'..'9' ->
+          let normalised = String.split_on_char '-' tag |> String.concat "~" in
+          Some (OpamVersion.of_string normalised, sha)
+        | _ -> None)
+      |> List.sort (fun (v1, _) (v2, _) -> OpamVersion.compare v2 v1)
+      |> List.hd |> snd in
+    Lwt.return (Ok hash)
+
   let build No_context job
       { Key.opam_repository_master;
         opam_repository_mingw_sunset;
@@ -95,7 +113,7 @@ module Repositories = struct
     get_commit_hash ~job ~repo:opam_2_1 ~branch:"2.1" >>!= fun opam_2_1 ->
     get_commit_hash ~job ~repo:opam_2_2 ~branch:"2.2" >>!= fun opam_2_2 ->
     get_commit_hash ~job ~repo:opam_2_3 ~branch:"2.3" >>!= fun opam_2_3 ->
-    get_commit_hash ~job ~repo:opam_master ~branch:"master" >>!= fun opam_master ->
+    get_latest_release_hash ~job ~repo:opam_master >>!= fun opam_master ->
     let repos = { Value.opam_repository_master;
                   opam_repository_mingw_sunset;
                   opam_overlays;
