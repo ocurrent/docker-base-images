@@ -18,6 +18,8 @@ RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard 16430
 COPY --chown=opam --link base-images.opam /src/
 WORKDIR /src
 RUN --mount=type=cache,target=/home/opam/.opam/download-cache,sharing=locked,uid=1000,gid=1000 \
+    opam pin "git+https://github.com/mtelvers/ocaml-dockerfile#dnf-fix"
+RUN --mount=type=cache,target=/home/opam/.opam/download-cache,sharing=locked,uid=1000,gid=1000 \
     opam install -y --deps-only .
 ADD --chown=opam . .
 RUN opam config exec -- dune build ./src/base_images.exe
