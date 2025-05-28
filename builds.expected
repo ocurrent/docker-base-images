@@ -6018,8 +6018,10 @@ ocurrent/opam-staging:debian-12-ocaml-5.4-flambda-arm64, ocurrent/opam-staging:d
 ocurrent/opam-staging:debian-12-ocaml-5.4-no-flat-float-array-s390x, ocurrent/opam-staging:debian-12-ocaml-5.4-no-flat-float-array-ppc64le, ocurrent/opam-staging:debian-12-ocaml-5.4-no-flat-float-array-arm32v7, ocurrent/opam-staging:debian-12-ocaml-5.4-no-flat-float-array-arm64, ocurrent/opam-staging:debian-12-ocaml-5.4-no-flat-float-array-amd64, ocurrent/opam-staging:debian-12-ocaml-5.4-no-flat-float-array-i386 -> ocaml/opam:debian-12-ocaml-5.4-no-flat-float-array
 ocurrent/opam-staging:debian-12-ocaml-5.4-no-flat-float-array-s390x, ocurrent/opam-staging:debian-12-ocaml-5.4-no-flat-float-array-ppc64le, ocurrent/opam-staging:debian-12-ocaml-5.4-no-flat-float-array-arm32v7, ocurrent/opam-staging:debian-12-ocaml-5.4-no-flat-float-array-arm64, ocurrent/opam-staging:debian-12-ocaml-5.4-no-flat-float-array-amd64, ocurrent/opam-staging:debian-12-ocaml-5.4-no-flat-float-array-i386 -> ocaml/opam:debian-ocaml-5.4-no-flat-float-array
 archive
+	FROM ocaml/opam:archive AS opam-archive
 	FROM ocurrent/opam-staging:debian-12-opam-amd64 AS archive
 	WORKDIR /home/opam/opam-repository
+	RUN --mount=type=bind,target=/cache,from=opam-archive rsync -aH /cache/cache/ /home/opam/opam-repository/cache/
 	RUN opam admin cache --link=/home/opam/opam-repository/cache
 
 	FROM alpine:latest
