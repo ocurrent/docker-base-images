@@ -177,6 +177,7 @@ module Make (OCurrent : S.OCURRENT) = struct
               copy ~link:true ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
               run "opam-sandbox-disable" @@
               run "opam init -k git -a /home/opam/opam-repository --bare" @@
+              run {|echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config|} @@
               run "rm -rf .opam/repo/default/.git" @@
               copy ~link:true ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
             | `Windows ->

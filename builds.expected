@@ -73,6 +73,7 @@ alpine-3.21/arm64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -150,6 +151,7 @@ alpine-3.21/amd64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -2050,6 +2052,7 @@ archlinux/amd64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -2336,6 +2339,7 @@ debian-12/s390x
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -2416,6 +2420,7 @@ debian-12/ppc64le
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -2499,6 +2504,7 @@ debian-12/arm32v7
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -2579,6 +2585,7 @@ debian-12/arm64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -2659,6 +2666,7 @@ debian-12/amd64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -2742,6 +2750,7 @@ debian-12/i386
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -7031,6 +7040,7 @@ debian-11/arm32v7
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -7111,6 +7121,7 @@ debian-11/arm64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -7191,6 +7202,7 @@ debian-11/amd64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -7274,6 +7286,7 @@ debian-11/i386
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -8203,6 +8216,7 @@ debian-testing/amd64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -8501,6 +8515,7 @@ debian-unstable/amd64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -8797,6 +8812,7 @@ fedora-41/arm64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -8875,6 +8891,7 @@ fedora-41/amd64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -9348,6 +9365,7 @@ fedora-42/arm64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -9426,6 +9444,7 @@ fedora-42/amd64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -9919,6 +9938,7 @@ oraclelinux-8/amd64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -10203,6 +10223,7 @@ oraclelinux-9/amd64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -10501,6 +10522,7 @@ opensuse-15.6/arm64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -10578,6 +10600,7 @@ opensuse-15.6/amd64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -11089,6 +11112,7 @@ opensuse-tumbleweed/amd64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -11387,6 +11411,7 @@ ubuntu-22.04/s390x
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -11467,6 +11492,7 @@ ubuntu-22.04/ppc64le
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -11547,6 +11573,7 @@ ubuntu-22.04/arm64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -11627,6 +11654,7 @@ ubuntu-22.04/amd64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -11707,6 +11735,7 @@ ubuntu-22.04/riscv64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -12773,6 +12802,7 @@ ubuntu-24.04/s390x
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -12853,6 +12883,7 @@ ubuntu-24.04/ppc64le
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -12933,6 +12964,7 @@ ubuntu-24.04/arm64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -13013,6 +13045,7 @@ ubuntu-24.04/amd64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -13093,6 +13126,7 @@ ubuntu-24.04/riscv64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -14174,6 +14208,7 @@ ubuntu-24.10/s390x
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -14254,6 +14289,7 @@ ubuntu-24.10/ppc64le
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -14334,6 +14370,7 @@ ubuntu-24.10/arm64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -14414,6 +14451,7 @@ ubuntu-24.10/amd64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
@@ -14494,6 +14532,7 @@ ubuntu-24.10/riscv64
 	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
+	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
 	RUN rm -rf .opam/repo/default/.git
 	COPY --link [ "Dockerfile", "/Dockerfile.opam" ]
 
