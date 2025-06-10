@@ -15,6 +15,10 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     m4 \
     pkg-config
 RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard 164308699cf74247b8ad3b002e88bd80a586c79e && opam update
+RUN opam pin add -yn ocaml-version.dev "git+https://github.com/mtelvers/ocaml-version#oxcaml" && \
+  opam pin add -yn dockerfile.dev "git+https://github.com/mtelvers/ocaml-dockerfile#oxcaml" && \
+  opam pin add -yn dockerfile-cmd.dev "git+https://github.com/mtelvers/ocaml-dockerfile#oxcaml" && \
+  opam pin add -yn dockerfile-opam.dev "git+https://github.com/mtelvers/ocaml-dockerfile#oxcaml"
 COPY --chown=opam --link base-images.opam /src/
 WORKDIR /src
 RUN --mount=type=cache,target=/home/opam/.opam/download-cache,sharing=locked,uid=1000,gid=1000 \

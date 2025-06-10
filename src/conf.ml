@@ -69,9 +69,18 @@ let switches ~arch ~distro =
     |> List.filter (fun ov -> Distro.distro_supported_on arch ov distro)
     |> filter_windows
   in
-  if is_tier1 then (
-    List.concat_map (Ocaml_version.Opam.V2.switches arch) main_switches
-  ) else (
+  let main_switches =
+    if is_tier1 then
+      List.concat_map (Ocaml_version.Opam.V2.switches arch) main_switches
+    else main_switches in
+  if with_unreleased then
+    match arch with
+    | `X86_64
+    | `Aarch64 ->
+      main_switches @ Ocaml_version.Releases.oxcaml
+    | _ ->
+      main_switches
+  else (
     main_switches
   )
 

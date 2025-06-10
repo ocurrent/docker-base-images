@@ -40,6 +40,12 @@ let maybe_add_multicore (run : 'a run) switch =
   else
     Dockerfile.empty
 
+let maybe_add_jst (run : 'a run) switch =
+  if List.mem switch Ocaml_version.Releases.oxcaml then
+    run "opam repo add oxcaml git+https://github.com/janestreet/opam-repository#with-extensions --set-default"
+  else
+    Dockerfile.empty
+
 let maybe_install_secondary_compiler (run : 'a run) os_family switch =
   let dune_min_native_support = Ocaml_version.Releases.v4_08 in
   (* opam-repository-mingw doesn't package ocaml-secondary-compiler. *)
@@ -96,6 +102,7 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
   shell @@
   maybe_add_beta run switch @@
   maybe_add_multicore run switch @@
+  maybe_add_jst run switch @@
   env ["OPAMYES", "1";
        "OPAMCONFIRMLEVEL", "unsafe-yes";
        "OPAMERRLOGLEN", "0"; (* Show the whole log if it fails *)
