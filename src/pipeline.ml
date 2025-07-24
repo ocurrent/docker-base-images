@@ -208,6 +208,37 @@ module Make (OCurrent : S.OCURRENT) = struct
         ~push_target
         ~pool:(Conf.pool_name distro arch)
 
+    let install_dune_pkg ~distro ~arch ~ocluster ~repos ~push_target () =
+      let arch_name = Ocaml_version.string_of_arch arch in
+      let distro_tag, os_family = Distro.(tag_of_distro distro, os_family_of_distro distro) in
+      Current.component "%s@,%s" distro_tag arch_name |>
+      let> { Git_repositories.opam_repository_master;
+             _        } = repos in
+      let dockerfile = `Contents (
+        let open Dockerfile in
+          string_of_t (
+            begin match os_family with
+            | `Linux ->
+              copy ~link:true ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
+              add ~link:true ~chown:"opam:opam" ~chmod:777 ~src:["https://get.dune.build/install"] ~dst:"dune-install.sh" () @@
+              run "./dune-install.sh" @@
+              run "opam-sandbox-disable" @@
+              copy ~link:true ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
+            | `Windows -> failwith "No support for Windows currently"
+            | `Cygwin -> failwith "No support for Cygwin currently."
+            end)
+      ) in
+      let options = { Cluster_api.Docker.Spec.defaults with
+                      squash = squash distro;
+                      buildkit = buildkit distro;
+                      include_git = true } in
+      let cache_hint = Printf.sprintf "opam-%s" distro_tag in
+      OCluster.Raw.build_and_push ocluster ~src:[opam_repository_master] dockerfile
+        ~cache_hint
+        ~options
+        ~push_target
+        ~pool:(Conf.pool_name distro arch)
+
     let install_compiler ~distro ~arch ~ocluster ~switch ~push_target ?windows_port base =
       let arch_name = Ocaml_version.string_of_arch arch in
       Current.component "%s/%s" (Ocaml_version.to_string switch) arch_name |>
@@ -262,7 +293,17 @@ module Make (OCurrent : S.OCURRENT) = struct
         let windows_version = Windows_map.find_opt distro windows_version |> Option.value ~default:(Current.return "") in
         install_opam ~arch ~ocluster ~distro ~repos ~windows_version ~push_target ()
       in
+      let dune_image =
+        let push_target =
+          (Tag.v distro ~dune:"dune" ~arch)
+          |> Cluster_api.Docker.Image_id.of_string
+          |> or_die
+        in
+        install_dune_pkg ~arch ~distro ~ocluster ~repos ~push_target ()
+      in
+
       let _ = update_index opam_image distro None in
+      let _ = update_index dune_image distro None in
       let compiler_images =
         Conf.switches ~arch ~distro |> List.map @@ fun switch ->
         let push_target =

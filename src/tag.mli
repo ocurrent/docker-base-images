@@ -2,7 +2,7 @@ val tag_of_compiler : Ocaml_version.t -> string
 (** [tag_of_compiler switch] returns a tag identifying the compiler by
     its version and variants. *)
 
-val v : ?arch:Ocaml_version.arch -> ?switch:Ocaml_version.t -> Dockerfile_opam.Distro.t -> string
+val v : ?arch:Ocaml_version.arch -> ?switch:Ocaml_version.t -> ?dune:string -> Dockerfile_opam.Distro.t -> string
 (** [v ?arch ?switch distro] is the Docker tag to use for an image built on [distro] and [arch]
     with OCaml compiler [switch] installed. If [switch] is [None] then this is a base image
     with no switches. If [arch] is set then this is a staging image, which will later be combined
