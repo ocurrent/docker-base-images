@@ -10,7 +10,7 @@ let tag_of_compiler switch =
       | x -> x
     )
 
-let v ?arch ?switch distro =
+let v ?arch ?switch ?dune distro  =
   let repo = if arch = None then Conf.public_repo else Conf.staging_repo in
   let distro =
     if distro = `Debian `Stable then "debian"
@@ -21,7 +21,12 @@ let v ?arch ?switch distro =
     | Some switch -> "ocaml-" ^ tag_of_compiler switch
     | None -> "opam"
   in
-  Fmt.str "%s:%s-%s%a" repo distro switch pp_arch arch
+  let dune =
+    match dune with
+    | Some x -> x
+    | None -> ""
+  in
+  Fmt.str "%s:%s-%s%s%a" repo distro switch dune pp_arch arch
 
 let v_alias alias =
   let alias =
