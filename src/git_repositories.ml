@@ -22,6 +22,7 @@ module Repositories = struct
       opam_2_1 : repo;
       opam_2_2 : repo;
       opam_2_3 : repo;
+      opam_2_4 : repo;
       opam_master : repo;
     }
 
@@ -33,6 +34,7 @@ module Repositories = struct
           opam_2_1;
           opam_2_2;
           opam_2_3;
+          opam_2_4;
           opam_master;
         } =
       let json = `Assoc [
@@ -43,6 +45,7 @@ module Repositories = struct
         "opam__2.1", `String opam_2_1;
         "opam__2.2", `String opam_2_2;
         "opam__2.3", `String opam_2_3;
+        "opam__2.4", `String opam_2_4;
         "opam__master", `String opam_master;
       ] in
       Yojson.Safe.to_string json
@@ -59,6 +62,7 @@ module Repositories = struct
       opam_2_1 : hash;
       opam_2_2 : hash;
       opam_2_3 : hash;
+      opam_2_4 : hash;
       opam_master : hash;
     } [@@deriving yojson]
 
@@ -102,6 +106,7 @@ module Repositories = struct
         opam_2_1;
         opam_2_2;
         opam_2_3;
+        opam_2_4;
         opam_master
       } =
     Metrics.set_last_build_time_now ();
@@ -113,6 +118,7 @@ module Repositories = struct
     get_commit_hash ~job ~repo:opam_2_1 ~branch:"2.1" >>!= fun opam_2_1 ->
     get_commit_hash ~job ~repo:opam_2_2 ~branch:"2.2" >>!= fun opam_2_2 ->
     get_commit_hash ~job ~repo:opam_2_3 ~branch:"2.3" >>!= fun opam_2_3 ->
+    get_commit_hash ~job ~repo:opam_2_4 ~branch:"2.4" >>!= fun opam_2_4 ->
     get_latest_release_hash ~job ~repo:opam_master >>!= fun opam_master ->
     let repos = { Value.opam_repository_master;
                   opam_repository_mingw_sunset;
@@ -121,6 +127,7 @@ module Repositories = struct
                   opam_2_1;
                   opam_2_2;
                   opam_2_3;
+                  opam_2_4;
                   opam_master
                 }
     in
@@ -141,6 +148,7 @@ type t = {
   opam_2_1 : Current_git.Commit_id.t;
   opam_2_2 : Current_git.Commit_id.t;
   opam_2_3 : Current_git.Commit_id.t;
+  opam_2_4 : Current_git.Commit_id.t;
   opam_master : Current_git.Commit_id.t;
 }
 
@@ -154,9 +162,10 @@ let get ~schedule =
     opam_2_1 = "https://github.com/ocaml/opam";
     opam_2_2 = "https://github.com/ocaml/opam";
     opam_2_3 = "https://github.com/ocaml/opam";
+    opam_2_4 = "https://github.com/ocaml/opam";
     opam_master = "https://github.com/ocaml/opam";
   } in
-  let+ {Repositories.Value.opam_repository_master; opam_repository_mingw_sunset; opam_overlays; opam_2_0; opam_2_1; opam_2_2; opam_2_3; opam_master} =
+  let+ {Repositories.Value.opam_repository_master; opam_repository_mingw_sunset; opam_overlays; opam_2_0; opam_2_1; opam_2_2; opam_2_3; opam_2_4; opam_master} =
     Current.component "Git-repositories" |>
     let> key = Current.return key in
     Cache.get ~schedule Repositories.No_context key
@@ -176,6 +185,8 @@ let get ~schedule =
       Current_git.Commit_id.v ~repo:key.opam_2_2 ~gref:"2.2" ~hash:opam_2_2;
     opam_2_3 =
       Current_git.Commit_id.v ~repo:key.opam_2_3 ~gref:"2.3" ~hash:opam_2_3;
+    opam_2_4 =
+      Current_git.Commit_id.v ~repo:key.opam_2_4 ~gref:"2.4" ~hash:opam_2_4;
     opam_master =
       Current_git.Commit_id.v ~repo:key.opam_master ~gref:"master" ~hash:opam_master;
   }
