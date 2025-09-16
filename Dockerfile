@@ -34,14 +34,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     graphviz \
     libev4 \
     libsqlite3-dev \
+    docker-cli \
     netbase
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-RUN echo 'deb https://download.docker.com/linux/debian bookworm stable' >> /etc/apt/sources.list
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    apt update && apt-get --no-install-recommends install -y \
-    docker-buildx-plugin \
-    docker-ce
 COPY --from=build --link /src/_build/default/src/base_images.exe /usr/local/bin/base-images
 WORKDIR /var/lib/ocurrent
 ENTRYPOINT ["/usr/local/bin/base-images"]
