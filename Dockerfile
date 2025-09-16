@@ -22,7 +22,7 @@ RUN --mount=type=cache,target=/home/opam/.opam/download-cache,sharing=locked,uid
 ADD --chown=opam . .
 RUN opam config exec -- dune build ./src/base_images.exe
 
-FROM debian:12
+FROM debian:13
 RUN rm -f /etc/apt/apt.conf.d/docker-clean; echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' > /etc/apt/apt.conf.d/keep-cache
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
