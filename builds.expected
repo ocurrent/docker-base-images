@@ -1558,7 +1558,7 @@ ocurrent/opam-staging:alpine-3.22-ocaml-5.3-flambda-arm64, ocurrent/opam-staging
 
 ocurrent/opam-staging:alpine-3.22-ocaml-5.3-no-flat-float-array-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.3-no-flat-float-array-amd64 -> ocaml/opam:alpine-3.22-ocaml-5.3-no-flat-float-array
 ocurrent/opam-staging:alpine-3.22-ocaml-5.3-no-flat-float-array-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.3-no-flat-float-array-amd64 -> ocaml/opam:alpine-ocaml-5.3-no-flat-float-array
-5.4.0~alpha1/arm64
+5.4.0~rc1/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:alpine-3.22-opam-arm64
@@ -1568,14 +1568,14 @@ ocurrent/opam-staging:alpine-3.22-ocaml-5.3-no-flat-float-array-arm64, ocurrent/
 	RUN apk update && apk upgrade
 	RUN apk add zstd
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:alpine-3.22-opam-amd64
@@ -1585,16 +1585,16 @@ ocurrent/opam-staging:alpine-3.22-ocaml-5.3-no-flat-float-array-arm64, ocurrent/
 	RUN apk update && apk upgrade
 	RUN apk add zstd
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-amd64 -> ocaml/opam:alpine-3.22-ocaml-5.4-alpha1
-ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-amd64 -> ocaml/opam:alpine-ocaml-5.4-alpha1
-5.4.0~alpha1+afl/arm64
+ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-amd64 -> ocaml/opam:alpine-3.22-ocaml-5.4-rc1
+ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-amd64 -> ocaml/opam:alpine-ocaml-5.4-rc1
+5.4.0~rc1+afl/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:alpine-3.22-opam-arm64
@@ -1604,14 +1604,14 @@ ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:
 	RUN apk update && apk upgrade
 	RUN apk add zstd
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1+afl/amd64
+5.4.0~rc1+afl/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:alpine-3.22-opam-amd64
@@ -1621,16 +1621,16 @@ ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:
 	RUN apk update && apk upgrade
 	RUN apk add zstd
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-afl-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-afl-amd64 -> ocaml/opam:alpine-3.22-ocaml-5.4-alpha1-afl
-ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-afl-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-afl-amd64 -> ocaml/opam:alpine-ocaml-5.4-alpha1-afl
-5.4.0~alpha1+flambda/arm64
+ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-afl-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-afl-amd64 -> ocaml/opam:alpine-3.22-ocaml-5.4-rc1-afl
+ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-afl-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-afl-amd64 -> ocaml/opam:alpine-ocaml-5.4-rc1-afl
+5.4.0~rc1+flambda/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:alpine-3.22-opam-arm64
@@ -1640,14 +1640,14 @@ ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-afl-arm64, ocurrent/opam-stag
 	RUN apk update && apk upgrade
 	RUN apk add zstd
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1+flambda/amd64
+5.4.0~rc1+flambda/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:alpine-3.22-opam-amd64
@@ -1657,16 +1657,16 @@ ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-afl-arm64, ocurrent/opam-stag
 	RUN apk update && apk upgrade
 	RUN apk add zstd
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-flambda-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-flambda-amd64 -> ocaml/opam:alpine-3.22-ocaml-5.4-alpha1-flambda
-ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-flambda-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-flambda-amd64 -> ocaml/opam:alpine-ocaml-5.4-alpha1-flambda
-5.4.0~alpha1+no-flat-float-array/arm64
+ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-flambda-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-flambda-amd64 -> ocaml/opam:alpine-3.22-ocaml-5.4-rc1-flambda
+ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-flambda-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-flambda-amd64 -> ocaml/opam:alpine-ocaml-5.4-rc1-flambda
+5.4.0~rc1+no-flat-float-array/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:alpine-3.22-opam-arm64
@@ -1676,14 +1676,14 @@ ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-flambda-arm64, ocurrent/opam-
 	RUN apk update && apk upgrade
 	RUN apk add zstd
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1+no-flat-float-array/amd64
+5.4.0~rc1+no-flat-float-array/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:alpine-3.22-opam-amd64
@@ -1693,15 +1693,15 @@ ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-flambda-arm64, ocurrent/opam-
 	RUN apk update && apk upgrade
 	RUN apk add zstd
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-no-flat-float-array-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-no-flat-float-array-amd64 -> ocaml/opam:alpine-3.22-ocaml-5.4-alpha1-no-flat-float-array
-ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-no-flat-float-array-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-alpha1-no-flat-float-array-amd64 -> ocaml/opam:alpine-ocaml-5.4-alpha1-no-flat-float-array
+ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-no-flat-float-array-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-no-flat-float-array-amd64 -> ocaml/opam:alpine-3.22-ocaml-5.4-rc1-no-flat-float-array
+ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-no-flat-float-array-arm64, ocurrent/opam-staging:alpine-3.22-ocaml-5.4-rc1-no-flat-float-array-amd64 -> ocaml/opam:alpine-ocaml-5.4-rc1-no-flat-float-array
 5.4.0/arm64
 	# syntax=docker/dockerfile:1
 
@@ -2216,7 +2216,7 @@ ocurrent/opam-staging:archlinux-ocaml-5.2-amd64 -> ocaml/opam:archlinux-ocaml-5.
 
 ocurrent/opam-staging:archlinux-ocaml-5.3-amd64 -> ocaml/opam:archlinux
 ocurrent/opam-staging:archlinux-ocaml-5.3-amd64 -> ocaml/opam:archlinux-ocaml-5.3
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
@@ -2225,14 +2225,14 @@ ocurrent/opam-staging:archlinux-ocaml-5.3-amd64 -> ocaml/opam:archlinux-ocaml-5.
 	USER root
 	RUN pacman -Syu --noconfirm zstd && yes | pacman -Scc
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:archlinux-ocaml-5.4-alpha1-amd64 -> ocaml/opam:archlinux-ocaml-5.4-alpha1
+ocurrent/opam-staging:archlinux-ocaml-5.4-rc1-amd64 -> ocaml/opam:archlinux-ocaml-5.4-rc1
 5.4.0/amd64
 	# syntax=docker/dockerfile:1
 
@@ -6491,7 +6491,7 @@ ocurrent/opam-staging:debian-13-ocaml-5.3-flambda-arm64, ocurrent/opam-staging:d
 
 ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-riscv64, ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-s390x, ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-ppc64le, ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-arm32v7, ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-arm64, ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-amd64, ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-i386 -> ocaml/opam:debian-13-ocaml-5.3-no-flat-float-array
 ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-riscv64, ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-s390x, ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-ppc64le, ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-arm32v7, ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-arm64, ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-amd64, ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-i386 -> ocaml/opam:debian-ocaml-5.3-no-flat-float-array
-5.4.0~alpha1/riscv64
+5.4.0~rc1/riscv64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-riscv64
@@ -6502,14 +6502,14 @@ ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-riscv64, ocurrent/
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/s390x
+5.4.0~rc1/s390x
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-s390x
@@ -6520,14 +6520,14 @@ ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-riscv64, ocurrent/
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/ppc64le
+5.4.0~rc1/ppc64le
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-ppc64le
@@ -6538,14 +6538,14 @@ ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-riscv64, ocurrent/
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/arm32v7
+5.4.0~rc1/arm32v7
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-arm32v7
@@ -6557,14 +6557,14 @@ ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-riscv64, ocurrent/
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/arm64
+5.4.0~rc1/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-arm64
@@ -6575,14 +6575,14 @@ ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-riscv64, ocurrent/
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-amd64
@@ -6593,14 +6593,14 @@ ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-riscv64, ocurrent/
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/i386
+5.4.0~rc1/i386
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-i386
@@ -6612,16 +6612,16 @@ ocurrent/opam-staging:debian-13-ocaml-5.3-no-flat-float-array-riscv64, ocurrent/
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-riscv64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-s390x, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-ppc64le, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-arm32v7, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-amd64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-i386 -> ocaml/opam:debian-13-ocaml-5.4-alpha1
-ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-riscv64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-s390x, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-ppc64le, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-arm32v7, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-amd64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-i386 -> ocaml/opam:debian-ocaml-5.4-alpha1
-5.4.0~alpha1+afl/arm64
+ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-riscv64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-s390x, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-ppc64le, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-arm32v7, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-amd64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-i386 -> ocaml/opam:debian-13-ocaml-5.4-rc1
+ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-riscv64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-s390x, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-ppc64le, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-arm32v7, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-amd64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-i386 -> ocaml/opam:debian-ocaml-5.4-rc1
+5.4.0~rc1+afl/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-arm64
@@ -6632,14 +6632,14 @@ ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-riscv64, ocurrent/opam-staging:
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1+afl/amd64
+5.4.0~rc1+afl/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-amd64
@@ -6650,16 +6650,16 @@ ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-riscv64, ocurrent/opam-staging:
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-afl
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-afl
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-afl-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-afl-amd64 -> ocaml/opam:debian-13-ocaml-5.4-alpha1-afl
-ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-afl-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-afl-amd64 -> ocaml/opam:debian-ocaml-5.4-alpha1-afl
-5.4.0~alpha1+flambda/arm64
+ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-afl-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-afl-amd64 -> ocaml/opam:debian-13-ocaml-5.4-rc1-afl
+ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-afl-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-afl-amd64 -> ocaml/opam:debian-ocaml-5.4-rc1-afl
+5.4.0~rc1+flambda/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-arm64
@@ -6670,14 +6670,14 @@ ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-afl-arm64, ocurrent/opam-stagin
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1+flambda/amd64
+5.4.0~rc1+flambda/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-amd64
@@ -6688,16 +6688,16 @@ ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-afl-arm64, ocurrent/opam-stagin
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-flambda
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-flambda
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-flambda-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-flambda-amd64 -> ocaml/opam:debian-13-ocaml-5.4-alpha1-flambda
-ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-flambda-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-flambda-amd64 -> ocaml/opam:debian-ocaml-5.4-alpha1-flambda
-5.4.0~alpha1+no-flat-float-array/riscv64
+ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-flambda-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-flambda-amd64 -> ocaml/opam:debian-13-ocaml-5.4-rc1-flambda
+ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-flambda-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-flambda-amd64 -> ocaml/opam:debian-ocaml-5.4-rc1-flambda
+5.4.0~rc1+no-flat-float-array/riscv64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-riscv64
@@ -6708,14 +6708,14 @@ ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-flambda-arm64, ocurrent/opam-st
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1+no-flat-float-array/s390x
+5.4.0~rc1+no-flat-float-array/s390x
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-s390x
@@ -6726,14 +6726,14 @@ ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-flambda-arm64, ocurrent/opam-st
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1+no-flat-float-array/ppc64le
+5.4.0~rc1+no-flat-float-array/ppc64le
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-ppc64le
@@ -6744,14 +6744,14 @@ ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-flambda-arm64, ocurrent/opam-st
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1+no-flat-float-array/arm32v7
+5.4.0~rc1+no-flat-float-array/arm32v7
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-arm32v7
@@ -6763,14 +6763,14 @@ ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-flambda-arm64, ocurrent/opam-st
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1+no-flat-float-array/arm64
+5.4.0~rc1+no-flat-float-array/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-arm64
@@ -6781,14 +6781,14 @@ ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-flambda-arm64, ocurrent/opam-st
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1+no-flat-float-array/amd64
+5.4.0~rc1+no-flat-float-array/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-amd64
@@ -6799,14 +6799,14 @@ ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-flambda-arm64, ocurrent/opam-st
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1+no-flat-float-array/i386
+5.4.0~rc1+no-flat-float-array/i386
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-13-opam-i386
@@ -6818,15 +6818,15 @@ ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-flambda-arm64, ocurrent/opam-st
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-variants.5.4.0~alpha1+options,ocaml-options-only-no-flat-float-array
-	RUN opam pin add -k version ocaml-variants 5.4.0~alpha1+options
+	RUN opam switch create 5.4~rc1 --packages=ocaml-variants.5.4.0~rc1+options,ocaml-options-only-no-flat-float-array
+	RUN opam pin add -k version ocaml-variants 5.4.0~rc1+options
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-no-flat-float-array-riscv64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-no-flat-float-array-s390x, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-no-flat-float-array-ppc64le, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-no-flat-float-array-arm32v7, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-no-flat-float-array-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-no-flat-float-array-amd64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-no-flat-float-array-i386 -> ocaml/opam:debian-13-ocaml-5.4-alpha1-no-flat-float-array
-ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-no-flat-float-array-riscv64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-no-flat-float-array-s390x, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-no-flat-float-array-ppc64le, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-no-flat-float-array-arm32v7, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-no-flat-float-array-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-no-flat-float-array-amd64, ocurrent/opam-staging:debian-13-ocaml-5.4-alpha1-no-flat-float-array-i386 -> ocaml/opam:debian-ocaml-5.4-alpha1-no-flat-float-array
+ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-no-flat-float-array-riscv64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-no-flat-float-array-s390x, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-no-flat-float-array-ppc64le, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-no-flat-float-array-arm32v7, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-no-flat-float-array-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-no-flat-float-array-amd64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-no-flat-float-array-i386 -> ocaml/opam:debian-13-ocaml-5.4-rc1-no-flat-float-array
+ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-no-flat-float-array-riscv64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-no-flat-float-array-s390x, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-no-flat-float-array-ppc64le, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-no-flat-float-array-arm32v7, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-no-flat-float-array-arm64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-no-flat-float-array-amd64, ocurrent/opam-staging:debian-13-ocaml-5.4-rc1-no-flat-float-array-i386 -> ocaml/opam:debian-ocaml-5.4-rc1-no-flat-float-array
 5.4.0/riscv64
 	# syntax=docker/dockerfile:1
 
@@ -8935,7 +8935,7 @@ ocurrent/opam-staging:debian-12-ocaml-5.2-s390x, ocurrent/opam-staging:debian-12
 
 ocurrent/opam-staging:debian-12-ocaml-5.3-s390x, ocurrent/opam-staging:debian-12-ocaml-5.3-ppc64le, ocurrent/opam-staging:debian-12-ocaml-5.3-arm32v7, ocurrent/opam-staging:debian-12-ocaml-5.3-arm64, ocurrent/opam-staging:debian-12-ocaml-5.3-amd64, ocurrent/opam-staging:debian-12-ocaml-5.3-i386 -> ocaml/opam:debian-12
 ocurrent/opam-staging:debian-12-ocaml-5.3-s390x, ocurrent/opam-staging:debian-12-ocaml-5.3-ppc64le, ocurrent/opam-staging:debian-12-ocaml-5.3-arm32v7, ocurrent/opam-staging:debian-12-ocaml-5.3-arm64, ocurrent/opam-staging:debian-12-ocaml-5.3-amd64, ocurrent/opam-staging:debian-12-ocaml-5.3-i386 -> ocaml/opam:debian-12-ocaml-5.3
-5.4.0~alpha1/s390x
+5.4.0~rc1/s390x
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-12-opam-s390x
@@ -8946,14 +8946,14 @@ ocurrent/opam-staging:debian-12-ocaml-5.3-s390x, ocurrent/opam-staging:debian-12
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/ppc64le
+5.4.0~rc1/ppc64le
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-12-opam-ppc64le
@@ -8964,14 +8964,14 @@ ocurrent/opam-staging:debian-12-ocaml-5.3-s390x, ocurrent/opam-staging:debian-12
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/arm32v7
+5.4.0~rc1/arm32v7
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-12-opam-arm32v7
@@ -8983,14 +8983,14 @@ ocurrent/opam-staging:debian-12-ocaml-5.3-s390x, ocurrent/opam-staging:debian-12
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/arm64
+5.4.0~rc1/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-12-opam-arm64
@@ -9001,14 +9001,14 @@ ocurrent/opam-staging:debian-12-ocaml-5.3-s390x, ocurrent/opam-staging:debian-12
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-12-opam-amd64
@@ -9019,14 +9019,14 @@ ocurrent/opam-staging:debian-12-ocaml-5.3-s390x, ocurrent/opam-staging:debian-12
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/i386
+5.4.0~rc1/i386
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-12-opam-i386
@@ -9038,14 +9038,14 @@ ocurrent/opam-staging:debian-12-ocaml-5.3-s390x, ocurrent/opam-staging:debian-12
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:debian-12-ocaml-5.4-alpha1-s390x, ocurrent/opam-staging:debian-12-ocaml-5.4-alpha1-ppc64le, ocurrent/opam-staging:debian-12-ocaml-5.4-alpha1-arm32v7, ocurrent/opam-staging:debian-12-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:debian-12-ocaml-5.4-alpha1-amd64, ocurrent/opam-staging:debian-12-ocaml-5.4-alpha1-i386 -> ocaml/opam:debian-12-ocaml-5.4-alpha1
+ocurrent/opam-staging:debian-12-ocaml-5.4-rc1-s390x, ocurrent/opam-staging:debian-12-ocaml-5.4-rc1-ppc64le, ocurrent/opam-staging:debian-12-ocaml-5.4-rc1-arm32v7, ocurrent/opam-staging:debian-12-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:debian-12-ocaml-5.4-rc1-amd64, ocurrent/opam-staging:debian-12-ocaml-5.4-rc1-i386 -> ocaml/opam:debian-12-ocaml-5.4-rc1
 5.4.0/s390x
 	# syntax=docker/dockerfile:1
 
@@ -10230,7 +10230,7 @@ ocurrent/opam-staging:debian-11-ocaml-5.2-arm32v7, ocurrent/opam-staging:debian-
 
 ocurrent/opam-staging:debian-11-ocaml-5.3-arm32v7, ocurrent/opam-staging:debian-11-ocaml-5.3-arm64, ocurrent/opam-staging:debian-11-ocaml-5.3-amd64, ocurrent/opam-staging:debian-11-ocaml-5.3-i386 -> ocaml/opam:debian-11
 ocurrent/opam-staging:debian-11-ocaml-5.3-arm32v7, ocurrent/opam-staging:debian-11-ocaml-5.3-arm64, ocurrent/opam-staging:debian-11-ocaml-5.3-amd64, ocurrent/opam-staging:debian-11-ocaml-5.3-i386 -> ocaml/opam:debian-11-ocaml-5.3
-5.4.0~alpha1/arm32v7
+5.4.0~rc1/arm32v7
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-11-opam-arm32v7
@@ -10242,14 +10242,14 @@ ocurrent/opam-staging:debian-11-ocaml-5.3-arm32v7, ocurrent/opam-staging:debian-
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/arm64
+5.4.0~rc1/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-11-opam-arm64
@@ -10260,14 +10260,14 @@ ocurrent/opam-staging:debian-11-ocaml-5.3-arm32v7, ocurrent/opam-staging:debian-
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-11-opam-amd64
@@ -10278,14 +10278,14 @@ ocurrent/opam-staging:debian-11-ocaml-5.3-arm32v7, ocurrent/opam-staging:debian-
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/i386
+5.4.0~rc1/i386
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-11-opam-i386
@@ -10297,14 +10297,14 @@ ocurrent/opam-staging:debian-11-ocaml-5.3-arm32v7, ocurrent/opam-staging:debian-
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "/usr/bin/linux32", "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:debian-11-ocaml-5.4-alpha1-arm32v7, ocurrent/opam-staging:debian-11-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:debian-11-ocaml-5.4-alpha1-amd64, ocurrent/opam-staging:debian-11-ocaml-5.4-alpha1-i386 -> ocaml/opam:debian-11-ocaml-5.4-alpha1
+ocurrent/opam-staging:debian-11-ocaml-5.4-rc1-arm32v7, ocurrent/opam-staging:debian-11-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:debian-11-ocaml-5.4-rc1-amd64, ocurrent/opam-staging:debian-11-ocaml-5.4-rc1-i386 -> ocaml/opam:debian-11-ocaml-5.4-rc1
 5.4.0/arm32v7
 	# syntax=docker/dockerfile:1
 
@@ -10699,7 +10699,7 @@ ocurrent/opam-staging:debian-testing-ocaml-5.2-amd64 -> ocaml/opam:debian-testin
 
 ocurrent/opam-staging:debian-testing-ocaml-5.3-amd64 -> ocaml/opam:debian-testing
 ocurrent/opam-staging:debian-testing-ocaml-5.3-amd64 -> ocaml/opam:debian-testing-ocaml-5.3
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-testing-opam-amd64
@@ -10710,14 +10710,14 @@ ocurrent/opam-staging:debian-testing-ocaml-5.3-amd64 -> ocaml/opam:debian-testin
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:debian-testing-ocaml-5.4-alpha1-amd64 -> ocaml/opam:debian-testing-ocaml-5.4-alpha1
+ocurrent/opam-staging:debian-testing-ocaml-5.4-rc1-amd64 -> ocaml/opam:debian-testing-ocaml-5.4-rc1
 5.4.0/amd64
 	# syntax=docker/dockerfile:1
 
@@ -11000,7 +11000,7 @@ ocurrent/opam-staging:debian-unstable-ocaml-5.2-amd64 -> ocaml/opam:debian-unsta
 
 ocurrent/opam-staging:debian-unstable-ocaml-5.3-amd64 -> ocaml/opam:debian-unstable
 ocurrent/opam-staging:debian-unstable-ocaml-5.3-amd64 -> ocaml/opam:debian-unstable-ocaml-5.3
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-unstable-opam-amd64
@@ -11011,14 +11011,14 @@ ocurrent/opam-staging:debian-unstable-ocaml-5.3-amd64 -> ocaml/opam:debian-unsta
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:debian-unstable-ocaml-5.4-alpha1-amd64 -> ocaml/opam:debian-unstable-ocaml-5.4-alpha1
+ocurrent/opam-staging:debian-unstable-ocaml-5.4-rc1-amd64 -> ocaml/opam:debian-unstable-ocaml-5.4-rc1
 5.4.0/amd64
 	# syntax=docker/dockerfile:1
 
@@ -11515,7 +11515,7 @@ ocurrent/opam-staging:fedora-41-ocaml-5.2-arm64, ocurrent/opam-staging:fedora-41
 
 ocurrent/opam-staging:fedora-41-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-41-ocaml-5.3-amd64 -> ocaml/opam:fedora-41
 ocurrent/opam-staging:fedora-41-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-41-ocaml-5.3-amd64 -> ocaml/opam:fedora-41-ocaml-5.3
-5.4.0~alpha1/arm64
+5.4.0~rc1/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-41-opam-arm64
@@ -11524,14 +11524,14 @@ ocurrent/opam-staging:fedora-41-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-41
 	USER root
 	RUN yum install -y zstd && yum clean packages
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-41-opam-amd64
@@ -11540,14 +11540,14 @@ ocurrent/opam-staging:fedora-41-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-41
 	USER root
 	RUN yum install -y zstd && yum clean packages
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:fedora-41-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:fedora-41-ocaml-5.4-alpha1-amd64 -> ocaml/opam:fedora-41-ocaml-5.4-alpha1
+ocurrent/opam-staging:fedora-41-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:fedora-41-ocaml-5.4-rc1-amd64 -> ocaml/opam:fedora-41-ocaml-5.4-rc1
 5.4.0/arm64
 	# syntax=docker/dockerfile:1
 
@@ -12084,7 +12084,7 @@ ocurrent/opam-staging:fedora-42-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-42
 ocurrent/opam-staging:fedora-42-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-42-ocaml-5.3-amd64 -> ocaml/opam:fedora-42
 ocurrent/opam-staging:fedora-42-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-42-ocaml-5.3-amd64 -> ocaml/opam:fedora-42-ocaml-5.3
 ocurrent/opam-staging:fedora-42-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-42-ocaml-5.3-amd64 -> ocaml/opam:fedora-ocaml-5.3
-5.4.0~alpha1/arm64
+5.4.0~rc1/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-arm64
@@ -12093,14 +12093,14 @@ ocurrent/opam-staging:fedora-42-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-42
 	USER root
 	RUN yum install -y zstd && yum clean packages
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-amd64
@@ -12109,15 +12109,15 @@ ocurrent/opam-staging:fedora-42-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-42
 	USER root
 	RUN yum install -y zstd && yum clean packages
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:fedora-42-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:fedora-42-ocaml-5.4-alpha1-amd64 -> ocaml/opam:fedora-42-ocaml-5.4-alpha1
-ocurrent/opam-staging:fedora-42-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:fedora-42-ocaml-5.4-alpha1-amd64 -> ocaml/opam:fedora-ocaml-5.4-alpha1
+ocurrent/opam-staging:fedora-42-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:fedora-42-ocaml-5.4-rc1-amd64 -> ocaml/opam:fedora-42-ocaml-5.4-rc1
+ocurrent/opam-staging:fedora-42-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:fedora-42-ocaml-5.4-rc1-amd64 -> ocaml/opam:fedora-ocaml-5.4-rc1
 5.4.0/arm64
 	# syntax=docker/dockerfile:1
 
@@ -12427,7 +12427,7 @@ ocurrent/opam-staging:oraclelinux-8-ocaml-5.2-amd64 -> ocaml/opam:oraclelinux-8-
 
 ocurrent/opam-staging:oraclelinux-8-ocaml-5.3-amd64 -> ocaml/opam:oraclelinux-8
 ocurrent/opam-staging:oraclelinux-8-ocaml-5.3-amd64 -> ocaml/opam:oraclelinux-8-ocaml-5.3
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:oraclelinux-8-opam-amd64
@@ -12436,14 +12436,14 @@ ocurrent/opam-staging:oraclelinux-8-ocaml-5.3-amd64 -> ocaml/opam:oraclelinux-8-
 	USER root
 	RUN yum install -y zstd && yum clean packages
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:oraclelinux-8-ocaml-5.4-alpha1-amd64 -> ocaml/opam:oraclelinux-8-ocaml-5.4-alpha1
+ocurrent/opam-staging:oraclelinux-8-ocaml-5.4-rc1-amd64 -> ocaml/opam:oraclelinux-8-ocaml-5.4-rc1
 5.4.0/amd64
 	# syntax=docker/dockerfile:1
 
@@ -12726,7 +12726,7 @@ ocurrent/opam-staging:oraclelinux-9-ocaml-5.3-amd64 -> ocaml/opam:oraclelinux
 ocurrent/opam-staging:oraclelinux-9-ocaml-5.3-amd64 -> ocaml/opam:oraclelinux-9
 ocurrent/opam-staging:oraclelinux-9-ocaml-5.3-amd64 -> ocaml/opam:oraclelinux-9-ocaml-5.3
 ocurrent/opam-staging:oraclelinux-9-ocaml-5.3-amd64 -> ocaml/opam:oraclelinux-ocaml-5.3
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:oraclelinux-9-opam-amd64
@@ -12735,15 +12735,15 @@ ocurrent/opam-staging:oraclelinux-9-ocaml-5.3-amd64 -> ocaml/opam:oraclelinux-oc
 	USER root
 	RUN yum install -y zstd && yum clean packages
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:oraclelinux-9-ocaml-5.4-alpha1-amd64 -> ocaml/opam:oraclelinux-9-ocaml-5.4-alpha1
-ocurrent/opam-staging:oraclelinux-9-ocaml-5.4-alpha1-amd64 -> ocaml/opam:oraclelinux-ocaml-5.4-alpha1
+ocurrent/opam-staging:oraclelinux-9-ocaml-5.4-rc1-amd64 -> ocaml/opam:oraclelinux-9-ocaml-5.4-rc1
+ocurrent/opam-staging:oraclelinux-9-ocaml-5.4-rc1-amd64 -> ocaml/opam:oraclelinux-ocaml-5.4-rc1
 5.4.0/amd64
 	# syntax=docker/dockerfile:1
 
@@ -13260,7 +13260,7 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-5.3-arm64, ocurrent/opam-staging:opens
 ocurrent/opam-staging:opensuse-15.6-ocaml-5.3-arm64, ocurrent/opam-staging:opensuse-15.6-ocaml-5.3-amd64 -> ocaml/opam:opensuse-15.6
 ocurrent/opam-staging:opensuse-15.6-ocaml-5.3-arm64, ocurrent/opam-staging:opensuse-15.6-ocaml-5.3-amd64 -> ocaml/opam:opensuse-15.6-ocaml-5.3
 ocurrent/opam-staging:opensuse-15.6-ocaml-5.3-arm64, ocurrent/opam-staging:opensuse-15.6-ocaml-5.3-amd64 -> ocaml/opam:opensuse-ocaml-5.3
-5.4.0~alpha1/arm64
+5.4.0~rc1/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-arm64
@@ -13271,14 +13271,14 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-5.3-arm64, ocurrent/opam-staging:opens
 	RUN zypper update -y
 	RUN zypper install --force-resolution -y zstd
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-amd64
@@ -13289,15 +13289,15 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-5.3-arm64, ocurrent/opam-staging:opens
 	RUN zypper update -y
 	RUN zypper install --force-resolution -y zstd
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:opensuse-15.6-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:opensuse-15.6-ocaml-5.4-alpha1-amd64 -> ocaml/opam:opensuse-15.6-ocaml-5.4-alpha1
-ocurrent/opam-staging:opensuse-15.6-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:opensuse-15.6-ocaml-5.4-alpha1-amd64 -> ocaml/opam:opensuse-ocaml-5.4-alpha1
+ocurrent/opam-staging:opensuse-15.6-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:opensuse-15.6-ocaml-5.4-rc1-amd64 -> ocaml/opam:opensuse-15.6-ocaml-5.4-rc1
+ocurrent/opam-staging:opensuse-15.6-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:opensuse-15.6-ocaml-5.4-rc1-amd64 -> ocaml/opam:opensuse-ocaml-5.4-rc1
 5.4.0/arm64
 	# syntax=docker/dockerfile:1
 
@@ -13615,7 +13615,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-5.2-amd64 -> ocaml/opam:opensuse
 
 ocurrent/opam-staging:opensuse-tumbleweed-ocaml-5.3-amd64 -> ocaml/opam:opensuse-tumbleweed
 ocurrent/opam-staging:opensuse-tumbleweed-ocaml-5.3-amd64 -> ocaml/opam:opensuse-tumbleweed-ocaml-5.3
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-tumbleweed-opam-amd64
@@ -13626,14 +13626,14 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-5.3-amd64 -> ocaml/opam:opensuse
 	RUN zypper update -y
 	RUN zypper install --force-resolution -y zstd
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:opensuse-tumbleweed-ocaml-5.4-alpha1-amd64 -> ocaml/opam:opensuse-tumbleweed-ocaml-5.4-alpha1
+ocurrent/opam-staging:opensuse-tumbleweed-ocaml-5.4-rc1-amd64 -> ocaml/opam:opensuse-tumbleweed-ocaml-5.4-rc1
 5.4.0/amd64
 	# syntax=docker/dockerfile:1
 
@@ -14800,7 +14800,7 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.2-s390x, ocurrent/opam-staging:ubuntu
 
 ocurrent/opam-staging:ubuntu-22.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.3-ppc64le, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.3-arm64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.3-amd64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.3-riscv64 -> ocaml/opam:ubuntu-22.04
 ocurrent/opam-staging:ubuntu-22.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.3-ppc64le, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.3-arm64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.3-amd64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.3-riscv64 -> ocaml/opam:ubuntu-22.04-ocaml-5.3
-5.4.0~alpha1/s390x
+5.4.0~rc1/s390x
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-s390x
@@ -14811,14 +14811,14 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/ppc64le
+5.4.0~rc1/ppc64le
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-ppc64le
@@ -14829,14 +14829,14 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/arm64
+5.4.0~rc1/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-arm64
@@ -14847,14 +14847,14 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-amd64
@@ -14865,14 +14865,14 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/riscv64
+5.4.0~rc1/riscv64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-22.04-opam-riscv64
@@ -14883,14 +14883,14 @@ ocurrent/opam-staging:ubuntu-22.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:ubuntu-22.04-ocaml-5.4-alpha1-s390x, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.4-alpha1-ppc64le, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.4-alpha1-amd64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.4-alpha1-riscv64 -> ocaml/opam:ubuntu-22.04-ocaml-5.4-alpha1
+ocurrent/opam-staging:ubuntu-22.04-ocaml-5.4-rc1-s390x, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.4-rc1-ppc64le, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.4-rc1-amd64, ocurrent/opam-staging:ubuntu-22.04-ocaml-5.4-rc1-riscv64 -> ocaml/opam:ubuntu-22.04-ocaml-5.4-rc1
 5.4.0/s390x
 	# syntax=docker/dockerfile:1
 
@@ -16213,7 +16213,7 @@ ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-ppc64le, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-arm64, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-amd64, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-riscv64 -> ocaml/opam:ubuntu-24.04
 ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-ppc64le, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-arm64, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-amd64, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-riscv64 -> ocaml/opam:ubuntu-24.04-ocaml-5.3
 ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-ppc64le, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-arm64, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-amd64, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-riscv64 -> ocaml/opam:ubuntu-lts-ocaml-5.3
-5.4.0~alpha1/s390x
+5.4.0~rc1/s390x
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-24.04-opam-s390x
@@ -16224,14 +16224,14 @@ ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/ppc64le
+5.4.0~rc1/ppc64le
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-24.04-opam-ppc64le
@@ -16242,14 +16242,14 @@ ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/arm64
+5.4.0~rc1/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-24.04-opam-arm64
@@ -16260,14 +16260,14 @@ ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-24.04-opam-amd64
@@ -16278,14 +16278,14 @@ ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/riscv64
+5.4.0~rc1/riscv64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-24.04-opam-riscv64
@@ -16296,15 +16296,15 @@ ocurrent/opam-staging:ubuntu-24.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-alpha1-s390x, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-alpha1-ppc64le, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-alpha1-amd64, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-alpha1-riscv64 -> ocaml/opam:ubuntu-24.04-ocaml-5.4-alpha1
-ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-alpha1-s390x, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-alpha1-ppc64le, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-alpha1-amd64, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-alpha1-riscv64 -> ocaml/opam:ubuntu-lts-ocaml-5.4-alpha1
+ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-rc1-s390x, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-rc1-ppc64le, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-rc1-amd64, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-rc1-riscv64 -> ocaml/opam:ubuntu-24.04-ocaml-5.4-rc1
+ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-rc1-s390x, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-rc1-ppc64le, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-rc1-amd64, ocurrent/opam-staging:ubuntu-24.04-ocaml-5.4-rc1-riscv64 -> ocaml/opam:ubuntu-lts-ocaml-5.4-rc1
 5.4.0/s390x
 	# syntax=docker/dockerfile:1
 
@@ -17629,7 +17629,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-ppc64le, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-arm64, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-amd64, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-riscv64 -> ocaml/opam:ubuntu-25.04
 ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-ppc64le, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-arm64, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-amd64, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-riscv64 -> ocaml/opam:ubuntu-25.04-ocaml-5.3
 ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-ppc64le, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-arm64, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-amd64, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-riscv64 -> ocaml/opam:ubuntu-ocaml-5.3
-5.4.0~alpha1/s390x
+5.4.0~rc1/s390x
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-s390x
@@ -17640,14 +17640,14 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/ppc64le
+5.4.0~rc1/ppc64le
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-ppc64le
@@ -17658,14 +17658,14 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/arm64
+5.4.0~rc1/arm64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-arm64
@@ -17676,14 +17676,14 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/amd64
+5.4.0~rc1/amd64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-amd64
@@ -17694,14 +17694,14 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-5.4.0~alpha1/riscv64
+5.4.0~rc1/riscv64
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-riscv64
@@ -17712,15 +17712,15 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-5.3-s390x, ocurrent/opam-staging:ubuntu
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libzstd-dev
 	USER opam
-	RUN opam switch create 5.4~alpha1 --packages=ocaml-base-compiler.5.4.0~alpha1
-	RUN opam pin add -k version ocaml-base-compiler 5.4.0~alpha1
+	RUN opam switch create 5.4~rc1 --packages=ocaml-base-compiler.5.4.0~rc1
+	RUN opam pin add -k version ocaml-base-compiler 5.4.0~rc1
 	RUN opam install -y opam-depext
 	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD bash
 	COPY --link [ "Dockerfile", "/Dockerfile.ocaml" ]
 
-ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-alpha1-s390x, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-alpha1-ppc64le, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-alpha1-amd64, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-alpha1-riscv64 -> ocaml/opam:ubuntu-25.04-ocaml-5.4-alpha1
-ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-alpha1-s390x, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-alpha1-ppc64le, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-alpha1-arm64, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-alpha1-amd64, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-alpha1-riscv64 -> ocaml/opam:ubuntu-ocaml-5.4-alpha1
+ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-rc1-s390x, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-rc1-ppc64le, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-rc1-amd64, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-rc1-riscv64 -> ocaml/opam:ubuntu-25.04-ocaml-5.4-rc1
+ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-rc1-s390x, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-rc1-ppc64le, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-rc1-arm64, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-rc1-amd64, ocurrent/opam-staging:ubuntu-25.04-ocaml-5.4-rc1-riscv64 -> ocaml/opam:ubuntu-ocaml-5.4-rc1
 5.4.0/s390x
 	# syntax=docker/dockerfile:1
 
