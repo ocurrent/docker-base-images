@@ -7,6 +7,7 @@ type t = {
   opam_2_2 : Current_git.Commit_id.t;
   opam_2_3 : Current_git.Commit_id.t;
   opam_2_4 : Current_git.Commit_id.t;
+  opam_2_5 : Current_git.Commit_id.t;
   opam_master : Current_git.Commit_id.t;
 }
 
