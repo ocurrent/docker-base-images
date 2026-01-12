@@ -81,7 +81,7 @@ let distros = Distro.(active_distros `X86_64 |> List.filter (fun d ->
   | `Linux | `Windows -> true
   | _ -> false))
 
-let windows_distros = Distro.(latest_distros |> List.filter (fun d ->
+let windows_distros = Distro.(active_distros `X86_64 |> List.filter (fun d ->
   match os_family_of_distro d with
   | `Windows -> true
   | _ -> false)

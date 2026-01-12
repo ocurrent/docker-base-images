@@ -14,7 +14,15 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     libssl-dev \
     m4 \
     pkg-config
-RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard 1abfcdbf14f12a32c14d0d6e078d94634fdcc07a && opam update
+RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard a6b2f19780b2edfc4e5dba2566235c877dbf5acd && opam update
+RUN opam pin add current.dev git+https://github.com/ocurrent/ocurrent.git -y --no-action && \
+    opam pin add current_git.dev git+https://github.com/ocurrent/ocurrent.git -y --no-action && \
+    opam pin add current_github.dev git+https://github.com/ocurrent/ocurrent.git -y --no-action && \
+    opam pin add current_gitlab.dev git+https://github.com/ocurrent/ocurrent.git -y --no-action && \
+    opam pin add current_rpc.dev git+https://github.com/ocurrent/ocurrent.git -y --no-action && \
+    opam pin add current_slack.dev git+https://github.com/ocurrent/ocurrent.git -y --no-action && \
+    opam pin add current_web.dev git+https://github.com/ocurrent/ocurrent.git -y --no-action && \
+    opam pin add current_docker.dev git+https://github.com/ocurrent/ocurrent.git -y --no-action
 COPY --chown=opam --link base-images.opam /src/
 WORKDIR /src
 RUN --mount=type=cache,target=/home/opam/.opam/download-cache,sharing=locked,uid=1000,gid=1000 \
