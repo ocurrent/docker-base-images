@@ -40,6 +40,25 @@ let maybe_add_multicore (run : 'a run) switch =
   else
     Dockerfile.empty
 
+(* GCC 15 changed the default to -std=gnu23, which breaks OCaml < 5.1.
+   Add overlay with patches for affected distros. *)
+let maybe_add_gcc15_overlay (run : 'a run) distro switch =
+  let gcc15_fixed = Ocaml_version.Releases.v5_1_0 in
+  match Ocaml_version.compare switch gcc15_fixed < 0, distro with
+  | true, `Ubuntu `V25_04
+  | true, `Ubuntu `V25_10
+  | true, `Fedora `V42
+  | true, `Fedora `V43
+  | true, `Debian `Unstable
+  | true, `Debian `Testing
+  | true, `OpenSUSE `V15_6
+  | true, `OpenSUSE `V16_0
+  | true, `OpenSUSE `Tumbleweed
+  | true, `Archlinux `Latest ->
+    run "opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default"
+  | _, _ ->
+    Dockerfile.empty
+
 let maybe_install_secondary_compiler (run : 'a run) os_family switch =
   let dune_min_native_support = Ocaml_version.Releases.v4_08 in
   (* opam-repository-mingw doesn't package ocaml-secondary-compiler. *)
@@ -98,6 +117,7 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
   shell @@
   maybe_add_beta run switch @@
   maybe_add_multicore run switch @@
+  maybe_add_gcc15_overlay run distro switch @@
   env ["OPAMYES", "1";
        "OPAMCONFIRMLEVEL", "unsafe-yes";
        "OPAMERRLOGLEN", "0"; (* Show the whole log if it fails *)

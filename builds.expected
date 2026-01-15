@@ -1921,6 +1921,7 @@ ocurrent/opam-staging:archlinux-opam-amd64 -> ocaml/opam:archlinux-opam
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -1934,6 +1935,7 @@ ocurrent/opam-staging:archlinux-ocaml-4.08-amd64 -> ocaml/opam:archlinux-ocaml-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -1947,6 +1949,7 @@ ocurrent/opam-staging:archlinux-ocaml-4.09-amd64 -> ocaml/opam:archlinux-ocaml-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -1960,6 +1963,7 @@ ocurrent/opam-staging:archlinux-ocaml-4.10-amd64 -> ocaml/opam:archlinux-ocaml-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -1973,6 +1977,7 @@ ocurrent/opam-staging:archlinux-ocaml-4.11-amd64 -> ocaml/opam:archlinux-ocaml-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -1986,6 +1991,7 @@ ocurrent/opam-staging:archlinux-ocaml-4.12-amd64 -> ocaml/opam:archlinux-ocaml-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -1999,6 +2005,7 @@ ocurrent/opam-staging:archlinux-ocaml-4.13-amd64 -> ocaml/opam:archlinux-ocaml-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -2012,6 +2019,7 @@ ocurrent/opam-staging:archlinux-ocaml-4.14-amd64 -> ocaml/opam:archlinux-ocaml-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:archlinux-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -9593,6 +9601,7 @@ ocurrent/opam-staging:debian-unstable-opam-amd64 -> ocaml/opam:debian-unstable-o
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-unstable-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -9606,6 +9615,7 @@ ocurrent/opam-staging:debian-unstable-ocaml-4.08-amd64 -> ocaml/opam:debian-unst
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-unstable-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -9619,6 +9629,7 @@ ocurrent/opam-staging:debian-unstable-ocaml-4.09-amd64 -> ocaml/opam:debian-unst
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-unstable-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -9632,6 +9643,7 @@ ocurrent/opam-staging:debian-unstable-ocaml-4.10-amd64 -> ocaml/opam:debian-unst
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-unstable-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -9645,6 +9657,7 @@ ocurrent/opam-staging:debian-unstable-ocaml-4.11-amd64 -> ocaml/opam:debian-unst
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-unstable-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -9658,6 +9671,7 @@ ocurrent/opam-staging:debian-unstable-ocaml-4.12-amd64 -> ocaml/opam:debian-unst
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-unstable-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -9671,6 +9685,7 @@ ocurrent/opam-staging:debian-unstable-ocaml-4.13-amd64 -> ocaml/opam:debian-unst
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-unstable-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -9684,6 +9699,7 @@ ocurrent/opam-staging:debian-unstable-ocaml-4.14-amd64 -> ocaml/opam:debian-unst
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:debian-unstable-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -9957,6 +9973,7 @@ ocurrent/opam-staging:fedora-42-opam-arm64, ocurrent/opam-staging:fedora-42-opam
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -9969,6 +9986,7 @@ ocurrent/opam-staging:fedora-42-opam-arm64, ocurrent/opam-staging:fedora-42-opam
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -9982,6 +10000,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.08-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -9994,6 +10013,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.08-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -10007,6 +10027,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.09-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -10019,6 +10040,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.09-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -10032,6 +10054,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.10-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -10044,6 +10067,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.10-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -10057,6 +10081,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.11-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -10069,6 +10094,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.11-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -10082,6 +10108,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.12-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -10094,6 +10121,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.12-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -10107,6 +10135,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.13-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -10119,6 +10148,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.13-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -10132,6 +10162,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -10144,6 +10175,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-42-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -10483,6 +10515,7 @@ ocurrent/opam-staging:fedora-43-opam-arm64, ocurrent/opam-staging:fedora-43-opam
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -10495,6 +10528,7 @@ ocurrent/opam-staging:fedora-43-opam-arm64, ocurrent/opam-staging:fedora-43-opam
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -10509,6 +10543,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.08-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -10521,6 +10556,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.08-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -10535,6 +10571,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.09-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -10547,6 +10584,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.09-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -10561,6 +10599,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.10-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -10573,6 +10612,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.10-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -10587,6 +10627,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.11-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -10599,6 +10640,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.11-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -10613,6 +10655,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.12-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -10625,6 +10668,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.12-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -10639,6 +10683,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.13-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -10651,6 +10696,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.13-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -10665,6 +10711,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -10677,6 +10724,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-4
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:fedora-43-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -11306,6 +11354,7 @@ ocurrent/opam-staging:opensuse-15.6-opam-arm64, ocurrent/opam-staging:opensuse-1
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -11318,6 +11367,7 @@ ocurrent/opam-staging:opensuse-15.6-opam-arm64, ocurrent/opam-staging:opensuse-1
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -11331,6 +11381,7 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-4.08-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -11343,6 +11394,7 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-4.08-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -11356,6 +11408,7 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-4.09-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -11368,6 +11421,7 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-4.09-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -11381,6 +11435,7 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-4.10-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -11393,6 +11448,7 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-4.10-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -11406,6 +11462,7 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-4.11-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -11418,6 +11475,7 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-4.11-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -11431,6 +11489,7 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-4.12-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -11443,6 +11502,7 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-4.12-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -11456,6 +11516,7 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-4.13-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -11468,6 +11529,7 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-4.13-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -11481,6 +11543,7 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-4.14-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -11493,6 +11556,7 @@ ocurrent/opam-staging:opensuse-15.6-ocaml-4.14-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-15.6-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -11850,6 +11914,7 @@ ocurrent/opam-staging:opensuse-16.0-opam-arm64, ocurrent/opam-staging:opensuse-1
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -11862,6 +11927,7 @@ ocurrent/opam-staging:opensuse-16.0-opam-arm64, ocurrent/opam-staging:opensuse-1
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -11876,6 +11942,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.08-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -11888,6 +11955,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.08-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -11902,6 +11970,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.09-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -11914,6 +11983,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.09-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -11928,6 +11998,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.10-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -11940,6 +12011,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.10-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -11954,6 +12026,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.11-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -11966,6 +12039,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.11-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -11980,6 +12054,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.12-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -11992,6 +12067,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.12-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -12006,6 +12082,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.13-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -12018,6 +12095,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.13-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -12032,6 +12110,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.14-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -12044,6 +12123,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.14-arm64, ocurrent/opam-staging:open
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-16.0-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -12326,6 +12406,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-opam-amd64 -> ocaml/opam:opensuse-tumb
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-tumbleweed-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -12339,6 +12420,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-4.08-amd64 -> ocaml/opam:opensus
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-tumbleweed-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -12352,6 +12434,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-4.09-amd64 -> ocaml/opam:opensus
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-tumbleweed-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -12365,6 +12448,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-4.10-amd64 -> ocaml/opam:opensus
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-tumbleweed-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -12378,6 +12462,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-4.11-amd64 -> ocaml/opam:opensus
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-tumbleweed-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -12391,6 +12476,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-4.12-amd64 -> ocaml/opam:opensus
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-tumbleweed-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -12404,6 +12490,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-4.13-amd64 -> ocaml/opam:opensus
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-tumbleweed-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -12417,6 +12504,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-4.14-amd64 -> ocaml/opam:opensus
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:opensuse-tumbleweed-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -15593,6 +15681,7 @@ ocurrent/opam-staging:ubuntu-25.04-opam-s390x, ocurrent/opam-staging:ubuntu-25.0
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -15605,6 +15694,7 @@ ocurrent/opam-staging:ubuntu-25.04-opam-s390x, ocurrent/opam-staging:ubuntu-25.0
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -15617,6 +15707,7 @@ ocurrent/opam-staging:ubuntu-25.04-opam-s390x, ocurrent/opam-staging:ubuntu-25.0
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -15629,6 +15720,7 @@ ocurrent/opam-staging:ubuntu-25.04-opam-s390x, ocurrent/opam-staging:ubuntu-25.0
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -15642,6 +15734,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.08-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -15654,6 +15747,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.08-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -15666,6 +15760,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.08-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -15678,6 +15773,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.08-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -15691,6 +15787,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.09-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -15703,6 +15800,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.09-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -15715,6 +15813,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.09-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -15727,6 +15826,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.09-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -15740,6 +15840,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.10-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -15752,6 +15853,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.10-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -15764,6 +15866,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.10-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -15776,6 +15879,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.10-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -15788,6 +15892,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.10-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-riscv64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -15801,6 +15906,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.11-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -15813,6 +15919,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.11-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -15825,6 +15932,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.11-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -15837,6 +15945,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.11-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -15849,6 +15958,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.11-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-riscv64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -15862,6 +15972,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.12-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -15874,6 +15985,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.12-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -15886,6 +15998,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.12-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -15898,6 +16011,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.12-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -15910,6 +16024,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.12-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-riscv64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -15923,6 +16038,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.13-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -15935,6 +16051,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.13-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -15947,6 +16064,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.13-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -15959,6 +16077,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.13-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -15971,6 +16090,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.13-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-riscv64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -15984,6 +16104,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -15996,6 +16117,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -16008,6 +16130,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -16020,6 +16143,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -16032,6 +16156,7 @@ ocurrent/opam-staging:ubuntu-25.04-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.04-opam-riscv64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -16823,6 +16948,7 @@ ocurrent/opam-staging:ubuntu-25.10-opam-s390x, ocurrent/opam-staging:ubuntu-25.1
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -16835,6 +16961,7 @@ ocurrent/opam-staging:ubuntu-25.10-opam-s390x, ocurrent/opam-staging:ubuntu-25.1
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -16847,6 +16974,7 @@ ocurrent/opam-staging:ubuntu-25.10-opam-s390x, ocurrent/opam-staging:ubuntu-25.1
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -16859,6 +16987,7 @@ ocurrent/opam-staging:ubuntu-25.10-opam-s390x, ocurrent/opam-staging:ubuntu-25.1
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.08 --packages=ocaml-base-compiler.4.08.1
 	RUN opam pin add -k version ocaml-base-compiler 4.08.1
@@ -16873,6 +17002,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.08-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -16885,6 +17015,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.08-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -16897,6 +17028,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.08-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -16909,6 +17041,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.08-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.09 --packages=ocaml-base-compiler.4.09.1
 	RUN opam pin add -k version ocaml-base-compiler 4.09.1
@@ -16923,6 +17056,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.09-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -16935,6 +17069,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.09-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -16947,6 +17082,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.09-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -16959,6 +17095,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.09-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.10 --packages=ocaml-base-compiler.4.10.2
 	RUN opam pin add -k version ocaml-base-compiler 4.10.2
@@ -16973,6 +17110,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.10-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -16985,6 +17123,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.10-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -16997,6 +17136,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.10-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -17009,6 +17149,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.10-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.11 --packages=ocaml-base-compiler.4.11.2
 	RUN opam pin add -k version ocaml-base-compiler 4.11.2
@@ -17023,6 +17164,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.11-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -17035,6 +17177,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.11-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -17047,6 +17190,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.11-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -17059,6 +17203,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.11-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.12 --packages=ocaml-base-compiler.4.12.1
 	RUN opam pin add -k version ocaml-base-compiler 4.12.1
@@ -17073,6 +17218,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.12-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -17085,6 +17231,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.12-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -17097,6 +17244,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.12-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -17109,6 +17257,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.12-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.13 --packages=ocaml-base-compiler.4.13.1
 	RUN opam pin add -k version ocaml-base-compiler 4.13.1
@@ -17123,6 +17272,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.13-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -17135,6 +17285,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.13-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -17147,6 +17298,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.13-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -17159,6 +17311,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.13-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 4.14 --packages=ocaml-base-compiler.4.14.2
 	RUN opam pin add -k version ocaml-base-compiler 4.14.2
@@ -17173,6 +17326,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-s390x
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -17185,6 +17339,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-ppc64le
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -17197,6 +17352,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-arm64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
@@ -17209,6 +17365,7 @@ ocurrent/opam-staging:ubuntu-25.10-ocaml-4.14-s390x, ocurrent/opam-staging:ubunt
 	# syntax=docker/dockerfile:1
 
 	FROM ocurrent/opam-staging:ubuntu-25.10-opam-amd64
+	RUN opam repo add ocaml-patches-overlay git+https://github.com/ocurrent/opam-repository#patches --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	RUN opam switch create 5.0 --packages=ocaml-base-compiler.5.0.0
 	RUN opam pin add -k version ocaml-base-compiler 5.0.0
