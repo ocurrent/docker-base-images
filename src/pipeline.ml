@@ -45,6 +45,7 @@ let maybe_add_multicore (run : 'a run) switch =
 let maybe_add_gcc15_overlay (run : 'a run) distro switch =
   let gcc15_fixed = Ocaml_version.Releases.v5_1_0 in
   match Ocaml_version.compare switch gcc15_fixed < 0, distro with
+  | true, `Alpine `V3_23
   | true, `Ubuntu `V25_04
   | true, `Ubuntu `V25_10
   | true, `Fedora `V42
