@@ -41,10 +41,15 @@ let maybe_add_multicore (run : 'a run) switch =
     Dockerfile.empty
 
 (* GCC 15 changed the default to -std=gnu23, which breaks OCaml < 5.1.
-   Add overlay with patches for affected distros. *)
+   Add overlay with patches for affected distros.
+   Note: 4.14.2 already has the fixes, so only 4.00-4.14.1 and 5.0.0 need patches. *)
 let maybe_add_gcc15_overlay (run : 'a run) distro switch =
-  let gcc15_fixed = Ocaml_version.Releases.v5_1_0 in
-  match Ocaml_version.compare switch gcc15_fixed < 0, distro with
+  let switch_no_variant = Ocaml_version.without_variant switch in
+  let needs_patch =
+    Ocaml_version.compare switch_no_variant Ocaml_version.Releases.v5_1_0 < 0 &&
+    not (Ocaml_version.equal switch_no_variant Ocaml_version.Releases.v4_14_2)
+  in
+  match needs_patch, distro with
   | true, `Alpine `V3_23
   | true, `Ubuntu `V25_04
   | true, `Ubuntu `V25_10
