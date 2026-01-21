@@ -14,10 +14,10 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     libssl-dev \
     m4 \
     pkg-config
-RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard c6bb7c00ad7f23f02d71f9c47548f1e9b1169b4c && opam update
-RUN opam pin add dockerfile.dev git+https://github.com/ocurrent/ocaml-dockerfile.git -y --no-action && \
-    opam pin add dockerfile-cmd.dev git+https://github.com/ocurrent/ocaml-dockerfile.git -y --no-action && \
-    opam pin add dockerfile-opam.dev git+https://github.com/ocurrent/ocaml-dockerfile.git -y --no-action
+RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard 10a02a697b08f6d78a6c4c2cb9a76136afc7776d && opam update
+RUN opam pin add dockerfile.dev "git+https://github.com/mtelvers/ocaml-dockerfile.git#make-j" -y --no-action && \
+    opam pin add dockerfile-cmd.dev "git+https://github.com/mtelvers/ocaml-dockerfile.git#make-j" -y --no-action && \
+    opam pin add dockerfile-opam.dev "git+https://github.com/mtelvers/ocaml-dockerfile.git#make-j" -y --no-action
 COPY --chown=opam --link base-images.opam /src/
 WORKDIR /src
 RUN --mount=type=cache,target=/home/opam/.opam/download-cache,sharing=locked,uid=1000,gid=1000 \
