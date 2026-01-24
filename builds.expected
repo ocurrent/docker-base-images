@@ -18389,8 +18389,9 @@ windows-server-msvc-ltsc2025/amd64
 	        --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools" `
 	        --channelUri C:\TEMP\VisualStudio.chman `
 	        --installChannelUri C:\TEMP\VisualStudio.chman `
+	        --add Microsoft.VisualStudio.Workload.VCTools `
 	        --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
-	        --add Microsoft.VisualStudio.Component.Windows10SDK.18362 `
+	        --add Microsoft.VisualStudio.Component.Windows11SDK.22621 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 `
@@ -18500,8 +18501,9 @@ windows-server-msvc-ltsc2022/amd64
 	        --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools" `
 	        --channelUri C:\TEMP\VisualStudio.chman `
 	        --installChannelUri C:\TEMP\VisualStudio.chman `
+	        --add Microsoft.VisualStudio.Workload.VCTools `
 	        --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
-	        --add Microsoft.VisualStudio.Component.Windows10SDK.18362 `
+	        --add Microsoft.VisualStudio.Component.Windows11SDK.22621 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 `
@@ -18611,8 +18613,9 @@ windows-msvc-ltsc2019/amd64
 	        --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools" `
 	        --channelUri C:\TEMP\VisualStudio.chman `
 	        --installChannelUri C:\TEMP\VisualStudio.chman `
+	        --add Microsoft.VisualStudio.Workload.VCTools `
 	        --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
-	        --add Microsoft.VisualStudio.Component.Windows10SDK.18362 `
+	        --add Microsoft.VisualStudio.Component.Windows11SDK.22621 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 `
