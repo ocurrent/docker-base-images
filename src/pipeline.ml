@@ -114,7 +114,13 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
   let shell = maybe (fun pers -> shell [pers; "/bin/sh"; "-c"]) personality in
   let packages =
     let additional_packages = Ocaml_version.Opam.V2.additional_packages switch in
-    String.concat "," (Printf.sprintf "%s.%s" package_name package_version :: additional_packages)
+    let port_package = match windows_port with
+      | None -> []
+      | Some port when Ocaml_version.major switch >= 5 ->
+          [match port with `Mingw -> "system-mingw" | `Msvc -> "system-msvc"]
+      | Some _ -> []
+    in
+    String.concat "," (Printf.sprintf "%s.%s" package_name package_version :: port_package @ additional_packages)
   in
   (match os_family with
    | `Linux -> parser_directive (`Syntax "docker/dockerfile:1")

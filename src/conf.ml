@@ -55,19 +55,9 @@ let switches ~arch ~distro =
      the compiler. *)
   (* TODO: Does Windows include alpha, beta, and release candidate versions? *)
   let with_unreleased = match distro with `WindowsServer _ | `Windows _ -> false | _ -> true in
-  let filter_windows main_switches =
-    (* opam-repository-mingw doesn't package OCaml 5.0.
-       TODO: remove when upstream opam gains OCaml packages on Windows. *)
-    match distro with
-    | `WindowsServer _
-    | `Windows _ ->
-       List.filter (fun ov -> Ocaml_version.(compare ov Releases.v4_14) <= 0) main_switches
-    | _ -> main_switches
-  in
   let main_switches =
     Ocaml_version.Releases.(if with_unreleased then recent_with_dev @ unreleased_betas else recent)
     |> List.filter (fun ov -> Distro.distro_supported_on arch ov distro)
-    |> filter_windows
   in
   if is_tier1 then (
     List.concat_map (Ocaml_version.Opam.V2.switches arch) main_switches
@@ -91,10 +81,6 @@ let windows_distros = Distro.(active_distros `X86_64 |> List.filter (fun d ->
 
 let arches_for ~distro =
   match distro with
-  (* opam-repository-mingw doesn't package OCaml 5.0.
-     TODO: remove when upstream opam gains OCaml packages on Windows. *)
-  | `WindowsServer _
-  | `Windows _ -> Distro.distro_arches Ocaml_version.Releases.v4_14 distro
   | `Ubuntu (`V23_10) ->
     (* There does not yet exist risc-v ubuntu 23.10 docker images
        https://github.com/ocurrent/docker-base-images/issues/206 *)
