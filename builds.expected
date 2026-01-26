@@ -16665,7 +16665,6 @@ ubuntu-25.10/s390x
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
-	RUN apt-get remove coreutils-from-uutils --allow-remove-essential -y
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
@@ -16685,6 +16684,7 @@ ubuntu-25.10/s390x
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
+	RUN apt-get remove coreutils-from-uutils --allow-remove-essential -y
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
@@ -16751,7 +16751,6 @@ ubuntu-25.10/ppc64le
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
-	RUN apt-get remove coreutils-from-uutils --allow-remove-essential -y
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
@@ -16771,6 +16770,7 @@ ubuntu-25.10/ppc64le
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
+	RUN apt-get remove coreutils-from-uutils --allow-remove-essential -y
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
@@ -16837,7 +16837,6 @@ ubuntu-25.10/arm64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
-	RUN apt-get remove coreutils-from-uutils --allow-remove-essential -y
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
@@ -16857,6 +16856,7 @@ ubuntu-25.10/arm64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
+	RUN apt-get remove coreutils-from-uutils --allow-remove-essential -y
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
@@ -16923,7 +16923,6 @@ ubuntu-25.10/amd64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git libcap-dev sudo
-	RUN apt-get remove coreutils-from-uutils --allow-remove-essential -y
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
@@ -16943,6 +16942,7 @@ ubuntu-25.10/amd64
 	RUN apt-get -y update
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 	RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential curl git rsync sudo unzip nano libcap-dev libx11-dev bubblewrap
+	RUN apt-get remove coreutils-from-uutils --allow-remove-essential -y
 	COPY --from=0 [ "/usr/local/bin/opam-2.0", "/usr/bin/opam-2.0" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/local/bin/opam-2.1", "/usr/bin/opam-2.1" ]
@@ -17819,7 +17819,7 @@ windows-server-mingw-ltsc2025/amd64
 	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /tmp/opam-sources"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master && make compiler "
+	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master && sed -i \"s/make -j[0-9]*/make -j\$NUMBER_OF_PROCESSORS/g\" shell/bootstrap-ocaml.sh && make compiler "
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone /tmp/opam /tmp/opam-build-2.2 && cd /tmp/opam-build-2.2 && git config --global --add safe.directory /tmp/opam-build-2.2 && git checkout 2.2"
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-2.2 && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-private-runtime --with-vendored-deps --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make && make install && mv /usr/local/bin/opam.exe /usr/local/bin/opam-2.2.exe"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone /tmp/opam /tmp/opam-build-2.3 && cd /tmp/opam-build-2.3 && git config --global --add safe.directory /tmp/opam-build-2.3 && git checkout 2.3"
@@ -17923,7 +17923,7 @@ windows-server-mingw-ltsc2022/amd64
 	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /tmp/opam-sources"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master && make compiler "
+	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master && sed -i \"s/make -j[0-9]*/make -j\$NUMBER_OF_PROCESSORS/g\" shell/bootstrap-ocaml.sh && make compiler "
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone /tmp/opam /tmp/opam-build-2.2 && cd /tmp/opam-build-2.2 && git config --global --add safe.directory /tmp/opam-build-2.2 && git checkout 2.2"
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-2.2 && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-private-runtime --with-vendored-deps --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make && make install && mv /usr/local/bin/opam.exe /usr/local/bin/opam-2.2.exe"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone /tmp/opam /tmp/opam-build-2.3 && cd /tmp/opam-build-2.3 && git config --global --add safe.directory /tmp/opam-build-2.3 && git checkout 2.3"
@@ -18028,7 +18028,7 @@ windows-mingw-ltsc2019/amd64
 	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /tmp/opam-sources"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master && make compiler "
+	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master && sed -i \"s/make -j[0-9]*/make -j\$NUMBER_OF_PROCESSORS/g\" shell/bootstrap-ocaml.sh && make compiler "
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone /tmp/opam /tmp/opam-build-2.2 && cd /tmp/opam-build-2.2 && git config --global --add safe.directory /tmp/opam-build-2.2 && git checkout 2.2"
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-2.2 && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check --with-private-runtime --with-vendored-deps --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make && make install && mv /usr/local/bin/opam.exe /usr/local/bin/opam-2.2.exe"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone /tmp/opam /tmp/opam-build-2.3 && cd /tmp/opam-build-2.3 && git config --global --add safe.directory /tmp/opam-build-2.3 && git checkout 2.3"
@@ -18389,8 +18389,9 @@ windows-server-msvc-ltsc2025/amd64
 	        --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools" `
 	        --channelUri C:\TEMP\VisualStudio.chman `
 	        --installChannelUri C:\TEMP\VisualStudio.chman `
+	        --add Microsoft.VisualStudio.Workload.VCTools `
 	        --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
-	        --add Microsoft.VisualStudio.Component.Windows10SDK.18362 `
+	        --add Microsoft.VisualStudio.Component.Windows11SDK.22621 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 `
@@ -18413,7 +18414,7 @@ windows-server-msvc-ltsc2025/amd64
 	FROM cygwin-msvc AS opam-builder
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /tmp/opam-sources"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master && make compiler OCAML_PORT=msvc64"
+	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master && sed -i \"s/make -j[0-9]*/make -j\$NUMBER_OF_PROCESSORS/g\" shell/bootstrap-ocaml.sh && make compiler OCAML_PORT=msvc64"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone /tmp/opam /tmp/opam-build-2.2 && cd /tmp/opam-build-2.2 && git config --global --add safe.directory /tmp/opam-build-2.2 && git checkout 2.2"
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-2.2 && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check  --with-vendored-deps --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make && make install && mv /usr/local/bin/opam.exe /usr/local/bin/opam-2.2.exe"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone /tmp/opam /tmp/opam-build-2.3 && cd /tmp/opam-build-2.3 && git config --global --add safe.directory /tmp/opam-build-2.3 && git checkout 2.3"
@@ -18500,8 +18501,9 @@ windows-server-msvc-ltsc2022/amd64
 	        --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools" `
 	        --channelUri C:\TEMP\VisualStudio.chman `
 	        --installChannelUri C:\TEMP\VisualStudio.chman `
+	        --add Microsoft.VisualStudio.Workload.VCTools `
 	        --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
-	        --add Microsoft.VisualStudio.Component.Windows10SDK.18362 `
+	        --add Microsoft.VisualStudio.Component.Windows11SDK.22621 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 `
@@ -18524,7 +18526,7 @@ windows-server-msvc-ltsc2022/amd64
 	FROM cygwin-msvc AS opam-builder
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /tmp/opam-sources"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master && make compiler OCAML_PORT=msvc64"
+	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master && sed -i \"s/make -j[0-9]*/make -j\$NUMBER_OF_PROCESSORS/g\" shell/bootstrap-ocaml.sh && make compiler OCAML_PORT=msvc64"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone /tmp/opam /tmp/opam-build-2.2 && cd /tmp/opam-build-2.2 && git config --global --add safe.directory /tmp/opam-build-2.2 && git checkout 2.2"
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-2.2 && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check  --with-vendored-deps --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make && make install && mv /usr/local/bin/opam.exe /usr/local/bin/opam-2.2.exe"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone /tmp/opam /tmp/opam-build-2.3 && cd /tmp/opam-build-2.3 && git config --global --add safe.directory /tmp/opam-build-2.3 && git checkout 2.3"
@@ -18611,8 +18613,9 @@ windows-msvc-ltsc2019/amd64
 	        --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2022\BuildTools" `
 	        --channelUri C:\TEMP\VisualStudio.chman `
 	        --installChannelUri C:\TEMP\VisualStudio.chman `
+	        --add Microsoft.VisualStudio.Workload.VCTools `
 	        --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 `
-	        --add Microsoft.VisualStudio.Component.Windows10SDK.18362 `
+	        --add Microsoft.VisualStudio.Component.Windows11SDK.22621 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 `
 	        --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 `
@@ -18636,7 +18639,7 @@ windows-msvc-ltsc2019/amd64
 	FROM cygwin-msvc AS opam-builder
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /tmp/opam-sources"
-	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master && make compiler OCAML_PORT=msvc64"
+	RUN C:\cygwin64\bin\bash.exe --login -c "git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && git checkout master && sed -i \"s/make -j[0-9]*/make -j\$NUMBER_OF_PROCESSORS/g\" shell/bootstrap-ocaml.sh && make compiler OCAML_PORT=msvc64"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone /tmp/opam /tmp/opam-build-2.2 && cd /tmp/opam-build-2.2 && git config --global --add safe.directory /tmp/opam-build-2.2 && git checkout 2.2"
 	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp/opam-build-2.2 && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" ./configure --enable-cold-check  --with-vendored-deps --with-0install-solver && env PATH="/tmp/opam/bootstrap/ocaml/bin:$PATH" make && make install && mv /usr/local/bin/opam.exe /usr/local/bin/opam-2.2.exe"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git clone /tmp/opam /tmp/opam-build-2.3 && cd /tmp/opam-build-2.3 && git config --global --add safe.directory /tmp/opam-build-2.3 && git checkout 2.3"
