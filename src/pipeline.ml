@@ -136,6 +136,11 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
        "OPAMPRECISETRACKING", "1"; (* Mitigate https://github.com/ocaml/opam/issues/3997 *)
       ] @@
   Dockerfile_opam.ocaml_depexts distro switch @@
+  (* For OCaml 5.x on Windows, remove the overlay so native opam packages are used *)
+  (match windows_port with
+   | Some _ when Ocaml_version.major switch >= 5 ->
+       run "opam repo remove ocurrent-overlay --all"
+   | _ -> Dockerfile.empty) @@
   run_no_opam "opam switch create %s --packages=%s" switch_name packages @@
   run "opam pin add -k version %s %s" package_name package_version @@
   run "opam install -y %s" depext @@

@@ -17857,8 +17857,6 @@ windows-server-mingw-ltsc2025/amd64
 	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,patch,perl,rsync,unzip && `
 	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
-	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-2.2.exe", "C:\\opam-2.2.exe" ]
 	RUN move C:\opam-2.2.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-2.3.exe", "C:\\opam-2.3.exe" ]
@@ -17869,6 +17867,9 @@ windows-server-mingw-ltsc2025/amd64
 	RUN move C:\opam-2.5.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-master.exe", "C:\\opam-dev.exe" ]
 	RUN move C:\opam-dev.exe C:\cygwin64\usr\local\bin
+	RUN copy C:\cygwin64\usr\local\bin\opam-2.2.exe C:\cygwin64\usr\local\bin\opam.exe
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\usr\local\bin;C:\cygwin64\usr\x86_64-w64-mingw32\sys-root\mingw\bin;%c"
 	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
@@ -17883,6 +17884,7 @@ windows-server-mingw-ltsc2025/amd64
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-mingw
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.4.0+options
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
@@ -17961,8 +17963,6 @@ windows-server-mingw-ltsc2022/amd64
 	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,patch,perl,rsync,unzip && `
 	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
-	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-2.2.exe", "C:\\opam-2.2.exe" ]
 	RUN move C:\opam-2.2.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-2.3.exe", "C:\\opam-2.3.exe" ]
@@ -17973,6 +17973,9 @@ windows-server-mingw-ltsc2022/amd64
 	RUN move C:\opam-2.5.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-master.exe", "C:\\opam-dev.exe" ]
 	RUN move C:\opam-dev.exe C:\cygwin64\usr\local\bin
+	RUN copy C:\cygwin64\usr\local\bin\opam-2.2.exe C:\cygwin64\usr\local\bin\opam.exe
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\usr\local\bin;C:\cygwin64\usr\x86_64-w64-mingw32\sys-root\mingw\bin;%c"
 	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
@@ -17987,6 +17990,7 @@ windows-server-mingw-ltsc2022/amd64
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-mingw
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.4.0+options
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
@@ -18066,8 +18070,6 @@ windows-mingw-ltsc2019/amd64
 	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	RUN C:\cygwin64\bin\peflags -d0 C:\cygwin64\bin\cygwin1.dll
 	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
-	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-2.2.exe", "C:\\opam-2.2.exe" ]
 	RUN move C:\opam-2.2.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-2.3.exe", "C:\\opam-2.3.exe" ]
@@ -18078,6 +18080,9 @@ windows-mingw-ltsc2019/amd64
 	RUN move C:\opam-2.5.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-master.exe", "C:\\opam-dev.exe" ]
 	RUN move C:\opam-dev.exe C:\cygwin64\usr\local\bin
+	RUN copy C:\cygwin64\usr\local\bin\opam-2.2.exe C:\cygwin64\usr\local\bin\opam.exe
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\usr\local\bin;C:\cygwin64\usr\x86_64-w64-mingw32\sys-root\mingw\bin;%c"
 	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
@@ -18092,6 +18097,7 @@ windows-mingw-ltsc2019/amd64
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-mingw
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.4.0+options
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
@@ -18106,6 +18112,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.4-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-mingw
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.3.0+options
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
@@ -18118,6 +18125,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.4-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-mingw
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.3.0+options
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
@@ -18130,6 +18138,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.4-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-mingw
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.3.0+options
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
@@ -18143,6 +18152,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.3-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.2 --packages=ocaml-variants.5.2.1+options,system-mingw
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.2.1+options
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
@@ -18155,6 +18165,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.3-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.2 --packages=ocaml-variants.5.2.1+options,system-mingw
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.2.1+options
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
@@ -18167,6 +18178,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.3-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.2 --packages=ocaml-variants.5.2.1+options,system-mingw
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.2.1+options
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
@@ -18180,6 +18192,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.2-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.1 --packages=ocaml-variants.5.1.1+options,system-mingw
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.1.1+options
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
@@ -18192,6 +18205,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.2-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.1 --packages=ocaml-variants.5.1.1+options,system-mingw
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.1.1+options
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
@@ -18204,6 +18218,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.2-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.1 --packages=ocaml-variants.5.1.1+options,system-mingw
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.1.1+options
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
@@ -18217,6 +18232,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.1-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,system-mingw
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.0.0+options
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
@@ -18229,6 +18245,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.1-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,system-mingw
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.0.0+options
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
@@ -18241,6 +18258,7 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.1-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,system-mingw
 	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.0.0+options
 	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
@@ -18645,8 +18663,6 @@ windows-server-msvc-ltsc2025/amd64
 	USER ContainerAdministrator
 	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,patch,perl,rsync,unzip && `
 	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
-	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
 	ADD [ "https://aka.ms/vs/17/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
 	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log && `
 	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
@@ -18665,6 +18681,9 @@ windows-server-msvc-ltsc2025/amd64
 	RUN move C:\opam-2.5.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-master.exe", "C:\\opam-dev.exe" ]
 	RUN move C:\opam-dev.exe C:\cygwin64\usr\local\bin
+	RUN copy C:\cygwin64\usr\local\bin\opam-2.2.exe C:\cygwin64\usr\local\bin\opam.exe
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\usr\local\bin;C:\cygwin64\usr\x86_64-w64-mingw32\sys-root\mingw\bin;%c"
 	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
@@ -18680,6 +18699,7 @@ windows-server-msvc-ltsc2025/amd64
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --ms -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-msvc
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 5.4.0+options
 	RUN ocaml-env exec --64 --ms -- opam install -y depext
@@ -18757,8 +18777,6 @@ windows-server-msvc-ltsc2022/amd64
 	USER ContainerAdministrator
 	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,patch,perl,rsync,unzip && `
 	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
-	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
 	ADD [ "https://aka.ms/vs/17/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
 	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log && `
 	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
@@ -18777,6 +18795,9 @@ windows-server-msvc-ltsc2022/amd64
 	RUN move C:\opam-2.5.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-master.exe", "C:\\opam-dev.exe" ]
 	RUN move C:\opam-dev.exe C:\cygwin64\usr\local\bin
+	RUN copy C:\cygwin64\usr\local\bin\opam-2.2.exe C:\cygwin64\usr\local\bin\opam.exe
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\usr\local\bin;C:\cygwin64\usr\x86_64-w64-mingw32\sys-root\mingw\bin;%c"
 	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
@@ -18792,6 +18813,7 @@ windows-server-msvc-ltsc2022/amd64
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --ms -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-msvc
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 5.4.0+options
 	RUN ocaml-env exec --64 --ms -- opam install -y depext
@@ -18870,8 +18892,6 @@ windows-msvc-ltsc2019/amd64
 	USER ContainerAdministrator
 	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,patch,perl,rsync,unzip && `
 	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
-	ADD [ "https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz", "C:\\TEMP\\" ]
-	RUN C:\cygwin64\bin\bash.exe --login -c "cd /tmp && tar -xf /cygdrive/c/TEMP/opam64.tar.xz && ./opam64/install.sh --prefix=/usr && rm -rf opam64 opam64.tar.xz"
 	ADD [ "https://aka.ms/vs/17/release/vc_redist.x64.exe", "C:\\TEMP\\" ]
 	RUN C:\TEMP\vc_redist.x64.exe /install /passive /norestart /log C:\TEMP\vc_redist.log && `
 	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
@@ -18889,6 +18909,9 @@ windows-msvc-ltsc2019/amd64
 	RUN move C:\opam-2.5.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-master.exe", "C:\\opam-dev.exe" ]
 	RUN move C:\opam-dev.exe C:\cygwin64\usr\local\bin
+	RUN copy C:\cygwin64\usr\local\bin\opam-2.2.exe C:\cygwin64\usr\local\bin\opam.exe
+	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\usr\local\bin;C:\cygwin64\usr\x86_64-w64-mingw32\sys-root\mingw\bin;%c"
 	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
@@ -18904,6 +18927,7 @@ windows-msvc-ltsc2019/amd64
 
 	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --ms -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-msvc
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 5.4.0+options
 	RUN ocaml-env exec --64 --ms -- opam install -y depext
@@ -18918,6 +18942,7 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-5.4-amd64, ocurrent/opa
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --ms -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-msvc
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 5.3.0+options
 	RUN ocaml-env exec --64 --ms -- opam install -y depext
@@ -18930,6 +18955,7 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-5.4-amd64, ocurrent/opa
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --ms -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-msvc
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 5.3.0+options
 	RUN ocaml-env exec --64 --ms -- opam install -y depext
@@ -18942,6 +18968,7 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-5.4-amd64, ocurrent/opa
 
 	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
+	RUN ocaml-env exec --64 --ms -- opam repo remove ocurrent-overlay --all
 	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-msvc
 	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 5.3.0+options
 	RUN ocaml-env exec --64 --ms -- opam install -y depext
