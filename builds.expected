@@ -17857,6 +17857,8 @@ windows-server-mingw-ltsc2025/amd64
 	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,patch,perl,rsync,unzip && `
 	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
+	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\Opam.Runtime.amd64", "C:\\Opam.Runtime.amd64" ]
+	RUN move C:\Opam.Runtime.amd64 C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-2.2.exe", "C:\\opam-2.2.exe" ]
 	RUN move C:\opam-2.2.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-2.3.exe", "C:\\opam-2.3.exe" ]
@@ -17867,9 +17869,9 @@ windows-server-mingw-ltsc2025/amd64
 	RUN move C:\opam-2.5.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-master.exe", "C:\\opam-dev.exe" ]
 	RUN move C:\opam-dev.exe C:\cygwin64\usr\local\bin
-	RUN copy C:\cygwin64\usr\local\bin\opam-2.2.exe C:\cygwin64\usr\local\bin\opam.exe
+	RUN mklink C:\cygwin64\usr\local\bin\opam.exe C:\cygwin64\usr\local\bin\opam-2.2.exe
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\usr\local\bin;C:\cygwin64\usr\x86_64-w64-mingw32\sys-root\mingw\bin;%c"
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\usr\local\bin;C:\cygwin64\bin;%c"
 	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
@@ -17884,11 +17886,11 @@ windows-server-mingw-ltsc2025/amd64
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-mingw
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.4.0+options
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-mingw
+	RUN opam pin add -k version ocaml-variants 5.4.0+options
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -17963,6 +17965,8 @@ windows-server-mingw-ltsc2022/amd64
 	RUN C:\cygwin64\setup-x86_64.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --only-site --local-package-dir C:\TEMP\cache --root C:\cygwin64 --site https://mirrors.kernel.org/sourceware/cygwin/ --symlink-type=native --packages curl,diffutils,git,m4,make,mingw64-x86_64-gcc-core,patch,perl,rsync,unzip && `
 	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
+	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\Opam.Runtime.amd64", "C:\\Opam.Runtime.amd64" ]
+	RUN move C:\Opam.Runtime.amd64 C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-2.2.exe", "C:\\opam-2.2.exe" ]
 	RUN move C:\opam-2.2.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-2.3.exe", "C:\\opam-2.3.exe" ]
@@ -17973,9 +17977,9 @@ windows-server-mingw-ltsc2022/amd64
 	RUN move C:\opam-2.5.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-master.exe", "C:\\opam-dev.exe" ]
 	RUN move C:\opam-dev.exe C:\cygwin64\usr\local\bin
-	RUN copy C:\cygwin64\usr\local\bin\opam-2.2.exe C:\cygwin64\usr\local\bin\opam.exe
+	RUN mklink C:\cygwin64\usr\local\bin\opam.exe C:\cygwin64\usr\local\bin\opam-2.2.exe
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\usr\local\bin;C:\cygwin64\usr\x86_64-w64-mingw32\sys-root\mingw\bin;%c"
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\usr\local\bin;C:\cygwin64\bin;%c"
 	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
@@ -17990,11 +17994,11 @@ windows-server-mingw-ltsc2022/amd64
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-mingw
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.4.0+options
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-mingw
+	RUN opam pin add -k version ocaml-variants 5.4.0+options
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18070,6 +18074,8 @@ windows-mingw-ltsc2019/amd64
 	  powershell -Command "Remove-Item 'C:\TEMP' -Recurse"
 	RUN C:\cygwin64\bin\peflags -d0 C:\cygwin64\bin\cygwin1.dll
 	RUN awk -i inplace "/(^#)|(^$)/{print;next}{$4=""noacl,""$4; print}" C:\cygwin64\etc\fstab
+	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\Opam.Runtime.amd64", "C:\\Opam.Runtime.amd64" ]
+	RUN move C:\Opam.Runtime.amd64 C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-2.2.exe", "C:\\opam-2.2.exe" ]
 	RUN move C:\opam-2.2.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-2.3.exe", "C:\\opam-2.3.exe" ]
@@ -18080,9 +18086,9 @@ windows-mingw-ltsc2019/amd64
 	RUN move C:\opam-2.5.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-master.exe", "C:\\opam-dev.exe" ]
 	RUN move C:\opam-dev.exe C:\cygwin64\usr\local\bin
-	RUN copy C:\cygwin64\usr\local\bin\opam-2.2.exe C:\cygwin64\usr\local\bin\opam.exe
+	RUN mklink C:\cygwin64\usr\local\bin\opam.exe C:\cygwin64\usr\local\bin\opam-2.2.exe
 	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\usr\local\bin;C:\cygwin64\usr\x86_64-w64-mingw32\sys-root\mingw\bin;%c"
+	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\usr\local\bin;C:\cygwin64\bin;%c"
 	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
@@ -18097,11 +18103,11 @@ windows-mingw-ltsc2019/amd64
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-mingw
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.4.0+options
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-mingw
+	RUN opam pin add -k version ocaml-variants 5.4.0+options
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18112,11 +18118,11 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.4-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-mingw
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.3.0+options
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-mingw
+	RUN opam pin add -k version ocaml-variants 5.3.0+options
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18125,11 +18131,11 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.4-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-mingw
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.3.0+options
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-mingw
+	RUN opam pin add -k version ocaml-variants 5.3.0+options
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18138,11 +18144,11 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.4-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-mingw
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.3.0+options
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-mingw
+	RUN opam pin add -k version ocaml-variants 5.3.0+options
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18152,11 +18158,11 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.3-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.2 --packages=ocaml-variants.5.2.1+options,system-mingw
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.2.1+options
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.2 --packages=ocaml-variants.5.2.1+options,system-mingw
+	RUN opam pin add -k version ocaml-variants 5.2.1+options
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18165,11 +18171,11 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.3-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.2 --packages=ocaml-variants.5.2.1+options,system-mingw
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.2.1+options
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.2 --packages=ocaml-variants.5.2.1+options,system-mingw
+	RUN opam pin add -k version ocaml-variants 5.2.1+options
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18178,11 +18184,11 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.3-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.2 --packages=ocaml-variants.5.2.1+options,system-mingw
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.2.1+options
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.2 --packages=ocaml-variants.5.2.1+options,system-mingw
+	RUN opam pin add -k version ocaml-variants 5.2.1+options
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18192,11 +18198,11 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.2-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.1 --packages=ocaml-variants.5.1.1+options,system-mingw
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.1.1+options
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.1+options,system-mingw
+	RUN opam pin add -k version ocaml-variants 5.1.1+options
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18205,11 +18211,11 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.2-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.1 --packages=ocaml-variants.5.1.1+options,system-mingw
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.1.1+options
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.1+options,system-mingw
+	RUN opam pin add -k version ocaml-variants 5.1.1+options
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18218,11 +18224,11 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.2-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.1 --packages=ocaml-variants.5.1.1+options,system-mingw
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.1.1+options
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.1 --packages=ocaml-variants.5.1.1+options,system-mingw
+	RUN opam pin add -k version ocaml-variants 5.1.1+options
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18232,11 +18238,11 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.1-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,system-mingw
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.0.0+options
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,system-mingw
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18245,11 +18251,11 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.1-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,system-mingw
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.0.0+options
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,system-mingw
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18258,11 +18264,11 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.1-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,system-mingw
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 5.0.0+options
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.0 --packages=ocaml-variants.5.0.0+options,system-mingw
+	RUN opam pin add -k version ocaml-variants 5.0.0+options
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18272,10 +18278,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.0-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.2+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.14.2+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.2+mingw64
+	RUN opam pin add -k version ocaml-variants 4.14.2+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18284,10 +18290,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.0-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.2+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.14.2+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.2+mingw64
+	RUN opam pin add -k version ocaml-variants 4.14.2+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18296,10 +18302,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-5.0-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.2+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.14.2+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.2+mingw64
+	RUN opam pin add -k version ocaml-variants 4.14.2+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18309,10 +18315,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.14-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.13 --packages=ocaml-variants.4.13.1+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.13.1+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.13 --packages=ocaml-variants.4.13.1+mingw64
+	RUN opam pin add -k version ocaml-variants 4.13.1+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18321,10 +18327,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.14-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.13 --packages=ocaml-variants.4.13.1+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.13.1+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.13 --packages=ocaml-variants.4.13.1+mingw64
+	RUN opam pin add -k version ocaml-variants 4.13.1+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18333,10 +18339,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.14-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.13 --packages=ocaml-variants.4.13.1+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.13.1+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.13 --packages=ocaml-variants.4.13.1+mingw64
+	RUN opam pin add -k version ocaml-variants 4.13.1+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18346,10 +18352,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.13-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.12 --packages=ocaml-variants.4.12.1+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.12.1+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.12 --packages=ocaml-variants.4.12.1+mingw64
+	RUN opam pin add -k version ocaml-variants 4.12.1+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18358,10 +18364,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.13-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.12 --packages=ocaml-variants.4.12.1+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.12.1+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.12 --packages=ocaml-variants.4.12.1+mingw64
+	RUN opam pin add -k version ocaml-variants 4.12.1+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18370,10 +18376,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.13-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.12 --packages=ocaml-variants.4.12.1+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.12.1+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.12 --packages=ocaml-variants.4.12.1+mingw64
+	RUN opam pin add -k version ocaml-variants 4.12.1+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18383,10 +18389,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.12-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.11 --packages=ocaml-variants.4.11.2+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.11.2+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.11 --packages=ocaml-variants.4.11.2+mingw64
+	RUN opam pin add -k version ocaml-variants 4.11.2+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18395,10 +18401,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.12-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.11 --packages=ocaml-variants.4.11.2+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.11.2+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.11 --packages=ocaml-variants.4.11.2+mingw64
+	RUN opam pin add -k version ocaml-variants 4.11.2+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18407,10 +18413,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.12-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.11 --packages=ocaml-variants.4.11.2+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.11.2+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.11 --packages=ocaml-variants.4.11.2+mingw64
+	RUN opam pin add -k version ocaml-variants 4.11.2+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18420,10 +18426,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.11-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.10 --packages=ocaml-variants.4.10.2+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.10.2+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.10 --packages=ocaml-variants.4.10.2+mingw64
+	RUN opam pin add -k version ocaml-variants 4.10.2+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18432,10 +18438,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.11-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.10 --packages=ocaml-variants.4.10.2+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.10.2+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.10 --packages=ocaml-variants.4.10.2+mingw64
+	RUN opam pin add -k version ocaml-variants 4.10.2+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18444,10 +18450,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.11-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.10 --packages=ocaml-variants.4.10.2+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.10.2+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.10 --packages=ocaml-variants.4.10.2+mingw64
+	RUN opam pin add -k version ocaml-variants 4.10.2+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18457,10 +18463,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.10-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.09 --packages=ocaml-variants.4.09.1+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.09.1+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.09 --packages=ocaml-variants.4.09.1+mingw64
+	RUN opam pin add -k version ocaml-variants 4.09.1+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18469,10 +18475,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.10-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.09 --packages=ocaml-variants.4.09.1+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.09.1+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.09 --packages=ocaml-variants.4.09.1+mingw64
+	RUN opam pin add -k version ocaml-variants 4.09.1+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18481,10 +18487,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.10-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.09 --packages=ocaml-variants.4.09.1+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.09.1+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.09 --packages=ocaml-variants.4.09.1+mingw64
+	RUN opam pin add -k version ocaml-variants 4.09.1+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18494,10 +18500,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.09-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.08 --packages=ocaml-variants.4.08.1+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.08.1+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.08 --packages=ocaml-variants.4.08.1+mingw64
+	RUN opam pin add -k version ocaml-variants 4.08.1+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18506,10 +18512,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.09-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-server-mingw-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.08 --packages=ocaml-variants.4.08.1+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.08.1+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.08 --packages=ocaml-variants.4.08.1+mingw64
+	RUN opam pin add -k version ocaml-variants 4.08.1+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18518,10 +18524,10 @@ ocurrent/opam-staging:windows-server-mingw-ltsc2025-ocaml-4.09-amd64, ocurrent/o
 
 	FROM ocurrent/opam-staging:windows-mingw-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --no-opam -- opam switch create 4.08 --packages=ocaml-variants.4.08.1+mingw64
-	RUN ocaml-env exec --64 -- opam pin add -k version ocaml-variants 4.08.1+mingw64
-	RUN ocaml-env exec --64 -- opam install -y depext depext-cygwinports
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--" ]
+	RUN opam switch create 4.08 --packages=ocaml-variants.4.08.1+mingw64
+	RUN opam pin add -k version ocaml-variants 4.08.1+mingw64
+	RUN opam install -y depext depext-cygwinports
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18681,9 +18687,11 @@ windows-server-msvc-ltsc2025/amd64
 	RUN move C:\opam-2.5.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-master.exe", "C:\\opam-dev.exe" ]
 	RUN move C:\opam-dev.exe C:\cygwin64\usr\local\bin
-	RUN copy C:\cygwin64\usr\local\bin\opam-2.2.exe C:\cygwin64\usr\local\bin\opam.exe
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\usr\local\bin;C:\cygwin64\usr\x86_64-w64-mingw32\sys-root\mingw\bin;%c"
+	RUN powershell -Command "[Environment]::GetEnvironmentVariable('PATH', 'Machine')" > C:\path_before.txt
+	RUN call "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" amd64 && set > C:\msvc_env.txt
+	RUN powershell -Command "$before = (Get-Content C:\path_before.txt).Trim(); $content = Get-Content C:\msvc_env.txt; foreach ($line in $content) { if ($line -match '^(INCLUDE|LIB|LIBPATH)=(.*)$') { [Environment]::SetEnvironmentVariable($matches[1], $matches[2], 'Machine') } elseif ($line -match '^PATH=(.*)$') { $vcPath = $matches[1]; $msvcPaths = ($vcPath -split ';' | Where-Object { $before -notlike \"*$_*\" -and $_ -ne '' }) -join ';'; $finalPath = \"$msvcPaths;C:\cygwin64\usr\local\bin;C:\cygwin64\bin;$before\"; [Environment]::SetEnvironmentVariable('PATH', $finalPath, 'Machine') } }"
+	RUN del C:\path_before.txt C:\msvc_env.txt
+	RUN mklink C:\cygwin64\usr\local\bin\opam.exe C:\cygwin64\usr\local\bin\opam-2.2.exe
 	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
@@ -18699,11 +18707,11 @@ windows-server-msvc-ltsc2025/amd64
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-msvc
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 5.4.0+options
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-msvc
+	RUN opam pin add -k version ocaml-variants 5.4.0+options
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18795,9 +18803,11 @@ windows-server-msvc-ltsc2022/amd64
 	RUN move C:\opam-2.5.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-master.exe", "C:\\opam-dev.exe" ]
 	RUN move C:\opam-dev.exe C:\cygwin64\usr\local\bin
-	RUN copy C:\cygwin64\usr\local\bin\opam-2.2.exe C:\cygwin64\usr\local\bin\opam.exe
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\usr\local\bin;C:\cygwin64\usr\x86_64-w64-mingw32\sys-root\mingw\bin;%c"
+	RUN powershell -Command "[Environment]::GetEnvironmentVariable('PATH', 'Machine')" > C:\path_before.txt
+	RUN call "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" amd64 && set > C:\msvc_env.txt
+	RUN powershell -Command "$before = (Get-Content C:\path_before.txt).Trim(); $content = Get-Content C:\msvc_env.txt; foreach ($line in $content) { if ($line -match '^(INCLUDE|LIB|LIBPATH)=(.*)$') { [Environment]::SetEnvironmentVariable($matches[1], $matches[2], 'Machine') } elseif ($line -match '^PATH=(.*)$') { $vcPath = $matches[1]; $msvcPaths = ($vcPath -split ';' | Where-Object { $before -notlike \"*$_*\" -and $_ -ne '' }) -join ';'; $finalPath = \"$msvcPaths;C:\cygwin64\usr\local\bin;C:\cygwin64\bin;$before\"; [Environment]::SetEnvironmentVariable('PATH', $finalPath, 'Machine') } }"
+	RUN del C:\path_before.txt C:\msvc_env.txt
+	RUN mklink C:\cygwin64\usr\local\bin\opam.exe C:\cygwin64\usr\local\bin\opam-2.2.exe
 	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
@@ -18813,11 +18823,11 @@ windows-server-msvc-ltsc2022/amd64
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-msvc
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 5.4.0+options
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-msvc
+	RUN opam pin add -k version ocaml-variants 5.4.0+options
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18909,9 +18919,11 @@ windows-msvc-ltsc2019/amd64
 	RUN move C:\opam-2.5.exe C:\cygwin64\usr\local\bin
 	COPY --from=opam-builder [ "C:\\cygwin64\\usr\\local\\bin\\opam-master.exe", "C:\\opam-dev.exe" ]
 	RUN move C:\opam-dev.exe C:\cygwin64\usr\local\bin
-	RUN copy C:\cygwin64\usr\local\bin\opam-2.2.exe C:\cygwin64\usr\local\bin\opam.exe
-	RUN for /f "tokens=1,2,*" %a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path ^| findstr /r "^[^H]"') do `
-	        reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /V Path /t REG_EXPAND_SZ /f /d "C:\cygwin64\usr\local\bin;C:\cygwin64\usr\x86_64-w64-mingw32\sys-root\mingw\bin;%c"
+	RUN powershell -Command "[Environment]::GetEnvironmentVariable('PATH', 'Machine')" > C:\path_before.txt
+	RUN call "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" amd64 && set > C:\msvc_env.txt
+	RUN powershell -Command "$before = (Get-Content C:\path_before.txt).Trim(); $content = Get-Content C:\msvc_env.txt; foreach ($line in $content) { if ($line -match '^(INCLUDE|LIB|LIBPATH)=(.*)$') { [Environment]::SetEnvironmentVariable($matches[1], $matches[2], 'Machine') } elseif ($line -match '^PATH=(.*)$') { $vcPath = $matches[1]; $msvcPaths = ($vcPath -split ';' | Where-Object { $before -notlike \"*$_*\" -and $_ -ne '' }) -join ';'; $finalPath = \"$msvcPaths;C:\cygwin64\usr\local\bin;C:\cygwin64\bin;$before\"; [Environment]::SetEnvironmentVariable('PATH', $finalPath, 'Machine') } }"
+	RUN del C:\path_before.txt C:\msvc_env.txt
+	RUN mklink C:\cygwin64\usr\local\bin\opam.exe C:\cygwin64\usr\local\bin\opam-2.2.exe
 	WORKDIR C:\cygwin64\home\opam
 	ENV HOME="C:\cygwin64\home\opam"
 	RUN C:\cygwin64\bin\bash.exe --login -c "git config --global user.email 'docker@example.com' && git config --global user.name 'Docker' && git config --system core.longpaths true && git config --global --add safe.directory /home/opam/opam-repository"
@@ -18927,11 +18939,11 @@ windows-msvc-ltsc2019/amd64
 
 	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-msvc
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 5.4.0+options
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.4 --packages=ocaml-variants.5.4.0+options,system-msvc
+	RUN opam pin add -k version ocaml-variants 5.4.0+options
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18942,11 +18954,11 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-5.4-amd64, ocurrent/opa
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-msvc
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 5.3.0+options
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-msvc
+	RUN opam pin add -k version ocaml-variants 5.3.0+options
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18955,11 +18967,11 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-5.4-amd64, ocurrent/opa
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-msvc
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 5.3.0+options
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-msvc
+	RUN opam pin add -k version ocaml-variants 5.3.0+options
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18968,11 +18980,11 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-5.4-amd64, ocurrent/opa
 
 	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms -- opam repo remove ocurrent-overlay --all
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-msvc
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 5.3.0+options
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam repo remove ocurrent-overlay --all
+	RUN opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,system-msvc
+	RUN opam pin add -k version ocaml-variants 5.3.0+options
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18982,10 +18994,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-5.3-amd64, ocurrent/opa
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.14.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.2+msvc64
+	RUN opam pin add -k version ocaml-variants 4.14.2+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -18994,10 +19006,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-5.3-amd64, ocurrent/opa
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.14.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.2+msvc64
+	RUN opam pin add -k version ocaml-variants 4.14.2+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19006,10 +19018,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-5.3-amd64, ocurrent/opa
 
 	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.14 --packages=ocaml-variants.4.14.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.14.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.14 --packages=ocaml-variants.4.14.2+msvc64
+	RUN opam pin add -k version ocaml-variants 4.14.2+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19019,10 +19031,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.14-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.13 --packages=ocaml-variants.4.13.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.13.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.13 --packages=ocaml-variants.4.13.1+msvc64
+	RUN opam pin add -k version ocaml-variants 4.13.1+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19031,10 +19043,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.14-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.13 --packages=ocaml-variants.4.13.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.13.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.13 --packages=ocaml-variants.4.13.1+msvc64
+	RUN opam pin add -k version ocaml-variants 4.13.1+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19043,10 +19055,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.14-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.13 --packages=ocaml-variants.4.13.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.13.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.13 --packages=ocaml-variants.4.13.1+msvc64
+	RUN opam pin add -k version ocaml-variants 4.13.1+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19056,10 +19068,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.13-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.12 --packages=ocaml-variants.4.12.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.12.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.12 --packages=ocaml-variants.4.12.1+msvc64
+	RUN opam pin add -k version ocaml-variants 4.12.1+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19068,10 +19080,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.13-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.12 --packages=ocaml-variants.4.12.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.12.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.12 --packages=ocaml-variants.4.12.1+msvc64
+	RUN opam pin add -k version ocaml-variants 4.12.1+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19080,10 +19092,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.13-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.12 --packages=ocaml-variants.4.12.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.12.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.12 --packages=ocaml-variants.4.12.1+msvc64
+	RUN opam pin add -k version ocaml-variants 4.12.1+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19093,10 +19105,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.12-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.11 --packages=ocaml-variants.4.11.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.11.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.11 --packages=ocaml-variants.4.11.2+msvc64
+	RUN opam pin add -k version ocaml-variants 4.11.2+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19105,10 +19117,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.12-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.11 --packages=ocaml-variants.4.11.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.11.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.11 --packages=ocaml-variants.4.11.2+msvc64
+	RUN opam pin add -k version ocaml-variants 4.11.2+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19117,10 +19129,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.12-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.11 --packages=ocaml-variants.4.11.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.11.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.11 --packages=ocaml-variants.4.11.2+msvc64
+	RUN opam pin add -k version ocaml-variants 4.11.2+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19130,10 +19142,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.11-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.10 --packages=ocaml-variants.4.10.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.10.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.10 --packages=ocaml-variants.4.10.2+msvc64
+	RUN opam pin add -k version ocaml-variants 4.10.2+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19142,10 +19154,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.11-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.10 --packages=ocaml-variants.4.10.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.10.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.10 --packages=ocaml-variants.4.10.2+msvc64
+	RUN opam pin add -k version ocaml-variants 4.10.2+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19154,10 +19166,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.11-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.10 --packages=ocaml-variants.4.10.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.10.2+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.10 --packages=ocaml-variants.4.10.2+msvc64
+	RUN opam pin add -k version ocaml-variants 4.10.2+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19167,10 +19179,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.10-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.09 --packages=ocaml-variants.4.09.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.09.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.09 --packages=ocaml-variants.4.09.1+msvc64
+	RUN opam pin add -k version ocaml-variants 4.09.1+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19179,10 +19191,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.10-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.09 --packages=ocaml-variants.4.09.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.09.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.09 --packages=ocaml-variants.4.09.1+msvc64
+	RUN opam pin add -k version ocaml-variants 4.09.1+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19191,10 +19203,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.10-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.09 --packages=ocaml-variants.4.09.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.09.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.09 --packages=ocaml-variants.4.09.1+msvc64
+	RUN opam pin add -k version ocaml-variants 4.09.1+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19204,10 +19216,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.09-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2025-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.08 --packages=ocaml-variants.4.08.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.08.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.08 --packages=ocaml-variants.4.08.1+msvc64
+	RUN opam pin add -k version ocaml-variants 4.08.1+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19216,10 +19228,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.09-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-server-msvc-ltsc2022-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.08 --packages=ocaml-variants.4.08.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.08.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.08 --packages=ocaml-variants.4.08.1+msvc64
+	RUN opam pin add -k version ocaml-variants 4.08.1+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 
@@ -19228,10 +19240,10 @@ ocurrent/opam-staging:windows-server-msvc-ltsc2025-ocaml-4.09-amd64, ocurrent/op
 
 	FROM ocurrent/opam-staging:windows-msvc-ltsc2019-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
-	RUN ocaml-env exec --64 --ms --no-opam -- opam switch create 4.08 --packages=ocaml-variants.4.08.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam pin add -k version ocaml-variants 4.08.1+msvc64
-	RUN ocaml-env exec --64 --ms -- opam install -y depext
-	ENTRYPOINT [ "ocaml-env", "exec", "--64", "--ms", "--" ]
+	RUN opam switch create 4.08 --packages=ocaml-variants.4.08.1+msvc64
+	RUN opam pin add -k version ocaml-variants 4.08.1+msvc64
+	RUN opam install -y depext
+	ENTRYPOINT [ "opam", "exec", "--" ]
 	CMD [ "cmd.exe" ]
 	COPY [ "Dockerfile", "/Dockerfile.ocaml" ]
 

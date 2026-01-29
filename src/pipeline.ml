@@ -96,20 +96,13 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
   let open Dockerfile in
   let os_family = Distro.os_family_of_distro distro in
   let personality = Distro.personality os_family arch in
-  let run, run_no_opam, depext, opam_exec =
-    let open Windows in
-    let bitness = if Ocaml_version.arch_is_32bit arch then "--32" else "--64" in
-    match windows_port with
-    | None ->
-      (fun fmt -> run fmt), (fun fmt -> run fmt), "opam-depext", ["opam"; "exec"; "--"]
-    | Some `Msvc ->
-      (fun fmt -> run_ocaml_env [bitness; "--ms"] fmt),
-      (fun fmt -> run_ocaml_env [bitness; "--ms"; "--no-opam"] fmt),
-       "depext", ["ocaml-env"; "exec"; bitness; "--ms"; "--"]
-    | Some `Mingw ->
-      (fun fmt -> run_ocaml_env [bitness] fmt),
-      (fun fmt -> run_ocaml_env [bitness; "--no-opam"] fmt),
-      "depext depext-cygwinports", ["ocaml-env"; "exec"; bitness; "--"]
+  (* With native opam 2.2+ and persisted MSVC environment, no wrapper needed *)
+  let run_no_opam fmt = run fmt in
+  let opam_exec = ["opam"; "exec"; "--"] in
+  let depext = match windows_port with
+    | None -> "opam-depext"
+    | Some `Msvc -> "depext"
+    | Some `Mingw -> "depext depext-cygwinports"
   in
   let shell = maybe (fun pers -> shell [pers; "/bin/sh"; "-c"]) personality in
   let packages =
