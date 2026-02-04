@@ -146,13 +146,6 @@ let or_die = function
   | Ok x -> x
   | Error (`Msg m) -> failwith m
 
-let maybe_add_overlay distro hash =
-  match distro with
-  | `WindowsServer (`Msvc, _)
-  | `Windows (`Msvc, _) ->
-    Dockerfile.run "opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#%s --set-default" hash
-  | _ -> Dockerfile.empty
-
 module Make (OCurrent : S.OCURRENT) = struct
   open OCurrent
   open Current.Syntax
@@ -173,8 +166,6 @@ module Make (OCurrent : S.OCURRENT) = struct
       let distro_tag, os_family = Distro.(tag_of_distro distro, os_family_of_distro distro) in
       Current.component "%s@,%s" distro_tag arch_name |>
       let> { Git_repositories.opam_repository_master;
-             opam_repository_mingw_sunset;
-             opam_overlays;
              opam_2_0;
              opam_2_1;
              opam_2_2;
@@ -217,7 +208,6 @@ module Make (OCurrent : S.OCURRENT) = struct
               copy ~src:["."] ~dst:opam_repo () @@
               env [("OPAMROOT", opam_root)] @@
               run "opam init -k git -a \"%s\" --bare --disable-sandboxing" opam_repo @@
-              maybe_add_overlay distro (Current_git.Commit_id.hash opam_overlays) @@
               Windows.Cygwin.run_sh "rm -rf /cygdrive/c/opam/.opam/repo/default/.git" @@
               copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
             | `Cygwin -> failwith "No support for Cygwin currently."
@@ -229,8 +219,7 @@ module Make (OCurrent : S.OCURRENT) = struct
                       buildkit = buildkit distro;
                       include_git = true } in
       let cache_hint = Printf.sprintf "opam-%s" distro_tag in
-      let opam_repository = match os_family with `Windows -> opam_repository_mingw_sunset | _ -> opam_repository_master in
-      OCluster.Raw.build_and_push ocluster ~src:[opam_repository] dockerfile
+      OCluster.Raw.build_and_push ocluster ~src:[opam_repository_master] dockerfile
         ~cache_hint
         ~options
         ~push_target
