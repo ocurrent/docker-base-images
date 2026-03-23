@@ -96,25 +96,22 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
   let open Dockerfile in
   let os_family = Distro.os_family_of_distro distro in
   let personality = Distro.personality os_family arch in
-  let run, run_no_opam, depext, opam_exec =
-    let open Windows in
-    let bitness = if Ocaml_version.arch_is_32bit arch then "--32" else "--64" in
-    match windows_port with
-    | None ->
-      (fun fmt -> run fmt), (fun fmt -> run fmt), "opam-depext", ["opam"; "exec"; "--"]
-    | Some `Msvc ->
-      (fun fmt -> run_ocaml_env [bitness; "--ms"] fmt),
-      (fun fmt -> run_ocaml_env [bitness; "--ms"; "--no-opam"] fmt),
-       "depext", ["ocaml-env"; "exec"; bitness; "--ms"; "--"]
-    | Some `Mingw ->
-      (fun fmt -> run_ocaml_env [bitness] fmt),
-      (fun fmt -> run_ocaml_env [bitness; "--no-opam"] fmt),
-      "depext depext-cygwinports", ["ocaml-env"; "exec"; bitness; "--"]
+  (* With native opam 2.2+ and persisted MSVC environment, no wrapper needed *)
+  let run_no_opam fmt = run fmt in
+  let opam_exec = ["opam"; "exec"; "--"] in
+  let depext = match windows_port with
+    | None -> Some "opam-depext"
+    | Some _ -> None (* opam 2.2+ has depext built-in *)
   in
   let shell = maybe (fun pers -> shell [pers; "/bin/sh"; "-c"]) personality in
   let packages =
     let additional_packages = Ocaml_version.Opam.V2.additional_packages switch in
-    String.concat "," (Printf.sprintf "%s.%s" package_name package_version :: additional_packages)
+    let port_package = match windows_port with
+      | None -> []
+      | Some port ->
+          [match port with `Mingw -> "system-mingw" | `Msvc -> "system-msvc"]
+    in
+    String.concat "," (Printf.sprintf "%s.%s" package_name package_version :: port_package @ additional_packages)
   in
   (match os_family with
    | `Linux -> parser_directive (`Syntax "docker/dockerfile:1")
@@ -132,7 +129,7 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
   Dockerfile_opam.ocaml_depexts distro switch @@
   run_no_opam "opam switch create %s --packages=%s" switch_name packages @@
   run "opam pin add -k version %s %s" package_name package_version @@
-  run "opam install -y %s" depext @@
+  (match depext with Some d -> run "opam install -y %s" d | None -> Dockerfile.empty) @@
   maybe_install_secondary_compiler run os_family switch @@
   entrypoint_exec (Option.to_list personality @ opam_exec) @@
   (match os_family with
@@ -147,13 +144,6 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
 let or_die = function
   | Ok x -> x
   | Error (`Msg m) -> failwith m
-
-let maybe_add_overlay distro hash =
-  match distro with
-  | `WindowsServer (`Msvc, _)
-  | `Windows (`Msvc, _) ->
-    Dockerfile.run "opam repo add ocurrent-overlay git+https://github.com/ocurrent/opam-repository-mingw#%s --set-default" hash
-  | _ -> Dockerfile.empty
 
 module Make (OCurrent : S.OCURRENT) = struct
   open OCurrent
@@ -175,8 +165,6 @@ module Make (OCurrent : S.OCURRENT) = struct
       let distro_tag, os_family = Distro.(tag_of_distro distro, os_family_of_distro distro) in
       Current.component "%s@,%s" distro_tag arch_name |>
       let> { Git_repositories.opam_repository_master;
-             opam_repository_mingw_sunset;
-             opam_overlays;
              opam_2_0;
              opam_2_1;
              opam_2_2;
@@ -219,7 +207,6 @@ module Make (OCurrent : S.OCURRENT) = struct
               copy ~src:["."] ~dst:opam_repo () @@
               env [("OPAMROOT", opam_root)] @@
               run "opam init -k git -a \"%s\" --bare --disable-sandboxing" opam_repo @@
-              maybe_add_overlay distro (Current_git.Commit_id.hash opam_overlays) @@
               Windows.Cygwin.run_sh "rm -rf /cygdrive/c/opam/.opam/repo/default/.git" @@
               copy ~src:["Dockerfile"] ~dst:"/Dockerfile.opam" ()
             | `Cygwin -> failwith "No support for Cygwin currently."
@@ -231,8 +218,7 @@ module Make (OCurrent : S.OCURRENT) = struct
                       buildkit = buildkit distro;
                       include_git = true } in
       let cache_hint = Printf.sprintf "opam-%s" distro_tag in
-      let opam_repository = match os_family with `Windows -> opam_repository_mingw_sunset | _ -> opam_repository_master in
-      OCluster.Raw.build_and_push ocluster ~src:[opam_repository] dockerfile
+      OCluster.Raw.build_and_push ocluster ~src:[opam_repository_master] dockerfile
         ~cache_hint
         ~options
         ~push_target
