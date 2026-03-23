@@ -17,7 +17,14 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard c6bb7c00ad7f23f02d71f9c47548f1e9b1169b4c && opam update
 RUN opam pin add dockerfile.dev git+https://github.com/ocurrent/ocaml-dockerfile.git -y --no-action && \
     opam pin add dockerfile-cmd.dev git+https://github.com/ocurrent/ocaml-dockerfile.git -y --no-action && \
-    opam pin add dockerfile-opam.dev git+https://github.com/ocurrent/ocaml-dockerfile.git -y --no-action
+    opam pin add dockerfile-opam.dev git+https://github.com/ocurrent/ocaml-dockerfile.git -y --no-action && \
+    opam pin add current.dev git+https://github.com/ocurrent/ocurrent.git -y --no-action && \
+    opam pin add current_docker.dev git+https://github.com/ocurrent/ocurrent.git -y --no-action && \
+    opam pin add current_git.dev git+https://github.com/ocurrent/ocurrent.git -y --no-action && \
+    opam pin add current_github.dev git+https://github.com/ocurrent/ocurrent.git -y --no-action && \
+    opam pin add current_rpc.dev git+https://github.com/ocurrent/ocurrent.git -y --no-action && \
+    opam pin add current_slack.dev git+https://github.com/ocurrent/ocurrent.git -y --no-action && \
+    opam pin add current_web.dev git+https://github.com/ocurrent/ocurrent.git -y --no-action
 COPY --chown=opam --link base-images.opam /src/
 WORKDIR /src
 RUN --mount=type=cache,target=/home/opam/.opam/download-cache,sharing=locked,uid=1000,gid=1000 \
