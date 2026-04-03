@@ -165,7 +165,6 @@ module Make (OCurrent : S.OCURRENT) = struct
       let distro_tag, os_family = Distro.(tag_of_distro distro, os_family_of_distro distro) in
       Current.component "%s@,%s" distro_tag arch_name |>
       let> { Git_repositories.opam_repository_master;
-             opam_2_0;
              opam_2_1;
              opam_2_2;
              opam_2_3;
@@ -176,8 +175,7 @@ module Make (OCurrent : S.OCURRENT) = struct
       and> windows_version = windows_version in
       let dockerfile =
         let opam_hashes = {
-          Dockerfile_opam.opam_2_0_hash = Current_git.Commit_id.hash opam_2_0;
-          opam_2_1_hash = Current_git.Commit_id.hash opam_2_1;
+          Dockerfile_opam.opam_2_1_hash = Current_git.Commit_id.hash opam_2_1;
           opam_2_2_hash = Current_git.Commit_id.hash opam_2_2;
           opam_2_3_hash = Current_git.Commit_id.hash opam_2_3;
           opam_2_4_hash = Current_git.Commit_id.hash opam_2_4;
