@@ -56,7 +56,7 @@ let switches ~arch ~distro =
   (* TODO: Does Windows include alpha, beta, and release candidate versions? *)
   let with_unreleased = match distro with `WindowsServer _ | `Windows _ -> false | _ -> true in
   let main_switches =
-    Ocaml_version.Releases.(if with_unreleased then recent_with_dev @ unreleased_betas else recent)
+    Ocaml_version.Releases.(if with_unreleased then significant @ dev @ unreleased_betas else significant)
     |> List.filter (fun ov -> Distro.distro_supported_on arch ov distro)
   in
   if is_tier1 then (
