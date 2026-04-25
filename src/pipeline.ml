@@ -53,6 +53,7 @@ let maybe_add_gcc15_overlay (run : 'a run) distro switch =
   | true, `Alpine `V3_23
   | true, `Ubuntu `V25_04
   | true, `Ubuntu `V25_10
+  | true, `Ubuntu `V26_04
   | true, `Fedora `V42
   | true, `Fedora `V43
   | true, `Debian `Unstable
