@@ -14,7 +14,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     libssl-dev \
     m4 \
     pkg-config
-RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard cf76b487b68928b40a49920699bd7419e8e0e184 && opam update
+RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard 9226b95ebeaa698593640cb2ab228a9c83970303 && opam update
 COPY --chown=opam --link base-images.opam /src/
 WORKDIR /src
 ENV OPAMSOLVERTIMEOUT=600
