@@ -80,13 +80,8 @@ let windows_distros = Distro.(active_distros `X86_64 |> List.filter (fun d ->
      d, (fst bdt) ^ ":" ^ (snd bdt), pool_name d `X86_64))
 
 let arches_for ~distro =
-  match distro with
-  | `Ubuntu (`V23_10) ->
-    (* There does not yet exist risc-v ubuntu 23.10 docker images
-       https://github.com/ocurrent/docker-base-images/issues/206 *)
-    Distro.distro_arches Ocaml_version.Releases.latest distro
-    |> List.filter (fun arch -> arch != `Riscv64)
-  | _ -> Distro.distro_arches Ocaml_version.Releases.latest distro
+  Distro.distro_arches Ocaml_version.Releases.latest distro
+  |> List.filter (fun arch -> arch <> `I386 && arch <> `Aarch32)
 
 (* For testing, you can uncomment these lines to limit the number of combinations: *)
 
