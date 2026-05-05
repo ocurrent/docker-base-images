@@ -52,13 +52,14 @@ module Products = struct
   let parse_output job build_job =
     let buffer = Buffer.create 1024 in
     Capnp_rpc_lwt.Capability.with_ref build_job (run_job ~buffer ~job) >>!= fun (_ : string) ->
-      match Astring.String.cuts ~sep:"\r\nOuTPuT\r\n" (Buffer.contents buffer) with
+      let normalized = String.concat "" (String.split_on_char '\r' (Buffer.contents buffer)) in
+      match Astring.String.cuts ~sep:"\nOuTPuT\n" normalized with
       | [_; output; _] -> Lwt_result.return output
-      | [_; rest ] when Astring.String.is_prefix ~affix:"OuTPuT\r\n" rest -> Lwt_result.return ""
+      | [_; rest ] when Astring.String.is_prefix ~affix:"OuTPuT\n" rest -> Lwt_result.return ""
       | _ -> Lwt_result.fail (`Msg "Missing output from command\n\n")
 
   let build connection job {Key.product; pool} =
-    let spec_str = Printf.sprintf "FROM %s\nRUN for /f \"tokens=4 delims=[] \" %%a in ('ver') do echo %.0f& echo OuTPuT& echo %%a& echo OuTPuT" product (Unix.time ()) in
+    let spec_str = Printf.sprintf "FROM %s\nRUN powershell -NoProfile -Command \"'%.0f' | Out-Null; $k = Get-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion'; 'OuTPuT'; '{0}.{1}.{2}.{3}' -f $k.CurrentMajorVersionNumber, $k.CurrentMinorVersionNumber, $k.CurrentBuildNumber, $k.UBR; 'OuTPuT'\"" product (Unix.time ()) in
     let action = Cluster_api.Submission.docker_build (`Contents spec_str) in
     let pool = Current_ocluster.Connection.pool ~job ~pool ~action ~cache_hint:product connection in
     Current.Job.start_with ~pool job ~level:Current.Level.Mostly_harmless >>=
