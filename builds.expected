@@ -7284,7 +7284,7 @@ opensuse-15.6/arm64
 	RUN zypper install --force-resolution -y -t pattern devel_C_C++
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl
+	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl tar
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
@@ -7302,7 +7302,7 @@ opensuse-15.6/arm64
 	RUN zypper install --force-resolution -y -t pattern devel_C_C++
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl bubblewrap
+	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl tar bubblewrap
 	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
@@ -7366,7 +7366,7 @@ opensuse-15.6/amd64
 	RUN zypper install --force-resolution -y -t pattern devel_C_C++
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl
+	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl tar
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
@@ -7384,7 +7384,7 @@ opensuse-15.6/amd64
 	RUN zypper install --force-resolution -y -t pattern devel_C_C++
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl bubblewrap
+	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl tar bubblewrap
 	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
@@ -7748,7 +7748,7 @@ opensuse-16.0/arm64
 	RUN zypper install --force-resolution -y -t pattern devel_C_C++
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl
+	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl tar
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
@@ -7766,7 +7766,7 @@ opensuse-16.0/arm64
 	RUN zypper install --force-resolution -y -t pattern devel_C_C++
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl bubblewrap
+	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl tar bubblewrap
 	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
@@ -7830,7 +7830,7 @@ opensuse-16.0/amd64
 	RUN zypper install --force-resolution -y -t pattern devel_C_C++
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl
+	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl tar
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
@@ -7848,7 +7848,7 @@ opensuse-16.0/amd64
 	RUN zypper install --force-resolution -y -t pattern devel_C_C++
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl bubblewrap
+	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl tar bubblewrap
 	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
@@ -8222,7 +8222,7 @@ opensuse-tumbleweed/amd64
 	RUN zypper install --force-resolution -y -t pattern devel_C_C++
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl
+	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl tar
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
 	RUN git clone https://github.com/ocaml/opam /tmp/opam && cd /tmp/opam && cp -P -R -p . ../opam-sources && git checkout master && env MAKE='make -j' shell/bootstrap-ocaml.sh && make -C src_ext cache-archives
@@ -8240,7 +8240,7 @@ opensuse-tumbleweed/amd64
 	RUN zypper install --force-resolution -y -t pattern devel_C_C++
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl bubblewrap
+	RUN zypper install --force-resolution -y sudo git unzip curl gcc-c++ libcap-devel xz libX11-devel bzip2 which rsync gzip openssl tar bubblewrap
 	COPY --from=0 [ "/usr/bin/opam-2.0", "/usr/bin/opam-2.0" ]
 	RUN ln /usr/bin/opam-2.0 /usr/bin/opam
 	COPY --from=0 [ "/usr/bin/opam-2.1", "/usr/bin/opam-2.1" ]
