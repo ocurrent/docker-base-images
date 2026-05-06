@@ -15,9 +15,9 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     m4 \
     pkg-config
 RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard 163a32c4d55fd31c455579249c3437165211f302 && opam update
+RUN opam option --global solver=builtin-0install
 COPY --chown=opam --link base-images.opam /src/
 WORKDIR /src
-ENV OPAMSOLVERTIMEOUT=600
 RUN --mount=type=cache,target=/home/opam/.opam/download-cache,sharing=locked,uid=1000,gid=1000 \
     opam install -y --deps-only .
 ADD --chown=opam . .
