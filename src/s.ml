@@ -1,4 +1,6 @@
 (* The parts of the OCurrent API that we use. These can be replaced for tests. *)
+module Cluster_api = Current_ocluster.Cluster_api
+
 module type OCURRENT = sig
   module Current : sig
     type 'a t

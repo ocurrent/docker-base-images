@@ -1,10 +1,6 @@
-open Lwt.Infix
 open Current.Syntax
 
-let ( >>!= ) x f =
-  x >>= function
-  | Ok y -> f y
-  | Error _ as e -> Lwt.return e
+let ( let* ) = Result.bind
 
 module Repositories = struct
   type t = No_context
@@ -67,15 +63,15 @@ module Repositories = struct
   end
 
   let get_commit_hash ~job ~repo ~branch =
-    Current.Process.with_tmpdir ~prefix:"git-checkout" @@ fun cwd ->
-    Current.Process.exec ~cwd ~cancellable:true ~job ("", [|"git"; "clone"; "-b"; branch; repo; "."|]) >>!= fun () ->
-    Current.Process.check_output ~cwd ~cancellable:true ~job ("", [|"git"; "rev-parse"; "HEAD"|]) >>!= fun hash ->
-    Lwt.return (Ok (String.trim hash))
+    Current.Process.with_tmpdir ~prefix:"git-checkout" ~job @@ fun cwd ->
+    let* () = Current.Process.exec ~cwd ~cancellable:true ~job ["git"; "clone"; "-b"; branch; repo; "."] in
+    let* hash = Current.Process.check_output ~cwd ~cancellable:true ~job ["git"; "rev-parse"; "HEAD"] in
+    Ok (String.trim hash)
 
   let get_latest_release_hash ~job ~repo =
-    Current.Process.with_tmpdir ~prefix:"git-checkout" @@ fun cwd ->
-    Current.Process.exec ~cwd ~cancellable:true ~job ("", [|"git"; "clone"; repo; "."|]) >>!= fun () ->
-    Current.Process.check_output ~cwd ~cancellable:true ~job ("", [|"git"; "tag"; "--format"; "%(objectname) %(refname:strip=2)"|]) >>!= fun all_tags ->
+    Current.Process.with_tmpdir ~prefix:"git-checkout" ~job @@ fun cwd ->
+    let* () = Current.Process.exec ~cwd ~cancellable:true ~job ["git"; "clone"; repo; "."] in
+    let* all_tags = Current.Process.check_output ~cwd ~cancellable:true ~job ["git"; "tag"; "--format"; "%(objectname) %(refname:strip=2)"] in
     let rec parse = function
       | "" -> []
       | s -> Scanf.sscanf s "%s %s %s@!" (fun sha tag r -> (tag, sha) :: parse r) in
@@ -88,7 +84,7 @@ module Repositories = struct
         | _ -> None)
       |> List.sort (fun (v1, _) (v2, _) -> OpamVersion.compare v2 v1)
       |> List.hd |> snd in
-    Lwt.return (Ok hash)
+    Ok hash
 
   let build No_context job
       { Key.opam_repository_master;
@@ -100,24 +96,22 @@ module Repositories = struct
         opam_master
       } =
     Metrics.set_last_build_time_now ();
-    Current.Job.start job ~level:Current.Level.Mostly_harmless >>= fun () ->
-    get_commit_hash ~job ~repo:opam_repository_master ~branch:"master" >>!= fun opam_repository_master ->
-    get_commit_hash ~job ~repo:opam_2_1 ~branch:"2.1" >>!= fun opam_2_1 ->
-    get_commit_hash ~job ~repo:opam_2_2 ~branch:"2.2" >>!= fun opam_2_2 ->
-    get_commit_hash ~job ~repo:opam_2_3 ~branch:"2.3" >>!= fun opam_2_3 ->
-    get_commit_hash ~job ~repo:opam_2_4 ~branch:"2.4" >>!= fun opam_2_4 ->
-    get_commit_hash ~job ~repo:opam_2_5 ~branch:"2.5" >>!= fun opam_2_5 ->
-    get_latest_release_hash ~job ~repo:opam_master >>!= fun opam_master ->
-    let repos = { Value.opam_repository_master;
-                  opam_2_1;
-                  opam_2_2;
-                  opam_2_3;
-                  opam_2_4;
-                  opam_2_5;
-                  opam_master
-                }
-    in
-    Lwt.return (Ok repos)
+    Current.Job.start job ~level:Current.Level.Mostly_harmless;
+    let* opam_repository_master = get_commit_hash ~job ~repo:opam_repository_master ~branch:"master" in
+    let* opam_2_1 = get_commit_hash ~job ~repo:opam_2_1 ~branch:"2.1" in
+    let* opam_2_2 = get_commit_hash ~job ~repo:opam_2_2 ~branch:"2.2" in
+    let* opam_2_3 = get_commit_hash ~job ~repo:opam_2_3 ~branch:"2.3" in
+    let* opam_2_4 = get_commit_hash ~job ~repo:opam_2_4 ~branch:"2.4" in
+    let* opam_2_5 = get_commit_hash ~job ~repo:opam_2_5 ~branch:"2.5" in
+    let* opam_master = get_latest_release_hash ~job ~repo:opam_master in
+    Ok { Value.opam_repository_master;
+         opam_2_1;
+         opam_2_2;
+         opam_2_3;
+         opam_2_4;
+         opam_2_5;
+         opam_master
+       }
 
   let pp f _ = Fmt.string f "Git repositories"
 
@@ -136,7 +130,8 @@ type t = {
   opam_master : Current_git.Commit_id.t;
 }
 
-let get ~schedule =
+let get ~caps ~schedule =
+  let cache = Cache.create ~caps in
   let key = {
     Repositories.Key.
     opam_repository_master = "https://github.com/ocaml/opam-repository";
@@ -150,7 +145,7 @@ let get ~schedule =
   let+ {Repositories.Value.opam_repository_master; opam_2_1; opam_2_2; opam_2_3; opam_2_4; opam_2_5; opam_master} =
     Current.component "Git-repositories" |>
     let> key = Current.return key in
-    Cache.get ~schedule Repositories.No_context key
+    Cache.get cache ~schedule Repositories.No_context key
   in
   {
     opam_repository_master =

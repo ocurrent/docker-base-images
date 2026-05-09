@@ -13,9 +13,11 @@ module Make (OCurrent : S.OCURRENT) : sig
 end
 
 val v
-  : ?channel:Current_slack.channel
+  : ?slack:Current_slack.t
+  -> ?channel:Current_slack.channel
+  -> caps:Current_cache.caps
   -> connection:Current_ocluster.Connection.t
-  -> ocluster:Current_ocluster.t
+  -> staging_auth:(string * string) option
   -> unit
   -> unit Current.t
 (** The main pipeline. Builds images for all supported distribution, compiler version and architecture combinations. *)

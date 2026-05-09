@@ -3,6 +3,7 @@
  (name base_images)
  (libraries
   current
+  current.cache
   current_web
   current_docker
   current_slack
@@ -12,10 +13,13 @@
   current_rpc
   capnp-rpc-unix
   dockerfile-opam
-  lwt.unix
+  eio
+  eio_main
   prometheus-app.unix
   fmt.cli
+  fmt.tty
   logs.cli
+  logs.fmt
   timedesc
   opam-core)
  (preprocess
