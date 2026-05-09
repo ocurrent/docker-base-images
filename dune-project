@@ -12,13 +12,13 @@
  (name base-images)
  (synopsis "Generate Docker base images for OCaml and opam using ocurrent")
  (depends
-  (ocaml (>= 4.14))
-  (conf-libev (<> :os "win32"))
+  (ocaml (>= 5.0))
   (prometheus-app (>= 1.0))
   ppx_sexp_conv
   ppx_deriving_yojson
   ppx_deriving
-  (lwt (>= 5.9.0))
+  eio
+  eio_main
   logs
   (fmt (>= 0.8.7))
   (current (>= 0.7.0))

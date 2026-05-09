@@ -1,3 +1,5 @@
+module Cluster_api = Current_ocluster.Cluster_api
+
 module Log = struct
   type t = {
     mutable indent : string;
