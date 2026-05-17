@@ -1,5 +1,6 @@
 module Distro = Dockerfile_opam.Distro
 module Windows = Dockerfile_opam.Windows
+module Cluster_api = Current_ocluster.Cluster_api
 
 module Switch_map = Map.Make(Ocaml_version)
 module Windows_map = Map.Make(Distro)
@@ -7,14 +8,14 @@ module Windows_map = Map.Make(Distro)
 let weekly = Current_cache.Schedule.v ~valid_for:(Duration.of_day Conf.days_between_rebuilds) ()
 let daily = Current_cache.Schedule.v ~valid_for:(Duration.of_day 1) ()
 
-let win_ver ocluster =
+let win_ver ~caps connection =
   Conf.windows_distros
   |> List.fold_left (fun m (distro, product, pool) ->
-    let w = Win_ver.get ~schedule:daily ocluster product pool in
+    let w = Win_ver.get ~caps ~schedule:daily connection product pool in
     Windows_map.add distro w m) Windows_map.empty
 
-let git_repositories () =
-  Git_repositories.get ~schedule:weekly
+let git_repositories ~caps () =
+  Git_repositories.get ~caps ~schedule:weekly
 
 (* [aliases_of d] gives other tags which should point to [d].
    e.g. just after the Ubuntu 20.04 release, [aliases_of ubuntu-20.04 = [ ubuntu; ubuntu-lts ]] *)
@@ -452,29 +453,35 @@ module Make (OCurrent : S.OCURRENT) = struct
     Current.all pipelines
 end
 
-module Real = Make(struct
-    module Current = Current
-    module OCluster = Current_ocluster
-    module Docker = Current_docker
-  end)
-
 open Current.Syntax
 
-let notify_status ?channel x =
-  match channel with
-  | None -> x
-  | Some channel ->
+let notify_status ?slack ?channel x =
+  match slack, channel with
+  | Some slack, Some channel ->
     let s =
       let+ state = Current.catch x in
       Fmt.str "docker-base-images status: %a" (Current_term.Output.pp Current.Unit.pp) state
     in
     Current.all [
-      Current_slack.post channel ~key:"base-images-status" s;
+      Current_slack.post slack channel ~key:"base-images-status" s;
       x   (* If [x] fails, the whole pipeline should fail too. *)
     ]
+  | _ -> x
 
-let v ?channel ~connection ~ocluster () =
+let v ?slack ?channel ~caps ~connection ~staging_auth () =
   if Conf.auth = None then Fmt.pr "Password file %S not found; images will not be pushed to hub@." Conf.password_path;
-  let repos = git_repositories () in
-  let wv = win_ver connection  in
-  Real.v ~ocluster ~repos ~windows_version:wv |> notify_status ?channel
+  let git = Current_git.create ~caps in
+  let module Docker_real = (val Current_docker.default ~caps ~git) in
+  let module OC = (val Current_ocluster.make ~caps ~connection) in
+  let oc = OC.v ?push_auth:staging_auth ~urgent:`Never () in
+  let module Real = Make (struct
+    module Current = Current
+    module OCluster = struct
+      type t = OC.t
+      module Raw = OC.Raw
+    end
+    module Docker = Docker_real
+  end) in
+  let repos = git_repositories ~caps () in
+  let wv = win_ver ~caps connection in
+  Real.v ~ocluster:oc ~repos ~windows_version:wv |> notify_status ?slack ?channel

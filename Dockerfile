@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ocaml/opam:debian-ocaml-4.14 AS build
+FROM ocaml/opam:debian-13-ocaml-5.4 AS build
 RUN sudo ln -sf /usr/bin/opam-2.5 /usr/bin/opam && opam init --reinit -ni
 RUN sudo rm -f /etc/apt/apt.conf.d/docker-clean; echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' | sudo tee /etc/apt/apt.conf.d/keep-cache
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
@@ -16,6 +16,21 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     pkg-config
 RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard 28d044eb9ccd9b9275c54a845b30932c3d934aa0 && opam update
 RUN opam option --global solver=builtin-0install
+# OCurrent 2.0 needs the prometheus Eio fork plus all current_* packages
+# from the eio branch, and current_ocluster's Eio plugin (which lives on the
+# ocluster eio branch alongside its new ocluster-api-eio sibling).
+RUN opam pin add -yn prometheus.dev      https://github.com/mtelvers/prometheus.git#eio && \
+    opam pin add -yn prometheus-app.dev  https://github.com/mtelvers/prometheus.git#eio && \
+    opam pin add -yn current.dev         https://github.com/mtelvers/ocurrent.git#eio && \
+    opam pin add -yn current_term.dev    https://github.com/mtelvers/ocurrent.git#eio && \
+    opam pin add -yn current_web.dev     https://github.com/mtelvers/ocurrent.git#eio && \
+    opam pin add -yn current_git.dev     https://github.com/mtelvers/ocurrent.git#eio && \
+    opam pin add -yn current_github.dev  https://github.com/mtelvers/ocurrent.git#eio && \
+    opam pin add -yn current_docker.dev  https://github.com/mtelvers/ocurrent.git#eio && \
+    opam pin add -yn current_slack.dev   https://github.com/mtelvers/ocurrent.git#eio && \
+    opam pin add -yn current_rpc.dev     https://github.com/mtelvers/ocurrent.git#eio && \
+    opam pin add -yn ocluster-api-eio.dev https://github.com/mtelvers/ocluster.git#eio && \
+    opam pin add -yn current_ocluster.dev https://github.com/mtelvers/ocluster.git#eio
 COPY --chown=opam --link base-images.opam /src/
 WORKDIR /src
 RUN --mount=type=cache,target=/home/opam/.opam/download-cache,sharing=locked,uid=1000,gid=1000 \
