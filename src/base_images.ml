@@ -106,8 +106,8 @@ let main default_level config mode slack_path capnp_address auth_config submissi
     Routes.(s "login" /? nil @--> Current_github.Auth.login auth) ::
     Current_web.routes engine in
   let site = Current_web.Site.v ?authn ~secure_cookies ~has_role ~name:program_name ~refresh_pipeline:60 routes in
-  Prometheus_unix.serve ~sw ~net prometheus_config;
-  Current_web.run ~net ~mode site
+  Eio.Fiber.all
+    (Current_web.run ~net ~mode site :: Prometheus_unix.serve ~net prometheus_config)
 
 (* Command-line parsing *)
 
