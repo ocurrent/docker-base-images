@@ -14,7 +14,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     libssl-dev \
     m4 \
     pkg-config
-RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard 28d044eb9ccd9b9275c54a845b30932c3d934aa0 && opam update
+RUN cd ~/opam-repository && git fetch -q origin master && git reset --hard 3e30e43808721339489775ee25d69c4c9c441697 && opam update
 RUN opam option --global solver=builtin-0install
 # OCurrent 2.0 needs the prometheus Eio fork plus all current_* packages
 # from the eio branch, and current_ocluster's Eio plugin (which lives on the
