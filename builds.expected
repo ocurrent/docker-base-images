@@ -72,7 +72,7 @@ alpine-3.23/arm64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -152,7 +152,7 @@ alpine-3.23/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -1351,7 +1351,7 @@ archlinux/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -1564,7 +1564,7 @@ centos-9/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -1775,7 +1775,7 @@ centos-10/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -1995,7 +1995,7 @@ debian-12/s390x
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -2078,7 +2078,7 @@ debian-12/ppc64le
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -2161,7 +2161,7 @@ debian-12/arm64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -2244,7 +2244,7 @@ debian-12/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -2854,7 +2854,7 @@ debian-13/riscv64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -2937,7 +2937,7 @@ debian-13/s390x
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -3020,7 +3020,7 @@ debian-13/ppc64le
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -3103,7 +3103,7 @@ debian-13/arm64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -3186,7 +3186,7 @@ debian-13/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -5358,7 +5358,7 @@ debian-testing/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -5583,7 +5583,7 @@ debian-unstable/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -5806,7 +5806,7 @@ fedora-42/arm64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -5887,7 +5887,7 @@ fedora-42/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -6217,7 +6217,7 @@ fedora-43/arm64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -6298,7 +6298,7 @@ fedora-43/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -6628,7 +6628,7 @@ fedora-44/arm64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -6709,7 +6709,7 @@ fedora-44/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -7048,7 +7048,7 @@ oraclelinux-10/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -7265,7 +7265,7 @@ opensuse-16.0/arm64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -7345,7 +7345,7 @@ opensuse-16.0/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -7707,7 +7707,7 @@ opensuse-tumbleweed/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -7932,7 +7932,7 @@ ubuntu-22.04/s390x
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -8015,7 +8015,7 @@ ubuntu-22.04/ppc64le
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -8098,7 +8098,7 @@ ubuntu-22.04/arm64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -8181,7 +8181,7 @@ ubuntu-22.04/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -8264,7 +8264,7 @@ ubuntu-22.04/riscv64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -9003,7 +9003,7 @@ ubuntu-24.04/s390x
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -9086,7 +9086,7 @@ ubuntu-24.04/ppc64le
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -9169,7 +9169,7 @@ ubuntu-24.04/arm64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -9252,7 +9252,7 @@ ubuntu-24.04/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -9335,7 +9335,7 @@ ubuntu-24.04/riscv64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -10074,7 +10074,7 @@ ubuntu-25.04/s390x
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -10157,7 +10157,7 @@ ubuntu-25.04/ppc64le
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -10240,7 +10240,7 @@ ubuntu-25.04/arm64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -10323,7 +10323,7 @@ ubuntu-25.04/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -10406,7 +10406,7 @@ ubuntu-25.04/riscv64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -11146,7 +11146,7 @@ ubuntu-25.10/s390x
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -11230,7 +11230,7 @@ ubuntu-25.10/ppc64le
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -11314,7 +11314,7 @@ ubuntu-25.10/arm64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -11398,7 +11398,7 @@ ubuntu-25.10/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -12017,7 +12017,7 @@ ubuntu-26.04/s390x
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -12101,7 +12101,7 @@ ubuntu-26.04/ppc64le
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -12185,7 +12185,7 @@ ubuntu-26.04/arm64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
@@ -12269,7 +12269,7 @@ ubuntu-26.04/amd64
 	RUN sudo mv /home/opam/opam-sandbox-enable /usr/bin/opam-sandbox-enable
 	RUN git config --global user.email "docker@example.com"
 	RUN git config --global user.name "Docker"
-	COPY --link --chown=opam:opam [ ".", "/home/opam/opam-repository" ]
+	COPY --link --chown=1000:1000 [ ".", "/home/opam/opam-repository" ]
 	RUN opam-sandbox-disable
 	RUN opam init -k git -a /home/opam/opam-repository --bare
 	RUN echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config
