@@ -55,6 +55,11 @@ let maybe_add_gcc15_overlay (run : 'a run) distro switch =
   | _, _ ->
     Dockerfile.empty
 
+let maybe_add_zstd_dev (run : 'a run) distro =
+  match Distro.package_manager distro with
+  | `Apk -> run "sudo apk add zstd-dev"
+  | `Apt | `Yum | `Zypper | `Pacman | `Cygwin | `Windows -> Dockerfile.empty
+
 let maybe_install_secondary_compiler (run : 'a run) os_family switch =
   let dune_min_native_support = Ocaml_version.Releases.v4_08 in
   (* opam-repository-mingw doesn't package ocaml-secondary-compiler. *)
@@ -117,6 +122,7 @@ let install_compiler_df ~distro ~arch ~switch ?windows_port opam_image =
        "OPAMPRECISETRACKING", "1"; (* Mitigate https://github.com/ocaml/opam/issues/3997 *)
       ] @@
   Dockerfile_opam.ocaml_depexts distro switch @@
+  maybe_add_zstd_dev run distro @@
   run_no_opam "opam switch create %s --packages=%s" switch_name packages @@
   run "opam pin add -k version %s %s" package_name package_version @@
   (match depext with Some d -> run "opam install -y %s" d | None -> Dockerfile.empty) @@
