@@ -451,7 +451,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-4.14-no-flat-float-array-arm64, ocurrent
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-base-compiler.5.2.1
 	RUN opam pin add -k version ocaml-base-compiler 5.2.1
@@ -467,7 +467,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-4.14-no-flat-float-array-arm64, ocurrent
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-base-compiler.5.2.1
 	RUN opam pin add -k version ocaml-base-compiler 5.2.1
@@ -485,7 +485,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.2-arm64, ocurrent/opam-staging:alpine-
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-variants.5.2.1+options,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.2.1+options
@@ -501,7 +501,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.2-arm64, ocurrent/opam-staging:alpine-
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-variants.5.2.1+options,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.2.1+options
@@ -519,7 +519,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.2-afl-arm64, ocurrent/opam-staging:alp
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-variants.5.2.1+options,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.2.1+options
@@ -535,7 +535,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.2-afl-arm64, ocurrent/opam-staging:alp
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-variants.5.2.1+options,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.2.1+options
@@ -553,7 +553,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.2-flambda-arm64, ocurrent/opam-staging
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-variants.5.2.1+options,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.2.1+options
@@ -569,7 +569,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.2-flambda-arm64, ocurrent/opam-staging
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-variants.5.2.1+options,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.2.1+options
@@ -587,7 +587,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.2-no-flat-float-array-arm64, ocurrent/
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-base-compiler.5.3.0
 	RUN opam pin add -k version ocaml-base-compiler 5.3.0
@@ -603,7 +603,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.2-no-flat-float-array-arm64, ocurrent/
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-base-compiler.5.3.0
 	RUN opam pin add -k version ocaml-base-compiler 5.3.0
@@ -621,7 +621,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.3-arm64, ocurrent/opam-staging:alpine-
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.3.0+options
@@ -637,7 +637,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.3-arm64, ocurrent/opam-staging:alpine-
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.3.0+options
@@ -655,7 +655,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.3-afl-arm64, ocurrent/opam-staging:alp
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.3.0+options
@@ -671,7 +671,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.3-afl-arm64, ocurrent/opam-staging:alp
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.3.0+options
@@ -689,7 +689,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.3-flambda-arm64, ocurrent/opam-staging
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.3.0+options
@@ -705,7 +705,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.3-flambda-arm64, ocurrent/opam-staging
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-variants.5.3.0+options,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.3.0+options
@@ -723,7 +723,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.3-no-flat-float-array-arm64, ocurrent/
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-base-compiler.5.4.1
 	RUN opam pin add -k version ocaml-base-compiler 5.4.1
@@ -739,7 +739,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.3-no-flat-float-array-arm64, ocurrent/
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-base-compiler.5.4.1
 	RUN opam pin add -k version ocaml-base-compiler 5.4.1
@@ -759,7 +759,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.4-arm64, ocurrent/opam-staging:alpine-
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-variants.5.4.1+options,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.4.1+options
@@ -775,7 +775,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.4-arm64, ocurrent/opam-staging:alpine-
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-variants.5.4.1+options,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.4.1+options
@@ -793,7 +793,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.4-afl-arm64, ocurrent/opam-staging:alp
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-variants.5.4.1+options,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.4.1+options
@@ -809,7 +809,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.4-afl-arm64, ocurrent/opam-staging:alp
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-variants.5.4.1+options,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.4.1+options
@@ -827,7 +827,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.4-flambda-arm64, ocurrent/opam-staging
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-variants.5.4.1+options,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.4.1+options
@@ -843,7 +843,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.4-flambda-arm64, ocurrent/opam-staging
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-variants.5.4.1+options,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.4.1+options
@@ -862,7 +862,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.4-no-flat-float-array-arm64, ocurrent/
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-base-compiler.5.5.0~beta1
 	RUN opam pin add -k version ocaml-base-compiler 5.5.0~beta1
@@ -879,7 +879,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.4-no-flat-float-array-arm64, ocurrent/
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-base-compiler.5.5.0~beta1
 	RUN opam pin add -k version ocaml-base-compiler 5.5.0~beta1
@@ -898,7 +898,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-beta1-arm64, ocurrent/opam-staging:a
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-variants.5.5.0~beta1+options,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.5.0~beta1+options
@@ -915,7 +915,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-beta1-arm64, ocurrent/opam-staging:a
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-variants.5.5.0~beta1+options,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.5.0~beta1+options
@@ -934,7 +934,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-beta1-afl-arm64, ocurrent/opam-stagi
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-variants.5.5.0~beta1+options,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.5.0~beta1+options
@@ -951,7 +951,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-beta1-afl-arm64, ocurrent/opam-stagi
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-variants.5.5.0~beta1+options,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.5.0~beta1+options
@@ -970,7 +970,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-beta1-flambda-arm64, ocurrent/opam-s
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-variants.5.5.0~beta1+options,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.5.0~beta1+options
@@ -987,7 +987,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-beta1-flambda-arm64, ocurrent/opam-s
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-variants.5.5.0~beta1+options,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.5.0~beta1+options
@@ -1006,7 +1006,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-beta1-no-flat-float-array-arm64, ocu
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -1023,7 +1023,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-beta1-no-flat-float-array-arm64, ocu
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -1042,7 +1042,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-arm64, ocurrent/opam-staging:alpine-
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -1059,7 +1059,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-arm64, ocurrent/opam-staging:alpine-
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -1078,7 +1078,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-afl-arm64, ocurrent/opam-staging:alp
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -1095,7 +1095,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-afl-arm64, ocurrent/opam-staging:alp
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -1114,7 +1114,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-flambda-arm64, ocurrent/opam-staging
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -1131,7 +1131,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-flambda-arm64, ocurrent/opam-staging
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -1150,7 +1150,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-no-flat-float-array-arm64, ocurrent/
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -1167,7 +1167,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.5-no-flat-float-array-arm64, ocurrent/
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -1186,7 +1186,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.6-arm64, ocurrent/opam-staging:alpine-
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -1203,7 +1203,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.6-arm64, ocurrent/opam-staging:alpine-
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk,ocaml-options-only-afl
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -1222,7 +1222,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.6-afl-arm64, ocurrent/opam-staging:alp
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -1239,7 +1239,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.6-afl-arm64, ocurrent/opam-staging:alp
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk,ocaml-options-only-flambda
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -1258,7 +1258,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.6-flambda-arm64, ocurrent/opam-staging
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -1275,7 +1275,7 @@ ocurrent/opam-staging:alpine-3.23-ocaml-5.6-flambda-arm64, ocurrent/opam-staging
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
 	RUN apk update && apk upgrade
-	RUN apk add zstd
+	RUN apk add zstd-dev
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk,ocaml-options-only-no-flat-float-array
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -1604,7 +1604,7 @@ ocurrent/opam-staging:centos-9-ocaml-4.14-amd64 -> ocaml/opam:centos-9-ocaml-4.1
 	FROM ocurrent/opam-staging:centos-9-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-base-compiler.5.2.1
 	RUN opam pin add -k version ocaml-base-compiler 5.2.1
@@ -1620,7 +1620,7 @@ ocurrent/opam-staging:centos-9-ocaml-5.2-amd64 -> ocaml/opam:centos-9-ocaml-5.2
 	FROM ocurrent/opam-staging:centos-9-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-base-compiler.5.3.0
 	RUN opam pin add -k version ocaml-base-compiler 5.3.0
@@ -1636,7 +1636,7 @@ ocurrent/opam-staging:centos-9-ocaml-5.3-amd64 -> ocaml/opam:centos-9-ocaml-5.3
 	FROM ocurrent/opam-staging:centos-9-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-base-compiler.5.4.1
 	RUN opam pin add -k version ocaml-base-compiler 5.4.1
@@ -1654,7 +1654,7 @@ ocurrent/opam-staging:centos-9-ocaml-5.4-amd64 -> ocaml/opam:centos-9-ocaml-5.4
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-base-compiler.5.5.0~beta1
 	RUN opam pin add -k version ocaml-base-compiler 5.5.0~beta1
@@ -1671,7 +1671,7 @@ ocurrent/opam-staging:centos-9-ocaml-5.5-beta1-amd64 -> ocaml/opam:centos-9-ocam
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -1688,7 +1688,7 @@ ocurrent/opam-staging:centos-9-ocaml-5.5-amd64 -> ocaml/opam:centos-9-ocaml-5.5
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -1817,7 +1817,7 @@ ocurrent/opam-staging:centos-10-ocaml-4.14-amd64 -> ocaml/opam:centos-ocaml-4.14
 	FROM ocurrent/opam-staging:centos-10-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-base-compiler.5.2.1
 	RUN opam pin add -k version ocaml-base-compiler 5.2.1
@@ -1834,7 +1834,7 @@ ocurrent/opam-staging:centos-10-ocaml-5.2-amd64 -> ocaml/opam:centos-ocaml-5.2
 	FROM ocurrent/opam-staging:centos-10-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-base-compiler.5.3.0
 	RUN opam pin add -k version ocaml-base-compiler 5.3.0
@@ -1851,7 +1851,7 @@ ocurrent/opam-staging:centos-10-ocaml-5.3-amd64 -> ocaml/opam:centos-ocaml-5.3
 	FROM ocurrent/opam-staging:centos-10-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-base-compiler.5.4.1
 	RUN opam pin add -k version ocaml-base-compiler 5.4.1
@@ -1871,7 +1871,7 @@ ocurrent/opam-staging:centos-10-ocaml-5.4-amd64 -> ocaml/opam:centos-ocaml-5.4
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-base-compiler.5.5.0~beta1
 	RUN opam pin add -k version ocaml-base-compiler 5.5.0~beta1
@@ -1889,7 +1889,7 @@ ocurrent/opam-staging:centos-10-ocaml-5.5-beta1-amd64 -> ocaml/opam:centos-ocaml
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -1907,7 +1907,7 @@ ocurrent/opam-staging:centos-10-ocaml-5.5-amd64 -> ocaml/opam:centos-ocaml-5.5
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -5955,7 +5955,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-4
 	FROM ocurrent/opam-staging:fedora-42-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-base-compiler.5.2.1
 	RUN opam pin add -k version ocaml-base-compiler 5.2.1
@@ -5970,7 +5970,7 @@ ocurrent/opam-staging:fedora-42-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-4
 	FROM ocurrent/opam-staging:fedora-42-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-base-compiler.5.2.1
 	RUN opam pin add -k version ocaml-base-compiler 5.2.1
@@ -5986,7 +5986,7 @@ ocurrent/opam-staging:fedora-42-ocaml-5.2-arm64, ocurrent/opam-staging:fedora-42
 	FROM ocurrent/opam-staging:fedora-42-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-base-compiler.5.3.0
 	RUN opam pin add -k version ocaml-base-compiler 5.3.0
@@ -6001,7 +6001,7 @@ ocurrent/opam-staging:fedora-42-ocaml-5.2-arm64, ocurrent/opam-staging:fedora-42
 	FROM ocurrent/opam-staging:fedora-42-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-base-compiler.5.3.0
 	RUN opam pin add -k version ocaml-base-compiler 5.3.0
@@ -6017,7 +6017,7 @@ ocurrent/opam-staging:fedora-42-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-42
 	FROM ocurrent/opam-staging:fedora-42-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-base-compiler.5.4.1
 	RUN opam pin add -k version ocaml-base-compiler 5.4.1
@@ -6032,7 +6032,7 @@ ocurrent/opam-staging:fedora-42-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-42
 	FROM ocurrent/opam-staging:fedora-42-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-base-compiler.5.4.1
 	RUN opam pin add -k version ocaml-base-compiler 5.4.1
@@ -6050,7 +6050,7 @@ ocurrent/opam-staging:fedora-42-ocaml-5.4-arm64, ocurrent/opam-staging:fedora-42
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-base-compiler.5.5.0~beta1
 	RUN opam pin add -k version ocaml-base-compiler 5.5.0~beta1
@@ -6066,7 +6066,7 @@ ocurrent/opam-staging:fedora-42-ocaml-5.4-arm64, ocurrent/opam-staging:fedora-42
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-base-compiler.5.5.0~beta1
 	RUN opam pin add -k version ocaml-base-compiler 5.5.0~beta1
@@ -6083,7 +6083,7 @@ ocurrent/opam-staging:fedora-42-ocaml-5.5-beta1-arm64, ocurrent/opam-staging:fed
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -6099,7 +6099,7 @@ ocurrent/opam-staging:fedora-42-ocaml-5.5-beta1-arm64, ocurrent/opam-staging:fed
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -6116,7 +6116,7 @@ ocurrent/opam-staging:fedora-42-ocaml-5.5-arm64, ocurrent/opam-staging:fedora-42
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -6132,7 +6132,7 @@ ocurrent/opam-staging:fedora-42-ocaml-5.5-arm64, ocurrent/opam-staging:fedora-42
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -6366,7 +6366,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-4
 	FROM ocurrent/opam-staging:fedora-43-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-base-compiler.5.2.1
 	RUN opam pin add -k version ocaml-base-compiler 5.2.1
@@ -6381,7 +6381,7 @@ ocurrent/opam-staging:fedora-43-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-4
 	FROM ocurrent/opam-staging:fedora-43-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-base-compiler.5.2.1
 	RUN opam pin add -k version ocaml-base-compiler 5.2.1
@@ -6397,7 +6397,7 @@ ocurrent/opam-staging:fedora-43-ocaml-5.2-arm64, ocurrent/opam-staging:fedora-43
 	FROM ocurrent/opam-staging:fedora-43-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-base-compiler.5.3.0
 	RUN opam pin add -k version ocaml-base-compiler 5.3.0
@@ -6412,7 +6412,7 @@ ocurrent/opam-staging:fedora-43-ocaml-5.2-arm64, ocurrent/opam-staging:fedora-43
 	FROM ocurrent/opam-staging:fedora-43-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-base-compiler.5.3.0
 	RUN opam pin add -k version ocaml-base-compiler 5.3.0
@@ -6428,7 +6428,7 @@ ocurrent/opam-staging:fedora-43-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-43
 	FROM ocurrent/opam-staging:fedora-43-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-base-compiler.5.4.1
 	RUN opam pin add -k version ocaml-base-compiler 5.4.1
@@ -6443,7 +6443,7 @@ ocurrent/opam-staging:fedora-43-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-43
 	FROM ocurrent/opam-staging:fedora-43-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-base-compiler.5.4.1
 	RUN opam pin add -k version ocaml-base-compiler 5.4.1
@@ -6461,7 +6461,7 @@ ocurrent/opam-staging:fedora-43-ocaml-5.4-arm64, ocurrent/opam-staging:fedora-43
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-base-compiler.5.5.0~beta1
 	RUN opam pin add -k version ocaml-base-compiler 5.5.0~beta1
@@ -6477,7 +6477,7 @@ ocurrent/opam-staging:fedora-43-ocaml-5.4-arm64, ocurrent/opam-staging:fedora-43
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-base-compiler.5.5.0~beta1
 	RUN opam pin add -k version ocaml-base-compiler 5.5.0~beta1
@@ -6494,7 +6494,7 @@ ocurrent/opam-staging:fedora-43-ocaml-5.5-beta1-arm64, ocurrent/opam-staging:fed
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -6510,7 +6510,7 @@ ocurrent/opam-staging:fedora-43-ocaml-5.5-beta1-arm64, ocurrent/opam-staging:fed
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -6527,7 +6527,7 @@ ocurrent/opam-staging:fedora-43-ocaml-5.5-arm64, ocurrent/opam-staging:fedora-43
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -6543,7 +6543,7 @@ ocurrent/opam-staging:fedora-43-ocaml-5.5-arm64, ocurrent/opam-staging:fedora-43
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -6779,7 +6779,7 @@ ocurrent/opam-staging:fedora-44-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-4
 	FROM ocurrent/opam-staging:fedora-44-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-base-compiler.5.2.1
 	RUN opam pin add -k version ocaml-base-compiler 5.2.1
@@ -6794,7 +6794,7 @@ ocurrent/opam-staging:fedora-44-ocaml-4.14-arm64, ocurrent/opam-staging:fedora-4
 	FROM ocurrent/opam-staging:fedora-44-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-base-compiler.5.2.1
 	RUN opam pin add -k version ocaml-base-compiler 5.2.1
@@ -6811,7 +6811,7 @@ ocurrent/opam-staging:fedora-44-ocaml-5.2-arm64, ocurrent/opam-staging:fedora-44
 	FROM ocurrent/opam-staging:fedora-44-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-base-compiler.5.3.0
 	RUN opam pin add -k version ocaml-base-compiler 5.3.0
@@ -6826,7 +6826,7 @@ ocurrent/opam-staging:fedora-44-ocaml-5.2-arm64, ocurrent/opam-staging:fedora-44
 	FROM ocurrent/opam-staging:fedora-44-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-base-compiler.5.3.0
 	RUN opam pin add -k version ocaml-base-compiler 5.3.0
@@ -6843,7 +6843,7 @@ ocurrent/opam-staging:fedora-44-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-44
 	FROM ocurrent/opam-staging:fedora-44-opam-arm64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-base-compiler.5.4.1
 	RUN opam pin add -k version ocaml-base-compiler 5.4.1
@@ -6858,7 +6858,7 @@ ocurrent/opam-staging:fedora-44-ocaml-5.3-arm64, ocurrent/opam-staging:fedora-44
 	FROM ocurrent/opam-staging:fedora-44-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-base-compiler.5.4.1
 	RUN opam pin add -k version ocaml-base-compiler 5.4.1
@@ -6878,7 +6878,7 @@ ocurrent/opam-staging:fedora-44-ocaml-5.4-arm64, ocurrent/opam-staging:fedora-44
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-base-compiler.5.5.0~beta1
 	RUN opam pin add -k version ocaml-base-compiler 5.5.0~beta1
@@ -6894,7 +6894,7 @@ ocurrent/opam-staging:fedora-44-ocaml-5.4-arm64, ocurrent/opam-staging:fedora-44
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-base-compiler.5.5.0~beta1
 	RUN opam pin add -k version ocaml-base-compiler 5.5.0~beta1
@@ -6912,7 +6912,7 @@ ocurrent/opam-staging:fedora-44-ocaml-5.5-beta1-arm64, ocurrent/opam-staging:fed
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -6928,7 +6928,7 @@ ocurrent/opam-staging:fedora-44-ocaml-5.5-beta1-arm64, ocurrent/opam-staging:fed
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -6946,7 +6946,7 @@ ocurrent/opam-staging:fedora-44-ocaml-5.5-arm64, ocurrent/opam-staging:fedora-44
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -6962,7 +6962,7 @@ ocurrent/opam-staging:fedora-44-ocaml-5.5-arm64, ocurrent/opam-staging:fedora-44
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -7090,7 +7090,7 @@ ocurrent/opam-staging:oraclelinux-10-ocaml-4.14-amd64 -> ocaml/opam:oraclelinux-
 	FROM ocurrent/opam-staging:oraclelinux-10-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-base-compiler.5.2.1
 	RUN opam pin add -k version ocaml-base-compiler 5.2.1
@@ -7107,7 +7107,7 @@ ocurrent/opam-staging:oraclelinux-10-ocaml-5.2-amd64 -> ocaml/opam:oraclelinux-o
 	FROM ocurrent/opam-staging:oraclelinux-10-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-base-compiler.5.3.0
 	RUN opam pin add -k version ocaml-base-compiler 5.3.0
@@ -7124,7 +7124,7 @@ ocurrent/opam-staging:oraclelinux-10-ocaml-5.3-amd64 -> ocaml/opam:oraclelinux-o
 	FROM ocurrent/opam-staging:oraclelinux-10-opam-amd64
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-base-compiler.5.4.1
 	RUN opam pin add -k version ocaml-base-compiler 5.4.1
@@ -7144,7 +7144,7 @@ ocurrent/opam-staging:oraclelinux-10-ocaml-5.4-amd64 -> ocaml/opam:oraclelinux-o
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-base-compiler.5.5.0~beta1
 	RUN opam pin add -k version ocaml-base-compiler 5.5.0~beta1
@@ -7162,7 +7162,7 @@ ocurrent/opam-staging:oraclelinux-10-ocaml-5.5-beta1-amd64 -> ocaml/opam:oraclel
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -7180,7 +7180,7 @@ ocurrent/opam-staging:oraclelinux-10-ocaml-5.5-amd64 -> ocaml/opam:oraclelinux-o
 	RUN opam repo add beta git+https://github.com/ocaml/ocaml-beta-repository --set-default
 	ENV OPAMYES="1" OPAMCONFIRMLEVEL="unsafe-yes" OPAMERRLOGLEN="0" OPAMPRECISETRACKING="1"
 	USER root
-	RUN yum install -y zstd && yum clean packages
+	RUN yum install -y libzstd-devel && yum clean packages
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -7417,7 +7417,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.14-arm64, ocurrent/opam-staging:open
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-base-compiler.5.2.1
 	RUN opam pin add -k version ocaml-base-compiler 5.2.1
@@ -7434,7 +7434,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-4.14-arm64, ocurrent/opam-staging:open
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-base-compiler.5.2.1
 	RUN opam pin add -k version ocaml-base-compiler 5.2.1
@@ -7453,7 +7453,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-5.2-arm64, ocurrent/opam-staging:opens
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-base-compiler.5.3.0
 	RUN opam pin add -k version ocaml-base-compiler 5.3.0
@@ -7470,7 +7470,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-5.2-arm64, ocurrent/opam-staging:opens
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-base-compiler.5.3.0
 	RUN opam pin add -k version ocaml-base-compiler 5.3.0
@@ -7489,7 +7489,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-5.3-arm64, ocurrent/opam-staging:opens
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-base-compiler.5.4.1
 	RUN opam pin add -k version ocaml-base-compiler 5.4.1
@@ -7506,7 +7506,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-5.3-arm64, ocurrent/opam-staging:opens
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-base-compiler.5.4.1
 	RUN opam pin add -k version ocaml-base-compiler 5.4.1
@@ -7528,7 +7528,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-5.4-arm64, ocurrent/opam-staging:opens
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-base-compiler.5.5.0~beta1
 	RUN opam pin add -k version ocaml-base-compiler 5.5.0~beta1
@@ -7546,7 +7546,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-5.4-arm64, ocurrent/opam-staging:opens
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-base-compiler.5.5.0~beta1
 	RUN opam pin add -k version ocaml-base-compiler 5.5.0~beta1
@@ -7566,7 +7566,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-5.5-beta1-arm64, ocurrent/opam-staging
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -7584,7 +7584,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-5.5-beta1-arm64, ocurrent/opam-staging
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -7604,7 +7604,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-5.5-arm64, ocurrent/opam-staging:opens
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -7622,7 +7622,7 @@ ocurrent/opam-staging:opensuse-16.0-ocaml-5.5-arm64, ocurrent/opam-staging:opens
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
@@ -7751,7 +7751,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-4.14-amd64 -> ocaml/opam:opensus
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.2 --packages=ocaml-base-compiler.5.2.1
 	RUN opam pin add -k version ocaml-base-compiler 5.2.1
@@ -7769,7 +7769,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-5.2-amd64 -> ocaml/opam:opensuse
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.3 --packages=ocaml-base-compiler.5.3.0
 	RUN opam pin add -k version ocaml-base-compiler 5.3.0
@@ -7787,7 +7787,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-5.3-amd64 -> ocaml/opam:opensuse
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.4 --packages=ocaml-base-compiler.5.4.1
 	RUN opam pin add -k version ocaml-base-compiler 5.4.1
@@ -7807,7 +7807,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-5.4-amd64 -> ocaml/opam:opensuse
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.5~beta1 --packages=ocaml-base-compiler.5.5.0~beta1
 	RUN opam pin add -k version ocaml-base-compiler 5.5.0~beta1
@@ -7826,7 +7826,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-5.5-beta1-amd64 -> ocaml/opam:op
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.5 --packages=ocaml-variants.5.5.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.5.0+trunk
@@ -7845,7 +7845,7 @@ ocurrent/opam-staging:opensuse-tumbleweed-ocaml-5.5-amd64 -> ocaml/opam:opensuse
 	USER root
 	RUN zypper repos repo-openh264 && zypper removerepo repo-openh264 || true
 	RUN zypper update -y
-	RUN zypper install --force-resolution -y zstd
+	RUN zypper install --force-resolution -y libzstd-devel
 	USER opam
 	RUN opam switch create 5.6 --packages=ocaml-variants.5.6.0+trunk
 	RUN opam pin add -k version ocaml-variants 5.6.0+trunk
