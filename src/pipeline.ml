@@ -182,7 +182,12 @@ module Make (OCurrent : S.OCURRENT) = struct
             begin match os_family with
             | `Linux ->
               opam @@
-              copy ~link:true ~chown:"opam:opam" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
+              (* COPY --link copies onto an empty scratch base, so a name-based
+                 --chown can't be resolved under BuildKit's containerd image-store
+                 worker (the default since Docker 29 / Ubuntu 26.04) and fails with
+                 "invalid user index: -1". The opam user is uid:gid 1000; numeric
+                 ids need no /etc/passwd lookup. *)
+              copy ~link:true ~chown:"1000:1000" ~src:["."] ~dst:"/home/opam/opam-repository" () @@
               run "opam-sandbox-disable" @@
               run "opam init -k git -a /home/opam/opam-repository --bare" @@
               run {|echo 'archive-mirrors: "https://opam.ocaml.org/cache"' >> ~/.opam/config|} @@
