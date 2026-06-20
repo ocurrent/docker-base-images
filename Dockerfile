@@ -36,6 +36,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     libev4 \
     libsqlite3-dev \
     docker-cli \
+    docker-buildx \
     netbase
 COPY --from=build --link /src/_build/default/src/base_images.exe /usr/local/bin/base-images
 WORKDIR /var/lib/ocurrent
