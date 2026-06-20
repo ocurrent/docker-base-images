@@ -1,6 +1,9 @@
 (* For staging arch-specific builds before creating the manifest. *)
 let staging_repo = "ocurrent/opam-staging"
 
+(* dune-pkg staging images don't use the opam staging repo. *)
+let dune_staging_repo = "ocurrentbuilder/staging"
+
 let public_repo = "ocaml/opam"
 
 let password_path =

@@ -13709,3 +13709,429 @@ ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-5.3-amd64 -> ocaml/opam:window
 ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-5.4-amd64 -> ocaml/opam:windows-msvc-ltsc2019
 ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-5.4-amd64 -> ocaml/opam:windows-msvc-ltsc2019-ocaml-5.4
 ocurrent/opam-staging:windows-msvc-ltsc2019-ocaml-5.4-amd64 -> ocaml/opam:windows-msvc-ocaml-5.4
+dune-pkg 5.5.0/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM alpine:3.23
+	RUN apk add --no-cache build-base m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils bash rsync
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0))))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:alpine-3.23-dune-ocaml-5.5-amd64 -> ocaml/opam:alpine-3.23-dune-ocaml-5.5
+ocurrentbuilder/staging:alpine-3.23-dune-ocaml-5.5-amd64 -> ocaml/opam:alpine-dune-ocaml-5.5
+dune-pkg 5.5.0+afl/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM alpine:3.23
+	RUN apk add --no-cache build-base m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils bash rsync
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0)) ocaml-options-only-afl))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:alpine-3.23-dune-ocaml-5.5-afl-amd64 -> ocaml/opam:alpine-3.23-dune-ocaml-5.5-afl
+ocurrentbuilder/staging:alpine-3.23-dune-ocaml-5.5-afl-amd64 -> ocaml/opam:alpine-dune-ocaml-5.5-afl
+dune-pkg 5.5.0+flambda/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM alpine:3.23
+	RUN apk add --no-cache build-base m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils bash rsync
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0)) ocaml-options-only-flambda))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:alpine-3.23-dune-ocaml-5.5-flambda-amd64 -> ocaml/opam:alpine-3.23-dune-ocaml-5.5-flambda
+ocurrentbuilder/staging:alpine-3.23-dune-ocaml-5.5-flambda-amd64 -> ocaml/opam:alpine-dune-ocaml-5.5-flambda
+dune-pkg 5.5.0+no-flat-float-array/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM alpine:3.23
+	RUN apk add --no-cache build-base m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils bash rsync
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0)) ocaml-options-only-no-flat-float-array))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:alpine-3.23-dune-ocaml-5.5-no-flat-float-array-amd64 -> ocaml/opam:alpine-3.23-dune-ocaml-5.5-no-flat-float-array
+ocurrentbuilder/staging:alpine-3.23-dune-ocaml-5.5-no-flat-float-array-amd64 -> ocaml/opam:alpine-dune-ocaml-5.5-no-flat-float-array
+dune-pkg 5.5.0/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM debian:12
+	RUN apt-get update && apt-get install -y --no-install-recommends build-essential m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils rsync && rm -rf /var/lib/apt/lists/*
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0))))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:debian-12-dune-ocaml-5.5-amd64 -> ocaml/opam:debian-12-dune-ocaml-5.5
+dune-pkg 5.5.0/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM debian:13
+	RUN apt-get update && apt-get install -y --no-install-recommends build-essential m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils rsync && rm -rf /var/lib/apt/lists/*
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0))))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:debian-13-dune-ocaml-5.5-amd64 -> ocaml/opam:debian-13-dune-ocaml-5.5
+ocurrentbuilder/staging:debian-13-dune-ocaml-5.5-amd64 -> ocaml/opam:debian-dune-ocaml-5.5
+dune-pkg 5.5.0+afl/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM debian:13
+	RUN apt-get update && apt-get install -y --no-install-recommends build-essential m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils rsync && rm -rf /var/lib/apt/lists/*
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0)) ocaml-options-only-afl))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:debian-13-dune-ocaml-5.5-afl-amd64 -> ocaml/opam:debian-13-dune-ocaml-5.5-afl
+ocurrentbuilder/staging:debian-13-dune-ocaml-5.5-afl-amd64 -> ocaml/opam:debian-dune-ocaml-5.5-afl
+dune-pkg 5.5.0+flambda/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM debian:13
+	RUN apt-get update && apt-get install -y --no-install-recommends build-essential m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils rsync && rm -rf /var/lib/apt/lists/*
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0)) ocaml-options-only-flambda))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:debian-13-dune-ocaml-5.5-flambda-amd64 -> ocaml/opam:debian-13-dune-ocaml-5.5-flambda
+ocurrentbuilder/staging:debian-13-dune-ocaml-5.5-flambda-amd64 -> ocaml/opam:debian-dune-ocaml-5.5-flambda
+dune-pkg 5.5.0+no-flat-float-array/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM debian:13
+	RUN apt-get update && apt-get install -y --no-install-recommends build-essential m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils rsync && rm -rf /var/lib/apt/lists/*
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0)) ocaml-options-only-no-flat-float-array))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:debian-13-dune-ocaml-5.5-no-flat-float-array-amd64 -> ocaml/opam:debian-13-dune-ocaml-5.5-no-flat-float-array
+ocurrentbuilder/staging:debian-13-dune-ocaml-5.5-no-flat-float-array-amd64 -> ocaml/opam:debian-dune-ocaml-5.5-no-flat-float-array
+dune-pkg 5.5.0/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM debian:testing
+	RUN apt-get update && apt-get install -y --no-install-recommends build-essential m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils rsync && rm -rf /var/lib/apt/lists/*
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0))))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:debian-testing-dune-ocaml-5.5-amd64 -> ocaml/opam:debian-testing-dune-ocaml-5.5
+dune-pkg 5.5.0/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM debian:unstable
+	RUN apt-get update && apt-get install -y --no-install-recommends build-essential m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils rsync && rm -rf /var/lib/apt/lists/*
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0))))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:debian-unstable-dune-ocaml-5.5-amd64 -> ocaml/opam:debian-unstable-dune-ocaml-5.5
+dune-pkg 5.5.0/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM ubuntu:jammy
+	RUN apt-get update && apt-get install -y --no-install-recommends build-essential m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils rsync && rm -rf /var/lib/apt/lists/*
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0))))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:ubuntu-22.04-dune-ocaml-5.5-amd64 -> ocaml/opam:ubuntu-22.04-dune-ocaml-5.5
+dune-pkg 5.5.0/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM ubuntu:noble
+	RUN apt-get update && apt-get install -y --no-install-recommends build-essential m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils rsync && rm -rf /var/lib/apt/lists/*
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0))))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:ubuntu-24.04-dune-ocaml-5.5-amd64 -> ocaml/opam:ubuntu-24.04-dune-ocaml-5.5
+dune-pkg 5.5.0/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM ubuntu:plucky
+	RUN apt-get update && apt-get install -y --no-install-recommends build-essential m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils rsync && rm -rf /var/lib/apt/lists/*
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0))))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:ubuntu-25.04-dune-ocaml-5.5-amd64 -> ocaml/opam:ubuntu-25.04-dune-ocaml-5.5
+dune-pkg 5.5.0/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM ubuntu:questing
+	RUN apt-get update && apt-get install -y --no-install-recommends build-essential m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils rsync && rm -rf /var/lib/apt/lists/*
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0))))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:ubuntu-25.10-dune-ocaml-5.5-amd64 -> ocaml/opam:ubuntu-25.10-dune-ocaml-5.5
+dune-pkg 5.5.0/amd64
+	# syntax=docker/dockerfile:1
+
+	FROM ubuntu:resolute
+	RUN apt-get update && apt-get install -y --no-install-recommends build-essential m4 git curl ca-certificates tar gzip bzip2 unzip patch coreutils rsync && rm -rf /var/lib/apt/lists/*
+	RUN curl -fsSL https://get.dune.build/2026-06-11/x86_64-unknown-linux-musl/dune-2026-06-11-x86_64-unknown-linux-musl.tar.gz | tar xz -C /tmp && install -m 0755 /tmp/dune-2026-06-11-x86_64-unknown-linux-musl/dune /usr/local/bin/dune && rm -rf /tmp/dune-2026-06-11-x86_64-unknown-linux-musl && dune --version
+	ENV XDG_CACHE_HOME="/dune-cache" DUNE_CACHE="enabled" DUNE_CACHE_ROOT="/dune-cache/dune/db"
+	WORKDIR /seed
+	COPY <<EOF dune-project
+	(lang dune 3.20)
+	(package (name seed) (allow_empty) (depends (ocaml (= 5.5.0))))
+	EOF
+	COPY <<EOF dune-workspace
+	(lang dune 3.20)
+	(lock_dir (repositories upstream))
+	EOF
+	COPY <<EOF dune
+	(executable (name main))
+	EOF
+	COPY <<EOF main.ml
+	let () = ()
+	EOF
+	RUN dune pkg lock && dune build && rm -rf _build /dune-cache/dune/db/git-repo
+	COPY --link [ "Dockerfile", "/Dockerfile.dune-pkg" ]
+
+ocurrentbuilder/staging:ubuntu-26.04-dune-ocaml-5.5-amd64 -> ocaml/opam:ubuntu-26.04-dune-ocaml-5.5
+ocurrentbuilder/staging:ubuntu-26.04-dune-ocaml-5.5-amd64 -> ocaml/opam:ubuntu-lts-dune-ocaml-5.5
+ocurrentbuilder/staging:ubuntu-26.04-dune-ocaml-5.5-amd64 -> ocaml/opam:ubuntu-dune-ocaml-5.5
