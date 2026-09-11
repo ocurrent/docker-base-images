@@ -160,6 +160,7 @@ module Make (OCurrent : S.OCURRENT) = struct
              opam_2_3;
              opam_2_4;
              opam_2_5;
+             opam_2_6;
              opam_master
            } = repos
       and> windows_version = windows_version in
@@ -170,6 +171,7 @@ module Make (OCurrent : S.OCURRENT) = struct
           opam_2_3_hash = Current_git.Commit_id.hash opam_2_3;
           opam_2_4_hash = Current_git.Commit_id.hash opam_2_4;
           opam_2_5_hash = Current_git.Commit_id.hash opam_2_5;
+          opam_2_6_hash = Current_git.Commit_id.hash opam_2_6;
           opam_master_hash = Current_git.Commit_id.hash opam_master;
         } in
         `Contents (

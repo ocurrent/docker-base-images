@@ -121,6 +121,7 @@ let run () =
       opam_2_3 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.3" ~hash:"2.3";
       opam_2_4 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.4" ~hash:"2.4";
       opam_2_5 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.5" ~hash:"2.5";
+      opam_2_6 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.6" ~hash:"2.6";
       opam_master = Current_git.Commit_id.v ~repo:"opam" ~gref:"master" ~hash:"master";
     } in
   (* The version numbers given below are correct as of April 2024.  They do not need to be updated and serve only as static
