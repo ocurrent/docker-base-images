@@ -31,8 +31,8 @@
   current_rpc
   (capnp-rpc-unix (>= 1.2.3))
   (cmdliner (>= 1.3.0))
-  (dockerfile (>= 8.4.1))
-  (dockerfile-opam (>= 8.4.1))
-  (ocaml-version (>= 3.7.3))
+  (dockerfile (>= 8.4.4))
+  (dockerfile-opam (>= 8.4.4))
+  (ocaml-version (>= 4.1.4))
   (timedesc (>= 3.0.0))
   opam-core))
