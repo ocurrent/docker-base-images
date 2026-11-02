@@ -154,26 +154,12 @@ module Make (OCurrent : S.OCURRENT) = struct
       let arch_name = Ocaml_version.string_of_arch arch in
       let distro_tag, os_family = Distro.(tag_of_distro distro, os_family_of_distro distro) in
       Current.component "%s@,%s" distro_tag arch_name |>
-      let> { Git_repositories.opam_repository_master;
-             opam_2_1;
-             opam_2_2;
-             opam_2_3;
-             opam_2_4;
-             opam_2_5;
-             opam_2_6;
-             opam_master
-           } = repos
+      let> { Git_repositories.opam_repository_master; opam } = repos
       and> windows_version = windows_version in
       let dockerfile =
-        let opam_hashes = {
-          Dockerfile_opam.opam_2_1_hash = Current_git.Commit_id.hash opam_2_1;
-          opam_2_2_hash = Current_git.Commit_id.hash opam_2_2;
-          opam_2_3_hash = Current_git.Commit_id.hash opam_2_3;
-          opam_2_4_hash = Current_git.Commit_id.hash opam_2_4;
-          opam_2_5_hash = Current_git.Commit_id.hash opam_2_5;
-          opam_2_6_hash = Current_git.Commit_id.hash opam_2_6;
-          opam_master_hash = Current_git.Commit_id.hash opam_master;
-        } in
+        let opam_hashes =
+          List.map (fun (version, commit) -> (version, Current_git.Commit_id.hash commit)) opam
+        in
         `Contents (
           let opam = snd @@ match windows_version with
           | "" -> Dockerfile_opam.gen_opam2_distro ~arch ~clone_opam_repo:false ~opam_hashes distro

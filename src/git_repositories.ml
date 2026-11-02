@@ -1,5 +1,6 @@
 open Lwt.Infix
 open Current.Syntax
+module Opam_version = Dockerfile_opam.Opam_version
 
 let ( >>!= ) x f =
   x >>= function
@@ -12,38 +13,17 @@ module Repositories = struct
   let id = "git-repositories"
 
   module Key = struct
-    type repo = string
-
     type t = {
-      opam_repository_master : repo;
-      opam_2_1 : repo;
-      opam_2_2 : repo;
-      opam_2_3 : repo;
-      opam_2_4 : repo;
-      opam_2_5 : repo;
-      opam_2_6 : repo;
-      opam_master : repo;
+      opam_repository : string;
+      opam : string;
+      versions : Opam_version.t list;
     }
 
-    let digest
-        { opam_repository_master;
-          opam_2_1;
-          opam_2_2;
-          opam_2_3;
-          opam_2_4;
-          opam_2_5;
-          opam_2_6;
-          opam_master;
-        } =
+    let digest { opam_repository; opam; versions } =
       let json = `Assoc [
-        "opam-repository__master", `String opam_repository_master;
-        "opam__2.1", `String opam_2_1;
-        "opam__2.2", `String opam_2_2;
-        "opam__2.3", `String opam_2_3;
-        "opam__2.4", `String opam_2_4;
-        "opam__2.5", `String opam_2_5;
-        "opam__2.6", `String opam_2_6;
-        "opam__master", `String opam_master;
+        "opam-repository", `String opam_repository;
+        "opam", `String opam;
+        "versions", `List (List.map (fun v -> `String (Opam_version.to_string v)) versions);
       ] in
       Yojson.Safe.to_string json
   end
@@ -53,13 +33,7 @@ module Repositories = struct
 
     type t = {
       opam_repository_master : hash;
-      opam_2_1 : hash;
-      opam_2_2 : hash;
-      opam_2_3 : hash;
-      opam_2_4 : hash;
-      opam_2_5 : hash;
-      opam_2_6 : hash;
-      opam_master : hash;
+      opam : (Opam_version.t * hash) list;
     } [@@deriving yojson]
 
     let marshal t = to_yojson t |> Yojson.Safe.to_string
@@ -76,6 +50,9 @@ module Repositories = struct
     Current.Process.check_output ~cwd ~cancellable:true ~job ("", [|"git"; "rev-parse"; "HEAD"|]) >>!= fun hash ->
     Lwt.return (Ok (String.trim hash))
 
+  (* The newest tag, including alphas, betas and release candidates. Tracking
+     the head of master instead once pulled in a commit that broke every CI
+     on the next image refresh, so the "dev" opam is the newest pre-release. *)
   let get_latest_release_hash ~job ~repo =
     Current.Process.with_tmpdir ~prefix:"git-checkout" @@ fun cwd ->
     Current.Process.exec ~cwd ~cancellable:true ~job ("", [|"git"; "clone"; repo; "."|]) >>!= fun () ->
@@ -94,37 +71,22 @@ module Repositories = struct
       |> List.hd |> snd in
     Lwt.return (Ok hash)
 
-  let build No_context job
-      { Key.opam_repository_master;
-        opam_2_1;
-        opam_2_2;
-        opam_2_3;
-        opam_2_4;
-        opam_2_5;
-        opam_2_6;
-        opam_master
-      } =
+  let get_opam_hash ~job ~repo = function
+    | `Dev -> get_latest_release_hash ~job ~repo
+    | v -> get_commit_hash ~job ~repo ~branch:(Opam_version.branch v)
+
+  let build No_context job { Key.opam_repository; opam; versions } =
     Metrics.set_last_build_time_now ();
     Current.Job.start job ~level:Current.Level.Mostly_harmless >>= fun () ->
-    get_commit_hash ~job ~repo:opam_repository_master ~branch:"master" >>!= fun opam_repository_master ->
-    get_commit_hash ~job ~repo:opam_2_1 ~branch:"2.1" >>!= fun opam_2_1 ->
-    get_commit_hash ~job ~repo:opam_2_2 ~branch:"2.2" >>!= fun opam_2_2 ->
-    get_commit_hash ~job ~repo:opam_2_3 ~branch:"2.3" >>!= fun opam_2_3 ->
-    get_commit_hash ~job ~repo:opam_2_4 ~branch:"2.4" >>!= fun opam_2_4 ->
-    get_commit_hash ~job ~repo:opam_2_5 ~branch:"2.5" >>!= fun opam_2_5 ->
-    get_commit_hash ~job ~repo:opam_2_6 ~branch:"2.6" >>!= fun opam_2_6 ->
-    get_latest_release_hash ~job ~repo:opam_master >>!= fun opam_master ->
-    let repos = { Value.opam_repository_master;
-                  opam_2_1;
-                  opam_2_2;
-                  opam_2_3;
-                  opam_2_4;
-                  opam_2_5;
-                  opam_2_6;
-                  opam_master
-                }
+    get_commit_hash ~job ~repo:opam_repository ~branch:"master" >>!= fun opam_repository_master ->
+    let rec hashes acc = function
+      | [] -> Lwt.return (Ok (List.rev acc))
+      | v :: versions ->
+        get_opam_hash ~job ~repo:opam v >>!= fun hash ->
+        hashes ((v, hash) :: acc) versions
     in
-    Lwt.return (Ok repos)
+    hashes [] versions >>!= fun opam ->
+    Lwt.return (Ok { Value.opam_repository_master; opam })
 
   let pp f _ = Fmt.string f "Git repositories"
 
@@ -135,47 +97,26 @@ module Cache = Current_cache.Make(Repositories)
 
 type t = {
   opam_repository_master : Current_git.Commit_id.t;
-  opam_2_1 : Current_git.Commit_id.t;
-  opam_2_2 : Current_git.Commit_id.t;
-  opam_2_3 : Current_git.Commit_id.t;
-  opam_2_4 : Current_git.Commit_id.t;
-  opam_2_5 : Current_git.Commit_id.t;
-  opam_2_6 : Current_git.Commit_id.t;
-  opam_master : Current_git.Commit_id.t;
+  opam : (Opam_version.t * Current_git.Commit_id.t) list;
 }
 
 let get ~schedule =
   let key = {
     Repositories.Key.
-    opam_repository_master = "https://github.com/ocaml/opam-repository";
-    opam_2_1 = "https://github.com/ocaml/opam";
-    opam_2_2 = "https://github.com/ocaml/opam";
-    opam_2_3 = "https://github.com/ocaml/opam";
-    opam_2_4 = "https://github.com/ocaml/opam";
-    opam_2_5 = "https://github.com/ocaml/opam";
-    opam_2_6 = "https://github.com/ocaml/opam";
-    opam_master = "https://github.com/ocaml/opam";
+    opam_repository = "https://github.com/ocaml/opam-repository";
+    opam = "https://github.com/ocaml/opam";
+    versions = Opam_version.all;
   } in
-  let+ {Repositories.Value.opam_repository_master; opam_2_1; opam_2_2; opam_2_3; opam_2_4; opam_2_5; opam_2_6; opam_master} =
+  let+ { Repositories.Value.opam_repository_master; opam } =
     Current.component "Git-repositories" |>
     let> key = Current.return key in
     Cache.get ~schedule Repositories.No_context key
   in
   {
     opam_repository_master =
-      Current_git.Commit_id.v ~repo:key.opam_repository_master ~gref:"master" ~hash:opam_repository_master;
-    opam_2_1 =
-      Current_git.Commit_id.v ~repo:key.opam_2_1 ~gref:"2.1" ~hash:opam_2_1;
-    opam_2_2 =
-      Current_git.Commit_id.v ~repo:key.opam_2_2 ~gref:"2.2" ~hash:opam_2_2;
-    opam_2_3 =
-      Current_git.Commit_id.v ~repo:key.opam_2_3 ~gref:"2.3" ~hash:opam_2_3;
-    opam_2_4 =
-      Current_git.Commit_id.v ~repo:key.opam_2_4 ~gref:"2.4" ~hash:opam_2_4;
-    opam_2_5 =
-      Current_git.Commit_id.v ~repo:key.opam_2_5 ~gref:"2.5" ~hash:opam_2_5;
-    opam_2_6 =
-      Current_git.Commit_id.v ~repo:key.opam_2_6 ~gref:"2.6" ~hash:opam_2_6;
-    opam_master =
-      Current_git.Commit_id.v ~repo:key.opam_master ~gref:"master" ~hash:opam_master;
+      Current_git.Commit_id.v ~repo:key.opam_repository ~gref:"master" ~hash:opam_repository_master;
+    opam =
+      List.map (fun (v, hash) ->
+        (v, Current_git.Commit_id.v ~repo:key.opam ~gref:(Opam_version.branch v) ~hash))
+        opam;
   }
