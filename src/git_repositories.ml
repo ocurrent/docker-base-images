@@ -44,49 +44,69 @@ module Repositories = struct
       | Ppx_deriving_yojson_runtime.Result.Error _ -> failwith "failed to parse Git_repositories.Repositories.Value.t"
   end
 
-  let get_commit_hash ~job ~repo ~branch =
-    Current.Process.with_tmpdir ~prefix:"git-checkout" @@ fun cwd ->
-    Current.Process.exec ~cwd ~cancellable:true ~job ("", [|"git"; "clone"; "-b"; branch; repo; "."|]) >>!= fun () ->
-    Current.Process.check_output ~cwd ~cancellable:true ~job ("", [|"git"; "rev-parse"; "HEAD"|]) >>!= fun hash ->
-    Lwt.return (Ok (String.trim hash))
+  (* Every branch and tag on [repo] as [(ref, hash)] pairs, e.g.
+     [("refs/heads/2.6", "921b53..."); ("refs/tags/2.6.0", "a310b2...")].
+     Nothing downstream needs a checkout: the hashes only end up as strings in
+     the generated Dockerfile and in the Commit_id handed to the cluster, so
+     one [ls-remote] per repository replaces a full clone per version. *)
+  let ls_remote ~job repo =
+    Current.Process.check_output ~cancellable:true ~job
+      ("", [|"git"; "ls-remote"; "--heads"; "--tags"; repo|]) >>!= fun output ->
+    String.split_on_char '\n' output
+    |> List.filter_map (fun line ->
+      match String.index_opt line '\t' with
+      | Some i -> Some (String.sub line (i + 1) (String.length line - i - 1), String.sub line 0 i)
+      | None -> None)
+    |> Result.ok |> Lwt.return
 
-  (* The newest tag, including alphas, betas and release candidates. Tracking
-     the head of master instead once pulled in a commit that broke every CI
-     on the next image refresh, so the "dev" opam is the newest pre-release. *)
-  let get_latest_release_hash ~job ~repo =
-    Current.Process.with_tmpdir ~prefix:"git-checkout" @@ fun cwd ->
-    Current.Process.exec ~cwd ~cancellable:true ~job ("", [|"git"; "clone"; repo; "."|]) >>!= fun () ->
-    Current.Process.check_output ~cwd ~cancellable:true ~job ("", [|"git"; "tag"; "--format"; "%(objectname) %(refname:strip=2)"|]) >>!= fun all_tags ->
-    let rec parse = function
-      | "" -> []
-      | s -> Scanf.sscanf s "%s %s %s@!" (fun sha tag r -> (tag, sha) :: parse r) in
-    let hash = parse all_tags
-      |> List.filter_map (fun (tag, sha) ->
-        match tag.[0] with
-        | '0'..'9' ->
-          let normalised = String.split_on_char '-' tag |> String.concat "~" in
-          Some (OpamVersion.of_string normalised, sha)
-        | _ -> None)
-      |> List.sort (fun (v1, _) (v2, _) -> OpamVersion.compare v2 v1)
-      |> List.hd |> snd in
-    Lwt.return (Ok hash)
+  let branch_hash refs branch =
+    match List.assoc_opt ("refs/heads/" ^ branch) refs with
+    | Some hash -> Ok hash
+    | None -> Error (`Msg (Fmt.str "Branch %S not found" branch))
 
-  let get_opam_hash ~job ~repo = function
-    | `Dev -> get_latest_release_hash ~job ~repo
-    | v -> get_commit_hash ~job ~repo ~branch:(Opam_version.branch v)
+  (* The newest tag, including alphas, betas and release candidates, so the
+     "dev" opam is the newest pre-release and the images only move when the
+     opam team tags one.
+     Annotated tags are listed twice by ls-remote, as the tag object and as the
+     peeled commit ("^{}"); keep the tag object, which is what [git tag] gave. *)
+  let latest_release_hash refs =
+    let prefix = "refs/tags/" in
+    refs
+    |> List.filter_map (fun (ref, sha) ->
+      match String.(starts_with ~prefix ref, ends_with ~suffix:"^{}" ref) with
+      | true, false ->
+        let tag = String.sub ref (String.length prefix) (String.length ref - String.length prefix) in
+        (match tag.[0] with
+         | '0'..'9' ->
+           let normalised = String.split_on_char '-' tag |> String.concat "~" in
+           Some (OpamVersion.of_string normalised, sha)
+         | _ -> None)
+      | _ -> None)
+    |> List.sort (fun (v1, _) (v2, _) -> OpamVersion.compare v2 v1)
+    |> function
+    | (_, sha) :: _ -> Ok sha
+    | [] -> Error (`Msg "No release tags found")
+
+  let opam_hash refs = function
+    | `Dev -> latest_release_hash refs
+    | v -> branch_hash refs (Opam_version.branch v)
 
   let build No_context job { Key.opam_repository; opam; versions } =
     Metrics.set_last_build_time_now ();
     Current.Job.start job ~level:Current.Level.Mostly_harmless >>= fun () ->
-    get_commit_hash ~job ~repo:opam_repository ~branch:"master" >>!= fun opam_repository_master ->
-    let rec hashes acc = function
-      | [] -> Lwt.return (Ok (List.rev acc))
-      | v :: versions ->
-        get_opam_hash ~job ~repo:opam v >>!= fun hash ->
-        hashes ((v, hash) :: acc) versions
+    ls_remote ~job opam_repository >>!= fun opam_repository_refs ->
+    ls_remote ~job opam >>!= fun opam_refs ->
+    Lwt.return @@
+    let ( let* ) = Result.bind in
+    let* opam_repository_master = branch_hash opam_repository_refs "master" in
+    let* opam =
+      List.fold_right (fun v acc ->
+          let* acc = acc in
+          let* hash = opam_hash opam_refs v in
+          Ok ((v, hash) :: acc))
+        versions (Ok [])
     in
-    hashes [] versions >>!= fun opam ->
-    Lwt.return (Ok { Value.opam_repository_master; opam })
+    Ok { Value.opam_repository_master; opam }
 
   let pp f _ = Fmt.string f "Git repositories"
 
