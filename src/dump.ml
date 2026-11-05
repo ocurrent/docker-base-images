@@ -116,13 +116,11 @@ let run () =
   let repos =
     Fake.Current.Primitive.const { Git_repositories.
       opam_repository_master = Current_git.Commit_id.v ~repo:"opam_repository" ~gref:"master" ~hash:"master";
-      opam_2_1 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.1" ~hash:"2.1";
-      opam_2_2 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.2" ~hash:"2.2";
-      opam_2_3 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.3" ~hash:"2.3";
-      opam_2_4 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.4" ~hash:"2.4";
-      opam_2_5 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.5" ~hash:"2.5";
-      opam_2_6 = Current_git.Commit_id.v ~repo:"opam" ~gref:"2.6" ~hash:"2.6";
-      opam_master = Current_git.Commit_id.v ~repo:"opam" ~gref:"master" ~hash:"master";
+      opam =
+        List.map (fun v ->
+          let branch = Dockerfile_opam.Opam_version.branch v in
+          (v, Current_git.Commit_id.v ~repo:"opam" ~gref:branch ~hash:branch))
+          Dockerfile_opam.Opam_version.all;
     } in
   (* The version numbers given below are correct as of April 2024.  They do not need to be updated and serve only as static
    * placeholder values to test the version number substitution.  Alternatively, windows_version could be an empty set which
