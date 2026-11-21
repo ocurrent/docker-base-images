@@ -1,2 +1,3 @@
-# See https://github.com/ocurrent/ocaml-ci/issues/931
-available: !(os-distribution = "debian" & os-version = "12" & arch = "x86_32")
+# Only deployed on Debian; avoid CI noise from other platforms.
+# Debian 12 x86_32: see https://github.com/ocurrent/ocaml-ci/issues/931
+available: os-distribution = "debian" & !(os-version = "12" & arch = "x86_32")
